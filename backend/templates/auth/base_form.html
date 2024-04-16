@@ -1,0 +1,14 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <div>
+        {%block title%}{% endblock %}</div>
+    <form method="post">
+        {% block form %}
+        {% endblock %}
+        <button type="submit">{% block button %} {% endblock %}</button>
+    </form>
+</div>
+{% endblock %}
