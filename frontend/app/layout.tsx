@@ -1,14 +1,18 @@
+// next
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import Navbar from '@/components/navbar';
-import React, { useState, useEffect } from 'react';
-interface UserData {
-  username: string;
-  // Add other fields as needed
-}
 
-const inter = Inter({ subsets: ['latin'] });
+// styling
+import './globals.css';
+import { Inter as FontSans } from 'next/font/google';
+import { cn } from '@/lib/utils';
+const fontSans = FontSans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
+
+// others
+import Navbar from '@/components/navbar';
+import NavHeader from '@/components/navheader';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,9 +26,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`container ${inter.className}`}>
+      <head>
+        <link
+          rel='stylesheet'
+          type='text/css'
+          href='https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css'
+        />
+        <link
+          rel='stylesheet'
+          type='text/css'
+          href='https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css'
+        />
+      </head>
+      <body
+        className={cn(
+          'min-h-screen bg-background font-sans antialiased flex flex-row',
+          fontSans.variable,
+        )}
+      >
         <Navbar />
-        {children}
+        <div className='w-full'>
+          <NavHeader />
+          <main className='w-full'>{children}</main>
+        </div>
       </body>
     </html>
   );
