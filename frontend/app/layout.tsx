@@ -1,14 +1,18 @@
+// next
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import Navbar from '@/components/navbar';
-import React, { useState, useEffect } from 'react';
-interface UserData {
-  username: string;
-  // Add other fields as needed
-}
 
-const inter = Inter({ subsets: ['latin'] });
+// styling
+import './globals.css';
+import { Inter as FontSans } from 'next/font/google';
+import { cn } from '@/lib/utils';
+const fontSans = FontSans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
+
+// others
+import Navbar from '@/components/navbar';
+import NavHeader from '@/components/navheader';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,9 +26,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`container ${inter.className}`}>
-        <Navbar />
-        {children}
+      <head>
+        <link
+          rel='stylesheet'
+          type='text/css'
+          href='https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css'
+        />
+        <link
+          rel='stylesheet'
+          type='text/css'
+          href='https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css'
+        />
+      </head>
+      <body
+        className={cn('bg-background font-sans antialiased', fontSans.variable)}
+      >
+        <div className='min-h-screen flex flex-row'>
+          <Navbar />
+          <div className='w-full flex flex-col'>
+            <NavHeader />
+            <main className='grow w-full overflow-x-auto overflow-y-scroll max-h-[calc(100vh-61px)]'>
+              {children}
+            </main>
+          </div>
+        </div>
       </body>
     </html>
   );

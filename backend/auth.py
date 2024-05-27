@@ -8,7 +8,7 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash   
 import uuid
-from db.db import get_db
+from db import get_db
 from session import SessionSingleton
 
 auth = Blueprint("auth", __name__, url_prefix="/auth")
@@ -30,16 +30,16 @@ def register():
             if error is not None:
                 return jsonify({ "error": "Signup failed" }), 400
             else:
-                    user = {
-                        "_id": uuid.uuid4().hex,
-                        "username": username,
-                        "pass_hash":  generate_password_hash(password),
-                    } 
-                    if db.users.find_one({ "username": user['username'] }):
-                        return jsonify({ "error": "username already in use" }), 400
+                user = {
+                    "_id": uuid.uuid4().hex,
+                    "username": username,
+                    "pass_hash":  generate_password_hash(password),
+                } 
+                if db.users.find_one({ "username": user['username'] }):
+                    return jsonify({ "error": "username already in use" }), 400
 
-                    if db.users.insert_one(user):
-                        session = SessionSingleton.get_session()
+                if db.users.insert_one(user):
+                    session = SessionSingleton.get_session()
                         
 
         except:

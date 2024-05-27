@@ -1,42 +1,49 @@
 'use client';
-
-import React, { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import NavLink from '@/components/navlink';
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
-  const [sessionData, setSessionData] = useState<any | null>(null);
-
-  useEffect(() => {
-    fetch('http://localhost:5000/session', {
-      method: 'GET',
-      credentials: 'include', // Include credentials (cookies) in the request
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setSessionData(data);
-      })
-      .catch((error) => console.error('Error fetching session data:', error));
-  }, []);
+  const pathname = usePathname();
+  const router = useRouter();
 
   return (
-    <nav className='flex justify-between p-4 h-16 bg-slate-600'>
-      <div></div>
-      {sessionData != null && sessionData.user ? (
-        <button
+    <div className='w-80 border-r border-border'>
+      <div className='p-2 border-b border-border'>
+        <Button
+          variant={'outline'}
+          className='w-full h-11 justify-between'
           onClick={() => {
-            fetch('http://localhost:5000/auth/logout', {
-              method: 'GET',
-              credentials: 'include',
-            });
+            router.push('/profile');
+            return void 0;
           }}
         >
-          Logout
-        </button>
-      ) : (
-        <div className='flex gap-4'>
-          {' '}
-          <a href='/auth/login'>login</a> <a href='/auth/register'>sign up</a>
-        </div>
-      )}
-    </nav>
+          <div className='flex space-x-3 items-center'>
+            <Avatar className='h-6 w-6'>
+              <AvatarImage src='https://github.com/shadcn.png' alt='username' />
+              <AvatarFallback>DM</AvatarFallback>
+            </Avatar>
+            <span>Diogo Matos</span>
+          </div>
+          <span>{'->'}</span>
+        </Button>
+      </div>
+      <nav className='grid gap-1 p-2'>
+        <NavLink active={pathname === '/resources'} href='/resources'>
+          <i className='ph ph-folder text-xl'></i>
+          <span>Resources</span>
+        </NavLink>
+        <NavLink active={pathname === '/favorites'} href='/favorites'>
+          <i className='ph ph-star text-xl'></i>
+          <span>Favorites</span>
+        </NavLink>
+        <NavLink active={pathname === '/feed'} href='/feed'>
+          <i className='ph ph-users-three text-xl'></i>
+          <span>Feed</span>
+        </NavLink>
+      </nav>
+    </div>
   );
 }

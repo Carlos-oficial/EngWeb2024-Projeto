@@ -10,12 +10,12 @@ from flask import (
 )
 import requests
 import json
-from db.db import get_db
+from db import get_db
 import os
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = "static/fits"
+UPLOAD_FOLDER = "static/documents"
 ALLOWED_EXTENSIONS = {"txt", "pdf", "png", "jpg", "jpeg", "gif", "webp"}
 
 

@@ -1,5 +1,5 @@
 import os
-
+import click
 from flask import Flask, render_template, session
 from flask_cors import CORS
 
@@ -14,7 +14,6 @@ def create_app(test_config=None):
 
     app.config.from_mapping(
         SECRET_KEY="dev",
-        DATABASE=os.path.join(app.instance_path, "APP.sqlite"),
     )
 
     if test_config is None:
@@ -25,14 +24,14 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+    # try:
+    #     os.makedirs(app.instance_path)
+    # except OSError:
+    #     pass
 
     # a simple page that says hello
 
-    import db.db as db
+    import db as db
 
     with app.app_context():
         db.init_db()
@@ -59,6 +58,11 @@ def create_app(test_config=None):
     def session_data():
         session = SessionSingleton.get_session()
         return {str(p): session[p] for p in session}
+    
+    import cli
+    with app.app_context():
+        cli.init_cli(app)
+
 
     return app
 
