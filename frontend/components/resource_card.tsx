@@ -105,13 +105,20 @@ export default function ResourceCard({
           </li>
         </ul>
       </CardContent>
-      <CardFooter>
+      <CardFooter className='space-x-2'>
         <Button
           className='w-full space-x-2'
           onClick={() => router.push(`/api/download/${id}`)}
+          variant={'outline'}
         >
           <i className='ph ph-download-simple'></i>
           <span>Download</span>
+        </Button>
+        <Button
+          variant={'outline'}
+          onClick={() => router.push(`/feed/share/${id}`)}
+        >
+          <i className='ph ph-share'></i>
         </Button>
       </CardFooter>
     </Card>

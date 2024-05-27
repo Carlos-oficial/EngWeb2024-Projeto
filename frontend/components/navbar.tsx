@@ -3,14 +3,23 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import NavLink from '@/components/navlink';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <div className='w-80 border-r border-border'>
       <div className='p-2 border-b border-border'>
-        <Button variant={'outline'} className='w-full h-11 justify-between'>
+        <Button
+          variant={'outline'}
+          className='w-full h-11 justify-between'
+          onClick={() => {
+            router.push('/profile');
+            return void 0;
+          }}
+        >
           <div className='flex space-x-3 items-center'>
             <Avatar className='h-6 w-6'>
               <AvatarImage src='https://github.com/shadcn.png' alt='username' />

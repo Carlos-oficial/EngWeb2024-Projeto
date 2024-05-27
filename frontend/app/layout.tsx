@@ -39,15 +39,16 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={cn(
-          'min-h-screen bg-background font-sans antialiased flex flex-row',
-          fontSans.variable,
-        )}
+        className={cn('bg-background font-sans antialiased', fontSans.variable)}
       >
-        <Navbar />
-        <div className='w-full'>
-          <NavHeader />
-          <main className='w-full'>{children}</main>
+        <div className='min-h-screen flex flex-row'>
+          <Navbar />
+          <div className='w-full flex flex-col'>
+            <NavHeader />
+            <main className='grow w-full overflow-x-auto overflow-y-scroll max-h-[calc(100vh-61px)]'>
+              {children}
+            </main>
+          </div>
         </div>
       </body>
     </html>
