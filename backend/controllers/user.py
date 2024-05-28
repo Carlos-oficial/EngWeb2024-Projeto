@@ -9,12 +9,12 @@ from flask import (
 
 from models.user import User
 
-def create(username, password, producer=False):
+def create(username, password):
     db = get_db()
-    user = User(username,generate_password_hash(password),producer)
-    if db.users.find_one({"username": user.username}):
+    user = User(username=username,pass_hash=generate_password_hash(password))
+    if db.users.find_one({"username": user["username"]}):
         raise Exception("username already in use")
-    db.users.insert_one(user.dict())
+    db.users.insert_one(user)
 
 
 def get(username):

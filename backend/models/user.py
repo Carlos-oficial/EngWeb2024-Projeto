@@ -1,21 +1,19 @@
-from enum import Enum
+import pydantic
+from pydantic import TypeAdapter, ValidationError
 
 
-class User:
-    class Role(Enum):
-        PRODUCER = "PRODUCER"
-        CONSUMER = "CONSUMER"
+from typing import List
+from typing_extensions import TypedDict
 
-    def __init__(self, username: str, pass_hash: str,producer=False):
-        self.username = username
-        self.pass_hash = pass_hash
-        self.role = User.Role.PRODUCER if producer else User.Role.CONSUMER
+class User(TypedDict):    
+    username:str
+    pass_hash:str
 
-    def dict(self):
-        return {
-            "username": self.username,
-            "pass_hash": self.pass_hash,
-            "role": self.role._value_,
-        }
-
-
+def validate(user):
+    UserValidator = TypeAdapter(User)
+    try:
+        UserValidator.validate_python(user)
+    except ValidationError:
+        return False
+    else: 
+        return True

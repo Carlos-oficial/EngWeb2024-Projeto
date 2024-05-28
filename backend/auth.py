@@ -7,8 +7,6 @@ from flask import (
     request,
 )
 from werkzeug.security import check_password_hash, generate_password_hash
-import uuid
-from db import get_db
 from session import SessionSingleton
 import controllers
 
