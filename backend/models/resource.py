@@ -1,7 +1,5 @@
 import pydantic
 from pydantic import TypeAdapter, ValidationError
-
-
 from typing import List
 from typing_extensions import TypedDict
 

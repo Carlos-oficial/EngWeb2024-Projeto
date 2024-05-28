@@ -10,7 +10,7 @@ from flask import (
 )
 import requests
 import json
-from db import get_db
+from backend.db import get_db
 import os
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
@@ -38,3 +38,4 @@ def init_routes(app):
 
         all_todos = todos.find()
         return render_template("index.html", todos=all_todos)
+

@@ -1,4 +1,4 @@
-from db import get_db
+from backend.db import get_db
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import (
     Blueprint,
@@ -7,7 +7,7 @@ from flask import (
     request,
 )
 
-from models.user import User
+from backend.models.user import User
 
 def create(username, password):
     db = get_db()

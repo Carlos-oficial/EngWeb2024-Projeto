@@ -3,7 +3,7 @@ import click
 from flask import Flask, render_template, session
 from flask_cors import CORS
 
-from session import SessionSingleton
+from backend.session import SessionSingleton
 
 
 def create_app(test_config=None):
@@ -33,27 +33,27 @@ def create_app(test_config=None):
 
     # a simple page that says hello
 
-    import db as db
+    import backend.db as db
 
     with app.app_context():
         db.init_db()
     db.init_app(app)
 
-    import auth
+    from backend.auth import auth
 
-    app.register_blueprint(auth.auth)
+    app.register_blueprint(auth)
 
-    import api
+    from backend.resource import resource_bp
 
-    app.register_blueprint(api.api)
+    app.register_blueprint(resource_bp)
 
-    import routes
+    from backend.routes import init_routes 
 
     with app.app_context():
-        routes.init_routes(app)
+        init_routes(app)
 
     @app.route("/routes")
-    def routes():
+    def routes_():
         return [str(p) for p in app.url_map.iter_rules()]
 
     @app.route("/session")
@@ -61,10 +61,10 @@ def create_app(test_config=None):
         session = SessionSingleton.get_session()
         return {str(p): session[p] for p in session}
 
-    import cli
+    from backend.cli import init_cli
 
     with app.app_context():
-        cli.init_cli(app)
+        init_cli(app)
 
     return app
 

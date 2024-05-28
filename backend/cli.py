@@ -1,7 +1,5 @@
 import click
-import controllers.user
-import controllers.resource
-
+import backend.controllers as controllers
 
 def init_cli(app):
 
@@ -23,7 +21,7 @@ def init_cli(app):
     @app.cli.command("list")
     @click.argument("collection")
     def list(collection):
-        from db import get_db
+        from backend.db import get_db
         import json
         db = get_db()
         

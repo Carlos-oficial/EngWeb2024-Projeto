@@ -7,8 +7,8 @@ from flask import (
     request,
 )
 from werkzeug.security import check_password_hash, generate_password_hash
-from session import SessionSingleton
-import controllers
+from backend.session import SessionSingleton
+import backend.controllers as controllers
 
 auth = Blueprint("auth", __name__, url_prefix="/auth")
 
