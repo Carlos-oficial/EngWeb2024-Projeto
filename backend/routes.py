@@ -26,16 +26,15 @@ def allowed_file(filename):
 def init_routes(app):
     app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
-    @app.route('/', methods=('GET', 'POST'))
+    @app.route("/", methods=("GET", "POST"))
     def index():
         db = get_db()
         todos = db.todos
-        if request.method=='POST':
-            content = request.form['content']
-            degree = request.form['degree']
-            todos.insert_one({'content': content, 'degree': degree})
-            return redirect(url_for('index'))
+        if request.method == "POST":
+            content = request.form["content"]
+            degree = request.form["degree"]
+            todos.insert_one({"content": content, "degree": degree})
+            return redirect(url_for("index"))
 
         all_todos = todos.find()
-        return render_template('index.html', todos=all_todos)
-    
+        return render_template("index.html", todos=all_todos)

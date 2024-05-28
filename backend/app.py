@@ -4,6 +4,8 @@ from flask import Flask, render_template, session
 from flask_cors import CORS
 
 from session import SessionSingleton
+
+
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(
@@ -58,14 +60,13 @@ def create_app(test_config=None):
     def session_data():
         session = SessionSingleton.get_session()
         return {str(p): session[p] for p in session}
-    
+
     import cli
+
     with app.app_context():
         cli.init_cli(app)
 
-
     return app
-
 
 
 if __name__ == "__main__":

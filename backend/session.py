@@ -1,5 +1,6 @@
 from typing import Dict
 
+
 class SessionSingleton:
     _instance = None
 
@@ -10,14 +11,16 @@ class SessionSingleton:
         return cls._instance
 
     @staticmethod
-    def get_session() -> Dict[str,str]:
+    def get_session() -> Dict[str, str]:
         return SessionSingleton()._session
 
-    def set(self,**kwargs):
+    def set(self, **kwargs):
         self._instance._session = self._instance._session | kwargs
 
-    def remove(self,*keys):
+    def remove(self, *keys):
         for key in keys:
             self._instance._session.pop(key)
+
+
 # Usage:
 session = SessionSingleton.get_session()
