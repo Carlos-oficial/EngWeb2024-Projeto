@@ -108,7 +108,7 @@ export default function ResourceCard({
       <CardFooter className='space-x-2'>
         <Button
           className='w-full space-x-2'
-          onClick={() => router.push(`/api/download/${id}`)}
+          onClick={() => fetch(`localhost:5000/resource/${id}/file`)}
           variant={'outline'}
         >
           <i className='ph ph-download-simple'></i>

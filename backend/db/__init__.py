@@ -26,5 +26,6 @@ def init_app(app, teardown=False):
 
 
 def get_data(data):
-    data["_id"] = str(data["_id"])
+    if data.get("_id"): 
+        data["_id"] = str(data["_id"])
     return data

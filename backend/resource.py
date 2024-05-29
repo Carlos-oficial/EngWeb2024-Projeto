@@ -12,6 +12,7 @@ from flask import (
     request,
     session,
     url_for,
+    send_file
 )
 
 import backend.db as db
@@ -46,7 +47,15 @@ def resource():
     elif request.method == "GET":
         return jsonify([db.get_data(i) for i in rc.list_all()])
 
-
-@resource_bp.route("/<resource_id>")
-def get_resource(resource_id):
-    return {"this is": resource_id, "headers": str(request.headers)}
+@resource_bp.route("<resource_id>/file")
+def get_resource_file(resource_id):
+    resource = rc.get(resource_id)
+    print(resource)
+    if resource:
+        file_path = os.path.join(config["UPLOAD_FOLDER"], resource["file"])
+        if os.path.isfile(file_path):
+            return send_file(file_path, as_attachment=True)
+        else:
+            return jsonify({"error": "File not found"}), 404
+    else:
+        return jsonify({"error": "Resource not found"}), 404
