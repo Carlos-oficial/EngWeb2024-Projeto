@@ -1,14 +1,10 @@
 import functools
 
-from flask import (
-    Blueprint,
-    g,
-    jsonify,
-    request,
-)
+from flask import Blueprint, g, jsonify, request
 from werkzeug.security import check_password_hash, generate_password_hash
-from backend.session import SessionSingleton
+
 import backend.controllers as controllers
+from backend.session import SessionSingleton
 
 auth = Blueprint("auth", __name__, url_prefix="/auth")
 

@@ -1,4 +1,5 @@
 import os
+
 import click
 from flask import Flask, render_template, session
 from flask_cors import CORS
@@ -47,13 +48,13 @@ def create_app(test_config=None):
 
     app.register_blueprint(resource_bp)
 
-    from backend.routes import init_routes 
+    from backend.routes import init_routes
 
     with app.app_context():
         init_routes(app)
 
     @app.route("/routes")
-    def routes_():
+    def routes():
         return [str(p) for p in app.url_map.iter_rules()]
 
     @app.route("/session")

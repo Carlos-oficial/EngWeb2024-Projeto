@@ -1,5 +1,7 @@
 import click
+
 import backend.controllers as controllers
+
 
 def init_cli(app):
 
@@ -21,10 +23,12 @@ def init_cli(app):
     @app.cli.command("list")
     @click.argument("collection")
     def list(collection):
-        from backend.db import get_db
         import json
+
+        from backend.db import get_db
+
         db = get_db()
-        
+
         cursor = db.get_collection(collection).find()
         for document in cursor:
             print((document))

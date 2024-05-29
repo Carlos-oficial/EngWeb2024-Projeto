@@ -1,5 +1,5 @@
-from flask import current_app, g
 import click
+from flask import current_app, g
 from pymongo import MongoClient
 
 
@@ -23,3 +23,8 @@ def init_db():
 def init_app(app, teardown=False):
     if teardown:
         app.teardown_appcontext(close_db)
+
+
+def get_data(data):
+    data["_id"] = str(data["_id"])
+    return data
