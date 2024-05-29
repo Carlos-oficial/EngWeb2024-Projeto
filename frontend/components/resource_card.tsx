@@ -106,14 +106,13 @@ export default function ResourceCard({
         </ul>
       </CardContent>
       <CardFooter className='space-x-2'>
-        <Button
+        <a
           className='w-full space-x-2'
-          onClick={() => fetch(`localhost:5000/resource/${id}/file`)}
-          variant={'outline'}
-        >
+          href={`localhost:5000/resource/${id}/file`}
+        > {/*TODO: Convert back to button */}
           <i className='ph ph-download-simple'></i>
-          <span>Download</span>
-        </Button>
+          <span>Download</span> 
+        </a>
         <Button
           variant={'outline'}
           onClick={() => router.push(`/feed/share/${id}`)}

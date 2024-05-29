@@ -4,14 +4,9 @@ import random
 import requests
 from flask import (
     Blueprint,
-    flash,
     g,
     jsonify,
-    redirect,
-    render_template,
     request,
-    session,
-    url_for,
     send_file
 )
 
@@ -24,8 +19,10 @@ import backend.models.resource as rm
 from werkzeug.utils import secure_filename
 
 from backend.config import config
+@resource_bp.route("", methods=("GET", "POST"))
 @resource_bp.route("/", methods=("GET", "POST"))
 def resource():
+    print(request)
     if request.method == "POST":
         print(dict(**request.form,file=request.files["file"].filename))
         rc.add(dict(**request.form,file=request.files["file"].filename))
@@ -42,10 +39,9 @@ def resource():
             return jsonify({"success": "Resource added successfully"}), 201
     
         return jsonify({"error": "something went wrong"}), 400
-    
-
     elif request.method == "GET":
-        return jsonify([db.get_data(i) for i in rc.list_all()])
+        return jsonify([db.get_data(i) for i in rc.list_all(**request.args)])
+
 
 @resource_bp.route("<resource_id>/file")
 def get_resource_file(resource_id):

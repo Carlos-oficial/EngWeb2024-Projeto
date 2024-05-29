@@ -1,7 +1,7 @@
 """
     # Resource
     ```
-    type = {
+        type = {
         title:string,
         file:string,
         description:string,

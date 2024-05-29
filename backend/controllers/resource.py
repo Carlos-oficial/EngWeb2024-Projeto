@@ -6,9 +6,9 @@ from backend.models.resource import Resource
 
 from bson.objectid import ObjectId
 
-def list_all():
+def list_all(**kwargs):
     db = get_db()
-    return list(db.resources.find())
+    return list(db.resources.find(kwargs))
 
 def get(resource_id):
     db = get_db()
@@ -17,3 +17,4 @@ def get(resource_id):
 def add(resource: Resource):
     db = get_db()
     db.resources.insert_one(resource)
+
