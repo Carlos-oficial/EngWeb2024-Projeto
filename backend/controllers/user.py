@@ -16,3 +16,22 @@ def create(username, password):
 def get(username):
     db = get_db()
     return db.users.find_one({"username": username})
+
+
+# controllers/user.py
+
+
+def add_favorite(user_id, resource_id):
+    db = get_db()
+    user = get(user_id)
+    if not user:
+        raise Exception("User not found")
+    if user:
+        favorites = user.get("favorites")
+        if favorites is None:
+            favorites = []
+        if resource_id not in favorites:
+            favorites.append(resource_id)
+            db.users.update_one(
+                {"username": user_id}, {"$set": {"favorites": favorites}}
+            )

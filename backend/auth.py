@@ -52,7 +52,7 @@ def login():
         else:
             return jsonify({"error": error}), 401
     else:
-        print("lwdnaldnlasn")
+        return jsonify({"error": "wrong type"}), 401
 
 
 @auth.before_app_request

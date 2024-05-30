@@ -8,6 +8,7 @@ from werkzeug.utils import secure_filename
 
 import backend.auth as auth
 import backend.controllers.resource as ResourceController
+import backend.controllers.user as UserController
 import backend.db as db
 from backend.config import config
 
@@ -55,9 +56,30 @@ def get_resource_file(resource_id):
         return jsonify({"error": "Resource not found"}), 404
 
 
-@resource_bp.route("/favorites")
-@auth.login_required
-def favorites():
-    print(g.user)
-    return
-    return jsonify([db.get_data(i) for i in ResourceController.get_favorites()])
+@resource_bp.route("/favorites", methods=("GET", "POST"))
+# @auth.login_required
+def favorites():  # TODO: usar sessões
+    if request.method == "GET":
+        if "user" not in request.args:
+            return {}
+        else:
+            print(g.user)
+            user_data = UserController.get(request.args["user"])
+            favorites = user_data.get("favorites")
+            if favorites is None:
+                favorites = []
+            resources = [
+                db.get_data(ResourceController.get(favorite)) for favorite in favorites
+            ]
+            return resources
+    elif request.method == "POST":
+        if ResourceController.get(request.json["resource_id"]):
+            UserController.add_favorite(
+                request.json["user"], request.json["resource_id"]
+            )
+            return jsonify({"success": "Resource added to favorites"}), 201
+        else:
+            return jsonify({"error": "Resource not found"}), 404
+
+
+# curl -X POST -H "Content-Type: application/json" -d '{"user": "user_id", "resource_id": "resource_id"}' http://localhost:5000/resource/favorites

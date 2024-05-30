@@ -4,6 +4,7 @@ import click
 import flask
 from flask import Flask, render_template, session
 from flask_cors import CORS
+from flask_session import Session
 
 
 def create_app(test_config=None):
@@ -14,9 +15,19 @@ def create_app(test_config=None):
     )
     CORS(app, supports_credentials=True)  # Enable CORS with credentials support
 
+    import backend.db as db
+
+    with app.app_context():
+        db.init_db()
+    db.init_app(app)
+
     app.config.from_mapping(
         SECRET_KEY="dev",
+        SESSION_TYPE="mongodb",
+        SESSION_MONGODB=db.get_instance(),
+        SESSION_MONGODB_DB="flask_db",
     )
+    Session(app)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -24,20 +35,6 @@ def create_app(test_config=None):
     else:
         # load the test config if passed in
         app.config.from_mapping(test_config)
-
-    # ensure the instance folder exists
-    # try:
-    #     os.makedirs(app.instance_path)
-    # except OSError:
-    #     pass
-
-    # a simple page that says hello
-
-    import backend.db as db
-
-    with app.app_context():
-        db.init_db()
-    db.init_app(app)
 
     from backend.auth import auth
 

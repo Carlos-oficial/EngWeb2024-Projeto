@@ -3,13 +3,17 @@ from flask import current_app, g
 from pymongo import MongoClient
 
 
+def get_instance():
+    return MongoClient("localhost", 27017)
+
+
 def get_db():
     if "db" not in g:
         client = MongoClient("localhost", 27017)
         db = client.flask_db
         return db
     else:
-        return g["db"]
+        return g.db
 
 
 def close_db(e=None):
