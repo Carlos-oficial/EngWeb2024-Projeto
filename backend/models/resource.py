@@ -18,20 +18,22 @@
 
 from typing import List
 
-
 from typing_extensions import TypedDict
 
+
 class Resource(TypedDict):
-    title:str
-    file:str
-    description:str
-    documentType:str
-    documentFormat:str
-    username:str
-    hashtags:List[str]
-    subject:str 
+    title: str
+    file: str
+    description: str
+    documentType: str
+    documentFormat: str
+    username: str
+    hashtags: List[str]
+    subject: str
+
 
 import backend.models as models
+
 if __name__ == "__main__":
     obj = Resource({"title": "titulo", "file": "ficheiro.pdf", "tags": []})
     print(models.validate(obj))

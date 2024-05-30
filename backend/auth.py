@@ -1,10 +1,10 @@
 import functools
 
+import flask
 from flask import Blueprint, g, jsonify, request
 from werkzeug.security import check_password_hash, generate_password_hash
 
-import backend.controllers as controllers
-from backend.session import SessionSingleton
+import backend.controllers.user as UserController
 
 auth = Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -24,20 +24,22 @@ def register():
             if error is not None:
                 return jsonify({"error": "Signup failed"}), 400
             else:
-                controllers.user.create(username, password)
+                UserController.create(username, password)
         except Exception as e:
             return jsonify({"error": "Signup failed " + e}), 400
         finally:
             return jsonify({"result": "Signup sucessful"}), 200
 
 
-@auth.route("/login", methods=("GET", "POST"))
+@auth.route("/login", methods=("POST",))
 def login():
     if request.method == "POST":
         username = request.json["username"]
         password = request.json["password"]
         error = None
-        user = controllers.user.get(username)
+        user = UserController.get(username)
+        print(request.json)
+        print(user)
 
         if user is None:
             error = "Incorrect username."
@@ -45,18 +47,17 @@ def login():
             error = "Incorrect password."
 
         if error is None:
-            session = SessionSingleton.get_session()
-            session["user"] = username
-            print(session)
-            return jsonify(session), 200
+            flask.session["user"] = username
+            return jsonify(flask.session), 200
         else:
             return jsonify({"error": error}), 401
+    else:
+        print("lwdnaldnlasn")
 
 
 @auth.before_app_request
 def load_logged_in_user():
-    session = SessionSingleton.get_session()
-    user = session.get("user")
+    user = flask.session.get("user")
 
     if user is None:
         g.user = None
@@ -66,8 +67,7 @@ def load_logged_in_user():
 
 @auth.route("/logout")
 def logout():
-    session = SessionSingleton.get_session()
-    session.pop("user")
+    flask.session.pop("user")
     return jsonify({"result": "Logout successful"}), 200
 
 

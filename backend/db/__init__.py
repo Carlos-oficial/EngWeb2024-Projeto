@@ -7,7 +7,9 @@ def get_db():
     if "db" not in g:
         client = MongoClient("localhost", 27017)
         db = client.flask_db
-    return db
+        return db
+    else:
+        return g["db"]
 
 
 def close_db(e=None):
@@ -26,6 +28,6 @@ def init_app(app, teardown=False):
 
 
 def get_data(data):
-    if data.get("_id"): 
+    if data.get("_id"):
         data["_id"] = str(data["_id"])
     return data

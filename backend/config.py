@@ -1,1 +1,1 @@
-config = {'UPLOAD_FOLDER': 'uploads/'}
+config = {"UPLOAD_FOLDER": "uploads/"}
