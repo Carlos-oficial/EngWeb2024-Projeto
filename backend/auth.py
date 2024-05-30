@@ -2,7 +2,7 @@ import functools
 
 import flask
 from flask import Blueprint, g, jsonify, request
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import check_password_hash
 
 import backend.controllers.user as UserController
 
@@ -23,12 +23,11 @@ def register():
 
             if error is not None:
                 return jsonify({"error": "Signup failed"}), 400
-            else:
-                UserController.create(username, password)
+            UserController.create(username, password)
         except Exception as e:
             return jsonify({"error": "Signup failed " + e}), 400
-        finally:
-            return jsonify({"result": "Signup sucessful"}), 200
+        return jsonify({"result": "Signup sucessful"}), 200
+    return jsonify({"error": "Method not allowed"}), 405
 
 
 @auth.route("/login", methods=("POST",))
@@ -45,14 +44,11 @@ def login():
             error = "Incorrect username."
         elif not check_password_hash(user["pass_hash"], password):
             error = "Incorrect password."
-
         if error is None:
             flask.session["user"] = username
             return jsonify(flask.session), 200
-        else:
-            return jsonify({"error": error}), 401
-    else:
-        return jsonify({"error": "wrong type"}), 401
+        return jsonify({"error": error}), 401
+    return jsonify({"error": "Method not allowed"}), 405
 
 
 @auth.before_app_request

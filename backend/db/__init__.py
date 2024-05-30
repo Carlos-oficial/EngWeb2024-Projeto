@@ -1,5 +1,4 @@
-import click
-from flask import current_app, g
+from flask import g
 from pymongo import MongoClient
 
 
@@ -12,11 +11,10 @@ def get_db():
         client = MongoClient("localhost", 27017)
         db = client.flask_db
         return db
-    else:
-        return g.db
+    return g.db
 
 
-def close_db(e=None):
+def close_db():
     db = g.pop("db", None)
     if db is not None:
         db.close()

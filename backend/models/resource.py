@@ -16,9 +16,9 @@
     ```
 """
 
-from typing import List
-
 from typing_extensions import TypedDict
+
+from backend import models
 
 
 class Resource(TypedDict):
@@ -28,11 +28,9 @@ class Resource(TypedDict):
     documentType: str
     documentFormat: str
     username: str
-    hashtags: List[str]
+    hashtags: list[str]
     subject: str
 
-
-import backend.models as models
 
 if __name__ == "__main__":
     obj = Resource({"title": "titulo", "file": "ficheiro.pdf", "tags": []})

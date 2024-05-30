@@ -1,4 +1,3 @@
-import pydantic
 from pydantic import TypeAdapter, ValidationError
 
 
@@ -8,5 +7,4 @@ def validate(subject):
         SubjectValidator.validate_python(subject)
     except ValidationError:
         return False
-    else:
-        return True
+    return True

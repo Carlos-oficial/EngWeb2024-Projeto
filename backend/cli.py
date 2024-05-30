@@ -1,6 +1,7 @@
 import click
 
-import backend.controllers as controllers
+from backend import controllers
+from backend.db import get_db
 
 
 def init_cli(app):
@@ -14,18 +15,15 @@ def init_cli(app):
         except Exception as e:
             print("Exception:", e)
 
-    @app.cli.command("dump")
-    @click.argument("filepath")
-    @click.option("--type", default="json")
-    def dump_app_state(filepath, type):
-        pass
+    # @app.cli.command("dump")
+    # @click.argument("filepath")
+    # @click.option("--type", default="json")
+    # def dump_app_state(filepath, type):
+    #     pass
 
     @app.cli.command("list")
     @click.argument("collection")
-    def list(collection):
-        import json
-
-        from backend.db import get_db
+    def list_(collection):
 
         db = get_db()
 

@@ -7,15 +7,17 @@ from backend.models.user import User
 
 def create(username, password):
     db = get_db()
+    collection = db.users
     user = User(username=username, pass_hash=generate_password_hash(password))
-    if db.users.find_one({"username": user["username"]}):
+    if collection.find_one({"username": user["username"]}):
         raise Exception("username already in use")
-    db.users.insert_one(user)
+    collection.insert_one(user)
 
 
 def get(username):
     db = get_db()
-    return db.users.find_one({"username": username})
+    collection = db.users
+    return collection.find_one({"username": username})
 
 
 # controllers/user.py
@@ -23,6 +25,7 @@ def get(username):
 
 def add_favorite(user_id, resource_id):
     db = get_db()
+    collection = db.users
     user = get(user_id)
     if not user:
         raise Exception("User not found")
@@ -32,6 +35,6 @@ def add_favorite(user_id, resource_id):
             favorites = []
         if resource_id not in favorites:
             favorites.append(resource_id)
-            db.users.update_one(
+            collection.update_one(
                 {"username": user_id}, {"$set": {"favorites": favorites}}
             )
