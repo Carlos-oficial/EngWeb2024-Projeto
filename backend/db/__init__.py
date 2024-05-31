@@ -1,14 +1,20 @@
-from flask import current_app, g
-import click
+from flask import g
 from pymongo import MongoClient
+
+
+def get_instance():
+    return MongoClient("localhost", 27017)
+
 
 def get_db():
     if "db" not in g:
-        client = MongoClient('localhost', 27017)
+        client = MongoClient("localhost", 27017)
         db = client.flask_db
-    return db
+        return db
+    return g.db
 
-def close_db(e=None):
+
+def close_db():
     db = g.pop("db", None)
     if db is not None:
         db.close()
@@ -22,3 +28,8 @@ def init_app(app, teardown=False):
     if teardown:
         app.teardown_appcontext(close_db)
 
+
+def get_data(data):
+    if data.get("_id"):
+        data["_id"] = str(data["_id"])
+    return data

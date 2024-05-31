@@ -1,20 +1,32 @@
-import os
-import click
-from flask import Flask, render_template, session
+import flask
 from flask_cors import CORS
+from flask_session import Session
 
-from session import SessionSingleton
+from backend import db
+from backend.auth import auth
+from backend.cli import init_cli
+from backend.resource import resource_bp
+
+
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask(
+    app = flask.Flask(
         __name__,
         instance_relative_config=True,
     )
     CORS(app, supports_credentials=True)  # Enable CORS with credentials support
 
+    with app.app_context():
+        db.init_db()
+    db.init_app(app)
+
     app.config.from_mapping(
         SECRET_KEY="dev",
+        SESSION_TYPE="mongodb",
+        SESSION_MONGODB=db.get_instance(),
+        SESSION_MONGODB_DB="flask_db",
     )
+    Session(app)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -23,32 +35,9 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
-    # ensure the instance folder exists
-    # try:
-    #     os.makedirs(app.instance_path)
-    # except OSError:
-    #     pass
+    app.register_blueprint(auth)
 
-    # a simple page that says hello
-
-    import db as db
-
-    with app.app_context():
-        db.init_db()
-    db.init_app(app)
-
-    import auth
-
-    app.register_blueprint(auth.auth)
-
-    import api
-
-    app.register_blueprint(api.api)
-
-    import routes
-
-    with app.app_context():
-        routes.init_routes(app)
+    app.register_blueprint(resource_bp)
 
     @app.route("/routes")
     def routes():
@@ -56,16 +45,12 @@ def create_app(test_config=None):
 
     @app.route("/session")
     def session_data():
-        session = SessionSingleton.get_session()
-        return {str(p): session[p] for p in session}
-    
-    import cli
-    with app.app_context():
-        cli.init_cli(app)
+        return {str(p): flask.session[p] for p in flask.session}
 
+    with app.app_context():
+        init_cli(app)
 
     return app
-
 
 
 if __name__ == "__main__":
