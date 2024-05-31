@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 export default function LoginPage() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission behavior
@@ -31,10 +32,12 @@ export default function LoginPage() {
     <>
       <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
-          <img
+          <Image
             className='mx-auto h-10 w-auto'
             src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
             alt='Your Company'
+            width={0}
+            height={0}
           />
           <h2 className='mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>
             Login
@@ -42,7 +45,7 @@ export default function LoginPage() {
         </div>
 
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-          <form className='space-y-6' onSubmit={handleSubmit}>
+          <form className='space-y-6' onSubmit={() => handleSubmit}>
             <div>
               <label
                 htmlFor='username'

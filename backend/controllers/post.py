@@ -10,20 +10,20 @@ def list_all(**kwargs):
     db = get_db()
     return list(db.posts.find(kwargs))
 
+
 def list_by_user(username):
     return list_all(user=username)
 
+
 def list_by_subject(subject):
-    db=get_db()
-    resources = db.resources.find({"subject":subject})
+    db = get_db()
+    resources = db.resources.find({"subject": subject})
     return db.posts.find({"resource": {"$in": resources}})
-    
 
 
 def get(post_id):
     db = get_db()
     return db.posts.find_one({"_id": ObjectId(post_id)})
-
 
 
 def add(post: Post):

@@ -109,9 +109,11 @@ export default function ResourceCard({
         <a
           className='w-full space-x-2'
           href={`localhost:5000/resource/${id}/file`}
-        > {/*TODO: Convert back to button */}
+        >
+          {' '}
+          {/*TODO: Convert back to button */}
           <i className='ph ph-download-simple'></i>
-          <span>Download</span> 
+          <span>Download</span>
         </a>
         <Button
           variant={'outline'}

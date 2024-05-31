@@ -1,7 +1,5 @@
 'use client';
 
-import { Input } from '@/components/ui/input';
-
 import ResourceCard from '@/components/resource_card';
 import { useState, useEffect } from 'react';
 
@@ -17,29 +15,30 @@ export default function Resources() {
 
   return (
     <>
-    <a href='resources/new'>NEW</a>
+      <a href='resources/new'>NEW</a>
       <div className='grid grid-cols-3 p-5 gap-5'>
-        {resources.map((resource) => (<>
-          <ResourceCard
-          id={resource._id}
-          title={resource.title}
-          description={resource.description}
-          documentType={resource.documentType}
-          documentFormat={resource.file.split('.').pop()}
-          username={resource.username}
-          hashtags={[resource.hashtags]}
-          subject={{
-            id: 'cg',
-            name: resource.subject,
-          }}
-          course={{
-            id: 'lei',
-            name: resource.course,
-          }}
-          createdAt={new Date()}
-        />
-        
-        </>))}
+        {resources.map((resource) => (
+          <>
+            <ResourceCard
+              id={resource._id}
+              title={resource.title}
+              description={resource.description}
+              documentType={resource.documentType}
+              documentFormat={resource.file.split('.').pop()}
+              username={resource.username}
+              hashtags={[resource.hashtags]}
+              subject={{
+                id: 'cg',
+                name: resource.subject,
+              }}
+              course={{
+                id: 'lei',
+                name: resource.course,
+              }}
+              createdAt={new Date()}
+            />
+          </>
+        ))}
       </div>
     </>
   );

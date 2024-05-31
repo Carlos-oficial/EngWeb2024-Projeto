@@ -29,6 +29,7 @@ def register():
         return jsonify({"result": "Signup sucessful"}), 200
     return jsonify({"error": "Method not allowed"}), 405
 
+
 @auth.route("/login", methods=("POST",))
 def login():
     if request.method == "POST":

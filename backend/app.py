@@ -14,7 +14,8 @@ def create_app(test_config=None):
         __name__,
         instance_relative_config=True,
     )
-    CORS(app, supports_credentials=True)  # Enable CORS with credentials support
+    # Enable CORS with credentials support
+    CORS(app, supports_credentials=True)
 
     with app.app_context():
         db.init_db()

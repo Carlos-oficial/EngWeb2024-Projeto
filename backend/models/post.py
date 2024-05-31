@@ -15,5 +15,5 @@ from backend import models
 
 class Post(TypedDict):
     text: str
-    resource: str # Resource id
-    user: str # username
+    resource: str  # Resource id
+    user: str  # username
