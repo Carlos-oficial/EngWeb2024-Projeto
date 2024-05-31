@@ -9,9 +9,9 @@
         documentFormat:string,
         username:string,
         hashtags:[string],
-        subject= string ~ Subject id,
-        course= string ~ Course id,
-        createdAt = date
+        subject: string ~ Subject id,
+        course: string ~ Course id,
+        createdAt: date
     }
     ```
 """

@@ -29,7 +29,6 @@ def register():
         return jsonify({"result": "Signup sucessful"}), 200
     return jsonify({"error": "Method not allowed"}), 405
 
-
 @auth.route("/login", methods=("POST",))
 def login():
     if request.method == "POST":
@@ -37,16 +36,20 @@ def login():
         password = request.json["password"]
         error = None
         user = UserController.get(username)
-        print(request.json)
-        print(user)
-
         if user is None:
             error = "Incorrect username."
         elif not check_password_hash(user["pass_hash"], password):
             error = "Incorrect password."
         if error is None:
             flask.session["user"] = username
-            return jsonify(flask.session), 200
+            print(dict(flask.session))
+            print(flask.session.__dict__)
+            ret = {}
+            try:
+                ret = jsonify(**flask.session)
+            except Exception as e:
+                pass
+            return ret, 200
         return jsonify({"error": error}), 401
     return jsonify({"error": "Method not allowed"}), 405
 
