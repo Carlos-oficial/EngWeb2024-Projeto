@@ -11,44 +11,20 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-
 import ProfileCard from '@/components/profilecard';
-
 import timeAgo from '@/lib/utils';
+import { ResourceDTO } from '@/lib/types';
 
-type ResourceCardProps = {
-  id: string;
-  title: string;
-  description: string;
-  documentType: string;
-  documentFormat: string;
-  username: string;
-  hashtags: string[];
-  subject: {
-    id: string;
-    name: string;
-  };
-  course: {
-    id: string;
-    name: string;
-  };
-  createdAt: Date;
-};
+interface ResourceCardProps {
+  resource: ResourceDTO;
+  [key: string]: unknown;
+}
 
 export default function ResourceCard({
-  id,
-  title,
-  description,
-  documentType,
-  documentFormat,
-  username,
-  hashtags,
-  subject,
-  course,
-  createdAt,
+  resource,
+  ...props
 }: ResourceCardProps) {
   const router = useRouter();
 
@@ -56,11 +32,12 @@ export default function ResourceCard({
   // TODO: update favorite counter when clicked, add to the user favorites list, etc
 
   return (
-    <Card>
+    <Card {...props}>
       <CardHeader>
         <div className='flex justify-between items-center pb-2'>
           <span className='text-sm text-muted-foreground'>
-            <ProfileCard username={username} /> · {timeAgo(createdAt)}
+            <ProfileCard username={resource.username} /> ·{' '}
+            {timeAgo(resource.createdAt)}
           </span>
           <button
             onClick={() => ''}
@@ -72,14 +49,14 @@ export default function ResourceCard({
         </div>
         <div className='flex justify-between items-center pb-2'>
           <div className='flex space-x-2'>
-            <Badge>{documentType}</Badge>
-            <Badge variant={'secondary'}>{documentFormat}</Badge>
+            <Badge>{resource.documentType}</Badge>
+            <Badge variant={'secondary'}>{resource.documentFormat}</Badge>
           </div>
         </div>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardTitle>{resource.title}</CardTitle>
+        <CardDescription>{resource.description}</CardDescription>
         <div className='flex text-sm text-muted-foreground space-x-2'>
-          {hashtags.map((hashtag) => (
+          {resource.hashtags.map((hashtag) => (
             <Link key={hashtag} href='#' className='hover:underline'>
               {hashtag}
             </Link>
@@ -91,33 +68,35 @@ export default function ResourceCard({
           <li className='flex space-x-2 font-semibold'>
             <i className='ph ph-chalkboard-teacher text-lg'></i>
             <Link
-              href={`/resources/${course.id}/${subject.id}`}
+              href={`/resources/${resource.course.id}/${resource.subject.id}`}
               className='hover:underline'
             >
-              {subject.name}
+              {resource.subject.name}
             </Link>
           </li>
           <li className='flex space-x-2 max-w-full text-muted-foreground'>
             <i className='ph ph-graduation-cap text-lg'></i>
-            <Link href={`/resources/${course.id}`} className='hover:underline'>
-              {course.name}
+            <Link
+              href={`/resources/${resource.course.id}`}
+              className='hover:underline'
+            >
+              {resource.course.name}
             </Link>
           </li>
         </ul>
       </CardContent>
       <CardFooter className='space-x-2'>
-        <a
+        <Button
           className='w-full space-x-2'
-          href={`localhost:5000/resource/${id}/file`}
+          onClick={() => router.push(`/api/download/${resource._id}`)}
+          variant={'outline'}
         >
-          {' '}
-          {/*TODO: Convert back to button */}
           <i className='ph ph-download-simple'></i>
           <span>Download</span>
-        </a>
+        </Button>
         <Button
           variant={'outline'}
-          onClick={() => router.push(`/feed/share/${id}`)}
+          onClick={() => router.push(`/api/download/${resource._id}`)}
         >
           <i className='ph ph-share'></i>
         </Button>
