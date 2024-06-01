@@ -92,7 +92,7 @@ export default function ResourceDialog() {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (values: FormValues) => {
-    const formData: ResourceForm = {
+    const data: ResourceForm = {
       ...values,
       documentFormat: values.file[0].name
         .split('.')
@@ -101,6 +101,15 @@ export default function ResourceDialog() {
       username: 'diogogmatos', // TODO: Get username from session
       createdAt: new Date(),
     };
+
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      if (key === 'file') {
+        formData.append('file', (value as FileList)[0]);
+      } else {
+        formData.append(key, value as string);
+      }
+    });
 
     submitResource(formData).catch((error: Error) => setError(error.message));
 
@@ -135,8 +144,12 @@ export default function ResourceDialog() {
           </Alert>
         )}
         <Form {...form}>
-          {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
+          <form
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            onSubmit={form.handleSubmit(onSubmit)}
+            className='space-y-3'
+            encType='multipart/form-data'
+          >
             <FormField
               control={form.control}
               name='file'
