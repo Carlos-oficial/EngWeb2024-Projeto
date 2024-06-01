@@ -1,4 +1,4 @@
-import { ResourceDTO, ResourceForm } from './types';
+import { ResourceDTO } from './types';
 
 export const fetchResources = async () => {
   const response = await fetch('http://localhost:5000/resource/');
@@ -10,10 +10,10 @@ export const fetchResources = async () => {
   return data;
 };
 
-export const submitResource = async (data: ResourceForm) => {
+export const submitResource = async (data: FormData) => {
   const response = await fetch('http://localhost:5000/resource/', {
     method: 'POST',
-    body: JSON.stringify(data),
+    body: data,
   });
 
   if (!response.ok) {
