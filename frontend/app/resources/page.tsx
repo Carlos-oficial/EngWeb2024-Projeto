@@ -10,250 +10,53 @@ import { ResourceDTO } from '@/lib/types';
 import ResourceDialog from '@/components/resource_dialog';
 
 export default function Resources() {
-  const [resources, setResources] = useState<ResourceDTO[]|null>(
-  //   [
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     _id: '1',
-  //     title: 'Teste 1 - CG 23/24',
-  //     description: 'Teste da época normal com resolução.',
-  //     documentType: 'Teste',
-  //     documentFormat: 'PDF',
-  //     username: 'diogogmatos',
-  //     hashtags: ['#lei', '#cg', '#teste'],
-  //     subject: {
-  //       id: 'cg',
-  //       name: 'Computação Gráfica',
-  //     },
-  //     course: {
-  //       id: 'lei',
-  //       name: 'Licenciatura em Engenharia Informática',
-  //     },
-  //     createdAt: new Date(),
-  //   },
-  // ] 
-  null
-);
+  const [resources, setResources] = useState<ResourceDTO[] | null>(
+    //   [
+    //   {
+    //     _id: '1',
+    //     title: 'Teste 1 - CG 23/24',
+    //     description: 'Teste da época normal com resolução.',
+    //     documentType: 'Teste',
+    //     documentFormat: 'PDF',
+    //     username: 'diogogmatos',
+    //     hashtags: ['#lei', '#cg', '#teste'],
+    //     subject: {
+    //       id: 'cg',
+    //       name: 'Computação Gráfica',
+    //     },
+    //     course: {
+    //       id: 'lei',
+    //       name: 'Licenciatura em Engenharia Informática',
+    //     },
+    //     createdAt: new Date(),
+    //   },
+    // ]
+    null,
+  );
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
     fetchResources()
       .then((data) => {
-        console.log(data);
         setResources(data);
       })
       .catch((error: Error) => setError(error.message));
   }, []);
 
-  return resources!=null ? (
-    <main className='flex h-full'>
-      <div className='p-5 space-y-3 overflow-scroll'>
+  return resources != null ? (
+    <main className='flex h-full w-full'>
+      <div className='p-5 space-y-3 overflow-scroll w-full'>
         <div className='flex space-x-2'>
           <Input type='text' placeholder='Search any resource...' />
           <ResourceDialog />
         </div>
         <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-3'>
-          {resources.map((resource) => (<ResourceCard resource={resource} key={resource._id} />))}
+          {resources.map((resource) => (
+            <ResourceCard resource={resource} key={resource._id} />
+          ))}
         </div>
       </div>
-      <div className='w-80 border-l border-border'></div>
+      <div className='min-w-80 border-l border-border'></div>
     </main>
   ) : (
     <main className='flex flex-col justify-center items-center h-full'>

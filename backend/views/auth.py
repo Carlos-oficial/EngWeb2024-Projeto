@@ -1,7 +1,7 @@
 import functools
 
 import flask
-from flask import Blueprint, g, jsonify, request,session
+from flask import Blueprint, g, jsonify, request, session
 from werkzeug.security import check_password_hash
 
 import backend.controllers.user as UserController

@@ -32,12 +32,23 @@ import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { submitResource } from '@/lib/data';
+// import { submitResource } from '@/lib/data';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
-import { ResourceForm } from '@/lib/types';
+
+type ResourceForm = {
+  title: string;
+  description: string;
+  documentType: string;
+  documentFormat: string;
+  hashtags: string;
+  subjectId: string;
+  courseId: string;
+  createdAt: Date;
+  file: FileList;
+};
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -110,8 +121,8 @@ export default function ResourceDialog() {
       }
     });
 
-    submitResource(formData).catch((error: Error) => setError(error.message));
-    console.log(formData);
+    // submitResource(formData).catch((error: Error) => setError(error.message));
+    // console.log(formData);
     // TODO: Post to feed
   };
 
@@ -133,15 +144,6 @@ export default function ResourceDialog() {
             you&apos;re done.
           </DialogDescription>
         </DialogHeader>
-        {error.length > 0 && (
-          <Alert variant='destructive'>
-            <AlertTitle className='flex items-center space-x-1'>
-              <i className='ph ph-warning'></i>
-              <p>Error</p>
-            </AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
         <Form {...form}>
           <form
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -313,6 +315,15 @@ export default function ResourceDialog() {
               />
               <Label htmlFor='post'>Post on Feed</Label>
             </div>
+            {error.length > 0 && (
+              <Alert variant='destructive' className='pt-3'>
+                <AlertTitle className='flex items-center space-x-1'>
+                  <i className='ph ph-warning'></i>
+                  <p>Error</p>
+                </AlertTitle>
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
             <DialogFooter className='pt-3'>
               <Button type='submit' className='flex space-x-1'>
                 <i className='ph ph-file-arrow-up'></i>

@@ -7,13 +7,13 @@ export default function LoginPage() {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const handleSubmit = async (e: React.FormEvent ) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(username, password);
-    backendConn.post("/auth/login", {
-        username,
-        password,
-      })
+    backendConn.post('/auth/login', {
+      username,
+      password,
+    });
   };
 
   return (
@@ -33,7 +33,7 @@ export default function LoginPage() {
         </div>
 
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-          <form className='space-y-6' onSubmit={(e) => handleSubmit(e)} >
+          <form className='space-y-6' onSubmit={(e) => handleSubmit(e)}>
             <div>
               <label
                 htmlFor='username'
@@ -81,10 +81,7 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <button
-                
-                className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-              >
+              <button className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
                 Log in
               </button>
             </div>

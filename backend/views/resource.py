@@ -2,11 +2,12 @@ import os
 
 from flask import Blueprint, g, jsonify, request, send_file, session
 from werkzeug.utils import secure_filename
-from backend.views import auth 
+
 import backend.controllers.resource as ResourceController
 import backend.controllers.user as UserController
 from backend import db, models
 from backend.config import config
+from backend.views import auth
 
 # import backend.auth as auth
 resource_bp = Blueprint("resource", __name__, url_prefix="/resource")
@@ -18,8 +19,10 @@ resource_bp = Blueprint("resource", __name__, url_prefix="/resource")
 def post_resource():
     data = request.form
     print(models.validate(data))
-    
-    ResourceController.add({"file": request.files["file"].filename,"username":session["user"], **data})
+
+    ResourceController.add(
+        {"file": request.files["file"].filename, "username": session["user"], **data}
+    )
     file = request.files["file"]
     if file.filename == "":
         return jsonify({"error": "No selected file"}), 400
@@ -36,7 +39,10 @@ def post_resource():
 @resource_bp.route("", methods=["GET"])
 @resource_bp.route("/", methods=["GET"])
 def get_resources():
-    return jsonify([db.get_data(i) for i in ResourceController.list_all(**request.args)])
+    return jsonify(
+        [db.get_data(i) for i in ResourceController.list_all(**request.args)]
+    )
+
 
 @resource_bp.route("/<resource_id>/file")
 def get_resource_file(resource_id):
