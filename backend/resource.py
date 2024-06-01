@@ -1,6 +1,6 @@
 import os
 
-from flask import Blueprint, g, jsonify, request, send_file
+from flask import Blueprint, g, jsonify, request, send_file, session as FSession
 from werkzeug.utils import secure_filename
 
 import backend.controllers.resource as ResourceController
@@ -15,10 +15,10 @@ resource_bp = Blueprint("resource", __name__, url_prefix="/resource")
 @resource_bp.route("", methods=("GET", "POST"))
 @resource_bp.route("/", methods=("GET", "POST"))
 def resource():
-    print(request)
+    print(request.__dict__) 
+    return "a"
     if request.method == "POST":
         ResourceController.add({"file": request.files["file"].filename, **request.form})
-
         file = request.files["file"]
         if file.filename == "":
             return jsonify({"error": "No selected file"}), 400
@@ -32,7 +32,8 @@ def resource():
         return jsonify({"error": "something went wrong"}), 400
     if request.method == "GET":
         return jsonify(
-            [db.get_data(i) for i in ResourceController.list_all(**request.args)]
+            []
+            #[db.get_data(i) for i in ResourceController.list_all(**request.args)]
         )
     return None
 
@@ -52,12 +53,14 @@ def get_resource_file(resource_id):
 @resource_bp.route("/favorites", methods=("GET", "POST"))
 # @auth.login_required
 def favorites():  # TODO: usar sessões
+    print(dict(FSession))
+    print(FSession.sid)
     if request.method == "GET":
-        if "user" not in request.args:
+        if "user" not in FSession:
             return {}
 
         print(g.user)
-        user_data = UserController.get(request.args["user"])
+        user_data = UserController.get(FSession["user"])
         favs = user_data.get("favorites")
         if favs is None:
             favs = []
@@ -71,6 +74,3 @@ def favorites():  # TODO: usar sessões
             return jsonify({"success": "Resource added to favorites"}), 201
         return jsonify({"error": "Resource not found"}), 404
     return jsonify({"error": "Method not allowed"}), 405
-
-
-# curl -X POST -H "Content-Type: application/json" -d '{"user": "user_id", "resource_id": "resource_id"}' http://localhost:5000/resource/favorites

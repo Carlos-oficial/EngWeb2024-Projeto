@@ -10,25 +10,8 @@ import { ResourceDTO } from '@/lib/types';
 import ResourceDialog from '@/components/resource_dialog';
 
 export default function Resources() {
-  const [resources, setResources] = useState<ResourceDTO[]>([
-    {
-      _id: '1',
-      title: 'Teste 1 - CG 23/24',
-      description: 'Teste da época normal com resolução.',
-      documentType: 'Teste',
-      documentFormat: 'PDF',
-      username: 'diogogmatos',
-      hashtags: ['#lei', '#cg', '#teste'],
-      subject: {
-        id: 'cg',
-        name: 'Computação Gráfica',
-      },
-      course: {
-        id: 'lei',
-        name: 'Licenciatura em Engenharia Informática',
-      },
-      createdAt: new Date(),
-    },
+  const [resources, setResources] = useState<ResourceDTO[]|null>(
+    [
     {
       _id: '1',
       title: 'Teste 1 - CG 23/24',
@@ -249,14 +232,15 @@ export default function Resources() {
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    // fetchResources()
-    //   .then((data) => {
-    //     setResources(data);
-    //   })
-    //   .catch((error: Error) => setError(error.message));
+    fetchResources()
+      .then((data) => {
+        console.log(data);
+        setResources(data);
+      })
+      .catch((error: Error) => setError(error.message));
   }, []);
 
-  return resources.length > 0 ? (
+  return resources!=null ? (
     <main className='flex h-full'>
       <div className='p-5 space-y-3 overflow-scroll'>
         <div className='flex space-x-2'>
