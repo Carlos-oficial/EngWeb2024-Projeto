@@ -8,6 +8,7 @@ export type ResourceDTO = {
   hashtags: string[];
   subject: {
     id: string;
+    courseId: string;
     name: string;
   };
   course: {
