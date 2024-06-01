@@ -7,18 +7,19 @@ export type ResourceDTO = {
   username: string;
   hashtags: string[];
   subject: {
-    id: string;
+    _id: string;
     courseId: string;
     name: string;
   };
   course: {
-    id: string;
+    _id: string;
     name: string;
   };
   createdAt: Date;
 };
 
-export type ResourceForm = {
+export type ResourceDB = {
+  _id: string;
   title: string;
   description: string;
   documentType: string;
@@ -27,5 +28,11 @@ export type ResourceForm = {
   subjectId: string;
   courseId: string;
   createdAt: Date;
-  file: FileList;
+  file: string;
+};
+
+export type SubjectDB = {
+  _id: string;
+  courseId: string;
+  name: string;
 };

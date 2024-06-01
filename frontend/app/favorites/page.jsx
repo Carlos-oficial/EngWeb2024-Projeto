@@ -6,7 +6,8 @@ export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    backendConn.get('/resource/favorites')
+    backendConn
+      .get('/resource/favorites')
       .then((response) => response.json())
       .then((data) => setFavorites(data))
       .catch((error) => console.error('Error:', error));
@@ -15,9 +16,7 @@ export default function Favorites() {
   return (
     <div>
       {/* Render favorite resources */}
-      <p>
-        {JSON.stringify(favorites)}
-        </p>
+      <p>{JSON.stringify(favorites)}</p>
     </div>
   );
 }

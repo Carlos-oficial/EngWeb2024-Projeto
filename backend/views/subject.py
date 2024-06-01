@@ -1,10 +1,11 @@
 import os
 
 from flask import Blueprint, g, jsonify, request, send_file, session
-from backend.views import auth 
+
+import backend.controllers.subject as SubjectController
 from backend import db
 from backend.config import config
-import backend.controllers.subject as SubjectController
+from backend.views import auth
 
 # import backend.auth as auth
 subject_bp = Blueprint("subject", __name__, url_prefix="/subject")

@@ -32,6 +32,7 @@ class Resource(TypedDict):
     subjectId: str
     courseId: str
 
+
 if __name__ == "__main__":
     obj = Resource({"title": "titulo", "file": "ficheiro.pdf", "tags": []})
     print(models.validate(obj))
