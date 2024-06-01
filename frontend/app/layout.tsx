@@ -1,6 +1,7 @@
 // next
 import type { Metadata } from 'next';
 
+import NextAuthProvider from '@/app/context/NextAuthProvider';
 // styling
 import './globals.css';
 import { Inter as FontSans } from 'next/font/google';
@@ -40,16 +41,18 @@ export default function RootLayout({
       </head>
       <body
         className={cn('bg-background font-sans antialiased', fontSans.variable)}
-      >
-        <div className='min-h-screen flex flex-row'>
-          <Navbar />
-          <div className='w-full flex flex-col'>
-            <NavHeader />
-            <main className='grow w-full overflow-x-auto overflow-y-scroll max-h-[calc(100vh-61px)]'>
-              {children}
-            </main>
+      ><NextAuthProvider>
+
+          <div className='min-h-screen flex flex-row'>
+            <Navbar />
+            <div className='w-full flex flex-col'>
+              <NavHeader />
+              <main className='grow w-full overflow-x-auto overflow-y-scroll max-h-[calc(100vh-61px)]'>
+                {children}
+              </main>
+            </div>
           </div>
-        </div>
+        </NextAuthProvider>
       </body>
     </html>
   );
