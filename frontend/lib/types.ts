@@ -27,4 +27,5 @@ export type ResourceForm = {
   courseId: string;
   createdAt: Date;
   username: string;
+  file: FileList;
 };

@@ -29,12 +29,15 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { submitResource } from '@/lib/data';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { ResourceForm } from '@/lib/types';
+
+type FormValues = z.infer<typeof formSchema>;
 
 const formSchema = z.object({
   title: z
@@ -51,16 +54,14 @@ const formSchema = z.object({
   }),
   subjectId: z.string({ required_error: 'Subject is required' }), // é um ID
   courseId: z.string({ required_error: 'Course is required' }), // é um ID
-  createdAt: z.date(),
-  file: z.any(),
+  file: z.instanceof(FileList),
 });
 
 // TODO: Fetch courses, subjects and document types from the API
 
 export default function ResourceDialog() {
   const [error, setError] = useState<string>('');
-
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: '',
@@ -69,18 +70,20 @@ export default function ResourceDialog() {
       hashtags: '',
       subjectId: '',
       courseId: '',
+      file: undefined,
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit: SubmitHandler<FormValues> = (values: FormValues) => {
     const formData: ResourceForm = {
       ...values,
-      documentFormat: (values.file as FileList)[0].type,
-      username: 'diogogmatos',
+      documentFormat: values.file[0].name
+        .split('.')
+        .pop()
+        ?.toUpperCase() as string,
+      username: 'diogogmatos', // TODO: Get username from session
       createdAt: new Date(),
     };
-
-    console.log(formData);
 
     submitResource(formData).catch((error: Error) => setError(error.message));
   };
@@ -103,6 +106,15 @@ export default function ResourceDialog() {
             you&apos;re done.
           </DialogDescription>
         </DialogHeader>
+        {error.length > 0 && (
+          <Alert variant='destructive'>
+            <AlertTitle className='flex items-center space-x-1'>
+              <i className='ph ph-warning'></i>
+              <p>Error</p>
+            </AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
         <Form {...form}>
           {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>

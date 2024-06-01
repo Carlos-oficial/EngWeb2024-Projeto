@@ -33,11 +33,11 @@ export default function Resources() {
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    fetchResources()
-      .then((data) => {
-        setResources(data);
-      })
-      .catch((error: Error) => setError(error.message));
+    // fetchResources()
+    //   .then((data) => {
+    //     setResources(data);
+    //   })
+    //   .catch((error: Error) => setError(error.message));
   }, []);
 
   return resources.length > 0 ? (
