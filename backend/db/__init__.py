@@ -30,6 +30,7 @@ def init_app(app, teardown=False):
 
 
 def get_data(data):
+    if data is None: return None
     if data.get("_id"):
         data["_id"] = str(data["_id"])
     return data

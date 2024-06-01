@@ -2,30 +2,19 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-
+import httpClient from '../../httpClient';
 export default function LoginPage() {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent default form submission behavior
-    // Your code to handle form submission goes here
-    try {
-      const response = await fetch('http://localhost:5000/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      if (response.ok) {
-        // Handle successful login
-      } else {
-        // Handle login error
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const handleSubmit = async (e: React.FormEvent ) => {
+    e.preventDefault();
+    console.log(username, password);
+    httpClient.post("http://localhost:5000/auth/login", {
+        username,
+        password,
+      }).then((response)=>{console.log(response.headers.getSetCookie());})
+
   };
 
   return (
@@ -45,7 +34,7 @@ export default function LoginPage() {
         </div>
 
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-          <form className='space-y-6' onSubmit={() => handleSubmit}>
+          <form className='space-y-6' onSubmit={(e) => handleSubmit(e)} >
             <div>
               <label
                 htmlFor='username'
@@ -94,7 +83,7 @@ export default function LoginPage() {
 
             <div>
               <button
-                type='submit'
+                
                 className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
               >
                 Log in

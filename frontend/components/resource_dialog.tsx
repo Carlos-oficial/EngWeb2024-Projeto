@@ -112,7 +112,7 @@ export default function ResourceDialog() {
     });
 
     submitResource(formData).catch((error: Error) => setError(error.message));
-
+    console.log(formData);
     // TODO: Post to feed
   };
 

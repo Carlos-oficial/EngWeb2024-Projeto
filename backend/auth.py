@@ -1,7 +1,7 @@
 import functools
 
 import flask
-from flask import Blueprint, g, jsonify, request
+from flask import Blueprint, g, jsonify, request,session
 from werkzeug.security import check_password_hash
 
 import backend.controllers.user as UserController
@@ -74,7 +74,7 @@ def logout():
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if g.user is None:
+        if g.user is None and session["user"] is None:
             return jsonify({"error": "Login required"}), 401
 
         return view(**kwargs)
