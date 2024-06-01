@@ -3,10 +3,10 @@ from flask_cors import CORS
 from flask_session import Session
 
 from backend import db
-from backend.auth import auth
+from backend.views.auth import auth
 from backend.cli import init_cli
-from backend.resource import resource_bp
-
+from backend.views.resource import resource_bp
+from backend.views.subject import subject_bp
 
 def create_app(test_config=None):
     # create and configure the app
@@ -37,8 +37,8 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     app.register_blueprint(auth)
-
     app.register_blueprint(resource_bp)
+    app.register_blueprint(subject_bp)
 
     @app.route("/routes")
     def routes():

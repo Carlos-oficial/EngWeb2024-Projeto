@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import httpClient from '../../httpClient';
+import backendConn from '@/lib/backendConn';
 export default function LoginPage() {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -10,11 +10,10 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent ) => {
     e.preventDefault();
     console.log(username, password);
-    httpClient.post("http://localhost:5000/auth/login", {
+    backendConn.post("/auth/login", {
         username,
         password,
-      }).then((response)=>{console.log(response.headers.getSetCookie());})
-
+      })
   };
 
   return (

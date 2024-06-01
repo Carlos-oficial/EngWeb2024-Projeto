@@ -1,49 +1,42 @@
 import os
 
-from flask import Blueprint, g, jsonify, request, send_file, session as FSession
+from flask import Blueprint, g, jsonify, request, send_file, session
 from werkzeug.utils import secure_filename
-from backend import auth 
+from backend.views import auth 
 import backend.controllers.resource as ResourceController
 import backend.controllers.user as UserController
-from backend import db
+from backend import db, models
 from backend.config import config
 
 # import backend.auth as auth
 resource_bp = Blueprint("resource", __name__, url_prefix="/resource")
 
 
-@resource_bp.route("", methods=("GET", "POST"))
-@resource_bp.route("/", methods=("GET", "POST"))
-def resource():
-    try:
-        print("file: ",request["file"]) 
-    except : pass
-    try:
-        print("files: ",request.files.__dict__) 
-        print("files: ",dict(**request.files)) 
+@resource_bp.route("", methods=["POST"])
+@resource_bp.route("/", methods=["POST"])
+@auth.login_required
+def post_resource():
+    data = request.form
+    print(models.validate(data))
+    
+    ResourceController.add({"file": request.files["file"].filename,"username":session["user"], **data})
+    file = request.files["file"]
+    if file.filename == "":
+        return jsonify({"error": "No selected file"}), 400
 
-    except : pass
-    return "_"
-    if request.method == "POST":
-        ResourceController.add({"file": request.files["file"].filename, **request.form})
-        file = request.files["file"]
-        if file.filename == "":
-            return jsonify({"error": "No selected file"}), 400
+    if file:  #  and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        path = os.path.join(config["UPLOAD_FOLDER"], filename)
+        file.save(path)
+        return jsonify({"success": "Resource added successfully"}), 201
 
-        if file:  #  and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            path = os.path.join(config["UPLOAD_FOLDER"], filename)
-            file.save(path)
-            return jsonify({"success": "Resource added successfully"}), 201
+    return jsonify({"error": "something went wrong"}), 400
 
-        return jsonify({"error": "something went wrong"}), 400
-    if request.method == "GET":
-        return jsonify(
-            []
-            #[db.get_data(i) for i in ResourceController.list_all(**request.args)]
-        )
-    return None
 
+@resource_bp.route("", methods=["GET"])
+@resource_bp.route("/", methods=["GET"])
+def get_resources():
+    return jsonify([db.get_data(i) for i in ResourceController.list_all(**request.args)])
 
 @resource_bp.route("/<resource_id>/file")
 def get_resource_file(resource_id):
@@ -57,16 +50,16 @@ def get_resource_file(resource_id):
     return jsonify({"error": "Resource not found"}), 404
 
 
-@resource_bp.route("/favorites", methods=("GET", "POST"))
+@resource_bp.route("/favorites", methods=["GET", "POST"])
 @auth.login_required
 def favorites():  # TODO: usar sessões
-    print(dict(FSession))
-    print(FSession.sid)
+    print(dict(session))
+    print(session.sid)
     if request.method == "GET":
-        if "user" not in FSession:
+        if "user" not in session:
             return {}
         print(g.user)
-        user_data = UserController.get(FSession["user"])
+        user_data = UserController.get(session["user"])
         favs = user_data.get("favorites")
         if favs is None:
             favs = []

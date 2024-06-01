@@ -98,7 +98,6 @@ export default function ResourceDialog() {
         .split('.')
         .pop()
         ?.toUpperCase() as string,
-      username: 'diogogmatos', // TODO: Get username from session
       createdAt: new Date(),
     };
 

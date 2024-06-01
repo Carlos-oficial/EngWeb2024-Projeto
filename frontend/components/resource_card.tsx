@@ -42,7 +42,6 @@ export default function ResourceCard({
     }
     setIsFavorite(!isFavorite);
   }
-
   return (
     <Card {...props}>
       <CardHeader>

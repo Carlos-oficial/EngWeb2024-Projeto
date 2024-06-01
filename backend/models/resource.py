@@ -29,8 +29,8 @@ class Resource(TypedDict):
     documentFormat: str
     username: str
     hashtags: list[str]
-    subject: str
-
+    subjectId: str
+    courseId: str
 
 if __name__ == "__main__":
     obj = Resource({"title": "titulo", "file": "ficheiro.pdf", "tags": []})
