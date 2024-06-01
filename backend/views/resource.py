@@ -36,7 +36,7 @@ def post_resource():
 @resource_bp.route("", methods=["GET"])
 @resource_bp.route("/", methods=["GET"])
 def get_resources():
-    return jsonify([db.get_data(i) for i in ResourceController.list_all(**request.args)])
+    return jsonify([db.get_data(ResourceController.unfold(i)) for i in ResourceController.list_all(**request.args)])
 
 @resource_bp.route("/<resource_id>/file")
 def get_resource_file(resource_id):

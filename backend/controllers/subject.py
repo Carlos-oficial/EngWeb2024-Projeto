@@ -11,9 +11,14 @@ def list_all(**kwargs):
     return list(db.subjects.find(kwargs))
 
 
-def get(resource_id):
+def get(subject_id):
     db = get_db()
-    return db.subjects.find_one({"_id": ObjectId(resource_id)})
+    return db.subjects.find_one({"_id": ObjectId(subject_id)})
+
+def get_by_name(name):
+    db = get_db()
+    return db.subjects.find_one({"name": name})
+
 
 
 def add(subject: Subject):
