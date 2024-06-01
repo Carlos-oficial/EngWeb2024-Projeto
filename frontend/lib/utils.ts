@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export default function timeAgo(date: string | number | Date) {
+export function timeAgo(date: string | number | Date) {
   const units = [
     { label: 'year', seconds: 31536000 },
     { label: 'month', seconds: 2592000 },
@@ -37,4 +37,14 @@ export default function timeAgo(date: string | number | Date) {
   const { interval, unit } = calculateTimeDifference(time);
   const suffix = interval === 1 ? '' : 's';
   return `${interval} ${unit}${suffix} ago`;
+}
+
+export function formatNumber(num: number): string {
+  if (num < 1000) {
+    return num.toString();
+  } else if (num < 1000000) {
+    return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+  } else {
+    return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+  }
 }

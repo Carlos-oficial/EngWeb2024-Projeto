@@ -29,6 +29,222 @@ export default function Resources() {
       },
       createdAt: new Date(),
     },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
+    {
+      _id: '1',
+      title: 'Teste 1 - CG 23/24',
+      description: 'Teste da época normal com resolução.',
+      documentType: 'Teste',
+      documentFormat: 'PDF',
+      username: 'diogogmatos',
+      hashtags: ['#lei', '#cg', '#teste'],
+      subject: {
+        id: 'cg',
+        name: 'Computação Gráfica',
+      },
+      course: {
+        id: 'lei',
+        name: 'Licenciatura em Engenharia Informática',
+      },
+      createdAt: new Date(),
+    },
   ]);
   const [error, setError] = useState<string>('');
 
@@ -42,7 +258,7 @@ export default function Resources() {
 
   return resources.length > 0 ? (
     <main className='flex h-full'>
-      <div className='p-5 space-y-3'>
+      <div className='p-5 space-y-3 overflow-scroll'>
         <div className='flex space-x-2'>
           <Input type='text' placeholder='Search any resource...' />
           <ResourceDialog />

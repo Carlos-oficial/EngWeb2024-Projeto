@@ -30,6 +30,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 import { submitResource } from '@/lib/data';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -61,6 +63,21 @@ const formSchema = z.object({
 
 export default function ResourceDialog() {
   const [error, setError] = useState<string>('');
+  const [documentTypes, setDocumentTypes] = useState<string[]>([
+    'Teste',
+    'Exame',
+    'Ficha',
+    'Apontamento',
+    'Resolução',
+  ]);
+  const [courses, setCourses] = useState<{ id: string; name: string }[]>([
+    { id: '1', name: 'Licenciatura em Engenharia Informática' },
+  ]);
+  const [subjects, setSubjects] = useState<
+    { id: string; courseId: string; name: string }[]
+  >([{ id: '1', courseId: '1', name: 'Computação Gráfica' }]);
+  const [postToFeed, setPostToFeed] = useState<boolean | 'indeterminate'>(true);
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -86,6 +103,8 @@ export default function ResourceDialog() {
     };
 
     submitResource(formData).catch((error: Error) => setError(error.message));
+
+    // TODO: Post to feed
   };
 
   const fileRef = form.register('file');
@@ -187,12 +206,12 @@ export default function ResourceDialog() {
                         <SelectValue />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value='Teste'>Teste</SelectItem>
-                      <SelectItem value='Exame'>Exame</SelectItem>
-                      <SelectItem value='Ficha'>Ficha</SelectItem>
-                      <SelectItem value='Apontamento'>Apontamento</SelectItem>
-                      <SelectItem value='Resolução'>Resolução</SelectItem>
+                    <SelectContent className='max-h-40'>
+                      {documentTypes.map((type) => (
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -231,10 +250,12 @@ export default function ResourceDialog() {
                         <SelectValue />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value='1'>
-                        Licenciatura em Engenharia Informática
-                      </SelectItem>
+                    <SelectContent className='max-h-40'>
+                      {courses.map((course) => (
+                        <SelectItem key={course.id} value={course.id}>
+                          {course.name}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -250,20 +271,36 @@ export default function ResourceDialog() {
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
+                    disabled={form.getValues('courseId') === ''}
                   >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value='1'>Computação Gráfica</SelectItem>
+                    <SelectContent className='max-h-40'>
+                      {subjects.map((subject) => {
+                        if (subject.courseId === form.getValues('courseId'))
+                          return (
+                            <SelectItem key={subject.id} value={subject.id}>
+                              {subject.name}
+                            </SelectItem>
+                          );
+                      })}
                     </SelectContent>
                   </Select>
                   <FormMessage />
                 </FormItem>
               )}
             />
+            <div className='flex items-center space-x-2 pt-3'>
+              <Checkbox
+                id='post'
+                onCheckedChange={setPostToFeed}
+                checked={postToFeed}
+              />
+              <Label htmlFor='post'>Post on Feed</Label>
+            </div>
             <DialogFooter className='pt-3'>
               <Button type='submit' className='flex space-x-1'>
                 <i className='ph ph-file-arrow-up'></i>

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -14,7 +15,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import ProfileCard from '@/components/profilecard';
-import timeAgo from '@/lib/utils';
+import { timeAgo, formatNumber } from '@/lib/utils';
 import { ResourceDTO } from '@/lib/types';
 
 interface ResourceCardProps {
@@ -27,9 +28,20 @@ export default function ResourceCard({
   ...props
 }: ResourceCardProps) {
   const router = useRouter();
+  const [favoriteCounter, setFavoriteCounter] = useState<number>(0);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   // TODO: fetch favorite counter information
   // TODO: update favorite counter when clicked, add to the user favorites list, etc
+
+  function handleFavorite() {
+    if (isFavorite) {
+      setFavoriteCounter(favoriteCounter - 1);
+    } else {
+      setFavoriteCounter(favoriteCounter + 1);
+    }
+    setIsFavorite(!isFavorite);
+  }
 
   return (
     <Card {...props}>
@@ -40,11 +52,11 @@ export default function ResourceCard({
             {timeAgo(resource.createdAt)}
           </span>
           <button
-            onClick={() => ''}
-            className='flex text-muted-foreground space-x-1 items-center hover:text-yellow-500 transition-all'
+            onClick={handleFavorite}
+            className={`flex space-x-1 items-center hover:text-yellow-500 transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
           >
-            <i className='ph ph-star'></i>
-            <p className='text-sm'>1K</p>
+            <i className={`${isFavorite ? 'ph-fill' : 'ph'} ph-star`}></i>
+            <p className='text-sm'>{formatNumber(favoriteCounter)}</p>
           </button>
         </div>
         <div className='flex justify-between items-center pb-2'>
@@ -90,6 +102,7 @@ export default function ResourceCard({
           className='w-full space-x-2'
           onClick={() => router.push(`/api/download/${resource._id}`)}
           variant={'outline'}
+          title='Download resource'
         >
           <i className='ph ph-download-simple'></i>
           <span>Download</span>
@@ -97,6 +110,7 @@ export default function ResourceCard({
         <Button
           variant={'outline'}
           onClick={() => router.push(`/api/download/${resource._id}`)}
+          title='Share resource on feed'
         >
           <i className='ph ph-share'></i>
         </Button>
