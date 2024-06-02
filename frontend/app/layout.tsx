@@ -13,6 +13,7 @@ const fontSans = FontSans({
 // others
 import Navbar from '@/components/navbar';
 import NavHeader from '@/components/navheader';
+import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -50,6 +51,7 @@ export default function RootLayout({
             </main>
           </div>
         </div>
+        <Toaster />
       </body>
     </html>
   );

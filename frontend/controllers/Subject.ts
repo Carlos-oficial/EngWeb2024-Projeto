@@ -1,18 +1,22 @@
-import { ResourceDB } from "@/lib/types";
-import Resource from "@/models/Resource";
+import { SubjectDB } from '@/lib/types';
+import Subject from '@/models/Subject';
 
 export const list = () => {
-    return Resource.find().exec();
-}
+  return Subject.find().exec();
+};
+
+export const listIds = (ids: string[]) => {
+  return Subject.find({ _id: { $in: ids } }).exec();
+};
 
 export const get = (id: string) => {
-    return Resource.findById(id).exec();
-}
+  return Subject.findById(id).exec();
+};
 
-export const create = (resource: ResourceDB) => {
-    return Resource.create(resource);
-}
+export const create = (subject: SubjectDB) => {
+  return Subject.create(subject);
+};
 
-export const update = (id: string, resource: ResourceDB) => {
-    return Resource.findByIdAndUpdate(id, resource).exec();
-}
+export const update = (id: string, subject: SubjectDB) => {
+  return Subject.findByIdAndUpdate(id, subject).exec();
+};

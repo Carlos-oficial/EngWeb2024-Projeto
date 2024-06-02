@@ -32,23 +32,13 @@ import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-// import { submitResource } from '@/lib/data';
+import { submitResource } from '@/lib/data';
+import { ResourceForm } from '@/lib/types';
+import { useToast } from '@/components/ui/use-toast';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
-
-type ResourceForm = {
-  title: string;
-  description: string;
-  documentType: string;
-  documentFormat: string;
-  hashtags: string;
-  subjectId: string;
-  courseId: string;
-  createdAt: Date;
-  file: FileList;
-};
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -74,6 +64,7 @@ const formSchema = z.object({
 
 export default function ResourceDialog() {
   const [error, setError] = useState<string>('');
+  const [open, setOpen] = useState<false | undefined>(undefined);
   const [documentTypes, setDocumentTypes] = useState<string[]>([
     'Teste',
     'Exame',
@@ -102,34 +93,39 @@ export default function ResourceDialog() {
     },
   });
 
+  const { toast } = useToast();
+
   const onSubmit: SubmitHandler<FormValues> = (values: FormValues) => {
     const data: ResourceForm = {
       ...values,
-      documentFormat: values.file[0].name
-        .split('.')
-        .pop()
-        ?.toUpperCase() as string,
+      documentFormat: values.file[0].name.split('.').pop()?.toUpperCase() ?? '',
       createdAt: new Date(),
+      username: 'diogogmatos', // TODO: Get username from session
     };
 
-    const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      if (key === 'file') {
-        formData.append('file', (value as FileList)[0]);
-      } else {
-        formData.append(key, value as string);
-      }
+    submitResource(data).catch((error: Error) => {
+      setError(error.message);
+      return;
     });
 
-    // submitResource(formData).catch((error: Error) => setError(error.message));
-    // console.log(formData);
     // TODO: Post to feed
+
+    setOpen(false);
+
+    setTimeout(
+      () =>
+        toast({
+          title: 'Resource submitted successfully!',
+          description: 'Thank you for your contribution <3',
+        }),
+      500,
+    );
   };
 
   const fileRef = form.register('file');
 
   return (
-    <Dialog>
+    <Dialog open={open}>
       <DialogTrigger asChild>
         <Button className='flex space-x-1'>
           <i className='ph ph-file-plus'></i>

@@ -5,41 +5,17 @@ import Spinner from '@/components/spinner';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
 import { useState, useEffect } from 'react';
-import { fetchResources } from '@/lib/data';
+import { listResources } from '@/lib/data';
 import { ResourceDTO } from '@/lib/types';
 import ResourceDialog from '@/components/resource_dialog';
 
 export default function Resources() {
-  const [resources, setResources] = useState<ResourceDTO[] | null>(
-    //   [
-    //   {
-    //     _id: '1',
-    //     title: 'Teste 1 - CG 23/24',
-    //     description: 'Teste da época normal com resolução.',
-    //     documentType: 'Teste',
-    //     documentFormat: 'PDF',
-    //     username: 'diogogmatos',
-    //     hashtags: ['#lei', '#cg', '#teste'],
-    //     subject: {
-    //       id: 'cg',
-    //       name: 'Computação Gráfica',
-    //     },
-    //     course: {
-    //       id: 'lei',
-    //       name: 'Licenciatura em Engenharia Informática',
-    //     },
-    //     createdAt: new Date(),
-    //   },
-    // ]
-    null,
-  );
+  const [resources, setResources] = useState<ResourceDTO[] | null>(null);
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    fetchResources()
-      .then((data) => {
-        setResources(data);
-      })
+    listResources()
+      .then((resources) => setResources(resources))
       .catch((error: Error) => setError(error.message));
   }, []);
 

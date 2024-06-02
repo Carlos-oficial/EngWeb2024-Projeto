@@ -3,14 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "all": "npm-run-all --parallel api dev",
+    "all": "npm-run-all --parallel docker dev",
     "dev": "next dev",
+    "docker": "docker compose up",
     "build": "prettier --check . && next build",
-    "format": "prettier --write .\ncd ..\nsource backend/.venv/bin/activate\nisort backend && black backend",
+    "format": "prettier --write .",
     "start": "next start",
-    "lint": "prettier --check . && next lint\ncd ..\nsource backend/.venv/bin/activate\npylint backend --errors-only",
-    "api": "cd ../backend\ndocker compose up\ncd ..\nexport PYTHONPATH=.\nsource backend/.venv/bin/activate\npython backend/app.py",
-    "setup": "cd ..\nexport PYTHONPATH=.\npython -m venv backend/.venv\nsource backend/.venv/bin/activate\npip install -r backend/requirements.txt"
+    "lint": "prettier --check . && next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.4.2",
@@ -23,6 +22,7 @@
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
     "axios": "^1.7.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

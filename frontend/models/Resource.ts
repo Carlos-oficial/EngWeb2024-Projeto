@@ -1,7 +1,6 @@
-import mongoose, { Schema, model } from 'mongoose';
+import { model, models, Schema } from 'mongoose';
 
 interface IResource {
-  _id: mongoose.Types.ObjectId;
   title: string;
   description: string;
   documentType: string;
@@ -11,21 +10,23 @@ interface IResource {
   courseId: string;
   createdAt: Date;
   file: string;
+  username: string;
 }
 
 const ResourceSchema = new Schema<IResource>({
-  _id: { type: Schema.Types.ObjectId, required: true },
-  title: { type: String, required: true },
-  description: { type: String, required: true },
-  documentType: { type: String, required: true },
-  documentFormat: { type: String, required: true },
-  hashtags: { type: String, required: true },
-  subjectId: { type: String, required: true },
-  courseId: { type: String, required: true },
-  createdAt: { type: Date, required: true },
-  file: { type: String, required: true },
+  title: { type: String },
+  description: { type: String },
+  documentType: { type: String },
+  documentFormat: { type: String },
+  hashtags: { type: String },
+  subjectId: { type: String },
+  courseId: { type: String },
+  createdAt: { type: Date },
+  file: { type: String },
+  username: { type: String },
 });
 
-const Resource = model<IResource>('Resource', ResourceSchema);
+const Resource =
+  models.Resource || model<IResource>('Resource', ResourceSchema);
 
 export default Resource;
