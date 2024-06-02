@@ -1,4 +1,5 @@
-import { ResourceDB, ResourceDTO, ResourceForm } from './types';
+import Favorites from '@/models/Favorites';
+import { ResourceDB, ResourceDTO, ResourceForm, UserDTO } from './types';
 
 export const listResources = async () => {
   try {
@@ -19,6 +20,26 @@ export const listResourcesByUser = async (userId:string) => {
     throw new Error((error as Error).message);
   }
 };
+export const getUser = async (userId:string) => {
+  try {
+    const response = await fetch('/api/users/'+userId);
+    const data = (await response.json()) as UserDTO;
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const getFavorites = async (userId:string) => {
+  try {
+    const response = await fetch('/api/users/'+userId+'/favorites');
+    const data = (await response.json()) as Favorites;
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
 
 export const submitResource = async (formData: ResourceForm) => {
   try {

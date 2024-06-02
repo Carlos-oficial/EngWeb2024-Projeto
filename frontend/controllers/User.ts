@@ -1,5 +1,7 @@
 import { UserDB } from '@/lib/types';
+import Favorites from '@/models/Favorites';
 import User from '@/models/User';
+import { ObjectId } from 'mongodb';
 
 export const list = () => {
   return User.find().exec();
@@ -10,7 +12,8 @@ export const listIds = (ids: string[]) => {
 };
 
 export const get = (id: string) => {
-  return User.findById(id).exec();
+  console.log(id)
+  return User.findOne({_id:new ObjectId(id)}).exec();
 };
 
 export const create = (subject: UserDB) => {
@@ -20,3 +23,8 @@ export const create = (subject: UserDB) => {
 export const update = (id: string, subject: UserDB) => {
   return User.findByIdAndUpdate(id, subject).exec();
 };
+
+export const getFavorites = (id: string) => {
+  return Favorites.findOne({userId:id}).exec();
+};
+

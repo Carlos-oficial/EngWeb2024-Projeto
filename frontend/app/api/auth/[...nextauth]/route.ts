@@ -3,7 +3,6 @@ import GithubProvider from 'next-auth/providers/github';
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import clientPromise from '@/lib/mongodb';
 import { Adapter } from 'next-auth/adapters';
-import {CustomSession} from '@/lib/types';
 
 const handler = NextAuth({
   // Secret for Next-auth, without this JWT encryption/decryption won't work

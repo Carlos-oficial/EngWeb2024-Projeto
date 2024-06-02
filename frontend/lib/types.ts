@@ -61,9 +61,10 @@ export type UserDB = {
   name: string;
   email: string;
   image: string;
-  emailVerified: any; // idk
+  emailVerified:Date | null; // idk
 };
 
+export type UserDTO = UserDB
 
 export interface CustomUser {
   id: string;
