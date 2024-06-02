@@ -1,4 +1,4 @@
-import { model, models, Schema } from 'mongoose';
+import { model, models, Schema, Types } from 'mongoose';
 
 interface IResource {
   title: string;
@@ -10,7 +10,7 @@ interface IResource {
   courseId: string;
   createdAt: Date;
   file: string;
-  username: string;
+  userId: Types.ObjectId;
 }
 
 const ResourceSchema = new Schema<IResource>({
@@ -23,7 +23,7 @@ const ResourceSchema = new Schema<IResource>({
   courseId: { type: String },
   createdAt: { type: Date },
   file: { type: String },
-  username: { type: String },
+  userId: { type: Schema.Types.ObjectId },
 });
 
 const Resource =

@@ -26,7 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "lib/connect_db.ts"
+    "lib/mongoose.ts"
   ],
   "exclude": ["node_modules"]
 }

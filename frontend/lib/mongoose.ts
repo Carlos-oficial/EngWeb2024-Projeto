@@ -5,6 +5,7 @@ const cached: {
   connection?: typeof mongoose;
   promise?: Promise<typeof mongoose>;
 } = {};
+
 async function connectMongo() {
   if (!MONGO_URI) {
     throw new Error(
@@ -28,4 +29,5 @@ async function connectMongo() {
   }
   return cached.connection;
 }
+ 
 export default connectMongo;

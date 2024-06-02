@@ -1,4 +1,4 @@
-import connectMongo from '@/lib/connect_db';
+import connectMongo from '@/lib/mongoose';
 import * as ResourceController from '@/controllers/Resource';
 import { ResourceDB } from '@/lib/types';
 import { NextRequest, NextResponse } from 'next/server';

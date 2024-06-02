@@ -27,9 +27,10 @@ export default function Resources() {
           <ResourceDialog />
         </div>
         <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-3'>
-          {resources.map((resource) => (
+           {resources.map((resource) => (
             <ResourceCard resource={resource} key={resource._id} />
-          ))}
+          ))
+          } 
         </div>
       </div>
       <div className='min-w-80 border-l border-border'></div>

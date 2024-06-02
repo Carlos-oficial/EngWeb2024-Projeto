@@ -10,6 +10,16 @@ export const listResources = async () => {
   }
 };
 
+export const listResourcesByUser = async (userId:string) => {
+  try {
+    const response = await fetch('/api/resources?userId='+userId);
+    const data = (await response.json()) as ResourceDTO[];
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
 export const submitResource = async (formData: ResourceForm) => {
   try {
     const resource: Partial<ResourceDB> = {
@@ -22,7 +32,7 @@ export const submitResource = async (formData: ResourceForm) => {
       courseId: formData.courseId,
       createdAt: formData.createdAt,
       file: formData.file[0].name,
-      username: formData.username,
+      userId: formData.userId,
     };
     const response = await fetch('/api/resources', {
       method: 'POST',

@@ -44,6 +44,7 @@ export default function RootLayout({
         className={cn('bg-background font-sans antialiased', fontSans.variable)}
       >
         <NextAuthProvider>
+
           <div className='min-h-screen flex flex-row'>
             <Navbar />
             <div className='w-full flex flex-col'>

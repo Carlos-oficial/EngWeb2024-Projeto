@@ -2,19 +2,9 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import backendConn from '@/lib/backendConn';
 export default function LoginPage() {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(username, password);
-    backendConn.post('/auth/login', {
-      username,
-      password,
-    });
-  };
 
   return (
     <>
@@ -33,7 +23,7 @@ export default function LoginPage() {
         </div>
 
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-          <form className='space-y-6' onSubmit={(e) => handleSubmit(e)}>
+          <form className='space-y-6' onSubmit={(e) =>{}}>
             <div>
               <label
                 htmlFor='username'

@@ -29,7 +29,7 @@ export type ResourceDB = {
   courseId: string;
   createdAt: Date;
   file: string;
-  username: string;
+  userId: string;
 };
 
 export type ResourceForm = {
@@ -42,7 +42,7 @@ export type ResourceForm = {
   courseId: string;
   createdAt: Date;
   file: FileList;
-  username: string;
+  userId: string;
 };
 
 export type SubjectDB = {
@@ -55,3 +55,35 @@ export type CourseDB = {
   _id: string;
   name: string;
 };
+
+export type UserDB = {
+  _id: string;
+  name: string;
+  email: string;
+  image: string;
+  emailVerified: any; // idk
+};
+
+
+export interface CustomUser {
+  id: string;
+  name: string;
+  email: string;
+  image: string;
+  emailVerified: Date | null;
+}
+
+export type CustomSession = {
+  user: CustomUser;
+  expires: string;
+};
+
+// types/next-auth.d.ts
+import NextAuth from 'next-auth';
+
+declare module 'next-auth' {
+  interface Session {
+    user: CustomUser;
+    expires: string;
+  }
+}

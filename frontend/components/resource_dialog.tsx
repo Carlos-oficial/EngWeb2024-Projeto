@@ -39,6 +39,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
+import { useSession } from 'next-auth/react';
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -63,6 +64,7 @@ const formSchema = z.object({
 // TODO: Fetch courses, subjects and document types from the API
 
 export default function ResourceDialog() {
+  const session = useSession();
   const [error, setError] = useState<string>('');
   const [open, setOpen] = useState<false | undefined>(undefined);
   const [documentTypes, setDocumentTypes] = useState<string[]>([
@@ -96,11 +98,15 @@ export default function ResourceDialog() {
   const { toast } = useToast();
 
   const onSubmit: SubmitHandler<FormValues> = (values: FormValues) => {
+    if (!session || session.data == undefined || session.data.user == undefined || session.data.user == null) {
+      return;
+    }
+
     const data: ResourceForm = {
       ...values,
       documentFormat: values.file[0].name.split('.').pop()?.toUpperCase() ?? '',
       createdAt: new Date(),
-      username: 'diogogmatos', // TODO: Get username from session
+      userId: session.data?.user?.id ?? "ERR_NAME",
     };
 
     submitResource(data).catch((error: Error) => {
