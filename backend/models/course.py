@@ -1,8 +1,7 @@
 from typing_extensions import TypedDict
 
 
-class Subject(TypedDict):
-    courseId: str
+class Course(TypedDict):
     name: str
 
 
