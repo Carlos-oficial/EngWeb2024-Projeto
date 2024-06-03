@@ -1,4 +1,5 @@
 import { ResourceDB } from '@/lib/types';
+import FavoritesPerResource from '@/models/FavoritesPerResource';
 import Resource from '@/models/Resource';
 
 export const list = (query: any) => {
@@ -23,4 +24,8 @@ export const create = (resource: Partial<ResourceDB>) => {
 
 export const update = (id: string, resource: Partial<ResourceDB>) => {
   return Resource.findByIdAndUpdate(id, resource).exec();
+};
+
+export const getFavorites = (id: string) => {
+  return FavoritesPerResource.findOne({ resourceId: id }).exec();
 };

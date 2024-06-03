@@ -5,7 +5,7 @@ import { UserDB } from '@/lib/types';
 import { NextRequest, NextResponse } from 'next/server';
 import { HttpStatusCode } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
-import Favorites from '@/models/Favorites';
+import FavoritesPerUser from '@/models/FavoritesPerUser';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { getServerSession } from "next-auth/next"
 
@@ -23,7 +23,7 @@ export async function GET(req: NextApiRequest) {
     }
     const favorites = (await UserController.getFavorites(
       uid,
-    )) as Favorites;
+    )) as FavoritesPerUser;
     return NextResponse.json(favorites?.resources ?? []);
   } catch (error) {
     console.error(error);
@@ -64,12 +64,13 @@ export async function POST(req: NextRequest,res: NextApiResponse) {
     if (add){
       await UserController.addFavorite(uid,favorite)
     } else {
+
       await UserController.rmFavorite(uid,favorite)
     }
 
     const favorites = (await UserController.getFavorites(
       uid,
-    )) as Favorites;
+    )) as FavoritesPerUser;
     return NextResponse.json(favorites?.resources ?? []);
   } catch (error) {
     console.error(error);

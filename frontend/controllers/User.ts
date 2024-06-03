@@ -1,5 +1,6 @@
 import { UserDB } from '@/lib/types';
-import Favorites from '@/models/Favorites';
+import FavoritesPerResource from '@/models/FavoritesPerResource';
+import FavoritesPerUser from '@/models/FavoritesPerUser';
 import User from '@/models/User';
 import { ObjectId } from 'mongodb';
 
@@ -25,17 +26,20 @@ export const update = (id: string, subject: UserDB) => {
 };
 
 export const getFavorites = (id: string) => {
-  return Favorites.findOne({ userId: id }).exec();
+  return FavoritesPerUser.findOne({ userId: id }).exec();
 };
 
 export const postFavorites = (id: string,list:string[]) => {
-  return Favorites.updateOne({ userId: id },{$set : {resources : list}},{ upsert: true }).exec();
+
+  return FavoritesPerUser.updateOne({ userId: id },{$set : {resources : list}},{ upsert: true }).exec();
 };
 
 export const addFavorite = (id: string,fav:string) => {
-  return Favorites.updateOne({ userId: id },{$push : {resources : fav}} , { upsert: true }).exec();
+  FavoritesPerResource.updateOne({ resourceId: fav},{$push : {users : id}} , { upsert: true }).exec()
+  return FavoritesPerUser.updateOne({ userId: id },{$push : {resources : fav}} , { upsert: true }).exec();
 };
 
 export const rmFavorite = (id: string,fav:string) => {
-  return Favorites.updateOne({ userId: id },{$pop : {resources : fav}} , { upsert: true }).exec();
+  FavoritesPerResource.updateOne({ resourceId: fav},{$pull : {users : id}} , { upsert: true }).exec()
+  return FavoritesPerUser.updateOne({ userId: id },{$pull : {resources : fav}}).exec();
 };

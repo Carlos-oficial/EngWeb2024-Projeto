@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -18,7 +18,7 @@ import ProfileCard from '@/components/profilecard';
 import { timeAgo, formatNumber } from '@/lib/utils';
 import { ResourceDTO } from '@/lib/types';
 import { useSession } from 'next-auth/react';
-import { addFavorite } from '@/lib/data';
+import { addFavorite, getResourceFavorites, getUserFavorites, rmFavorite } from '@/lib/data';
 
 interface ResourceCardProps {
   resource: ResourceDTO;
@@ -29,13 +29,29 @@ export default function ResourceCard({
   resource,
   ...props
 }: ResourceCardProps) {
+  const session = useSession();
   const router = useRouter();
   const [favoriteCounter, setFavoriteCounter] = useState<number>(0);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  const [favorites, setFavorites] = useState<String[]>([]);
+  const [error, setError] = useState<string>('');
+
+  useEffect(() => {
+    if (session.data?.user?.id)
+      getUserFavorites(session.data?.user?.id)
+        .then((favorites) => {setFavorites(favorites);setIsFavorite(favorites.includes(resource._id))})
+        .catch((error: Error) => setError(error.message));
+  }, [session]);
+
+  useEffect(() => {
+      getResourceFavorites(resource._id)
+        .then((favorites) => {setFavoriteCounter(favorites.length)})
+        .catch((error: Error) => setError(error.message));
+  }, [session]);
+
+  
 
   // TODO: fetch favorite counter information
-  // TODO: update favorite counter when clicked, add to the user favorites list, etc
-
   function handleFavorite() {
     if (!session.data?.user.id){
       return
@@ -44,6 +60,7 @@ export default function ResourceCard({
 
       if (isFavorite) {
         setFavoriteCounter(favoriteCounter - 1);
+        rmFavorite(session.data.user.id,resource._id); 
       } else {
         setFavoriteCounter(favoriteCounter + 1);
         addFavorite(session.data.user.id,resource._id); 
@@ -52,7 +69,6 @@ export default function ResourceCard({
     }
   }
 
-  const session = useSession();
 
   return (
     <Card {...props}>

@@ -1,5 +1,5 @@
 'use client';
-import { listResourcesByUser, getUser, getFavorites } from '@/lib/data';
+import { listResourcesByUser, getUser, getUserFavorites } from '@/lib/data';
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 
@@ -10,7 +10,7 @@ export default function Favorites() {
 
   useEffect(() => {
     if (session.data?.user?.id)
-      getFavorites(session.data?.user?.id)
+      getUserFavorites(session.data?.user?.id)
         .then((favorites) => setFavorites(favorites))
         .catch((error: Error) => setError(error.message));
   }, [session]);
