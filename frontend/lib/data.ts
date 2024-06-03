@@ -11,18 +11,18 @@ export const listResources = async () => {
   }
 };
 
-export const listResourcesByUser = async (userId: string) => {
+export const listResourcesByUser = async (userEmail: string) => {
   try {
-    const response = await fetch('/api/resources?userId=' + userId);
+    const response = await fetch('/api/resources?userEmail=' + userEmail);
     const data = (await response.json()) as ResourceDTO[];
     return data;
   } catch (error) {
     throw new Error((error as Error).message);
   }
 };
-export const getUser = async (userId: string) => {
+export const getUser = async (userEmail: string) => {
   try {
-    const response = await fetch('/api/users/' + userId);
+    const response = await fetch('/api/users/' + userEmail);
     const data = (await response.json()) as UserDTO;
     return data;
   } catch (error) {
@@ -30,9 +30,9 @@ export const getUser = async (userId: string) => {
   }
 };
 
-export const getFavorites = async (userId: string) => {
+export const getFavorites = async (userEmail: string) => {
   try {
-    const response = await fetch('/api/users/' + userId + '/favorites');
+    const response = await fetch('/api/users/' + userEmail + '/favorites');
     const data = (await response.json()) as string[];
     return data;
   } catch (error) {
@@ -40,20 +40,20 @@ export const getFavorites = async (userId: string) => {
   }
 };
 
-export const addFavorite = async (userId: string, resourceId: string) => {
-  try{
-    console.log("ADDING FAV")
-    const response = await fetch('/api/users/' + userId + '/favorites', {
+export const addFavorite = async (userEmail: string, resourceId: string) => {
+  try {
+    console.log('ADDING FAV');
+    const response = await fetch('/api/users/' + userEmail + '/favorites', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ favorite:resourceId, add: true }),
-    }); 
-  }  catch (error) {
+      body: JSON.stringify({ favorite: resourceId, add: true }),
+    });
+  } catch (error) {
     throw new Error((error as Error).message);
   }
-}
+};
 
 export const submitResource = async (formData: ResourceForm) => {
   try {
@@ -67,7 +67,7 @@ export const submitResource = async (formData: ResourceForm) => {
       courseId: formData.courseId,
       createdAt: formData.createdAt,
       file: formData.file[0].name,
-      userId: formData.userId,
+      userEmail: formData.userEmail,
     };
 
     const response = await fetch('/api/resources', {

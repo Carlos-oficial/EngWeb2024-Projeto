@@ -1,12 +1,12 @@
 import { model, models, Schema, Types } from 'mongoose';
 
 interface Favorites {
-  userId: Types.ObjectId;
+  userEmail: string;
   resources: Types.ObjectId[];
 }
 
 const FavoritesSchema = new Schema<Favorites>({
-  userId: { type: Schema.Types.ObjectId, ref: 'User', unique: true },
+  userEmail: { type: String, ref: 'User', unique: true },
   resources: { type: [Schema.Types.ObjectId], ref: 'Resource' },
 });
 

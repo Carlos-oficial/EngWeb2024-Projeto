@@ -7,23 +7,21 @@ import { HttpStatusCode } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 import Favorites from '@/models/Favorites';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { getServerSession } from "next-auth/next"
+import { getServerSession } from 'next-auth/next';
 
 export const dynamic = 'force-dynamic'; // defaults to auto
 
 export async function GET(req: NextApiRequest) {
   try {
     await connectMongo();
-    const uid = req.url?.split('users/')[1].split('/')[0]; // TODO: FITA COLAAAA
-    if (!uid){
+    const uemail = req.url?.split('users/')[1].split('/')[0]; // TODO: FITA COLAAAA
+    if (!uemail) {
       return NextResponse.json(
-        { message: "no user id provided" },
+        { message: 'no user id provided' },
         { status: HttpStatusCode.BadRequest },
-      );  
+      );
     }
-    const favorites = (await UserController.getFavorites(
-      uid,
-    )) as Favorites;
+    const favorites = (await UserController.getFavorites(uemail)) as Favorites;
     return NextResponse.json(favorites?.resources ?? []);
   } catch (error) {
     console.error(error);
@@ -37,39 +35,41 @@ export async function GET(req: NextApiRequest) {
 type FavoriteDTO = {
   favorite: string;
   add: boolean;
-}
+};
 
-export async function POST(req: NextRequest,res: NextApiResponse) {
+export async function POST(req: NextRequest, res: NextApiResponse) {
   try {
     await connectMongo();
     // const session = await getServerSession(req, res, authOptions)
     // console.log({session:JSON.stringify(session)})
 
     const uid = req.url?.split('users/')[1].split('/')[0]; // TODO: FITA COLAAAA
-    if (!uid){
+    if (!uid) {
       return NextResponse.json(
-        { message: "no user id provided" },
+        { message: 'no user id provided' },
         { status: HttpStatusCode.BadRequest },
-      );  
+      );
     }
-    
-    const body = await (req.json()) as FavoriteDTO;
-    console.log({body:body})
-    const favorite :string = body.favorite
-    const add :boolean = body.add
 
+    const body = (await req.json()) as FavoriteDTO;
+    console.log({ body: body });
+    const favorite: string = body.favorite;
+    const add: boolean = body.add;
 
-    if (!ResourceController.get(favorite)){return NextResponse.json({message:"favorite does not exist"},{status:HttpStatusCode.BadRequest})}
+    if (!ResourceController.get(favorite)) {
+      return NextResponse.json(
+        { message: 'favorite does not exist' },
+        { status: HttpStatusCode.BadRequest },
+      );
+    }
 
-    if (add){
-      await UserController.addFavorite(uid,favorite)
+    if (add) {
+      await UserController.addFavorite(uid, favorite);
     } else {
-      await UserController.rmFavorite(uid,favorite)
+      await UserController.rmFavorite(uid, favorite);
     }
 
-    const favorites = (await UserController.getFavorites(
-      uid,
-    )) as Favorites;
+    const favorites = (await UserController.getFavorites(uid)) as Favorites;
     return NextResponse.json(favorites?.resources ?? []);
   } catch (error) {
     console.error(error);
@@ -79,4 +79,3 @@ export async function POST(req: NextRequest,res: NextApiResponse) {
     );
   }
 }
-

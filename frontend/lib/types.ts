@@ -4,7 +4,7 @@ export type ResourceDTO = {
   description: string;
   documentType: string;
   documentFormat: string;
-  username: string;
+  userEmail: string;
   hashtags: string[];
   subject: {
     _id: string;
@@ -29,7 +29,7 @@ export type ResourceDB = {
   courseId: string;
   createdAt: Date;
   file: string;
-  userId: string;
+  userEmail: string;
 };
 
 export type ResourceForm = {
@@ -42,7 +42,7 @@ export type ResourceForm = {
   courseId: string;
   createdAt: Date;
   file: FileList;
-  userId: string;
+  userEmail: string;
 };
 
 export type SubjectDB = {
@@ -78,9 +78,6 @@ export type CustomSession = {
   user: CustomUser;
   expires: string;
 };
-
-// types/next-auth.d.ts
-import NextAuth from 'next-auth';
 
 declare module 'next-auth' {
   interface Session {

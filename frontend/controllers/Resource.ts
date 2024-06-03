@@ -9,8 +9,8 @@ export const listIds = (ids: string[]) => {
   return Resource.find({ _id: { $in: ids } }).exec();
 };
 
-export const listbyUserId = (id: string) => {
-  return Resource.find({ userId: id }).exec();
+export const listbyUser = (email: string) => {
+  return Resource.find({ userEmail: email }).exec();
 };
 
 export const get = (id: string) => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -18,7 +18,7 @@ import ProfileCard from '@/components/profilecard';
 import { timeAgo, formatNumber } from '@/lib/utils';
 import { ResourceDTO } from '@/lib/types';
 import { useSession } from 'next-auth/react';
-import { addFavorite } from '@/lib/data';
+import { addFavorite, getFavorites } from '@/lib/data';
 
 interface ResourceCardProps {
   resource: ResourceDTO;
@@ -33,20 +33,15 @@ export default function ResourceCard({
   const [favoriteCounter, setFavoriteCounter] = useState<number>(0);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-  // TODO: fetch favorite counter information
-  // TODO: update favorite counter when clicked, add to the user favorites list, etc
-
   function handleFavorite() {
-    if (!session.data?.user.id){
-      return
-    }
-    else{
-
+    if (!session.data?.user.email) {
+      return;
+    } else {
       if (isFavorite) {
         setFavoriteCounter(favoriteCounter - 1);
       } else {
         setFavoriteCounter(favoriteCounter + 1);
-        addFavorite(session.data.user.id,resource._id); 
+        addFavorite(session.data.user.email, resource._id).catch(() => {});
       }
       setIsFavorite(!isFavorite);
     }
@@ -54,22 +49,37 @@ export default function ResourceCard({
 
   const session = useSession();
 
+  useEffect(() => {
+    async function fetchFavorites() {
+      if (!session.data?.user.email) {
+        return;
+      } else {
+        await getFavorites(session.data.user.email).then((favorites) => {
+          setIsFavorite(favorites.includes(resource._id));
+          setFavoriteCounter(favorites.length);
+        });
+      }
+    }
+    fetchFavorites().catch(() => {});
+  }, [session.data?.user.email, resource._id]);
+
   return (
     <Card {...props}>
       <CardHeader>
         <div className='flex justify-between items-center pb-2'>
           <span className='text-sm text-muted-foreground'>
-            <ProfileCard username={resource.username} /> ·{' '}
+            <ProfileCard email={resource.userEmail} /> ·{' '}
             {timeAgo(resource.createdAt)}
           </span>
           <button
-            disabled = {session.status !== 'authenticated'}
-            onClick={session.status === 'authenticated'? handleFavorite : () =>{}}
-            className={`flex space-x-1 items-center ${session.status === 'authenticated'?"hover:text-yellow-500":""} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
+            disabled={session.status !== 'authenticated'}
+            onClick={
+              session.status === 'authenticated' ? handleFavorite : () => {}
+            }
+            className={`flex space-x-1 items-center ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
           >
             <i className={`${isFavorite ? 'ph-fill' : 'ph'} ph-star`}></i>
             <p className='text-sm'>{formatNumber(favoriteCounter)}</p>
-
           </button>
         </div>
         <div className='flex justify-between items-center pb-2'>
@@ -128,7 +138,6 @@ export default function ResourceCard({
           >
             <i className='ph ph-share'></i>
           </Button>
-
         )}
       </CardFooter>
     </Card>

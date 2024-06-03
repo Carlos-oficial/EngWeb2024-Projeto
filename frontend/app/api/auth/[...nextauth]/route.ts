@@ -26,17 +26,13 @@ export const authOptions: AuthOptions = {
 
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      console.log({ callbacks: { singin: { user: JSON.stringify(user) } } });
-      UserController.get(user.id).then((res) => {
-        console.log({ callbacks: { singin: { res: JSON.stringify(res) } } });
-      });
-      UserController.getFavorites(user.id).then((res) => {
-        if (res === null) {
-          UserController.postFavorites(user.id, []);
-          console.log({ callbacks: { signin: 'POSTING FAVORITES' } });
-        }
-      });
-
+      await UserController.getFavorites(user.email as string).then(
+        async (res) => {
+          if (res === null) {
+            await UserController.postFavorites(user.email as string, []);
+          }
+        },
+      );
       return true;
     },
     async redirect({ url, baseUrl }) {

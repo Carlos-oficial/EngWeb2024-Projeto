@@ -42,7 +42,7 @@ export async function GET(req: NextApiRequest) {
         description: resource.description,
         documentType: resource.documentType,
         documentFormat: resource.documentFormat,
-        username: 'GAJO', // PLACEHOLDER
+        userEmail: resource.userEmail,
         hashtags: resource.hashtags.split(' '),
         subject: {
           _id: resource.subjectId,

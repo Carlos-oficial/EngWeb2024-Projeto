@@ -104,7 +104,7 @@ export default function ResourceDialog() {
       ...values,
       documentFormat: values.file[0].name.split('.').pop()?.toUpperCase() ?? '',
       createdAt: new Date(),
-      userId: (session.data?.user?.id as string) ?? 'ERR_NAME',
+      userEmail: (session.data?.user?.email as string) ?? '',
     };
 
     submitResource(data).catch((error: Error) => {
