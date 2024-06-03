@@ -18,6 +18,7 @@ import ProfileCard from '@/components/profilecard';
 import { timeAgo, formatNumber } from '@/lib/utils';
 import { ResourceDTO } from '@/lib/types';
 import { useSession } from 'next-auth/react';
+import { addFavorite } from '@/lib/data';
 
 interface ResourceCardProps {
   resource: ResourceDTO;
@@ -36,12 +37,19 @@ export default function ResourceCard({
   // TODO: update favorite counter when clicked, add to the user favorites list, etc
 
   function handleFavorite() {
-    if (isFavorite) {
-      setFavoriteCounter(favoriteCounter - 1);
-    } else {
-      setFavoriteCounter(favoriteCounter + 1);
+    if (!session.data?.user.id){
+      return
     }
-    setIsFavorite(!isFavorite);
+    else{
+
+      if (isFavorite) {
+        setFavoriteCounter(favoriteCounter - 1);
+      } else {
+        setFavoriteCounter(favoriteCounter + 1);
+        addFavorite(session.data.user.id,resource._id); 
+      }
+      setIsFavorite(!isFavorite);
+    }
   }
 
   const session = useSession();
