@@ -1,10 +1,10 @@
-import NextAuth from 'next-auth';
+import NextAuth, { AuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import clientPromise from '@/lib/mongodb';
 import { Adapter } from 'next-auth/adapters';
 
-const handler = NextAuth({
+export const authOptions: AuthOptions = {
   // Secret for Next-auth, without this JWT encryption/decryption won't work
   secret: process.env.NEXTAUTH_SECRET,
   adapter: MongoDBAdapter(clientPromise) as Adapter,
@@ -16,6 +16,13 @@ const handler = NextAuth({
     }),
   ],
 
+  pages: {
+    signIn: '/auth/signin',
+    signOut: '/auth/signout',
+    error: '/auth/error', // Error code passed in query string as ?error=
+    verifyRequest: '/auth/verify-request', // (used for check email message)
+  },
+
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       return true;
@@ -24,11 +31,14 @@ const handler = NextAuth({
       return baseUrl;
     },
     async session({ session, user, token }) {
-      return { ...session, user, token };
+      return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
-      return { ...token, user };
+      return token;
     },
   },
-});
+};
+
+const handler: unknown = NextAuth(authOptions);
+
 export { handler as GET, handler as POST };

@@ -35,11 +35,13 @@ import { Label } from '@/components/ui/label';
 import { submitResource } from '@/lib/data';
 import { ResourceForm } from '@/lib/types';
 import { useToast } from '@/components/ui/use-toast';
+import SignInCard from '@/components/signin_card';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { useSession } from 'next-auth/react';
+import Spinner from './spinner';
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -98,20 +100,11 @@ export default function ResourceDialog() {
   const { toast } = useToast();
 
   const onSubmit: SubmitHandler<FormValues> = (values: FormValues) => {
-    if (
-      !session ||
-      session.data == undefined ||
-      session.data.user == undefined ||
-      session.data.user == null
-    ) {
-      return;
-    }
-
     const data: ResourceForm = {
       ...values,
       documentFormat: values.file[0].name.split('.').pop()?.toUpperCase() ?? '',
       createdAt: new Date(),
-      userId: session.data?.user?.id ?? 'ERR_NAME',
+      userId: (session.data?.user?.id as string) ?? 'ERR_NAME',
     };
 
     submitResource(data).catch((error: Error) => {
@@ -144,201 +137,209 @@ export default function ResourceDialog() {
         </Button>
       </DialogTrigger>
       <DialogContent className='max-h-[calc(70vh)] overflow-y-scroll'>
-        <DialogHeader>
-          <DialogTitle>Add Resource</DialogTitle>
-          <DialogDescription>
-            Submit a new resource to the platform here. Click submit when
-            you&apos;re done.
-          </DialogDescription>
-        </DialogHeader>
-        <Form {...form}>
-          <form
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            onSubmit={form.handleSubmit(onSubmit)}
-            className='space-y-3'
-            encType='multipart/form-data'
-          >
-            <FormField
-              control={form.control}
-              name='file'
-              render={() => {
-                return (
-                  <FormItem>
-                    <FormLabel>Resource File</FormLabel>
-                    <FormControl>
-                      <Input
-                        type='file'
-                        placeholder='Upload your file here.'
-                        {...fileRef}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Upload the file you want to share.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
-            <FormField
-              control={form.control}
-              name='title'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Title</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    Short title that identifies the resource.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='description'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    Short description of the resource content.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='documentType'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Resource Type</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent className='max-h-40'>
-                      {documentTypes.map((type) => (
-                        <SelectItem key={type} value={type}>
-                          {type}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='hashtags'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Hashtags</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    List of hashtags that describe the resource, separated by
-                    spaces.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='courseId'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Course</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent className='max-h-40'>
-                      {courses.map((course) => (
-                        <SelectItem key={course.id} value={course.id}>
-                          {course.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='subjectId'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Subject</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    disabled={form.getValues('courseId') === ''}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent className='max-h-40'>
-                      {subjects.map((subject) => {
-                        if (subject.courseId === form.getValues('courseId'))
-                          return (
-                            <SelectItem key={subject.id} value={subject.id}>
-                              {subject.name}
+        {session.status === 'loading' ? (
+          <Spinner />
+        ) : session.status === 'authenticated' ? (
+          <>
+            <DialogHeader>
+              <DialogTitle>Add Resource</DialogTitle>
+              <DialogDescription>
+                Submit a new resource to the platform here. Click submit when
+                you&apos;re done.
+              </DialogDescription>
+            </DialogHeader>
+            <Form {...form}>
+              <form
+                // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                onSubmit={form.handleSubmit(onSubmit)}
+                className='space-y-3'
+                encType='multipart/form-data'
+              >
+                <FormField
+                  control={form.control}
+                  name='file'
+                  render={() => {
+                    return (
+                      <FormItem>
+                        <FormLabel>Resource File</FormLabel>
+                        <FormControl>
+                          <Input
+                            type='file'
+                            placeholder='Upload your file here.'
+                            {...fileRef}
+                          />
+                        </FormControl>
+                        <FormDescription>
+                          Upload the file you want to share.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+                <FormField
+                  control={form.control}
+                  name='title'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Title</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormDescription>
+                        Short title that identifies the resource.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='description'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Description</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormDescription>
+                        Short description of the resource content.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='documentType'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Resource Type</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className='max-h-40'>
+                          {documentTypes.map((type) => (
+                            <SelectItem key={type} value={type}>
+                              {type}
                             </SelectItem>
-                          );
-                      })}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className='flex items-center space-x-2 pt-3'>
-              <Checkbox
-                id='post'
-                onCheckedChange={setPostToFeed}
-                checked={postToFeed}
-              />
-              <Label htmlFor='post'>Post on Feed</Label>
-            </div>
-            {error.length > 0 && (
-              <Alert variant='destructive' className='pt-3'>
-                <AlertTitle className='flex items-center space-x-1'>
-                  <i className='ph ph-warning'></i>
-                  <p>Error</p>
-                </AlertTitle>
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
-            <DialogFooter className='pt-3'>
-              <Button type='submit' className='flex space-x-1'>
-                <i className='ph ph-file-arrow-up'></i>
-                <p>Submit</p>
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='hashtags'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Hashtags</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormDescription>
+                        List of hashtags that describe the resource, separated
+                        by spaces.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='courseId'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Course</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className='max-h-40'>
+                          {courses.map((course) => (
+                            <SelectItem key={course.id} value={course.id}>
+                              {course.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='subjectId'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Subject</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        disabled={form.getValues('courseId') === ''}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className='max-h-40'>
+                          {subjects.map((subject) => {
+                            if (subject.courseId === form.getValues('courseId'))
+                              return (
+                                <SelectItem key={subject.id} value={subject.id}>
+                                  {subject.name}
+                                </SelectItem>
+                              );
+                          })}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className='flex items-center space-x-2 pt-3'>
+                  <Checkbox
+                    id='post'
+                    onCheckedChange={setPostToFeed}
+                    checked={postToFeed}
+                  />
+                  <Label htmlFor='post'>Post on Feed</Label>
+                </div>
+                {error.length > 0 && (
+                  <Alert variant='destructive' className='pt-3'>
+                    <AlertTitle className='flex items-center space-x-1'>
+                      <i className='ph ph-warning'></i>
+                      <p>Error</p>
+                    </AlertTitle>
+                    <AlertDescription>{error}</AlertDescription>
+                  </Alert>
+                )}
+                <DialogFooter className='pt-3'>
+                  <Button type='submit' className='flex space-x-1'>
+                    <i className='ph ph-file-arrow-up'></i>
+                    <p>Submit</p>
+                  </Button>
+                </DialogFooter>
+              </form>
+            </Form>
+          </>
+        ) : (
+          <SignInCard message='You need to be signed in to submit a resource.' />
+        )}
       </DialogContent>
     </Dialog>
   );

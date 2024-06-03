@@ -1,5 +1,4 @@
 import { model, models, Schema, Types } from 'mongoose';
-import { any } from 'zod';
 
 interface Favorites {
   userId: Types.ObjectId;

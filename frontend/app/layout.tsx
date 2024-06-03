@@ -1,20 +1,13 @@
-// next
 import type { Metadata } from 'next';
-
-import NextAuthProvider from '@/app/context/NextAuthProvider';
-// styling
-import './globals.css';
-import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import { Inter as FontSans } from 'next/font/google';
+import NextAuthProvider from '@/app/context/NextAuthProvider';
+import './globals.css';
+
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
 });
-
-// others
-import Navbar from '@/components/navbar';
-import NavHeader from '@/components/navheader';
-import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -43,18 +36,7 @@ export default function RootLayout({
       <body
         className={cn('bg-background font-sans antialiased', fontSans.variable)}
       >
-        <NextAuthProvider>
-          <div className='min-h-screen flex flex-row'>
-            <Navbar />
-            <div className='w-full flex flex-col'>
-              <NavHeader />
-              <main className='grow w-full overflow-x-auto overflow-y-scroll max-h-[calc(100vh-61px)]'>
-                {children}
-              </main>
-            </div>
-          </div>
-          <Toaster />
-        </NextAuthProvider>
+        <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
   );

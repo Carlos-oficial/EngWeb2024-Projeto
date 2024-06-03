@@ -5,11 +5,11 @@ import { usePathname } from 'next/navigation';
 export default function NavHeader() {
   const pathname = usePathname();
   const page_title =
-    pathname === '/resources'
+    pathname === '/dashboard/resources'
       ? 'Resources'
-      : pathname === '/favorites'
+      : pathname === '/dashboard/favorites'
         ? 'Favorites'
-        : pathname === '/feed'
+        : pathname === '/dashboard/feed'
           ? 'Feed'
           : 'Profile';
 
