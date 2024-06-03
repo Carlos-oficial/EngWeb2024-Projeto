@@ -5,7 +5,7 @@ import { ResourceDTO, UserDTO } from '@/lib/types';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import ResourceCard from '@/components/resource_card';
-import FavoritesPerUser from '@/models/FavoritesPerUser';
+
 export default function Profile() {
   const [resources, setResources] = useState<ResourceDTO[] | null>(null);
   const [error, setError] = useState<string>('');

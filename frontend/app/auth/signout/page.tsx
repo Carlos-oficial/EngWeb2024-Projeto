@@ -4,6 +4,10 @@ import { signOut } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 
 export default function SignOut() {
+  function handleSignOut() {
+    signOut().catch(() => {});
+  }
+
   return (
     <main className='flex flex-col justify-center items-center h-screen'>
       <div className='flex flex-col space-y-3'>
@@ -11,7 +15,7 @@ export default function SignOut() {
         <Button
           className='w-fit m-auto'
           variant={'default'}
-          onClick={() => signOut()}
+          onClick={() => handleSignOut()}
         >
           Sign out
         </Button>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   Dialog,
@@ -33,7 +33,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { submitResource } from '@/lib/data';
-import { ResourceForm } from '@/lib/types';
+import { CourseDB, ResourceForm, SubjectDB, DocumentTypeDB } from '@/lib/types';
 import { useToast } from '@/components/ui/use-toast';
 import SignInCard from '@/components/signin_card';
 
@@ -41,7 +41,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { useSession } from 'next-auth/react';
-import Spinner from './spinner';
+import Spinner from '@/components/spinner';
+
+import { listSubjects, listCourses, listDocumentTypes } from '@/lib/data';
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -54,7 +56,7 @@ const formSchema = z.object({
     .string({ required_error: 'Description is required' })
     .min(30, { message: 'Description must be at least 30 characters' })
     .max(100, { message: 'Description must be at most 100 characters' }),
-  documentType: z.string({ required_error: 'Resource type is required' }), // é um ID
+  documentTypeId: z.string({ required_error: 'Resource type is required' }), // é um ID
   hashtags: z.string().regex(new RegExp('^(#\\w+)?( #\\w+)*$'), {
     message: 'Hashtags must be separated by spaces and start with #',
   }),
@@ -69,19 +71,9 @@ export default function ResourceDialog() {
   const session = useSession();
   const [error, setError] = useState<string>('');
   const [open, setOpen] = useState<false | undefined>(undefined);
-  const [documentTypes, setDocumentTypes] = useState<string[]>([
-    'Teste',
-    'Exame',
-    'Ficha',
-    'Apontamento',
-    'Resolução',
-  ]);
-  const [courses, setCourses] = useState<{ id: string; name: string }[]>([
-    { id: '1', name: 'Licenciatura em Engenharia Informática' },
-  ]);
-  const [subjects, setSubjects] = useState<
-    { id: string; courseId: string; name: string }[]
-  >([{ id: '1', courseId: '1', name: 'Computação Gráfica' }]);
+  const [documentTypes, setDocumentTypes] = useState<DocumentTypeDB[]>([]);
+  const [courses, setCourses] = useState<CourseDB[]>([]);
+  const [subjects, setSubjects] = useState<SubjectDB[]>([]);
   const [postToFeed, setPostToFeed] = useState<boolean | 'indeterminate'>(true);
 
   const form = useForm<FormValues>({
@@ -89,7 +81,7 @@ export default function ResourceDialog() {
     defaultValues: {
       title: '',
       description: '',
-      documentType: '',
+      documentTypeId: '',
       hashtags: '',
       subjectId: '',
       courseId: '',
@@ -125,6 +117,18 @@ export default function ResourceDialog() {
       500,
     );
   };
+
+  useEffect(() => {
+    listDocumentTypes()
+      .then((data) => setDocumentTypes(data))
+      .catch((error: Error) => setError(error.message));
+    listCourses()
+      .then((data) => setCourses(data))
+      .catch((error: Error) => setError(error.message));
+    listSubjects()
+      .then((data) => setSubjects(data))
+      .catch((error: Error) => setError(error.message));
+  }, []);
 
   const fileRef = form.register('file');
 
@@ -211,7 +215,7 @@ export default function ResourceDialog() {
                 />
                 <FormField
                   control={form.control}
-                  name='documentType'
+                  name='documentTypeId'
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Resource Type</FormLabel>
@@ -226,8 +230,8 @@ export default function ResourceDialog() {
                         </FormControl>
                         <SelectContent className='max-h-40'>
                           {documentTypes.map((type) => (
-                            <SelectItem key={type} value={type}>
-                              {type}
+                            <SelectItem key={type._id} value={type._id}>
+                              {type.name}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -270,7 +274,7 @@ export default function ResourceDialog() {
                         </FormControl>
                         <SelectContent className='max-h-40'>
                           {courses.map((course) => (
-                            <SelectItem key={course.id} value={course.id}>
+                            <SelectItem key={course._id} value={course._id}>
                               {course.name}
                             </SelectItem>
                           ))}
@@ -300,7 +304,10 @@ export default function ResourceDialog() {
                           {subjects.map((subject) => {
                             if (subject.courseId === form.getValues('courseId'))
                               return (
-                                <SelectItem key={subject.id} value={subject.id}>
+                                <SelectItem
+                                  key={subject._id}
+                                  value={subject._id}
+                                >
                                   {subject.name}
                                 </SelectItem>
                               );

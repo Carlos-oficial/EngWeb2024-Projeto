@@ -18,14 +18,14 @@ export default function SignInForm({
     | Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider>
     | never[];
 }) {
-  const handleProviderSignIn = async (provider: ClientSafeProvider) => {
-    await signIn(provider.id, { redirectTo: '/dashboard/resources' })
+  const handleProviderSignIn = (provider: ClientSafeProvider) => {
+    signIn(provider.id, { redirectTo: '/dashboard/resources' })
       .then(() => {})
       .catch(() => {});
   };
 
-  const handleCredentialSignIn = async (data: FormData) => {
-    await signIn('credentials', {
+  const handleCredentialSignIn = (data: FormData) => {
+    signIn('credentials', {
       username: data.get('email') as string,
       password: data.get('password') as string,
       redirectTo: '/dashboard/resources',

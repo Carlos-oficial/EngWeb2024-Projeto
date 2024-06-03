@@ -5,7 +5,7 @@ export const list = () => {
   return Subject.find().exec();
 };
 
-export const listIds = (ids: string[]) => {
+export const listByIds = (ids: string[]) => {
   return Subject.find({ _id: { $in: ids } }).exec();
 };
 
@@ -13,10 +13,10 @@ export const get = (id: string) => {
   return Subject.findById(id).exec();
 };
 
-export const create = (subject: SubjectDB) => {
+export const create = (subject: Partial<SubjectDB>) => {
   return Subject.create(subject);
 };
 
-export const update = (id: string, subject: SubjectDB) => {
+export const update = (id: string, subject: Partial<SubjectDB>) => {
   return Subject.findByIdAndUpdate(id, subject).exec();
 };

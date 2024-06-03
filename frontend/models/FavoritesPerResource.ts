@@ -6,9 +6,14 @@ interface FavoritesPerResource_ {
 }
 
 const FavoritesPerResourceSchema = new Schema<FavoritesPerResource_>({
-    resourceId: { type: Schema.Types.ObjectId, ref: 'Resource', unique: true },
-    userEmails: { type: [String], ref: 'User' },
+  resourceId: { type: Schema.Types.ObjectId, ref: 'Resource', unique: true },
+  userEmails: { type: [String], ref: 'User' },
 });
 
-const FavoritesPerResource = models.FavoritesPerResource || model<FavoritesPerResource_>('FavoritesPerResource', FavoritesPerResourceSchema);
-export default FavoritesPerResource
+const FavoritesPerResource =
+  models.FavoritesPerResource ||
+  model<FavoritesPerResource_>(
+    'FavoritesPerResource',
+    FavoritesPerResourceSchema,
+  );
+export default FavoritesPerResource;

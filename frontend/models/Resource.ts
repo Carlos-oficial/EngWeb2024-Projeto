@@ -3,7 +3,7 @@ import { model, models, Schema } from 'mongoose';
 interface IResource {
   title: string;
   description: string;
-  documentType: string;
+  documentTypeId: string;
   documentFormat: string;
   hashtags: string;
   subjectId: string;
@@ -16,14 +16,14 @@ interface IResource {
 const ResourceSchema = new Schema<IResource>({
   title: { type: String },
   description: { type: String },
-  documentType: { type: String },
+  documentTypeId: { type: String, ref: 'DocumentType' },
   documentFormat: { type: String },
   hashtags: { type: String },
-  subjectId: { type: String },
-  courseId: { type: String },
+  subjectId: { type: String, ref: 'Subject' },
+  courseId: { type: String, ref: 'Course' },
   createdAt: { type: Date },
   file: { type: String },
-  userEmail: { type: String },
+  userEmail: { type: String, ref: 'User' },
 });
 
 const Resource =

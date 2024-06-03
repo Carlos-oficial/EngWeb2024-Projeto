@@ -2,13 +2,15 @@ import { model, models, Schema, Types } from 'mongoose';
 
 interface FavoritesPerUser {
   userEmail: string;
-  resources: Types.ObjectId[];
+  resourceIds: Types.ObjectId[];
 }
 
 const FavoritesPerUserSchema = new Schema<FavoritesPerUser>({
   userEmail: { type: String, ref: 'User', unique: true },
-  resources: { type: [Schema.Types.ObjectId], ref: 'Resource' },
+  resourceIds: { type: [Schema.Types.ObjectId], ref: 'Resource' },
 });
 
-const FavoritesPerUser = models.FavoritesPerUser || model<FavoritesPerUser>('FavoritesPerUser', FavoritesPerUserSchema);
-export default FavoritesPerUser
+const FavoritesPerUser =
+  models.FavoritesPerUser ||
+  model<FavoritesPerUser>('FavoritesPerUser', FavoritesPerUserSchema);
+export default FavoritesPerUser;

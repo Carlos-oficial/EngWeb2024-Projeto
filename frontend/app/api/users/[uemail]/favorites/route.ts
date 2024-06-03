@@ -3,25 +3,29 @@ import * as UserController from '@/controllers/User';
 import * as ResourceController from '@/controllers/Resource';
 import { NextRequest, NextResponse } from 'next/server';
 import { HttpStatusCode } from 'axios';
-import { NextApiRequest, NextApiResponse } from 'next';
-import FavoritesPerUser from '@/models/FavoritesPerUser';
+import { FavoritePerUserDB } from '@/lib/types';
 
 export const dynamic = 'force-dynamic'; // defaults to auto
 
-export async function GET(req: NextApiRequest) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { uemail: string } },
+) {
   try {
     await connectMongo();
-    const uemail = req.url?.split('users/')[1].split('/')[0]; // TODO: FITA COLAAAA
-    if (!uemail) {
+
+    if (!params.uemail) {
       return NextResponse.json(
-        { message: 'no user id provided' },
+        { message: 'No user email provided' },
         { status: HttpStatusCode.BadRequest },
       );
     }
+
     const favorites = (await UserController.getFavorites(
-      uemail,
-    )) as FavoritesPerUser;
-    return NextResponse.json(favorites?.resources ?? []);
+      params.uemail,
+    )) as FavoritePerUserDB;
+
+    return NextResponse.json(favorites?.resourceIds ?? []);
   } catch (error) {
     console.error(error);
     return NextResponse.json(
@@ -31,49 +35,75 @@ export async function GET(req: NextApiRequest) {
   }
 }
 
-type FavoriteDTO = {
-  favorite: string;
-  add: boolean;
-};
-
-export async function POST(req: NextRequest, res: NextApiResponse) {
+export async function POST(
+  req: NextRequest,
+  { params }: { params: { uemail: string } },
+) {
   try {
     await connectMongo();
-    // const session = await getServerSession(req, res, authOptions)
-    // console.log({session:JSON.stringify(session)})
 
-    const uid = req.url?.split('users/')[1].split('/')[0]; // TODO: FITA COLAAAA
-    if (!uid) {
+    if (!params.uemail) {
       return NextResponse.json(
-        { message: 'no user id provided' },
+        { message: 'No user email provided' },
         { status: HttpStatusCode.BadRequest },
       );
     }
 
-    const body = (await req.json()) as FavoriteDTO;
-    console.log({ body: body });
-    const favorite: string = body.favorite;
-    const add: boolean = body.add;
+    const body = (await req.json()) as { resourceId: string };
+    const res: unknown = await ResourceController.get(body.resourceId);
 
-    if (!ResourceController.get(favorite)) {
+    if (!res) {
       return NextResponse.json(
-        { message: 'favorite does not exist' },
+        { message: 'Favorite does not exist on specified resource' },
         { status: HttpStatusCode.BadRequest },
       );
     }
 
-    if (add) {
-      await UserController.addFavorite(uid, favorite);
-    } else {
-      await UserController.rmFavorite(uid, favorite);
-    }
+    await UserController.addFavorite(params.uemail, body.resourceId);
 
-    const favorites = (await UserController.getFavorites(
-      uemail,
-    )) as FavoritesPerUser;
-    return NextResponse.json(favorites?.resources ?? []);
+    return NextResponse.json(
+      { message: 'Favorite added' },
+      { status: HttpStatusCode.Ok },
+    );
   } catch (error) {
-    console.error(error);
+    return NextResponse.json(
+      { message: error as Error },
+      { status: HttpStatusCode.BadRequest },
+    );
+  }
+}
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { uemail: string } },
+) {
+  try {
+    await connectMongo();
+
+    if (!params.uemail) {
+      return NextResponse.json(
+        { message: 'No user email provided' },
+        { status: HttpStatusCode.BadRequest },
+      );
+    }
+
+    const body = (await req.json()) as { resourceId: string };
+    const res: unknown = await ResourceController.get(body.resourceId);
+
+    if (!res) {
+      return NextResponse.json(
+        { message: 'Favorite does not exist on specified resource' },
+        { status: HttpStatusCode.BadRequest },
+      );
+    }
+
+    await UserController.removeFavorite(params.uemail, body.resourceId);
+
+    return NextResponse.json(
+      { message: 'Favorite removed' },
+      { status: HttpStatusCode.Ok },
+    );
+  } catch (error) {
     return NextResponse.json(
       { message: error as Error },
       { status: HttpStatusCode.BadRequest },

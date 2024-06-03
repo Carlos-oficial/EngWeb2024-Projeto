@@ -1,8 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET({ params }: { params: { rid: string } }) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { rid: string } },
+) {
   const resource = await fetch(`localhost:5000/resource/${params.rid}/file`);
 
   if (!resource.ok) {

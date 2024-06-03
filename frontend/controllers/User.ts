@@ -7,19 +7,19 @@ export const list = () => {
   return User.find().exec();
 };
 
-export const listIds = (ids: string[]) => {
-  return User.find({ _id: { $in: ids } }).exec();
+export const listByEmails = (emails: string[]) => {
+  return User.find({ email: { $in: emails } }).exec();
 };
 
 export const get = (email: string) => {
   return User.findOne({ email: email }).exec();
 };
 
-export const create = (subject: UserDB) => {
+export const create = (subject: Partial<UserDB>) => {
   return User.create(subject);
 };
 
-export const update = (email: string, subject: UserDB) => {
+export const update = (email: string, subject: Partial<UserDB>) => {
   return User.findOneAndUpdate({ userEmail: email }, subject).exec();
 };
 
@@ -30,27 +30,34 @@ export const getFavorites = (email: string) => {
 export const postFavorites = (email: string, list: string[]) => {
   return FavoritesPerUser.updateOne(
     { userEmail: email },
-    { $set: { resources: list } },
+    { $set: { resourceIds: list } },
     { upsert: true },
   ).exec();
 };
 
-export const addFavorite = (email: string, fav: string) => {
+export const addFavorite = async (email: string, resourceId: string) => {
+  await FavoritesPerResource.updateOne(
+    { resourceId: resourceId },
+    { $push: { userEmails: email } },
+    { upsert: true },
+  ).exec();
+
   return FavoritesPerUser.updateOne(
     { userEmail: email },
-    { $push: { resources: fav } },
+    { $push: { resourceIds: resourceId } },
     { upsert: true },
   ).exec();
 };
 
-export const rmFavorite = (email: string, fav: string) => {
-  FavoritesPerResource.updateOne(
-    { resourceId: fav },
+export const removeFavorite = async (email: string, resourceId: string) => {
+  await FavoritesPerResource.updateOne(
+    { resourceId: resourceId },
     { $pull: { userEmails: email } },
     { upsert: true },
   ).exec();
+
   return FavoritesPerUser.updateOne(
     { userEmail: email },
-    { $pull: { resources: fav } },
+    { $pull: { resourceIds: resourceId } },
   ).exec();
 };

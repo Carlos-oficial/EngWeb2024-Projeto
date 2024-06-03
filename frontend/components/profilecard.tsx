@@ -10,17 +10,22 @@ import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 
 import { getUser } from '@/lib/data';
-import { UserDB } from '@/lib/types';
 import Spinner from './spinner';
 import { nameInitials } from '@/lib/utils';
 
-export default function ProfileCard({ email }: { email: string }) {
-  const [user, setUser] = useState<UserDB | null>(null);
+export default function ProfileCard({
+  email,
+  name,
+}: {
+  email: string;
+  name: string;
+}) {
+  const [image, setImage] = useState<string>('');
 
   useEffect(() => {
     async function fetchUserData() {
       const user = await getUser(email);
-      setUser(user);
+      setImage(user.image);
     }
 
     fetchUserData().catch(() => {});
@@ -33,24 +38,18 @@ export default function ProfileCard({ email }: { email: string }) {
           variant='link'
           className='p-0 text-muted-foreground font-normal h-fit'
         >
-          {user !== null
-            ? user.name.length > 15
-              ? user.name.slice(0, 15) + '...'
-              : user.name
-            : email.length > 15
-              ? email.slice(0, 15) + '...'
-              : email}
+          {name.length > 15 ? name.slice(0, 15) + '...' : name}
         </Button>
       </HoverCardTrigger>
       <HoverCardContent className='w-fit'>
-        {user !== null ? (
+        {image !== '' ? (
           <div className='flex justify-start space-x-4'>
             <Avatar>
-              <AvatarImage src={user.image} />
-              <AvatarFallback>{nameInitials(user.name)}</AvatarFallback>
+              <AvatarImage src={image} />
+              <AvatarFallback>{nameInitials(name)}</AvatarFallback>
             </Avatar>
             <div className='space-y-1'>
-              <h4 className='text-sm font-semibold'>{user.name}</h4>
+              <h4 className='text-sm font-semibold'>{name}</h4>
               <p className='text-sm'>{email}</p>
             </div>
           </div>

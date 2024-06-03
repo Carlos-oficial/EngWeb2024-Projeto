@@ -1,4 +1,12 @@
-import { ResourceDB, ResourceDTO, ResourceForm, UserDTO } from './types';
+import {
+  ResourceDB,
+  ResourceDTO,
+  ResourceForm,
+  SubjectDB,
+  UserDTO,
+  CourseDB,
+  DocumentTypeDB,
+} from './types';
 
 export const listResources = async () => {
   try {
@@ -51,30 +59,28 @@ export const getResourceFavorites = async (userEmail: string) => {
 
 export const addFavorite = async (userEmail: string, resourceId: string) => {
   try {
-    console.log('ADDING FAV');
     await fetch('/api/users/' + userEmail + '/favorites', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ favorite: resourceId, add: true }),
+      body: JSON.stringify({ resourceId: resourceId }),
     });
   } catch (error) {
     throw new Error((error as Error).message);
   }
-}
+};
 
-export const rmFavorite = async (userEmail: string, resourceId: string) => {
-  try{
-    console.log("ADDING FAV")
+export const removeFavorite = async (userEmail: string, resourceId: string) => {
+  try {
     await fetch('/api/users/' + userEmail + '/favorites', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ favorite:resourceId, add: false }),
-    }); 
-  }  catch (error) {
+      body: JSON.stringify({ resourceId: resourceId }),
+    });
+  } catch (error) {
     throw new Error((error as Error).message);
   }
 };
@@ -84,7 +90,7 @@ export const submitResource = async (formData: ResourceForm) => {
     const resource: Partial<ResourceDB> = {
       title: formData.title,
       description: formData.description,
-      documentType: formData.documentType,
+      documentTypeId: formData.documentTypeId,
       documentFormat: formData.documentFormat,
       hashtags: formData.hashtags,
       subjectId: formData.subjectId,
@@ -108,6 +114,36 @@ export const submitResource = async (formData: ResourceForm) => {
 
     const data = (await response.json()) as ResourceDTO;
 
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const listSubjects = async () => {
+  try {
+    const response = await fetch('/api/subjects');
+    const data = (await response.json()) as SubjectDB[];
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const listCourses = async () => {
+  try {
+    const response = await fetch('/api/courses');
+    const data = (await response.json()) as CourseDB[];
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const listDocumentTypes = async () => {
+  try {
+    const response = await fetch('/api/documentTypes');
+    const data = (await response.json()) as DocumentTypeDB[];
     return data;
   } catch (error) {
     throw new Error((error as Error).message);

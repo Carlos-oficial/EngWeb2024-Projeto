@@ -18,7 +18,12 @@ import ProfileCard from '@/components/profilecard';
 import { timeAgo, formatNumber } from '@/lib/utils';
 import { ResourceDTO } from '@/lib/types';
 import { useSession } from 'next-auth/react';
-import { addFavorite, getResourceFavorites, getUserFavorites, rmFavorite } from '@/lib/data';
+import {
+  addFavorite,
+  getResourceFavorites,
+  getUserFavorites,
+  removeFavorite,
+} from '@/lib/data';
 
 interface ResourceCardProps {
   resource: ResourceDTO;
@@ -33,48 +38,44 @@ export default function ResourceCard({
   const router = useRouter();
   const [favoriteCounter, setFavoriteCounter] = useState<number>(0);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
-  const [favorites, setFavorites] = useState<String[]>([]);
-  const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    if (session.data?.user?.id)
-      getUserFavorites(session.data?.user?.id)
-        .then((favorites) => {setFavorites(favorites);setIsFavorite(favorites.includes(resource._id))})
-        .catch((error: Error) => setError(error.message));
-  }, [session]);
-
-  useEffect(() => {
+    if (session.data?.user?.email) {
+      getUserFavorites(session.data?.user?.email)
+        .then((favorites) => {
+          setIsFavorite(favorites.includes(resource._id));
+        })
+        .catch((error: Error) => console.error(error.message));
       getResourceFavorites(resource._id)
-        .then((favorites) => {setFavoriteCounter(favorites.length)})
-        .catch((error: Error) => setError(error.message));
-  }, [session]);
+        .then((favorites) => {
+          setFavoriteCounter(favorites.length);
+        })
+        .catch((error: Error) => console.error(error.message));
+    }
+  }, [session, resource._id]);
 
-  
-
-  // TODO: fetch favorite counter information
   function handleFavorite() {
-    if (!session.data?.user.email) {
-      return;
-    } else {
+    if (session.status === 'authenticated') {
       if (isFavorite) {
-        setFavoriteCounter(favoriteCounter - 1);
-        rmFavorite(session.data.user.id,resource._id).catch(() => {}); 
+        removeFavorite(session.data.user.email, resource._id)
+          .then(() => setFavoriteCounter(favoriteCounter - 1))
+          .catch(() => {});
       } else {
-        setFavoriteCounter(favoriteCounter + 1);
-        addFavorite(session.data.user.email, resource._id).catch(() => {});
+        addFavorite(session.data.user.email, resource._id)
+          .then(() => setFavoriteCounter(favoriteCounter + 1))
+          .catch(() => {});
       }
       setIsFavorite(!isFavorite);
     }
   }
-
 
   return (
     <Card {...props}>
       <CardHeader>
         <div className='flex justify-between items-center pb-2'>
           <span className='text-sm text-muted-foreground'>
-            <ProfileCard email={resource.userEmail} /> ·{' '}
-            {timeAgo(resource.createdAt)}
+            <ProfileCard email={resource.userEmail} name={resource.userName} />{' '}
+            · {timeAgo(resource.createdAt)}
           </span>
           <button
             disabled={session.status !== 'authenticated'}
@@ -125,25 +126,30 @@ export default function ResourceCard({
           </li>
         </ul>
       </CardContent>
-      <CardFooter className='space-x-2'>
-        <Button
-          className='w-full space-x-2'
-          onClick={() => router.push(`/api/download/${resource._id}`)}
-          variant={'outline'}
-          title='Download resource'
+      <CardFooter>
+        <div
+          className={`grid ${session.status === 'authenticated' ? 'grid-rows-2' : 'grid-rows-1'}  xl:grid-cols-6 xl:grid-rows-none gap-2 w-full`}
         >
-          <i className='ph ph-download-simple'></i>
-          <span>Download</span>
-        </Button>
-        {session.status === 'authenticated' && (
           <Button
-            variant={'outline'}
+            className={`w-full space-x-2 ${session.status === 'authenticated' ? 'xl:col-span-5' : 'xl:col-span-6'}`}
             onClick={() => router.push(`/api/download/${resource._id}`)}
-            title='Share resource on feed'
+            variant={'outline'}
+            title='Download resource'
           >
-            <i className='ph ph-share'></i>
+            <i className='ph ph-download-simple'></i>
+            <span>Download</span>
           </Button>
-        )}
+          {session.status === 'authenticated' && (
+            <Button
+              variant={'outline'}
+              onClick={() => router.push(`/api/download/${resource._id}`)}
+              title='Share resource on feed'
+              className='xl:col-span-1'
+            >
+              <i className='ph ph-share'></i>
+            </Button>
+          )}
+        </div>
       </CardFooter>
     </Card>
   );

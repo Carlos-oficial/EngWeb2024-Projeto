@@ -6,7 +6,7 @@ interface ISubject {
 }
 
 const SubjectSchema = new Schema<ISubject>({
-  courseId: { type: Schema.Types.ObjectId },
+  courseId: { type: Schema.Types.ObjectId, ref: 'Course' },
   name: { type: String },
 });
 

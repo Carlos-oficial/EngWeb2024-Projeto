@@ -4,14 +4,14 @@ interface User {
   name: string;
   email: string;
   image: string;
-  emailVerified: Date | null; // idk
+  emailVerified: Date | null;
 }
 
 const ResourceSchema = new Schema<User>({
   name: { type: String },
   email: { type: String, unique: true },
   image: { type: String },
-  emailVerified: { type: Date }, // idk
+  emailVerified: { type: Date },
 });
 
 const User = models.User || model<User>('User', ResourceSchema);

@@ -5,6 +5,7 @@ export type ResourceDTO = {
   documentType: string;
   documentFormat: string;
   userEmail: string;
+  userName: string;
   hashtags: string[];
   subject: {
     _id: string;
@@ -22,7 +23,7 @@ export type ResourceDB = {
   _id: string;
   title: string;
   description: string;
-  documentType: string;
+  documentTypeId: string;
   documentFormat: string;
   hashtags: string;
   subjectId: string;
@@ -35,7 +36,7 @@ export type ResourceDB = {
 export type ResourceForm = {
   title: string;
   description: string;
-  documentType: string;
+  documentTypeId: string;
   documentFormat: string;
   hashtags: string;
   subjectId: string;
@@ -56,6 +57,11 @@ export type CourseDB = {
   name: string;
 };
 
+export type DocumentTypeDB = {
+  _id: string;
+  name: string;
+};
+
 export type UserDB = {
   _id: string;
   name: string;
@@ -65,6 +71,18 @@ export type UserDB = {
 };
 
 export type UserDTO = UserDB;
+
+export type FavoritePerResourceDB = {
+  _id: string;
+  resourceId: string;
+  userEmails: string[];
+};
+
+export type FavoritePerUserDB = {
+  _id: string;
+  userEmail: string;
+  resourceIds: string[];
+};
 
 export interface CustomUser {
   id: string;
