@@ -57,25 +57,13 @@ export const addFavorite = async (userId: string, resourceId: string) => {
 
 export const submitResource = async (formData: ResourceForm) => {
   try {
-    const resource: Partial<ResourceDB> = {
-      title: formData.title,
-      description: formData.description,
-      documentType: formData.documentType,
-      documentFormat: formData.documentFormat,
-      hashtags: formData.hashtags,
-      subjectId: formData.subjectId,
-      courseId: formData.courseId,
-      createdAt: formData.createdAt,
-      file: formData.file[0].name,
-      userId: formData.userId,
-    };
 
     const response = await fetch('/api/resources', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(resource),
+      body: JSON.stringify(formData),
     });
 
     if (!response.ok) {

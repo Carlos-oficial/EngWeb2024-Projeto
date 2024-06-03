@@ -3,9 +3,10 @@ import connectMongo from '@/lib/mongoose';
 import * as ResourceController from '@/controllers/Resource';
 import * as SubjectController from '@/controllers/Subject';
 import * as CourseController from '@/controllers/Course';
-import { CourseDB, ResourceDB, ResourceDTO, SubjectDB } from '@/lib/types';
+import { CourseDB, ResourceDB, ResourceDTO, ResourceForm, SubjectDB } from '@/lib/types';
 import { NextResponse, NextRequest } from 'next/server';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { writeFile } from 'fs';
 
 export const dynamic = 'force-dynamic'; // defaults to auto
 
@@ -66,15 +67,44 @@ export async function GET(req: NextApiRequest) {
   }
 }
 
+//make me a function to write to a local folder
+//make me a function to write to a local folder
+//make me a function to write to a local folder
+
+
 export async function POST(req: NextRequest) {
   try {
     await connectMongo();
     console.log(req);
-    const body = (await req.json()) as Partial<ResourceDB>;
+    const form = (await req.json()) as ResourceForm;
+    const resource: Partial<ResourceDB> = {
+      title: form.title,
+      description: form.description,
+      documentType: form.documentType,
+      documentFormat: form.documentFormat,
+      hashtags: form.hashtags,
+      subjectId: form.subjectId,
+      courseId: form.courseId,
+      createdAt: form.createdAt,
+      file: form.file[0].name,
+      userId: form.userId,
+    };
 
-    await ResourceController.create(body);
+    const fileBuffer = Buffer.from(await form.file[0].arrayBuffer());
 
-    return NextResponse.json(body);
+    writeFile(`./public/resources/${form.file[0].name}`, fileBuffer , (err) => {
+      if (err) {
+        console.log(err);
+      }
+    })
+
+    await ResourceController.create(resource);
+
+
+
+
+
+    return NextResponse.json(form);
   } catch (error) {
     return NextResponse.json(
       { message: (error as Error).message },
