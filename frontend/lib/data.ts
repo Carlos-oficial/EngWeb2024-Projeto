@@ -1,4 +1,3 @@
-import Favorites from '@/models/Favorites';
 import { ResourceDB, ResourceDTO, ResourceForm, UserDTO } from './types';
 
 export const listResources = async () => {
@@ -30,9 +29,19 @@ export const getUser = async (userEmail: string) => {
   }
 };
 
-export const getFavorites = async (userEmail: string) => {
+export const getUserFavorites = async (userEmail: string) => {
   try {
     const response = await fetch('/api/users/' + userEmail + '/favorites');
+    const data = (await response.json()) as string[];
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const getResourceFavorites = async (userEmail: string) => {
+  try {
+    const response = await fetch('/api/resources/' + userEmail + '/favorites');
     const data = (await response.json()) as string[];
     return data;
   } catch (error) {
@@ -43,7 +52,7 @@ export const getFavorites = async (userEmail: string) => {
 export const addFavorite = async (userEmail: string, resourceId: string) => {
   try {
     console.log('ADDING FAV');
-    const response = await fetch('/api/users/' + userEmail + '/favorites', {
+    await fetch('/api/users/' + userEmail + '/favorites', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,6 +60,21 @@ export const addFavorite = async (userEmail: string, resourceId: string) => {
       body: JSON.stringify({ favorite: resourceId, add: true }),
     });
   } catch (error) {
+    throw new Error((error as Error).message);
+  }
+}
+
+export const rmFavorite = async (userEmail: string, resourceId: string) => {
+  try{
+    console.log("ADDING FAV")
+    await fetch('/api/users/' + userEmail + '/favorites', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ favorite:resourceId, add: false }),
+    }); 
+  }  catch (error) {
     throw new Error((error as Error).message);
   }
 };

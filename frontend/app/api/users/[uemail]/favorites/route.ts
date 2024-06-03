@@ -1,13 +1,10 @@
 import connectMongo from '@/lib/mongoose';
 import * as UserController from '@/controllers/User';
 import * as ResourceController from '@/controllers/Resource';
-import { UserDB } from '@/lib/types';
 import { NextRequest, NextResponse } from 'next/server';
 import { HttpStatusCode } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
-import Favorites from '@/models/Favorites';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { getServerSession } from 'next-auth/next';
+import FavoritesPerUser from '@/models/FavoritesPerUser';
 
 export const dynamic = 'force-dynamic'; // defaults to auto
 
@@ -21,7 +18,9 @@ export async function GET(req: NextApiRequest) {
         { status: HttpStatusCode.BadRequest },
       );
     }
-    const favorites = (await UserController.getFavorites(uemail)) as Favorites;
+    const favorites = (await UserController.getFavorites(
+      uemail,
+    )) as FavoritesPerUser;
     return NextResponse.json(favorites?.resources ?? []);
   } catch (error) {
     console.error(error);
@@ -69,7 +68,9 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
       await UserController.rmFavorite(uid, favorite);
     }
 
-    const favorites = (await UserController.getFavorites(uid)) as Favorites;
+    const favorites = (await UserController.getFavorites(
+      uemail,
+    )) as FavoritesPerUser;
     return NextResponse.json(favorites?.resources ?? []);
   } catch (error) {
     console.error(error);
