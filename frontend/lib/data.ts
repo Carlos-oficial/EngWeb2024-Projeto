@@ -11,18 +11,18 @@ export const listResources = async () => {
   }
 };
 
-export const listResourcesByUser = async (userId:string) => {
+export const listResourcesByUser = async (userId: string) => {
   try {
-    const response = await fetch('/api/resources?userId='+userId);
+    const response = await fetch('/api/resources?userId=' + userId);
     const data = (await response.json()) as ResourceDTO[];
     return data;
   } catch (error) {
     throw new Error((error as Error).message);
   }
 };
-export const getUser = async (userId:string) => {
+export const getUser = async (userId: string) => {
   try {
-    const response = await fetch('/api/users/'+userId);
+    const response = await fetch('/api/users/' + userId);
     const data = (await response.json()) as UserDTO;
     return data;
   } catch (error) {
@@ -30,16 +30,15 @@ export const getUser = async (userId:string) => {
   }
 };
 
-export const getFavorites = async (userId:string) => {
+export const getFavorites = async (userId: string) => {
   try {
-    const response = await fetch('/api/users/'+userId+'/favorites');
-    const data = (await response.json()) as Favorites;
+    const response = await fetch('/api/users/' + userId + '/favorites');
+    const data = (await response.json()) as String[];
     return data;
   } catch (error) {
     throw new Error((error as Error).message);
   }
 };
-
 
 export const submitResource = async (formData: ResourceForm) => {
   try {

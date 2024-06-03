@@ -98,7 +98,12 @@ export default function ResourceDialog() {
   const { toast } = useToast();
 
   const onSubmit: SubmitHandler<FormValues> = (values: FormValues) => {
-    if (!session || session.data == undefined || session.data.user == undefined || session.data.user == null) {
+    if (
+      !session ||
+      session.data == undefined ||
+      session.data.user == undefined ||
+      session.data.user == null
+    ) {
       return;
     }
 
@@ -106,7 +111,7 @@ export default function ResourceDialog() {
       ...values,
       documentFormat: values.file[0].name.split('.').pop()?.toUpperCase() ?? '',
       createdAt: new Date(),
-      userId: session.data?.user?.id ?? "ERR_NAME",
+      userId: session.data?.user?.id ?? 'ERR_NAME',
     };
 
     submitResource(data).catch((error: Error) => {

@@ -5,16 +5,15 @@ import * as SubjectController from '@/controllers/Subject';
 import * as CourseController from '@/controllers/Course';
 import { CourseDB, ResourceDB, ResourceDTO, SubjectDB } from '@/lib/types';
 import { NextResponse, NextRequest } from 'next/server';
-import type { NextApiRequest, NextApiResponse } from 'next'
- 
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 export const dynamic = 'force-dynamic'; // defaults to auto
 
 export async function GET(req: NextApiRequest) {
-  
   try {
     await connectMongo();
-    const resources_db = ((await ResourceController.list({... req.query})) as ResourceDB[]) ?? [];
+    const resources_db =
+      ((await ResourceController.list({ ...req.query })) as ResourceDB[]) ?? [];
 
     // const subject_ids = Array.from(
     //   new Set(resources_db.map((resource) => resource.subjectId)),
@@ -43,7 +42,7 @@ export async function GET(req: NextApiRequest) {
         description: resource.description,
         documentType: resource.documentType,
         documentFormat: resource.documentFormat,
-        username: "GAJO", // PLACEHOLDER
+        username: 'GAJO', // PLACEHOLDER
         hashtags: resource.hashtags.split(' '),
         subject: {
           _id: resource.subjectId,
@@ -70,7 +69,7 @@ export async function GET(req: NextApiRequest) {
 export async function POST(req: NextRequest) {
   try {
     await connectMongo();
-    console.log(req)
+    console.log(req);
     const body = (await req.json()) as Partial<ResourceDB>;
 
     await ResourceController.create(body);

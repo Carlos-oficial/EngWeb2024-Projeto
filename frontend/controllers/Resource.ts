@@ -1,7 +1,7 @@
 import { ResourceDB } from '@/lib/types';
 import Resource from '@/models/Resource';
 
-export const list = (query:any) => {
+export const list = (query: any) => {
   return Resource.find(query).exec();
 };
 
@@ -10,9 +10,8 @@ export const listIds = (ids: string[]) => {
 };
 
 export const listbyUserId = (id: string) => {
-  return Resource.find({ userId: id} ).exec();
+  return Resource.find({ userId: id }).exec();
 };
-
 
 export const get = (id: string) => {
   return Resource.findById(id).exec();

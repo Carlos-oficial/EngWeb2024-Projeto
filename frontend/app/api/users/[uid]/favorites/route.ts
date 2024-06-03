@@ -11,10 +11,12 @@ export const dynamic = 'force-dynamic'; // defaults to auto
 export async function GET(req: NextApiRequest) {
   try {
     await connectMongo();
-    const  uid  = req.url?.split("users/")[1].split("/")[0] // TODO: FITA COLAAAA
-    console.log({UID:uid});
-    const favorites = (await UserController.getFavorites(uid ?? "SOME_GUY")) as Favorites;
-    console.log({favorites:favorites});
+    const uid = req.url?.split('users/')[1].split('/')[0]; // TODO: FITA COLAAAA
+    console.log({ UID: uid });
+    const favorites = (await UserController.getFavorites(
+      uid ?? 'SOME_GUY',
+    )) as Favorites;
+    console.log({ favorites: favorites.resources });
 
     return NextResponse.json(favorites);
   } catch (error) {

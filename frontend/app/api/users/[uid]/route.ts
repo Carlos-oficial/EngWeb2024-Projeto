@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic'; // defaults to auto
 export async function GET(req: NextApiRequest) {
   try {
     await connectMongo();
-    const  uid  = req.url?.split("users/")[1] // TODO: FITA COLAAAA
+    const uid = req.url?.split('users/')[1]; // TODO: FITA COLAAAA
     const user = (await UserController.get(String(uid))) as UserDB;
     return NextResponse.json(user);
   } catch (error) {

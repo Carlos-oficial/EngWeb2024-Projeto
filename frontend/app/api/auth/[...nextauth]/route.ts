@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
-import { MongoDBAdapter } from "@auth/mongodb-adapter"
+import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import clientPromise from '@/lib/mongodb';
 import { Adapter } from 'next-auth/adapters';
 
@@ -18,17 +18,17 @@ const handler = NextAuth({
 
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      
-      return true
+      return true;
     },
     async redirect({ url, baseUrl }) {
-      return baseUrl
+      return baseUrl;
     },
     async session({ session, user, token }) {
-      return {...session,user,token}
+      return { ...session, user, token };
     },
     async jwt({ token, user, account, profile, isNewUser }) {
-      return {...token,user}
-    }}
+      return { ...token, user };
+    },
+  },
 });
 export { handler as GET, handler as POST };

@@ -12,8 +12,8 @@ export const listIds = (ids: string[]) => {
 };
 
 export const get = (id: string) => {
-  console.log(id)
-  return User.findOne({_id:new ObjectId(id)}).exec();
+  console.log(id);
+  return User.findOne({ _id: new ObjectId(id) }).exec();
 };
 
 export const create = (subject: UserDB) => {
@@ -25,6 +25,5 @@ export const update = (id: string, subject: UserDB) => {
 };
 
 export const getFavorites = (id: string) => {
-  return Favorites.findOne({userId:id}).exec();
+  return Favorites.findOne({ userId: id }).exec();
 };
-

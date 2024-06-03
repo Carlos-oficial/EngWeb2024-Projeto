@@ -29,5 +29,5 @@ async function connectMongo() {
   }
   return cached.connection;
 }
- 
+
 export default connectMongo;

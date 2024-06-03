@@ -23,7 +23,7 @@ export default function LoginPage() {
         </div>
 
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-          <form className='space-y-6' onSubmit={(e) =>{}}>
+          <form className='space-y-6' onSubmit={(e) => {}}>
             <div>
               <label
                 htmlFor='username'
