@@ -40,6 +40,21 @@ export const getFavorites = async (userId: string) => {
   }
 };
 
+export const addFavorite = async (userId: string, resourceId: string) => {
+  try{
+    console.log("ADDING FAV")
+    const response = await fetch('/api/users/' + userId + '/favorites', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ favorite:resourceId, add: true }),
+    }); 
+  }  catch (error) {
+    throw new Error((error as Error).message);
+  }
+}
+
 export const submitResource = async (formData: ResourceForm) => {
   try {
     const resource: Partial<ResourceDB> = {

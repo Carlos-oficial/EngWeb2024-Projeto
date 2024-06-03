@@ -17,6 +17,8 @@ import { Badge } from '@/components/ui/badge';
 import ProfileCard from '@/components/profilecard';
 import { timeAgo, formatNumber } from '@/lib/utils';
 import { ResourceDTO } from '@/lib/types';
+import { useSession } from 'next-auth/react';
+import { addFavorite } from '@/lib/data';
 
 interface ResourceCardProps {
   resource: ResourceDTO;
@@ -35,13 +37,23 @@ export default function ResourceCard({
   // TODO: update favorite counter when clicked, add to the user favorites list, etc
 
   function handleFavorite() {
-    if (isFavorite) {
-      setFavoriteCounter(favoriteCounter - 1);
-    } else {
-      setFavoriteCounter(favoriteCounter + 1);
+    if (!session.data?.user.id){
+      return
     }
-    setIsFavorite(!isFavorite);
+    else{
+
+      if (isFavorite) {
+        setFavoriteCounter(favoriteCounter - 1);
+      } else {
+        setFavoriteCounter(favoriteCounter + 1);
+        addFavorite(session.data.user.id,resource._id); 
+      }
+      setIsFavorite(!isFavorite);
+    }
   }
+
+  const session = useSession();
+
   return (
     <Card {...props}>
       <CardHeader>
@@ -51,11 +63,13 @@ export default function ResourceCard({
             {timeAgo(resource.createdAt)}
           </span>
           <button
-            onClick={handleFavorite}
-            className={`flex space-x-1 items-center hover:text-yellow-500 transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
+            disabled = {session.status !== 'authenticated'}
+            onClick={session.status === 'authenticated'? handleFavorite : () =>{}}
+            className={`flex space-x-1 items-center ${session.status === 'authenticated'?"hover:text-yellow-500":""} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
           >
             <i className={`${isFavorite ? 'ph-fill' : 'ph'} ph-star`}></i>
             <p className='text-sm'>{formatNumber(favoriteCounter)}</p>
+
           </button>
         </div>
         <div className='flex justify-between items-center pb-2'>
@@ -79,7 +93,7 @@ export default function ResourceCard({
           <li className='flex space-x-2 font-semibold'>
             <i className='ph ph-chalkboard-teacher text-lg'></i>
             <Link
-              href={`/resources/${resource.course.id}/${resource.subject.id}`}
+              href={`/resources/${resource.course._id}/${resource.subject._id}`}
               className='hover:underline'
             >
               {resource.subject.name}
@@ -88,7 +102,7 @@ export default function ResourceCard({
           <li className='flex space-x-2 max-w-full text-muted-foreground'>
             <i className='ph ph-graduation-cap text-lg'></i>
             <Link
-              href={`/resources/${resource.course.id}`}
+              href={`/resources/${resource.course._id}`}
               className='hover:underline'
             >
               {resource.course.name}
@@ -106,13 +120,16 @@ export default function ResourceCard({
           <i className='ph ph-download-simple'></i>
           <span>Download</span>
         </Button>
-        <Button
-          variant={'outline'}
-          onClick={() => router.push(`/api/download/${resource._id}`)}
-          title='Share resource on feed'
-        >
-          <i className='ph ph-share'></i>
-        </Button>
+        {session.status === 'authenticated' && (
+          <Button
+            variant={'outline'}
+            onClick={() => router.push(`/api/download/${resource._id}`)}
+            title='Share resource on feed'
+          >
+            <i className='ph ph-share'></i>
+          </Button>
+
+        )}
       </CardFooter>
     </Card>
   );

@@ -3,6 +3,7 @@ import GithubProvider from 'next-auth/providers/github';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import clientPromise from '@/lib/mongodb';
 import { Adapter } from 'next-auth/adapters';
+import * as UserController from '@/controllers/User';
 
 export const authOptions: AuthOptions = {
   // Secret for Next-auth, without this JWT encryption/decryption won't work
@@ -25,6 +26,17 @@ export const authOptions: AuthOptions = {
 
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
+      console.log({ callbacks: { singin: { user: JSON.stringify(user) } } });
+      UserController.get(user.id).then((res) => {
+        console.log({ callbacks: { singin: { res: JSON.stringify(res) } } });
+      });
+      UserController.getFavorites(user.id).then((res) => {
+        if (res === null) {
+          UserController.postFavorites(user.id, []);
+          console.log({ callbacks: { signin: 'POSTING FAVORITES' } });
+        }
+      });
+
       return true;
     },
     async redirect({ url, baseUrl }) {

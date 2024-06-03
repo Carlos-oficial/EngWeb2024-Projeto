@@ -1,0 +1,9 @@
+{
+    "_id": {
+        "$oid": "665da30b910471349ce53c8e"
+    },
+    "name": "Cralos",
+    "email": "carlosribeiro2003oficial@gmail.com",
+    "image": "https://avatars.githubusercontent.com/u/93908742?v=4",
+    "emailVerified": null
+}

@@ -1,0 +1,14 @@
+{
+    "_id": {
+        "$oid": "665da30b910471349ce53c8f"
+    },
+    "provider": "github",
+    "type": "oauth",
+    "providerAccountId": "93908742",
+    "access_token": "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",
+    "token_type": "bearer",
+    "scope": "read:user,user:email",
+    "userId": {
+        "$oid": "665da30b910471349ce53c8e"
+    }
+}

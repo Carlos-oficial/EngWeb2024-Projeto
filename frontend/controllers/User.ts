@@ -27,3 +27,15 @@ export const update = (id: string, subject: UserDB) => {
 export const getFavorites = (id: string) => {
   return Favorites.findOne({ userId: id }).exec();
 };
+
+export const postFavorites = (id: string,list:string[]) => {
+  return Favorites.updateOne({ userId: id },{$set : {resources : list}},{ upsert: true }).exec();
+};
+
+export const addFavorite = (id: string,fav:string) => {
+  return Favorites.updateOne({ userId: id },{$push : {resources : fav}} , { upsert: true }).exec();
+};
+
+export const rmFavorite = (id: string,fav:string) => {
+  return Favorites.updateOne({ userId: id },{$pop : {resources : fav}} , { upsert: true }).exec();
+};
