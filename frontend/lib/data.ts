@@ -32,7 +32,7 @@ export const getUser = async (userId: string) => {
 export const getUserFavorites = async (userId: string) => {
   try {
     const response = await fetch('/api/users/' + userId + '/favorites');
-    const data = (await response.json()) as String[];
+    const data = (await response.json()) as string[];
     return data;
   } catch (error) {
     throw new Error((error as Error).message);
@@ -93,6 +93,7 @@ export const submitResource = async (formData: ResourceForm) => {
       file: formData.file[0].name,
       userId: formData.userId,
     };
+
     const response = await fetch('/api/resources', {
       method: 'POST',
       headers: {
@@ -100,7 +101,13 @@ export const submitResource = async (formData: ResourceForm) => {
       },
       body: JSON.stringify(resource),
     });
+
+    if (!response.ok) {
+      throw new Error('Failed to submit resource');
+    }
+
     const data = (await response.json()) as ResourceDTO;
+
     return data;
   } catch (error) {
     throw new Error((error as Error).message);

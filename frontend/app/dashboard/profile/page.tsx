@@ -1,5 +1,6 @@
 'use client';
-import { listResourcesByUser, getUser, getUserFavorites } from '@/lib/data';
+
+import { listResourcesByUser, getUser } from '@/lib/data';
 import { ResourceDTO, UserDTO } from '@/lib/types';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
@@ -9,6 +10,7 @@ export default function Profile() {
   const [resources, setResources] = useState<ResourceDTO[] | null>(null);
   const [error, setError] = useState<string>('');
   const session = useSession();
+
   useEffect(() => {
     if (session.status === 'authenticated')
       listResourcesByUser(session.data?.user?.id ?? '')

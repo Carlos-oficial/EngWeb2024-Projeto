@@ -1,68 +1,71 @@
 'use client';
+
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import NavLink from '@/components/navlink';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import { getSession, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
+import { nameInitials } from '@/lib/utils';
+
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const session = useSession();
+
   return (
     <div className='w-80 border-r border-border'>
       <div className='p-2 border-b border-border'>
-        {session.status == 'authenticated' ? (
-          <Button
-            variant={'outline'}
-            className='w-full h-11 justify-between'
-            onClick={() => {
-              router.push('/profile');
-              return void 0;
-            }}
-          >
-            <div className='flex space-x-3 items-center'>
-              <Avatar className='h-6 w-6'>
-                <AvatarImage
-                  src={
-                    session.data.user?.image ?? 'https://github.com/shadcn.png'
-                  }
-                  alt={session.data.user?.name ?? ''}
-                />
-                <AvatarFallback>DM</AvatarFallback>
-              </Avatar>
+        <Button
+          variant={'outline'}
+          className='w-full h-11 justify-between'
+          onClick={
+            session.status === 'authenticated'
+              ? () => router.push('/dashboard/profile')
+              : () => router.push('/auth/signin')
+          }
+        >
+          <div className='flex space-x-3 items-center'>
+            <Avatar className='h-6 w-6'>
+              {session.status === 'authenticated' ? (
+                <>
+                  <AvatarImage
+                    src={session.data.user?.image}
+                    alt={session.data.user?.name}
+                  />
+                  <AvatarFallback>
+                    {nameInitials(session.data.user.name)}
+                  </AvatarFallback>
+                </>
+              ) : (
+                <AvatarFallback>G</AvatarFallback>
+              )}
+            </Avatar>
+            {session.status === 'authenticated' ? (
               <span>{session.data.user?.name}</span>
-            </div>
-            <span>{'->'}</span>
-          </Button>
-        ) : (
-          <Button
-            variant={'outline'}
-            className='w-full h-11 justify-between'
-            onClick={() => {
-              router.push('/api/auth/signin');
-              return void 0;
-            }}
-          >
-            <div className='flex space-x-3 items-center'>
-              <>
-                <span>Not Logged in</span>
-              </>
-            </div>
-            <span>{'->'}</span>
-          </Button>
-        )}
+            ) : (
+              <span>Guest</span>
+            )}
+          </div>
+          <span>{'->'}</span>
+        </Button>
       </div>
       <nav className='grid gap-1 p-2'>
-        <NavLink active={pathname === '/resources'} href='/resources'>
+        <NavLink
+          active={pathname === '/dashboard/resources'}
+          href='/dashboard/resources'
+        >
           <i className='ph ph-folder text-xl'></i>
           <span>Resources</span>
         </NavLink>
-        <NavLink active={pathname === '/favorites'} href='/favorites'>
+        <NavLink
+          active={pathname === '/dashboard/favorites'}
+          href='/dashboard/favorites'
+        >
           <i className='ph ph-star text-xl'></i>
           <span>Favorites</span>
         </NavLink>
-        <NavLink active={pathname === '/feed'} href='/feed'>
+        <NavLink active={pathname === '/dashboard/feed'} href='/dashboard/feed'>
           <i className='ph ph-users-three text-xl'></i>
           <span>Feed</span>
         </NavLink>

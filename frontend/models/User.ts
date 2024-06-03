@@ -1,5 +1,4 @@
-import { model, models, Schema, Types } from 'mongoose';
-import { any } from 'zod';
+import { model, models, Schema } from 'mongoose';
 
 interface User {
   name: string;

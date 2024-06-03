@@ -48,3 +48,12 @@ export function formatNumber(num: number): string {
     return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
   }
 }
+
+export function nameInitials(name: string) {
+  return name
+    .split(' ')
+    .slice(0, name.split(' ').length)
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase();
+}
