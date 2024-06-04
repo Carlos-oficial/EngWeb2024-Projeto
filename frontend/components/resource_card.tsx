@@ -70,7 +70,7 @@ export default function ResourceCard({
   }
 
   return (
-    <Card {...props}>
+    <Card {...props} className='flex flex-col justify-between overflow-hidden'>
       <CardHeader>
         <div className='flex justify-between items-center pb-2'>
           <span className='text-sm text-muted-foreground'>
@@ -132,7 +132,9 @@ export default function ResourceCard({
         >
           <Button
             className={`w-full space-x-2 ${session.status === 'authenticated' ? 'xl:col-span-5' : 'xl:col-span-6'}`}
-            onClick={() => router.push(`/api/download/${resource._id}`)}
+            onClick={() =>
+              router.push(`/api/resources/${resource._id}/download`)
+            }
             variant={'outline'}
             title='Download resource'
           >

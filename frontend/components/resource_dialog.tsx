@@ -38,7 +38,7 @@ import {
   addSubject,
   submitResource,
 } from '@/lib/data';
-import { CourseDB, ResourceForm, SubjectDB, DocumentTypeDB } from '@/lib/types';
+import { CourseDB, SubjectDB, DocumentTypeDB } from '@/lib/types';
 import { useToast } from '@/components/ui/use-toast';
 import SignInCard from '@/components/signin_card';
 
@@ -47,7 +47,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { useSession } from 'next-auth/react';
 import Spinner from '@/components/spinner';
-import AddForm from '@/components/add_from';
+import AddForm from '@/components/add_form';
 
 import { listSubjects, listCourses, listDocumentTypes } from '@/lib/data';
 
@@ -73,10 +73,14 @@ const formSchema = z.object({
 
 // TODO: Fetch courses, subjects and document types from the API
 
-export default function ResourceDialog() {
+export default function ResourceDialog({
+  refreshResources,
+}: {
+  refreshResources: () => void;
+}) {
   const session = useSession();
   const [error, setError] = useState<string>('');
-  const [open, setOpen] = useState<false | undefined>(undefined);
+  const [open, setOpen] = useState<boolean>(false);
   const [documentTypes, setDocumentTypes] = useState<DocumentTypeDB[]>([]);
   const [courses, setCourses] = useState<CourseDB[]>([]);
   const [subjects, setSubjects] = useState<SubjectDB[]>([]);
@@ -99,30 +103,37 @@ export default function ResourceDialog() {
   const { toast } = useToast();
 
   const onSubmit: SubmitHandler<FormValues> = (values: FormValues) => {
-    const data: ResourceForm = {
-      ...values,
-      documentFormat: values.file[0].name.split('.').pop()?.toUpperCase() ?? '',
-      createdAt: new Date(),
-      userEmail: (session.data?.user?.email as string) ?? '',
-    };
+    const formData = new FormData();
 
-    submitResource(data).catch((error: Error) => {
-      setError(error.message);
-      return;
-    });
+    // insert all received values into form data
+    for (const [key, value] of Object.entries(values)) {
+      if (value instanceof FileList) formData.append(key, value[0]);
+      else formData.append(key, value);
+    }
 
-    // TODO: Post to feed
-
-    setOpen(false);
-
-    setTimeout(
-      () =>
-        toast({
-          title: 'Resource submitted successfully!',
-          description: 'Thank you for your contribution <3',
-        }),
-      500,
+    // insert extra values into form data
+    formData.append(
+      'documentFormat',
+      values.file[0].name.split('.').pop()?.toUpperCase() ?? '',
     );
+    formData.append('createdAt', new Date().toISOString());
+    formData.append('userEmail', (session.data?.user?.email as string) ?? '');
+
+    submitResource(formData)
+      .then(() => {
+        // TODO: Post to feed
+        setOpen(false);
+        setTimeout(() => {
+          toast({
+            title: 'Resource submitted successfully!',
+            description: 'Thank you for your contribution <3',
+          });
+          refreshResources();
+        }, 300);
+      })
+      .catch((error: Error) => {
+        setError(error.message);
+      });
   };
 
   const handleAddSubject = (subject: string) => {
@@ -130,7 +141,7 @@ export default function ResourceDialog() {
       .then(() => {
         listSubjects()
           .then((data) => {
-            setSubjects(data);
+            setSubjects(data.sort((a, b) => (a.name < b.name ? -1 : 1)));
             updateShownSubjects();
           })
           .catch((error: Error) => setError(error.message));
@@ -142,7 +153,9 @@ export default function ResourceDialog() {
     addCourse(course)
       .then(() => {
         listCourses()
-          .then((data) => setCourses(data))
+          .then((data) =>
+            setCourses(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
+          )
           .catch((error: Error) => setError(error.message));
       })
       .catch((error: Error) => setError(error.message));
@@ -152,7 +165,9 @@ export default function ResourceDialog() {
     addDocumentType(documentType)
       .then(() => {
         listDocumentTypes()
-          .then((data) => setDocumentTypes(data))
+          .then((data) =>
+            setDocumentTypes(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
+          )
           .catch((error: Error) => setError(error.message));
       })
       .catch((error: Error) => setError(error.message));
@@ -165,21 +180,27 @@ export default function ResourceDialog() {
 
   const updateShownSubjects = useCallback(() => {
     setShownSubjects(
-      subjects.filter(
-        (subject) => subject.courseId === form.getValues('courseId'),
-      ),
+      subjects
+        .filter((subject) => subject.courseId === form.getValues('courseId'))
+        .sort((a, b) => (a.name < b.name ? -1 : 1)),
     );
   }, [form, subjects]);
 
   useEffect(() => {
     listDocumentTypes()
-      .then((data) => setDocumentTypes(data))
+      .then((data) =>
+        setDocumentTypes(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
+      )
       .catch((error: Error) => setError(error.message));
     listCourses()
-      .then((data) => setCourses(data))
+      .then((data) =>
+        setCourses(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
+      )
       .catch((error: Error) => setError(error.message));
     listSubjects()
-      .then((data) => setSubjects(data))
+      .then((data) =>
+        setSubjects(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
+      )
       .catch((error: Error) => setError(error.message));
   }, []);
 
@@ -190,7 +211,7 @@ export default function ResourceDialog() {
   const fileRef = form.register('file');
 
   return (
-    <Dialog open={open}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className='flex space-x-1'>
           <i className='ph ph-file-plus'></i>

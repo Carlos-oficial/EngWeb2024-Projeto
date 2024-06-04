@@ -9,7 +9,6 @@ interface IResource {
   subjectId: string;
   courseId: string;
   createdAt: Date;
-  file: string;
   userEmail: string;
 }
 
@@ -22,7 +21,6 @@ const ResourceSchema = new Schema<IResource>({
   subjectId: { type: String, ref: 'Subject' },
   courseId: { type: String, ref: 'Course' },
   createdAt: { type: Date },
-  file: { type: String },
   userEmail: { type: String, ref: 'User' },
 });
 

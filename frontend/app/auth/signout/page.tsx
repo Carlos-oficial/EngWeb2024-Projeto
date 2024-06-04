@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 export default function SignOut() {
   function handleSignOut() {
-    signOut().catch(() => {});
+    signOut({ callbackUrl: '/dashboard' }).catch(() => {});
   }
 
   return (

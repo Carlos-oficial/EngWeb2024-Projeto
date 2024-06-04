@@ -29,20 +29,6 @@ export type ResourceDB = {
   subjectId: string;
   courseId: string;
   createdAt: Date;
-  file: string;
-  userEmail: string;
-};
-
-export type ResourceForm = {
-  title: string;
-  description: string;
-  documentTypeId: string;
-  documentFormat: string;
-  hashtags: string;
-  subjectId: string;
-  courseId: string;
-  createdAt: Date;
-  file: FileList;
   userEmail: string;
 };
 

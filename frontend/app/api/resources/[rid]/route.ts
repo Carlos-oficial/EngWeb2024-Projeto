@@ -3,6 +3,9 @@ import * as ResourceController from '@/controllers/Resource';
 import { ResourceDB } from '@/lib/types';
 import { NextRequest, NextResponse } from 'next/server';
 import { HttpStatusCode } from 'axios';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import fs from 'node:fs/promises';
 
 export const dynamic = 'force-dynamic'; // defaults to auto
 
@@ -29,12 +32,19 @@ export async function PUT(
   { params }: { params: { rid: string } },
 ) {
   try {
-    await connectMongo();
-
+    const session = await getServerSession(authOptions);
     const body = (await req.json()) as Partial<ResourceDB>;
-    await ResourceController.update(params.rid, body);
 
-    return NextResponse.json(body);
+    // verify user is owner of file
+    if (session && session.user.email === body.userEmail) {
+      await connectMongo();
+
+      await ResourceController.update(params.rid, body);
+
+      return NextResponse.json(body);
+    } else {
+      return NextResponse.json({ status: HttpStatusCode.Forbidden });
+    }
   } catch (error) {
     return NextResponse.json(
       { message: error as Error },
@@ -45,14 +55,29 @@ export async function PUT(
 
 export async function DELETE({ params }: { params: { rid: string } }) {
   try {
-    await connectMongo();
+    const session = await getServerSession(authOptions);
+    const resource = (await ResourceController.get(params.rid)) as ResourceDB;
 
-    await ResourceController.remove(params.rid);
+    if (!resource)
+      return NextResponse.json({ status: HttpStatusCode.BadRequest });
 
-    return NextResponse.json(
-      { message: 'Resource deleted' },
-      { status: HttpStatusCode.Ok },
-    );
+    // verify user is owner of file
+    if (session && session.user.email === resource.userEmail) {
+      await connectMongo();
+
+      await ResourceController.remove(params.rid);
+
+      const fileName = `${params.rid}.${resource.documentFormat.toLowerCase()}`;
+      const filePath = `./public/uploads/${resource.userEmail}/${fileName}`;
+      await fs.rm(filePath);
+
+      return NextResponse.json(
+        { message: 'Resource deleted' },
+        { status: HttpStatusCode.Ok },
+      );
+    } else {
+      return NextResponse.json({ status: HttpStatusCode.Forbidden });
+    }
   } catch (error) {
     return NextResponse.json(
       { message: error as Error },

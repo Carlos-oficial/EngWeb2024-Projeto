@@ -1,7 +1,5 @@
 import {
-  ResourceDB,
   ResourceDTO,
-  ResourceForm,
   SubjectDB,
   UserDTO,
   CourseDB,
@@ -85,27 +83,11 @@ export const removeFavorite = async (userEmail: string, resourceId: string) => {
   }
 };
 
-export const submitResource = async (formData: ResourceForm) => {
+export const submitResource = async (formData: FormData) => {
   try {
-    const resource: Partial<ResourceDB> = {
-      title: formData.title,
-      description: formData.description,
-      documentTypeId: formData.documentTypeId,
-      documentFormat: formData.documentFormat,
-      hashtags: formData.hashtags,
-      subjectId: formData.subjectId,
-      courseId: formData.courseId,
-      createdAt: formData.createdAt,
-      file: formData.file[0].name,
-      userEmail: formData.userEmail,
-    };
-
     const response = await fetch('/api/resources', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(resource),
+      body: formData,
     });
 
     if (!response.ok) {
