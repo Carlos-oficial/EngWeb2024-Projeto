@@ -4,6 +4,7 @@ import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import clientPromise from '@/lib/mongodb';
 import { Adapter } from 'next-auth/adapters';
 import * as UserController from '@/controllers/User';
+import { redirect } from 'next/navigation';
 
 export const authOptions: AuthOptions = {
   // Secret for Next-auth, without this JWT encryption/decryption won't work
@@ -33,10 +34,11 @@ export const authOptions: AuthOptions = {
           }
         },
       );
+      
       return true;
     },
     async redirect({ url, baseUrl }) {
-      return baseUrl;
+      return url;
     },
     async session({ session, user, token }) {
       return session;
