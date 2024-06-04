@@ -12,6 +12,7 @@ export const listByEmails = (emails: string[]) => {
 };
 
 export const get = (email: string) => {
+  console.log(email);
   return User.findOne({ email: email }).exec();
 };
 

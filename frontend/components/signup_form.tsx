@@ -7,9 +7,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 import { ClientSafeProvider, signIn } from 'next-auth/react';
-import { BuiltInProviderType } from 'next-auth/providers/index';
 import { LiteralUnion, useForm, SubmitHandler } from 'react-hook-form';
+import { BuiltInProviderType } from 'next-auth/providers/index';
 
+import { useToast } from './ui/use-toast';
+import { signUp } from '@/lib/data';
+import { UserSignUp } from '@/lib/types';
 import {
   Form,
   FormControl,
@@ -24,6 +27,12 @@ import { z } from 'zod';
 type FormValues = z.infer<typeof formSchema>;
 
 const formSchema = z.object({
+  firstName: z
+    .string({ required_error: 'Please provide your first name' })
+    .min(1, { message: 'Please provide your first name' }),
+  lastName: z
+    .string({ required_error: 'Please provide your last name' })
+    .min(1, { message: 'Please provide your last name' }),
   email: z
     .string({ required_error: 'Please provide a valid email' })
     .email()
@@ -33,7 +42,7 @@ const formSchema = z.object({
     .min(16, { message: 'Password must be at least 16 characters long' }),
 });
 
-export default function SignInForm({
+export default function SignUpForm({
   providers,
 }: {
   providers:
@@ -43,6 +52,8 @@ export default function SignInForm({
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
     },
@@ -64,8 +75,22 @@ export default function SignInForm({
       .catch(() => {});
   };
 
+  const { toast } = useToast();
+
   const onSubmit: SubmitHandler<FormValues> = (values: FormValues) => {
-    handleCredentialSignIn(values.email, values.password);
+    signUp(values as UserSignUp)
+      .then(() => {
+        toast({
+          title: 'Sign up successful!',
+        });
+        handleCredentialSignIn(values.email, values.password);
+      })
+      .catch((error: Error) => {
+        toast({
+          title: 'Sign up failed!',
+          description: error.message,
+        });
+      });
   };
 
   const searchParams = useSearchParams();
@@ -74,14 +99,46 @@ export default function SignInForm({
   return (
     <div className='mx-auto grid w-[350px] gap-6'>
       <div className='grid gap-2 text-center'>
-        <h1 className='text-3xl font-bold'>Sign in</h1>
+        <h1 className='text-3xl font-bold'>Sign up</h1>
         <p className='text-balance text-muted-foreground'>
-          Enter your email below to sign in to your account
+          Enter your information to create an account
         </p>
       </div>
       <Form {...form}>
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <form className='grid gap-4' onSubmit={form.handleSubmit(onSubmit)}>
+          <div className='grid grid-cols-2 gap-4'>
+            <div className='grid gap-2'>
+              <FormField
+                control={form.control}
+                name='firstName'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>First name</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder='Max' />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className='grid gap-2'>
+              <FormField
+                control={form.control}
+                name='lastName'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Last name</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder='Robinson' />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
           <div className='grid gap-2'>
             <FormField
               control={form.control}
@@ -92,8 +149,8 @@ export default function SignInForm({
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder='m@example.com'
                       type='email'
+                      placeholder='m@example.com'
                     />
                   </FormControl>
                   <FormMessage />
@@ -107,15 +164,7 @@ export default function SignInForm({
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <div className='flex items-center'>
-                    <FormLabel>Password</FormLabel>
-                    <Link
-                      href='/forgot-password'
-                      className='ml-auto inline-block text-sm underline'
-                    >
-                      Forgot your password?
-                    </Link>
-                  </div>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input {...field} type='password' />
                   </FormControl>
@@ -125,7 +174,7 @@ export default function SignInForm({
             />
           </div>
           <Button type='submit' className='w-full'>
-            Sign in
+            Create an account
           </Button>
           {Object.values(providers).map((provider) => {
             if (provider.name !== 'Email') {
@@ -151,18 +200,16 @@ export default function SignInForm({
                 <p>Sorry, something went wrong!</p>
               </span>
               <p className='flex text-xs justify-center text-red-500'>
-                {error === 'CredentialsSignin'
-                  ? 'Invalid email or password'
-                  : error}
+                {error} Error
               </p>
             </div>
           )}
         </form>
       </Form>
       <div className='mt-4 text-center text-sm'>
-        Don&apos;t have an account?{' '}
-        <Link href='/auth/signup' className='underline'>
-          Sign up
+        Already have an account?{' '}
+        <Link href='/auth/signin' className='underline'>
+          Sign in
         </Link>
       </div>
     </div>

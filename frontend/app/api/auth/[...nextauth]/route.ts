@@ -4,17 +4,55 @@ import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import clientPromise from '@/lib/mongodb';
 import { Adapter } from 'next-auth/adapters';
 import * as UserController from '@/controllers/User';
-import { redirect } from 'next/navigation';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { UserDB } from '@/lib/types';
+import { compare } from 'bcrypt';
 
 export const authOptions: AuthOptions = {
+  session: {
+    strategy: 'jwt',
+  },
+
   // Secret for Next-auth, without this JWT encryption/decryption won't work
   secret: process.env.NEXTAUTH_SECRET,
   adapter: MongoDBAdapter(clientPromise) as Adapter,
+
   // Configure one or more authentication providers
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_APP_CLIENT_ID as string,
       clientSecret: process.env.GITHUB_APP_CLIENT_SECRET as string,
+    }),
+    CredentialsProvider({
+      name: 'Email',
+      credentials: {
+        email: {},
+        password: {},
+      },
+      async authorize(credentials, req) {
+        console.log(credentials);
+        const user = (await UserController.get(credentials?.email ?? '')) as
+          | UserDB
+          | null
+          | undefined;
+
+        if (!user) return null;
+
+        const isPasswordValid = await compare(
+          credentials?.password ?? '',
+          user.password,
+        );
+
+        console.log(isPasswordValid);
+
+        if (!isPasswordValid) return null;
+
+        return {
+          email: user.email,
+          name: user.name,
+          image: user.image ?? '',
+        };
+      },
     }),
   ],
 

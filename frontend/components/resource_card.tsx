@@ -46,12 +46,12 @@ export default function ResourceCard({
           setIsFavorite(favorites.includes(resource._id));
         })
         .catch((error: Error) => console.error(error.message));
-      getResourceFavorites(resource._id)
-        .then((favorites) => {
-          setFavoriteCounter(favorites.length);
-        })
-        .catch((error: Error) => console.error(error.message));
     }
+    getResourceFavorites(resource._id)
+      .then((favorites) => {
+        setFavoriteCounter(favorites.length);
+      })
+      .catch((error: Error) => console.error(error.message));
   }, [session, resource._id]);
 
   function handleFavorite() {

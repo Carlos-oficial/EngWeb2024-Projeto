@@ -51,7 +51,6 @@ export async function GET(req: NextApiRequest) {
       ((await DocumentTypeController.listByIds(
         document_type_ids,
       )) as DocumentTypeDB[]) ?? [];
-    console.log('DOCUMENT TYPES', document_types);
 
     const resources: ResourceDTO[] = resources_db.map((resource) => {
       const subject_name =

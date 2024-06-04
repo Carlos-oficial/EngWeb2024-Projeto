@@ -1,7 +1,6 @@
 // others
 import Navbar from '@/components/navbar';
 import NavHeader from '@/components/navheader';
-import { Toaster } from '@/components/ui/toaster';
 
 export default function RootLayout({
   children,
@@ -19,7 +18,6 @@ export default function RootLayout({
           </main>
         </div>
       </div>
-      <Toaster />
     </>
   );
 }

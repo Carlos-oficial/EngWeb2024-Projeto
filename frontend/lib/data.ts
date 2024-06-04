@@ -4,6 +4,8 @@ import {
   UserDTO,
   CourseDB,
   DocumentTypeDB,
+  UserDB,
+  UserSignUp,
 } from './types';
 
 export const listResources = async () => {
@@ -191,6 +193,28 @@ export const addDocumentType = async (documentType: string) => {
     }
 
     const data = (await response.json()) as DocumentTypeDB;
+
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const signUp = async (userInfo: UserSignUp) => {
+  try {
+    const response = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
+    });
+
+    if (!response.ok) {
+      throw new Error("Couldn't sign up");
+    }
+
+    const data = (await response.json()) as UserDB;
 
     return data;
   } catch (error) {

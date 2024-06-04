@@ -52,8 +52,16 @@ export type UserDB = {
   _id: string;
   name: string;
   email: string;
+  password: string;
   image: string;
-  emailVerified: Date | null; // idk
+  emailVerified: Date | null;
+};
+
+export type UserSignUp = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
 };
 
 export type UserDTO = UserDB;

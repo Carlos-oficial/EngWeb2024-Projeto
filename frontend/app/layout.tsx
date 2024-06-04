@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { Inter as FontSans } from 'next/font/google';
 import NextAuthProvider from '@/app/context/NextAuthProvider';
 import './globals.css';
+import { Toaster } from '@/components/ui/toaster';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -37,6 +38,7 @@ export default function RootLayout({
         className={cn('bg-background font-sans antialiased', fontSans.variable)}
       >
         <NextAuthProvider>{children}</NextAuthProvider>
+        <Toaster />
       </body>
     </html>
   );
