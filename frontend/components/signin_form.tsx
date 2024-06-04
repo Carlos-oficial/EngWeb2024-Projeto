@@ -19,7 +19,7 @@ export default function SignInForm({
     | never[];
 }) {
   const handleProviderSignIn = (provider: ClientSafeProvider) => {
-    signIn(provider.id, { redirectTo: '/dashboard/resources' })
+    signIn(provider.id, { redirectTo: '/dashboard' })
       .then(() => {})
       .catch(() => {});
   };
@@ -28,7 +28,7 @@ export default function SignInForm({
     signIn('credentials', {
       username: data.get('email') as string,
       password: data.get('password') as string,
-      redirectTo: '/dashboard/resources',
+      redirectTo: '/dashboard',
     })
       .then(() => {})
       .catch(() => {});

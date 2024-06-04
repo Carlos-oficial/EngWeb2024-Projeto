@@ -6,8 +6,8 @@ interface ISubject {
 }
 
 const SubjectSchema = new Schema<ISubject>({
-  courseId: { type: Schema.Types.ObjectId, ref: 'Course' },
-  name: { type: String },
+  courseId: { type: Schema.Types.ObjectId, ref: 'Course', required: true },
+  name: { type: String, required: true },
 });
 
 const Subject = models.Subject || model<ISubject>('Subject', SubjectSchema);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import {
   Dialog,
@@ -32,7 +32,12 @@ import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { submitResource } from '@/lib/data';
+import {
+  addCourse,
+  addDocumentType,
+  addSubject,
+  submitResource,
+} from '@/lib/data';
 import { CourseDB, ResourceForm, SubjectDB, DocumentTypeDB } from '@/lib/types';
 import { useToast } from '@/components/ui/use-toast';
 import SignInCard from '@/components/signin_card';
@@ -42,6 +47,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { useSession } from 'next-auth/react';
 import Spinner from '@/components/spinner';
+import AddForm from '@/components/add_from';
 
 import { listSubjects, listCourses, listDocumentTypes } from '@/lib/data';
 
@@ -50,11 +56,11 @@ type FormValues = z.infer<typeof formSchema>;
 const formSchema = z.object({
   title: z
     .string({ required_error: 'Title is required' })
-    .min(15, { message: 'Title must be at least 15 characters' })
+    .min(10, { message: 'Title must be at least 15 characters' })
     .max(50, { message: 'Title must be at most 50 characters' }),
   description: z
     .string({ required_error: 'Description is required' })
-    .min(30, { message: 'Description must be at least 30 characters' })
+    .min(20, { message: 'Description must be at least 30 characters' })
     .max(100, { message: 'Description must be at most 100 characters' }),
   documentTypeId: z.string({ required_error: 'Resource type is required' }), // é um ID
   hashtags: z.string().regex(new RegExp('^(#\\w+)?( #\\w+)*$'), {
@@ -74,6 +80,7 @@ export default function ResourceDialog() {
   const [documentTypes, setDocumentTypes] = useState<DocumentTypeDB[]>([]);
   const [courses, setCourses] = useState<CourseDB[]>([]);
   const [subjects, setSubjects] = useState<SubjectDB[]>([]);
+  const [shownSubjects, setShownSubjects] = useState<SubjectDB[]>([]);
   const [postToFeed, setPostToFeed] = useState<boolean | 'indeterminate'>(true);
 
   const form = useForm<FormValues>({
@@ -118,6 +125,52 @@ export default function ResourceDialog() {
     );
   };
 
+  const handleAddSubject = (subject: string) => {
+    addSubject(subject, form.getValues('courseId'))
+      .then(() => {
+        listSubjects()
+          .then((data) => {
+            setSubjects(data);
+            updateShownSubjects();
+          })
+          .catch((error: Error) => setError(error.message));
+      })
+      .catch((error: Error) => setError(error.message));
+  };
+
+  const handleAddCourse = (course: string) => {
+    addCourse(course)
+      .then(() => {
+        listCourses()
+          .then((data) => setCourses(data))
+          .catch((error: Error) => setError(error.message));
+      })
+      .catch((error: Error) => setError(error.message));
+  };
+
+  const handleAddDocumentType = (documentType: string) => {
+    addDocumentType(documentType)
+      .then(() => {
+        listDocumentTypes()
+          .then((data) => setDocumentTypes(data))
+          .catch((error: Error) => setError(error.message));
+      })
+      .catch((error: Error) => setError(error.message));
+  };
+
+  const handleCourseValueChange = (value: string) => {
+    form.setValue('courseId', value);
+    updateShownSubjects();
+  };
+
+  const updateShownSubjects = useCallback(() => {
+    setShownSubjects(
+      subjects.filter(
+        (subject) => subject.courseId === form.getValues('courseId'),
+      ),
+    );
+  }, [form, subjects]);
+
   useEffect(() => {
     listDocumentTypes()
       .then((data) => setDocumentTypes(data))
@@ -129,6 +182,10 @@ export default function ResourceDialog() {
       .then((data) => setSubjects(data))
       .catch((error: Error) => setError(error.message));
   }, []);
+
+  useEffect(() => {
+    updateShownSubjects();
+  }, [subjects, updateShownSubjects]);
 
   const fileRef = form.register('file');
 
@@ -230,10 +287,18 @@ export default function ResourceDialog() {
                         </FormControl>
                         <SelectContent className='max-h-40'>
                           {documentTypes.map((type) => (
-                            <SelectItem key={type._id} value={type._id}>
+                            <SelectItem
+                              key={type._id.toString()}
+                              value={type._id.toString()}
+                            >
                               {type.name}
                             </SelectItem>
                           ))}
+                          <AddForm
+                            action={handleAddDocumentType}
+                            fieldId='documentType'
+                            placeholder='Type a new resource type name...'
+                          />
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -264,7 +329,7 @@ export default function ResourceDialog() {
                     <FormItem>
                       <FormLabel>Course</FormLabel>
                       <Select
-                        onValueChange={field.onChange}
+                        onValueChange={handleCourseValueChange}
                         defaultValue={field.value}
                       >
                         <FormControl>
@@ -274,10 +339,18 @@ export default function ResourceDialog() {
                         </FormControl>
                         <SelectContent className='max-h-40'>
                           {courses.map((course) => (
-                            <SelectItem key={course._id} value={course._id}>
+                            <SelectItem
+                              key={course._id.toString()}
+                              value={course._id.toString()}
+                            >
                               {course.name}
                             </SelectItem>
                           ))}
+                          <AddForm
+                            action={handleAddCourse}
+                            fieldId='course'
+                            placeholder='Type a new course name...'
+                          />
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -301,17 +374,19 @@ export default function ResourceDialog() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent className='max-h-40'>
-                          {subjects.map((subject) => {
-                            if (subject.courseId === form.getValues('courseId'))
-                              return (
-                                <SelectItem
-                                  key={subject._id}
-                                  value={subject._id}
-                                >
-                                  {subject.name}
-                                </SelectItem>
-                              );
-                          })}
+                          {shownSubjects.map((subject) => (
+                            <SelectItem
+                              key={subject._id.toString()}
+                              value={subject._id.toString()}
+                            >
+                              {subject.name}
+                            </SelectItem>
+                          ))}
+                          <AddForm
+                            action={handleAddSubject}
+                            fieldId='subject'
+                            placeholder='Type a new subject name...'
+                          />
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -327,7 +402,7 @@ export default function ResourceDialog() {
                   <Label htmlFor='post'>Post on Feed</Label>
                 </div>
                 {error.length > 0 && (
-                  <Alert variant='destructive' className='pt-3'>
+                  <Alert variant='destructive' className='pt-4'>
                     <AlertTitle className='flex items-center space-x-1'>
                       <i className='ph ph-warning'></i>
                       <p>Error</p>

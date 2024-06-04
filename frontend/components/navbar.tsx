@@ -13,15 +13,22 @@ export default function Navbar() {
   const router = useRouter();
   const session = useSession();
 
+  const isProfile =
+    session.status === 'authenticated' &&
+    session.data.user.email === pathname.split('/').pop() &&
+    pathname.includes('/dashboard/') &&
+    !pathname.includes('/dashboard/favorites') &&
+    !pathname.includes('/dashboard/feed');
+
   return (
     <div className='w-80 border-r border-border'>
       <div className='p-2 border-b border-border'>
         <Button
           variant={'outline'}
-          className='w-full h-11 justify-between'
+          className={`w-full h-11 justify-between ${isProfile && 'ring-1 ring-ring'}`}
           onClick={
             session.status === 'authenticated'
-              ? () => router.push('/dashboard/profile')
+              ? () => router.push('/dashboard/' + session.data.user.email)
               : () => router.push('/auth/signin')
           }
         >
@@ -51,10 +58,7 @@ export default function Navbar() {
         </Button>
       </div>
       <nav className='grid gap-1 p-2'>
-        <NavLink
-          active={pathname === '/dashboard/resources'}
-          href='/dashboard/resources'
-        >
+        <NavLink active={pathname === '/dashboard'} href='/dashboard'>
           <i className='ph ph-folder text-xl'></i>
           <span>Resources</span>
         </NavLink>

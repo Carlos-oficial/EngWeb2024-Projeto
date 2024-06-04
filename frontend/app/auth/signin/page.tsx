@@ -29,6 +29,6 @@ export default async function SignIn() {
       </div>
     );
   } else {
-    redirect('/dashboard/resources', RedirectType.replace);
+    redirect('/dashboard', RedirectType.replace);
   }
 }

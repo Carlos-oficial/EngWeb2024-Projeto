@@ -32,7 +32,7 @@ export default function Resources() {
           ))}
         </div>
       </div>
-      <div className='min-w-80 border-l border-border'></div>
+      <div className='hidden xl:block min-w-72 border-l border-border'></div>
     </main>
   ) : (
     <main className='flex flex-col justify-center items-center h-full'>

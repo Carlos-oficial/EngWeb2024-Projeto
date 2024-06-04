@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 export default function NavHeader() {
   const pathname = usePathname();
   const page_title =
-    pathname === '/dashboard/resources'
+    pathname === '/dashboard'
       ? 'Resources'
       : pathname === '/dashboard/favorites'
         ? 'Favorites'

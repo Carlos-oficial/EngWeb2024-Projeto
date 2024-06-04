@@ -5,7 +5,7 @@ interface ICourse {
 }
 
 const CourseSchema = new Schema<ICourse>({
-  name: { type: String },
+  name: { type: String, unique: true, required: true },
 });
 
 const Course = models.Course || model<ICourse>('Course', CourseSchema);

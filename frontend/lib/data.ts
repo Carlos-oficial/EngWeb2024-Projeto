@@ -130,6 +130,28 @@ export const listSubjects = async () => {
   }
 };
 
+export const addSubject = async (subject: string, courseId: string) => {
+  try {
+    const response = await fetch('/api/subjects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name: subject, courseId: courseId }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to add subject');
+    }
+
+    const data = (await response.json()) as SubjectDB;
+
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
 export const listCourses = async () => {
   try {
     const response = await fetch('/api/courses');
@@ -140,10 +162,54 @@ export const listCourses = async () => {
   }
 };
 
+export const addCourse = async (course: string) => {
+  try {
+    const response = await fetch('/api/courses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name: course }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to add course');
+    }
+
+    const data = (await response.json()) as CourseDB;
+
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
 export const listDocumentTypes = async () => {
   try {
     const response = await fetch('/api/documentTypes');
     const data = (await response.json()) as DocumentTypeDB[];
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const addDocumentType = async (documentType: string) => {
+  try {
+    const response = await fetch('/api/documentTypes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name: documentType }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to add document type');
+    }
+
+    const data = (await response.json()) as DocumentTypeDB;
+
     return data;
   } catch (error) {
     throw new Error((error as Error).message);

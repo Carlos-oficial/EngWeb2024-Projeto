@@ -6,14 +6,14 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import ResourceCard from '@/components/resource_card';
 
-export default function Profile() {
+export default function Profile({ params }: { params: { uemail: string } }) {
   const [resources, setResources] = useState<ResourceDTO[] | null>(null);
   const [error, setError] = useState<string>('');
   const session = useSession();
 
   useEffect(() => {
     if (session.status === 'authenticated')
-      listResourcesByUser(session.data?.user?.id ?? '')
+      listResourcesByUser(session.data?.user?.email ?? '')
         .then((resources) => setResources(resources))
         .catch((error: Error) => setError(error.message));
   }, [session]);
@@ -21,7 +21,7 @@ export default function Profile() {
   const [userData, setUserData] = useState<UserDTO | null>(null);
 
   useEffect(() => {
-    getUser(session.data?.user?.id ?? '')
+    getUser(session.data?.user?.email ?? '')
       .then((userData) => setUserData(userData))
       .catch((error: Error) => setError(error.message));
   }, [session]);
@@ -29,6 +29,7 @@ export default function Profile() {
   return (
     <div>
       <div>
+        <p>User: {params.uemail}</p>
         <p>me: {JSON.stringify(userData)}</p>
         <p></p>
         {resources
@@ -37,7 +38,6 @@ export default function Profile() {
             ))
           : 'Loading...'}
       </div>
-      ;
     </div>
   );
 }

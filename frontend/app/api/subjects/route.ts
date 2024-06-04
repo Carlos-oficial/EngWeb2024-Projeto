@@ -1,5 +1,5 @@
 import connectMongo from '@/lib/mongoose';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import * as SubjectController from '@/controllers/Subject';
 import { SubjectDB } from '@/lib/types';
 import { HttpStatusCode } from 'axios';
@@ -11,6 +11,23 @@ export async function GET() {
     const subjects = ((await SubjectController.list()) as SubjectDB[]) ?? [];
 
     return NextResponse.json(subjects);
+  } catch (error) {
+    return NextResponse.json(
+      { message: (error as Error).message },
+      { status: HttpStatusCode.BadRequest },
+    );
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    await connectMongo();
+
+    const body = (await req.json()) as Partial<SubjectDB>;
+
+    await SubjectController.create(body);
+
+    return NextResponse.json(body);
   } catch (error) {
     return NextResponse.json(
       { message: (error as Error).message },

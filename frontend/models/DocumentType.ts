@@ -5,7 +5,7 @@ interface IDocumentType {
 }
 
 const DocumentTypeSchema = new Schema<IDocumentType>({
-  name: { type: String },
+  name: { type: String, unique: true, required: true },
 });
 
 const DocumentType =

@@ -13,8 +13,8 @@ export default function Favorites() {
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    if (session.data?.user?.id)
-      getUserFavorites(session.data?.user?.id)
+    if (session.data?.user?.email)
+      getUserFavorites(session.data?.user?.email)
         .then((favorites) => setFavorites(favorites))
         .catch((error: Error) => setError(error.message));
   }, [session]);
