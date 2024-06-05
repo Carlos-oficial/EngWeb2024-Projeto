@@ -8,7 +8,13 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { nameInitials } from '@/lib/utils';
 
-export default function Navbar() {
+export default function Navbar({
+  isOpen,
+  setIsOpen,
+}: {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}) {
   const pathname = usePathname();
   const router = useRouter();
   const session = useSession();
@@ -21,41 +27,52 @@ export default function Navbar() {
     !pathname.includes('/dashboard/feed');
 
   return (
-    <div className='w-80 border-r border-border'>
+    <div
+      className={`${isOpen ? 'translate-x-0' : '-translate-x-full'} absolute bg-background w-full lg:min-w-64 lg:w-auto h-screen border-r border-border lg:translate-x-0 lg:relative transition-all duration-300`}
+    >
       <div className='p-2 border-b border-border'>
-        <Button
-          variant={'outline'}
-          className={`w-full h-11 justify-between ${isProfile && 'ring-1 ring-ring'}`}
-          onClick={
-            session.status === 'authenticated'
-              ? () => router.push('/dashboard/' + session.data.user.email)
-              : () => router.push('/auth/signin')
-          }
-        >
-          <div className='flex space-x-3 items-center'>
-            <Avatar className='h-6 w-6'>
+        <div className='flex space-x-2 items-center'>
+          <Button
+            variant={'outline'}
+            className={`w-full h-11 justify-between ${isProfile && 'ring-1 ring-ring'}`}
+            onClick={
+              session.status === 'authenticated'
+                ? () => router.push('/dashboard/' + session.data.user.email)
+                : () => router.push('/auth/signin')
+            }
+          >
+            <div className='flex space-x-3 items-center'>
+              <Avatar className='h-6 w-6'>
+                {session.status === 'authenticated' ? (
+                  <>
+                    <AvatarImage
+                      src={session.data.user?.image}
+                      alt={session.data.user?.name}
+                    />
+                    <AvatarFallback>
+                      {nameInitials(session.data.user.name)}
+                    </AvatarFallback>
+                  </>
+                ) : (
+                  <AvatarFallback>G</AvatarFallback>
+                )}
+              </Avatar>
               {session.status === 'authenticated' ? (
-                <>
-                  <AvatarImage
-                    src={session.data.user?.image}
-                    alt={session.data.user?.name}
-                  />
-                  <AvatarFallback>
-                    {nameInitials(session.data.user.name)}
-                  </AvatarFallback>
-                </>
+                <span>{session.data.user?.name}</span>
               ) : (
-                <AvatarFallback>G</AvatarFallback>
+                <span>Guest</span>
               )}
-            </Avatar>
-            {session.status === 'authenticated' ? (
-              <span>{session.data.user?.name}</span>
-            ) : (
-              <span>Guest</span>
-            )}
-          </div>
-          <span>{'->'}</span>
-        </Button>
+            </div>
+            <span>{'->'}</span>
+          </Button>
+          <Button
+            variant='outline'
+            className='lg:hidden h-11 w-12'
+            onClick={() => setIsOpen(false)}
+          >
+            <i className='ph ph-x'></i>
+          </Button>
+        </div>
       </div>
       <nav className='grid gap-1 p-2'>
         <NavLink active={pathname === '/dashboard'} href='/dashboard'>

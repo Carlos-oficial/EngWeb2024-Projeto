@@ -218,7 +218,7 @@ export default function ResourceDialog({
           <p>Add Resource</p>
         </Button>
       </DialogTrigger>
-      <DialogContent className='max-h-[calc(70vh)] overflow-y-scroll'>
+      <DialogContent className='h-full md:max-h-[calc(70vh)] overflow-y-scroll'>
         {session.status === 'loading' ? (
           <Spinner />
         ) : session.status === 'authenticated' ? (
