@@ -1,0 +1,3903 @@
+{
+  "Design de Produto e Serviços (Mestrado)": {
+    "id": 4847,
+    "classes": [
+      "Design e Emoção",
+      "Experiência com o Produto",
+      "Gestão do Projeto em Design",
+      "Projeto em Design de Produto",
+      "Seminário I",
+      "Design e Participação",
+      "Design e Serviços para a Inclusão",
+      "Investigação, Comunicação e Ética em Design",
+      "Projeto em Design de Serviços",
+      "Seminário II",
+      "Metodologias de Investigação em Design",
+      "Projeto Estratégico"
+    ]
+  },
+  "Química Medicinal (Mestrado)": {
+    "id": 4870,
+    "classes": [
+      "Análise Estrutural",
+      "Laboratórios de Química Medicinal I",
+      "Modelação Molecular",
+      "Química Medicinal I"
+    ]
+  },
+  "Ciências e Tecnologias do Ambiente (Mestrado)": {
+    "id": 4865,
+    "classes": [
+      "Análise Exploratória de Dados",
+      "Economia e Política do Ambiente",
+      "Física para o Ambiente",
+      "Processos de Caraterização e Avaliação de Impacte Ambiental",
+      "Química dos Sistemas Ambientais",
+      "Energias Renováveis I",
+      "Materiais para a Energia",
+      "Seminários em Energia",
+      "Simulação e Métodos Numéricos",
+      "Utilização Sustentável de Energia",
+      "Dissertação",
+      "Economia da Energia",
+      "Energias Renováveis II"
+    ]
+  },
+  "Direito da União Europeia (Mestrado)": {
+    "id": 4881,
+    "classes": [
+      "Contencioso da União Europeia",
+      "Direito Sancionatório, Judiciário e Policial da União Europeia",
+      "Fundamentos Jurídico-Políticos da Integração Europeia",
+      "Mercado Interno, Concorrência e Regulação",
+      "Direito e Políticas da União Europeia I",
+      "Direito e Políticas da União Europeia II",
+      "Métodos do Trabalho Científico",
+      "Seminários Sobre a Aplicação Jurisdicional do Direito da União Europeia",
+      "Dissertação de Mestrado"
+    ]
+  },
+  "Direito (Pós-Laboral) (Licenciatura)": {
+    "id": 4879,
+    "classes": [
+      "Direito Constitucional",
+      "História do Direito",
+      "Introdução ao Estudo do Direito",
+      "Economia Política",
+      "Filosofia Política",
+      "Finanças Públicas"
+    ]
+  },
+  "Medicina (Programa Doutoral)": { "id": 4877, "classes": [] },
+  "Design de Produto (Licenciatura)": {
+    "id": 4853,
+    "classes": [
+      "Desenho de Observação",
+      "Design e Sustentabilidade",
+      "Design I",
+      "Geometria e Representação Digital",
+      "Movimentos da Arquitetura, Arte e Design",
+      "Desenho Operativo",
+      "Design II",
+      "Materiais e Tecnologias I",
+      "Modelação Digital",
+      "Teoria e História do Design I",
+      "Design III",
+      "Ergonomia e Design",
+      "Materiais e Tecnologias II",
+      "Representação e Comunicação Digital",
+      "Teoria e História do Design II",
+      "Análise da Forma",
+      "Aplicações Mecatrónicas",
+      "Design e Fabrico Digital",
+      "Design IV",
+      "Pessoas e Produtos",
+      "Cultura do Design Contemporâneo",
+      "Design V",
+      "Estratégia e Marketing de Novos Produtos",
+      "Sistemas de Desenvolvimento de Produto"
+    ]
+  },
+  "Ciências da Saúde (Mestrado)": { "id": 4875, "classes": [] },
+  "Biofísica e Bionanossistemas (Mestrado)": {
+    "id": 4862,
+    "classes": [
+      "Projeto em Biofísica e Bionanossistemas",
+      "Temas Atuais em Biofísica e Bionanossistemas",
+      "Biofísica Celular",
+      "Bionanossistemas",
+      "Técnicas Avançadas de Análise Celular",
+      "Técnicas Avançadas em Biofísica I",
+      "Técnicas Avançadas em Biofísica II"
+    ]
+  },
+  "Administração Pública (Licenciatura)": {
+    "id": 4888,
+    "classes": [
+      "Economia Política",
+      "Introdução à Administração Pública ",
+      "Introdução à Ciência Política",
+      "Métodos Quantitativos na Administração Pública",
+      "Teoria das Organizações",
+      "Contabilidade Financeira I",
+      "Estatística Aplicada à Ciência Política",
+      "Finanças Públicas",
+      "Introdução à Gestão Financeira",
+      "Procedimento e Direito Administrativo",
+      "Administração de Recursos Humanos",
+      "Economia Pública",
+      "Sistema Político Português",
+      "Sistemas de Informação para a Administração Pública",
+      "Teoria do Processo Político",
+      "Conceção de Políticas e Programas Públicos",
+      "Contabilidade Pública",
+      "Gestão da Qualidade nos Serviços Públicos",
+      "Políticas Sociais",
+      "Sistema Político da União Europeia",
+      "Auditoria nos Serviços Públicos",
+      "Contratos Públicos",
+      "Governo Local e Administração Autárquica",
+      "Teorias e Modelos de Gestão Pública"
+    ]
+  },
+  "Biologia Aplicada (Licenciatura)": {
+    "id": 4855,
+    "classes": [
+      "Biologia Celular",
+      "Diversidade Animal",
+      "Fundamentos de Matemática",
+      "Hereditariedade e Evolução",
+      "Química Geral",
+      "Biologia e Diversidade Vegetal",
+      "Estrutura e Função de Biomoléculas",
+      "Fundamentos de Química Orgânica",
+      "Microbiologia",
+      "Tópicos de Física",
+      "Bioenergética e Metabolismo",
+      "Estatística e Análise de Dados",
+      "Fisiologia Animal",
+      "Fisiologia Vegetal",
+      "Genes e Genomas",
+      "Ecologia",
+      "Engenharia Genética e Bioinformática",
+      "Expressão Genética",
+      "Fisiologia Microbiana",
+      "Imunologia",
+      "Biologia Animal Aplicada",
+      "Biologia Vegetal Aplicada",
+      "Diferenciação e Desenvolvimento",
+      "Ecologia de Populações e Comunidades",
+      "Microbiologia Aplicada",
+      "Projeto em Biologia Aplicada"
+    ]
+  },
+  "Matemática e Computação (Mestrado)": {
+    "id": 4868,
+    "classes": [ "Lógica da Programação", "Temas de Álgebra" ]
+  },
+  "Direito (Licenciatura)": {
+    "id": 4878,
+    "classes": [
+      "Direito Constitucional",
+      "História do Direito",
+      "Introdução ao Estudo do Direito",
+      "Economia Política",
+      "Filosofia Política",
+      "Finanças Públicas"
+    ]
+  },
+  "Biologia (Doutoramento)": { "id": 4849, "classes": [ "Tese" ] },
+  "": { "id": 5209, "classes": [] },
+  "Biologia Molecular e Ambiental (Programa Doutoral)": {
+    "id": 4872,
+    "classes": [
+      "Formação Avançada em Biologia Molecular e Ambiental",
+      "Projeto em Biologia Celular e Saúde",
+      "Seminário em Biologia Molecular e Ambiental",
+      "Tese"
+    ]
+  },
+  "Química Aplicada (Doutoramento)": { "id": 4852, "classes": [ "Tese de Doutoramento" ] },
+  "Ciências da Saúde (Programa Doutoral)": { "id": 4876, "classes": [] },
+  "Ciências Jurídicas (Programa Doutoral)": { "id": 4887, "classes": [ "Tese" ] },
+  "Engenharia Civil (Doutoramento)": { "id": 4922, "classes": [ "Tese" ] },
+  "Direito Administrativo (Mestrado)": {
+    "id": 4880,
+    "classes": [
+      "Direito Administrativo Global",
+      "Direito da Organização Administrativa",
+      "Direito Tributário",
+      "Direitos Fundamentais",
+      "Metodologias de Investigação",
+      "Direito do Ambiente",
+      "Direito do Emprego Público",
+      "Direito dos Contratos Públicos",
+      "Direito Processual Administrativo"
+    ]
+  },
+  "Arquitetura (Programa Doutoral)": {
+    "id": 4848,
+    "classes": [
+      "Metodologias e Práticas de Investigação em Arquitetura",
+      "Seminário de Conhecimento Avançado ",
+      "Projeto de Tese em Arquitetura"
+    ]
+  },
+  "Matemática (Doutoramento)": { "id": 4851, "classes": [ "Tese" ] },
+  "Física (MAP-Fis) (Programa Doutoral)": {
+    "id": 4873,
+    "classes": [
+      "Comunicação em Ciência",
+      "Empreendedorismo",
+      "Ensaio",
+      "Tópicos Avançados de Física",
+      "Tese"
+    ]
+  },
+  "Engenharia Humana (Mestrado)": {
+    "id": 4912,
+    "classes": [
+      "Análise e Estudo do Trabalho",
+      "Ergonomia I",
+      "Estatística Aplicada à Engenharia Humana",
+      "Gestão das Organizações e dos Recursos Humanos",
+      "Higiene Ocupacional I",
+      "Segurança do Trabalho I",
+      "Ergonomia II",
+      "Higiene Ocupacional II",
+      "Medicina e Saúde Ocupacional",
+      "Métodos e Técnicas de Análise em Ergonomia",
+      "Psicologia Ocupacional e Psicossociologia",
+      "Segurança do Trabalho II",
+      "Dissertação",
+      "Metodologias de Investigação em Engenharia Humana"
+    ]
+  },
+  "Direito e Informática (Mestrado)": {
+    "id": 4884,
+    "classes": [
+      "A Transferência Eletrónica de Dados e os Serviços de Telecomunicações",
+      "Criptografia, Identificação Eletrónica e Documentos",
+      "Lógica Jurídica, Argumentação, Representação do Conhecimento",
+      "Propriedade Intelectual da Sociedade da Informação",
+      "A Resolução de Conflitos",
+      "Cibercrime",
+      "Comércio Eletrónico e Contratação Eletrónica",
+      "Privacidade e Proteção de Dados Pessoais",
+      "Dissertação"
+    ]
+  },
+  "Técnicas de Caracterização e Análise Química (Mestrado)": {
+    "id": 4871,
+    "classes": [
+      "Amostragem e Preparação de Amostras",
+      "Análise de Materiais e de Superfícies",
+      "Análise Estrutural",
+      "Seminário em Técnicas de Caracterização e Análise Química I",
+      "Técnicas de Separação e Análise",
+      "Complementos de Análise Estrutural",
+      "Controlo de Qualidade e Validação de Métodos Analíticos",
+      "Métodos Quimiométricos",
+      "Seminário em Técnicas de Caracterização e Análise Química II",
+      "Sensores Químicos",
+      "Dissertação"
+    ]
+  },
+  "Química (Programa Doutoral)": {
+    "id": 4874,
+    "classes": [
+      "Investigação Multidisciplinar em Química",
+      "Tópicos Avançados de Química",
+      "Projeto de Tese",
+      "Tese"
+    ]
+  },
+  "Ciência e Engenharia de Polímeros e Compósitos (Doutoramento)": {
+    "id": 4921,
+    "classes": [
+      "Projeto de Tese em Ciência e Engenharia de Polímeros e Compósitos",
+      "Tese"
+    ]
+  },
+  "Engenharia de Tecidos, Medicina Regenerativa e Células Estaminais (Doutoramento)": { "id": 4924, "classes": [ "Tese" ] },
+  "Biologia Molecular, Biotecnologia e Bioempreendedorismo em Plantas (Mestrado)": {
+    "id": 4863,
+    "classes": [
+      "Bioquímica e Fisiologia Molecular",
+      "Biotecnologia Vegetal",
+      "Engenharia Genética de Plantas e Bioinformática",
+      "Metabolismo Secundário e Compostos Bioativos",
+      "Princípios de Marketing",
+      "Biorreactores e Processos de Separação",
+      "Introdução ao Empreendedorismo"
+    ]
+  },
+  "Micro e Nano Tecnologias (Mestrado)": {
+    "id": 4915,
+    "classes": [
+      "Bionanotecnologia",
+      "Introdução aos Microssistemas e às Microtecnologias ",
+      "Introdução às Nanotecnologias e Técnicas de Fabrico ",
+      "Modelação e Simulação de Sistemas para Micro e Nano Tecnologias",
+      "Nanomateriais e Nanossistemas"
+    ]
+  },
+  "Telecomunicações (MAP-tel) (Programa Doutoral)": { "id": 4934, "classes": [ "Plano de Tese", "Seminário" ] },
+  "Bioquímica Aplicada (Mestrado)": {
+    "id": 4864,
+    "classes": [
+      "Bioquímica Estrutural",
+      "Genética e Biotecnologia Molecular",
+      "Mecanismos de Regulação Celular",
+      "Métodos de Análise Celular e Biomolecular I",
+      "Modelação Molecular",
+      "Métodos de Análise Celular e Biomolecular II"
+    ]
+  },
+  "Design e Marketing de Moda (Licenciatura)": {
+    "id": 4898,
+    "classes": [
+      "Desenho de Representação",
+      "Design, Cultura e Sociedade",
+      "Projeto em Design de Moda I",
+      "Tecnologias Informáticas de Apoio ao Design",
+      "Teoria e História do Design de Moda",
+      "Desenho de Figura",
+      "Materiais e Processos Têxteis I",
+      "Princípios de Estética e de Cor",
+      "Projeto em Design de Moda II",
+      "Sistema da Moda, Marketing e Mercados Têxteis",
+      "Design Têxtil em Tecidos e Malhas",
+      "Materiais e Processos Têxteis II",
+      "Projeto em Design de Moda III",
+      "Psicologia e Sociologia do Consumo e da Moda",
+      "Tendências de Moda e Semiótica",
+      "Design de Vestuário I",
+      "Design Têxtil em Estamparia",
+      "Marketing Digital na Moda",
+      "Materiais e Processos Têxteis III",
+      "Projeto em Design de Moda IV",
+      "Projeto em Design de Moda V",
+      "Análise e Interpretação dos Mercados de Moda",
+      "Design de Acessórios I",
+      "Design de Vestuário II",
+      "Materiais e Processos Têxteis IV",
+      "Conforto e Sustentabilidade na Moda",
+      "Criação de Coleções de Moda",
+      "Design de Acessórios II",
+      "Gestão da Produção e de Projetos"
+    ]
+  },
+  "Bioinformática (Mestrado)": {
+    "id": 4910,
+    "classes": [
+      "Algoritmos para Análise de Sequências Biológicas",
+      "Biologia de Sistemas",
+      "Laboratórios de Bioinformática",
+      "Métodos Estatísticos para a Bioinformática"
+    ]
+  },
+  "Ciências da Computação (Licenciatura)": {
+    "id": 4857,
+    "classes": [
+      "Álgebra Linear CC",
+      "Cálculo",
+      "Programação Funcional",
+      "Tópicos de Matemática"
+    ]
+  },
+  "Optometria e Ciências da Visão (Licenciatura)": {
+    "id": 4860,
+    "classes": [
+      "Álgebra Linear e Geometria Analítica EC",
+      "Anatomia e Fisiologia Geral",
+      "Cálculo Diferencial e Integral",
+      "Fundamentos das Ciências da Visão",
+      "Ótica Geométrica",
+      "Anatomia e Fisiologia Ocular",
+      "Bioquímica",
+      "Física Geral I",
+      "Instrumentação Optométrica",
+      "Ótica da Visão",
+      "Física Geral II",
+      "Fundamentos de Optometria",
+      "Ótica Física",
+      "Perceção Visual"
+    ]
+  },
+  "Química (Licenciatura)": {
+    "id": 4861,
+    "classes": [
+      "Álgebra Linear e Geometria Analítica EC",
+      "Cálculo EC",
+      "Introdução à Química Física",
+      "Introdução à Química Inorgânica",
+      "Técnicas Laboratoriais em Química",
+      "Estatística EC",
+      "Física I",
+      "Introdução à Química Orgânica",
+      "Laboratórios de Química Física e Inorgânica",
+      "Química Física",
+      "Física II",
+      "Laboratórios de Química Orgânica e Analítica",
+      "Métodos Espetroscópicos",
+      "Química Analítica I",
+      "Química Orgânica",
+      "Laboratórios de Química Inorgânica e Analítica",
+      "Métodos de Separação",
+      "Química Analítica II",
+      "Química Inorgânica",
+      "Química Orgânica Complementar",
+      "Bioquímica Geral",
+      "Complementos de Química Física",
+      "Laboratórios de Química Física e Orgânica"
+    ]
+  },
+  "Direitos Humanos (Mestrado)": {
+    "id": 4886,
+    "classes": [
+      "Filosofia e História dos Direitos Humanos",
+      "Métodos do Trabalho Científico",
+      "Proteção dos Direitos Fundamentais no Plano Estadual",
+      "Proteção dos Direitos Humanos no Quadro da Organização das Nações Unidas",
+      "Proteção dos Direitos Humanos no Quadro de Organizações Regionais",
+      "Seminário de Investigação"
+    ]
+  },
+  "Construção e Reabilitação Sustentáveis (Mestrado)": {
+    "id": 4909,
+    "classes": [
+      "Building Information Modeling (BIM): Conceção, Projeto e Construção",
+      "Ecologia e Sustentabilidade das Construções",
+      "Energia e Conforto nos Edifícios",
+      "Materiais Avançados para Construção e Conservação de Edifícios",
+      "Materiais de Construção Eco-Eficientes",
+      "Reabilitação Acústica de Edifícios",
+      "Gestão de Projetos de Edifícios Sustentáveis",
+      "Patologia e Reabilitação Não-Estrutural das Construções",
+      "Qualidade e Durabilidade das Construções"
+    ]
+  },
+  "Engenharia Urbana (Mestrado)": {
+    "id": 4914,
+    "classes": [
+      "Conceção de Vias Urbanas",
+      "Dimensionamento e Construção de Pavimentos de Vias Urbanas",
+      "Gestão de Meios Hídricos",
+      "Mobilidade Sustentável",
+      "Tratamento de Água",
+      "Urbanística e Planeamento Urbano",
+      "Drenagem Urbana Sustentável",
+      "Gestão Ambiental Urbana",
+      "Gestão e Reabilitação de Vias Urbanas"
+    ]
+  },
+  "Engenharia Mecânica (Doutoramento)": {
+    "id": 4927,
+    "classes": [ "Projeto de Tese em Engenharia Mecânica", "Tese" ]
+  },
+  "Engenharia Química e Biológica (Doutoramento)": { "id": 4928, "classes": [ "Tese" ] },
+  "Matemática (Licenciatura)": {
+    "id": 4859,
+    "classes": [
+      "Álgebra Linear I",
+      "Cálculo I",
+      "Matemática Computacional I",
+      "Tópicos de Matemática",
+      "Álgebra Linear II",
+      "Cálculo II",
+      "Geometria",
+      "Matemática Computacional II",
+      "Matemática Discreta",
+      "Álgebra",
+      "Análise I",
+      "Análise Numérica I",
+      "História do Pensamento Matemático",
+      "Análise II",
+      "Análise Numérica II",
+      "Complementos de Álgebra",
+      "Geometria Diferencial",
+      "Análise Complexa",
+      "Lógica e Fundamentos da Matemática",
+      "Métodos Matemáticos da Física",
+      "Probabilidades e Aplicações",
+      "Estatística",
+      "Temas de Matemática"
+    ]
+  },
+  "Engenharia e Gestão Industrial (Mestrado Integrado)": {
+    "id": 4906,
+    "classes": [
+      "Complementos de Análise Matemática para Engenharia",
+      "Eletricidade e Eletromagnetismo",
+      "Gestão de Projetos Industriais",
+      "Métodos Numéricos",
+      "Projeto Integrado em Engenharia e Gestão Industrial"
+    ]
+  },
+  "Física (Mestrado)": {
+    "id": 4866,
+    "classes": [
+      "Mecânica Quântica Avançada",
+      "Métodos Avançados de Investigação Experimental",
+      "Métodos Matemáticos em Física"
+    ]
+  },
+  "Marketing e Estratégia (Mestrado)": {
+    "id": 4897,
+    "classes": [
+      "Análise de Dados e Competências Transversais",
+      "Estratégia e Marketing Internacional",
+      "Estratégia Empresarial",
+      "Gestão de Marketing"
+    ]
+  },
+  "Enfermagem (Licenciatura)": {
+    "id": 4938,
+    "classes": [
+      "Anatomia e Fisiologia Humana",
+      "Biologia Celular e Molecular",
+      "Fundamentos de Enfermagem I",
+      "Iniciação à Investigação em Enfermagem",
+      "Psicologia e Socio-Antropologia da Saúde",
+      "Enfermagem e Saúde",
+      "Ensino Clínico de Fundamentos de Enfermagem em Cuidados de Saúde Diferenciados",
+      "Ensino Clínico de Fundamentos de Enfermagem em Cuidados de Saúde Primários",
+      "Fundamentos de Biopatologia",
+      "Fundamentos de Enfermagem II",
+      "Enfermagem do Adulto e do Idoso",
+      "Envelhecimento e Gestão da Doença Crónica",
+      "Fundamentos de Farmacologia e Terapêutica",
+      "Patologia Médica e Cirúrgica",
+      "Ensino Clínico de Enfermagem em Contexto de Cirurgia",
+      "Ensino Clínico de Enfermagem em Contexto de Medicina",
+      "Ensino Clínico em Contexto de Cuidados Continuados Integrados",
+      "Enfermagem de Saúde Comunitária",
+      "Enfermagem de Saúde da Criança e do Jovem",
+      "Enfermagem de Saúde Mental e Psiquiatria",
+      "Enfermagem em Saúde Sexual e Reprodutiva",
+      "Metodologia de Investigação em Enfermagem",
+      "Ensino Clínico de Enfermagem de Saúde da Criança e do Jovem",
+      "Ensino Clínico de Enfermagem de Saúde Mental e Psiquiatria",
+      "Ensino Clínico de Enfermagem em Saúde Sexual e Reprodutiva",
+      "Ensino Clínico de Saúde Comunitária e Familiar",
+      "Gestão e Desenvolvimento Profissional em Enfermagem",
+      "Projeto de Investigação em Enfermagem"
+    ]
+  },
+  "Engenharia Industrial e de Sistemas (Programa Doutoral)": {
+    "id": 4926,
+    "classes": [
+      "Métodos de Investigação em Engenharia",
+      "Projeto de Tese em Engenharia Industrial e de Sistemas",
+      "Tese"
+    ]
+  },
+  "Engenharia Eletrónica e de Computadores (Doutoramento)": { "id": 4925, "classes": [ "Tese" ] },
+  "Informática (Doutoramento)": { "id": 4930, "classes": [ "Tese" ] },
+  "Bioquímica (Licenciatura)": {
+    "id": 4856,
+    "classes": [
+      "Álgebra Linear e Geometria Analítica EC",
+      "Biologia Celular",
+      "Cálculo EC",
+      "Fundamentos de Química",
+      "Técnicas Laboratoriais em Química",
+      "Biomoléculas",
+      "Física I",
+      "Laboratórios de Química ",
+      "Microbiologia",
+      "Química Orgânica Geral",
+      "Biologia Molecular",
+      "Bioquímica Analítica",
+      "Física II",
+      "Laboratórios de Bioquímica I",
+      "Metabolismo e Regulação I",
+      "Estatística EC",
+      "Genética Molecular e Bioinformática",
+      "Laboratórios de Bioquímica II",
+      "Metabolismo e Regulação II",
+      "Química Bioinorgânica",
+      "Enzimologia",
+      "Fisiologia e Metabolismo Animal",
+      "Fisiologia e Metabolismo Vegetal",
+      "Laboratórios de Bioquímica III"
+    ]
+  },
+  "Engenharia Biomédica (Mestrado Integrado)": {
+    "id": 4900,
+    "classes": [
+      "Algoritmos e Técnicas de Programação",
+      "Eletrónica",
+      "Fisiologia Humana II",
+      "Fundamentos de Bioquímica",
+      "Mecânica dos Fluidos",
+      "Mecânica dos Sólidos",
+      "Complementos de Eletrónica e Sistemas Digitais",
+      "Fenómenos Interfaciais",
+      "Fisiologia Humana I",
+      "Métodos Numéricos",
+      "Química-Física dos Materiais",
+      "Transferência de Calor e Massa",
+      "Bioinformática",
+      "Biomateriais",
+      "Inovação e Criação de Negócios em Bioengenharia",
+      "Investigação Operacional",
+      "Processamento de Biomateriais",
+      "Processamento de Sinal Contínuo e Discreto",
+      "Bases de Dados Clínicas e de Gestão Hospitalar",
+      "Formação Empresarial em Engenharia Biomédica",
+      "Gestão Clínica e da Qualidade em Saúde",
+      "Instrumentação",
+      "Laboratórios Integrados em Engenharia Biomédica",
+      "Projeto Integrador em Engenharia Biomédica",
+      "Aplicação de Biomateriais",
+      "Avaliação de Propriedades de Biomateriais",
+      "Biomecânica",
+      "Componentes Mecânicos e Tribologia",
+      "Inteligência Artificial em Engenharia Biomédica",
+      "Modelação e Simulação Biomecânicas",
+      "Biomateriais Avançados e Biomiméticos",
+      "Engenharia de Tecidos e Células Estaminais",
+      "Projeto de Dispositivos Médicos e Reabilitação",
+      "Sistemas Multi-físicos, Biofluídica e Biocorrosão",
+      "Técnicas de Processamento e Modificação de Biomateriais"
+    ]
+  },
+  "Estatística Aplicada (Licenciatura)": {
+    "id": 4858,
+    "classes": [
+      "Álgebra Linear para Engenharia",
+      "Algoritmia e Programação",
+      "Cálculo para Engenharia",
+      "Laboratórios de Estatística I",
+      "Tópicos de Engenharia Económica",
+      "Análise Matemática para Engenharia",
+      "Complementos de Álgebra Linear e Geometria Analítica",
+      "Introdução ao Marketing",
+      "Laboratórios de Estatística II",
+      "Probabilidade e Estatística I",
+      "Complementos de Análise Matemática para Engenharia",
+      "Laboratórios de Estatística III",
+      "Métodos Computacionais",
+      "Probabilidade e Estatística II",
+      "Sistemas de Informação",
+      "Investigação Operacional I",
+      "Modelos Lineares e Aplicações",
+      "Sondagens e Técnicas de Amostragem",
+      "Tecnologias de Bases de Dados",
+      "Tópicos de Bioestatística",
+      "Análise Multivariada e Aplicações",
+      "Aprendizagem Estatística",
+      "Investigação Operacional II",
+      "Processos Estocásticos",
+      "Séries Temporais"
+    ]
+  },
+  "Engenharia de Redes e Serviços Telemáticos (Mestrado)": {
+    "id": 4916,
+    "classes": [
+      "Gestão de Redes",
+      "Projeto Integrador de Comunicações I",
+      "Redes de Comunicações Móveis",
+      "Segurança em Redes",
+      "Tecnologias e Protocolos Internet",
+      "Arquiteturas Emergentes de Rede",
+      "Computação Móvel e Ubíqua",
+      "Projeto Integrador de Comunicações II",
+      "Qualidade de Serviço em Redes IP",
+      "Virtualização de Redes",
+      "Dissertação em Redes e Serviços de Comunicações",
+      "Planeamento de Dissertação em Comunicações por Computador",
+      "Seminários de Comunicações por Computador"
+    ]
+  },
+  "Informática (MAP-i) (Programa Doutoral)": { "id": 4932, "classes": [ "Seminário" ] },
+  "Análise Estrutural de Monumentos e Construções Históricas (Mestrado Europeu) (Mestrado)": {
+    "id": 4919,
+    "classes": [
+      "Comportamento Sísmico e Dinâmica Estrutural",
+      "História da Construção e da Conservação",
+      "Inspeção e Diagnóstico",
+      "Restauro e Conservação de Materiais",
+      "Técnicas de Análise Estrutural",
+      "Técnicas de Reparação e Reforço",
+      "Projeto Final/Dissertação",
+      "Projeto Integrado"
+    ]
+  },
+  "Geologia - Geoconservação, Geologia Ambiental e Recursos Geológicos (Doutoramento)": { "id": 4850, "classes": [ "Tese" ] },
+  "Sustentabilidade do Ambiente Construído (Doutoramento)": { "id": 5002, "classes": [ "Tese" ] },
+  "Contabilidade (Licenciatura)": {
+    "id": 4889,
+    "classes": [
+      "Contabilidade Financeira I",
+      "Introdução à Gestão",
+      "Matemática para Gestão",
+      "Princípios de Direito",
+      "Princípios de Microeconomia",
+      "Contabilidade Financeira II",
+      "Estatística Aplicada à Gestão",
+      "Introdução à Gestão Financeira",
+      "Princípios de Direito Comercial",
+      "Princípios de Macroeconomia",
+      "Análise e Planeamento Financeiro",
+      "Contabilidade de Gestão I",
+      "Finanças Públicas",
+      "Fiscalidade I",
+      "Sistemas de Informação para Contabilidade",
+      "Aplicações Setoriais da Contabilidade",
+      "Complementos de Finanças",
+      "Contabilidade de Gestão II",
+      "Contabilidade Financeira III",
+      "Fiscalidade II",
+      "Auditoria",
+      "Contabilidade de Gestão III",
+      "Contabilidade Pública",
+      "Direito Fiscal",
+      "Prestação de Contas",
+      "Estágio",
+      "Ética e Deontologia na Profissão Contabilística"
+    ]
+  },
+  "Tecnologias Interativas (Mestrado)": {
+    "id": 4918,
+    "classes": [
+      "Computação Física",
+      "Design de Interação",
+      "Estética Computacional",
+      "Inovação Digital",
+      "Laboratório de Interatividade",
+      "Programação Interativa",
+      "Fundamentos de Computação Gráfica",
+      "Interação Móvel ",
+      "Jogos Digitais",
+      "Projeto em Tecnologias Interativas"
+    ]
+  },
+  "Ciências da Comunicação (Mestrado)": {
+    "id": 4954,
+    "classes": [
+      "Comunicação e Linguagens",
+      "Metodologias de Investigação e Intervenção",
+      "Narrativa Audiovisual",
+      "Sonoplastia",
+      "Composição Digital",
+      "Oficina Audiovisual",
+      "Transmédia"
+    ]
+  },
+  "Direito Judiciário (Direitos Processuais e Organização Judiciária) (Mestrado)": {
+    "id": 4885,
+    "classes": [
+      "Direito Processual Civil",
+      "Direito Processual Penal",
+      "Teoria da Jurisdição e Comunicação da Justiça",
+      "Teoria Geral do Processo",
+      "Metodologia da Investigação em Ciências Jurídicas"
+    ]
+  },
+  "Ensino do 1º Ciclo do Ensino Básico e de Português e História e Geografia de Portugal no 2º Ciclo do Ensino Básico  (Mestrado)": {
+    "id": 5016,
+    "classes": [
+      "Abordagens Curriculares Integradas na Educação Básica",
+      "Didática da Educação Visual, Musical, Dramática e Físico-Motora",
+      "Didática da Matemática dos 6 aos 12 anos",
+      "Dinâmicas Territoriais",
+      "Discursos, Textos e Estratégias Interpretativas",
+      "Temas e Debates de História I",
+      "Didática da História e da Geografia para a Educação Básica",
+      "Didática das Ciências para a Educação Básica",
+      "Elementos de Geografia",
+      "Elementos de Sintaxe do Português",
+      "Temas de Didática da Língua Portuguesa para a Educação Básica",
+      "Temas e Debates de História II",
+      "Estágio",
+      "Inclusão e Necessidades Educativas Especiais"
+    ]
+  },
+  "Direito dos Contratos e da Empresa (Mestrado)": {
+    "id": 4882,
+    "classes": [
+      "Contratos Civis",
+      "Contratos Comerciais",
+      "Direito das Sociedades Comerciais",
+      "Direito do Trabalho",
+      "Métodos do Trabalho Científico"
+    ]
+  },
+  "Engenharia Biomédica (Doutoramento)": {
+    "id": 5033,
+    "classes": [
+      "Projeto de Tese em Engenharia Biomédica",
+      "Tese em Engenharia Biomédica"
+    ]
+  },
+  "Negócios Internacionais (Licenciatura)": {
+    "id": 4892,
+    "classes": [
+      "Álgebra Linear ",
+      "Cálculo para Economia e Gestão",
+      "Introdução ao Direito Empresarial",
+      "Microeconomia I"
+    ]
+  },
+  "Gestão de Recursos Humanos  (Mestrado)": {
+    "id": 4896,
+    "classes": [
+      "Análise de Dados e Competências Transversais",
+      "Comportamento Organizacional",
+      "Gestão da Diversidade",
+      "Gestão Estratégica de Recursos Humanos",
+      "Internacionalização de Recursos Humanos",
+      "Formação e Desenvolvimento de Recursos Humanos",
+      "Gestão Operacional de Recursos Humanos",
+      "Metodologia e Proposta de Investigação em Gestão"
+    ]
+  },
+  "Optometria Avançada (Mestrado)": {
+    "id": 4869,
+    "classes": [
+      "Bioestatistica Aplicada",
+      "Métodos de Avaliação e Imagiologia Ocular",
+      "Patologia e Farmacologia Ocular"
+    ]
+  },
+  "Direito dos Negócios, Europeu e Transnacional (Mestrado)": {
+    "id": 4883,
+    "classes": [
+      "Direito Europeu",
+      "Direito Europeu das Sociedades",
+      "Direito Europeu dos Contratos",
+      "Direito Internacional Económico",
+      "Matérias Fundamentais de Direito Fiscal Internacional",
+      "Tradições Jurídicas Comparadas",
+      "Direito Europeu da Concorrência",
+      "Direito Fiscal Europeu e Internacional"
+    ]
+  },
+  "Teatro (Licenciatura)": {
+    "id": 4952,
+    "classes": [
+      "Espaço e Performance 1",
+      "Estudos Performativos 1",
+      "Laboratório de Prática Teatral",
+      "Práticas de Interpretação 1",
+      "Teatro Clássico",
+      "Dramaturgia 1",
+      "Estudos Performativos 2",
+      "Laboratório de Texto",
+      "Práticas de Interpretação 2",
+      "Teatro Barroco",
+      "Dramaturgia 2",
+      "Estudos Performativos 3",
+      "Laboratório Interartes",
+      "Práticas de Interpretação 3",
+      "Teatro Romântico e Naturalista",
+      "Estética do Teatro",
+      "Laboratório de Criação Teatral",
+      "Oficina Cénica 1",
+      "Práticas de Interpretação 4",
+      "Teatro Modernista e Pós-Modernista",
+      "Escrita Dramática",
+      "Espaço e Performance 2",
+      "Projeto Teatral Coletivo",
+      "Seminário de Investigação em Estudos Performativos",
+      "Teatro e Comunidades",
+      "Oficina Cénica 2",
+      "Produção Teatral",
+      "Projeto Teatral Independente",
+      "Técnicas de Documentação Teatral"
+    ]
+  },
+  "Ciências da Linguagem (Doutoramento)": { "id": 4985, "classes": [ "Tese" ] },
+  "Design de Moda (Programa Doutoral)": {
+    "id": 5013,
+    "classes": [
+      "Metodologias de Investigação em Design de Moda",
+      "Seminários de Investigação em Design de Moda",
+      "Tese "
+    ]
+  },
+  "Engenharia Biológica (Mestrado Integrado)": {
+    "id": 4899,
+    "classes": [
+      "Bioquímica e Fisiologia Microbianas",
+      "Complementos de Análise Matemática para Engenharia",
+      "Eletricidade e Eletromagnetismo",
+      "Fenómenos de Transferência I",
+      "Métodos Numéricos",
+      "Termodinâmica Química",
+      "Engenharia Económica",
+      "Fenómenos de Transferência II",
+      "Fundamentos de Microbiologia",
+      "Projeto em Engenharia Química e Biológica II",
+      "Química-Física",
+      "Engenharia da Reação Química I",
+      "Estratégia e Otimização de Processos",
+      "Laboratórios de Tecnologia Química",
+      "Operações de Apoio Industrial",
+      "Processos de Separação I"
+    ]
+  },
+  "Música (Licenciatura)": {
+    "id": 4951,
+    "classes": [
+      "Prática Coral e Instrumental I",
+      "Formação Musical",
+      "Fundamentos Teóricos da Música I",
+      "História da Música e Análise I",
+      "Introdução aos Estudos Musicológicos",
+      "Organologia",
+      "Estética Musical",
+      "Etnomusicologia, Teoria e Método",
+      "Fundamentos Teóricos da Música II",
+      "História da Música e Análise II",
+      "Seminário de Estudos Musicológicos I",
+      "Prática Coral e Instrumental II",
+      "História da Música e Análise III",
+      "Investigação em Musicologia",
+      "Músicas do Mundo",
+      "Paleografia Musical I",
+      "Sociologia da Música",
+      "Baixo Contínuo e Acompanhamento",
+      "História da Música e Análise IV",
+      "Paleografia Musical II",
+      "Seminário de Estudos Musicológicos II"
+    ]
+  },
+  "Contabilidade  (Mestrado)": {
+    "id": 4894,
+    "classes": [
+      "Auditoria Financeira",
+      "Complementos de Contabilidade Financeira",
+      "Fiscalidade",
+      "Gestão Orçamental e Contabilidade Pública",
+      "História e Teoria da Contabilidade",
+      "Complementos de Fiscalidade",
+      "Controlo de Gestão e Avaliação do Desempenho",
+      "Metodologia e Proposta de Investigação em Gestão"
+    ]
+  },
+  "Comunicação, Arte e Cultura (Mestrado)": {
+    "id": 4955,
+    "classes": [
+      "Arte, Mediação e Políticas Culturais",
+      "Laboratório de Criação e Comunicação na Arte e na Cultura",
+      "Sociologia da Cultura e do Imaginário",
+      "Seminário de Investigação e Projeto em Comunicação, na Arte e na Cultura",
+      "Semiótica da Arte e da Cultura",
+      "Sociologia da Arte"
+    ]
+  },
+  "Direito das Crianças, Família e Sucessões (Mestrado)": {
+    "id": 4990,
+    "classes": [
+      "A Criança e a Família",
+      "A Proteção da Criança e os Processos Tutelares Cíveis",
+      "Da Infância e dos Direitos",
+      "Practicum",
+      "Promoção dos Direitos e Proteção das Crianças e Jovens em Perigo",
+      "A Tutela Penal dos Interesses das Crianças",
+      "Direito das Sucessões",
+      "Direito Patrimonial da Família I",
+      "Direito Patrimonial da Família II",
+      "Lei Tutelar Educativa",
+      "Dissertação de Mestrado"
+    ]
+  },
+  "Sociologia (Mestrado)": {
+    "id": 4958,
+    "classes": [
+      "Cultura e Património: Dinâmicas Sociais e Políticas",
+      "Desenvolvimento e Políticas Sociais",
+      "Organizações e Trabalho: Questões da Atualidade",
+      "Temas de Sociologia Contemporânea",
+      "Cultura e Identidades: Debates Contemporâneos",
+      "Práticas de Investigação Social",
+      "Projeto em Cultura e Identidades",
+      "Seminário em Cultura e Identidades"
+    ]
+  },
+  "Economia (Mestrado)": {
+    "id": 4895,
+    "classes": [
+      "Desenvolvimento Sustentável e Transformação Digital",
+      "Econometria Aplicada",
+      "Informação, Mercados e Estratégias",
+      "Políticas Macroeconómicas",
+      "Sistemas de Informação Analíticos",
+      "Análise de Dados e Competências Transversais",
+      "Metodologia e Proposta de Investigação em Economia"
+    ]
+  },
+  "Estudos Portugueses (Licenciatura)": {
+    "id": 4947,
+    "classes": [
+      "Escrita Académica e Metodologias de Investigação",
+      "Introdução aos Estudos da Linguagem",
+      "Introdução aos Estudos Literários",
+      "Património Humanístico Europeu",
+      "Tecnologias de Comunicação em Humanidades",
+      "Fonética e Fonologia do Português",
+      "Língua e Gramática Latinas 1",
+      "Literatura Portuguesa Medieval",
+      "Literaturas e Culturas Africanas de Língua Portuguesa 1"
+    ]
+  },
+  "Genética Molecular (Mestrado)": {
+    "id": 4867,
+    "classes": [
+      "Projeto em Genética Molecular",
+      "Temas Atuais em Genética",
+      "Genética e Biotecnologia Molecular",
+      "Mecanismos de Regulação Celular",
+      "Ómicas e Abordagens Genéticas em Organismos Modelo",
+      "Técnicas Avançadas de Análise Celular"
+    ]
+  },
+  "Engenharia de Materiais (Mestrado Integrado)": {
+    "id": 4902,
+    "classes": [
+      "Ciência de Polímeros",
+      "Complementos de Análise Matemática para Engenharia",
+      "Complementos de Mecânica dos Materiais",
+      "Eletricidade e Eletromagnetismo",
+      "Física dos Materiais",
+      "Metalurgia Química",
+      "Processamento de Materiais Metálicos",
+      "Estrutura Atómica e Molecular",
+      "Física de Polímeros",
+      "Laboratório de Materiais II",
+      "Métodos Estatísticos",
+      "Métodos Numéricos",
+      "Biomateriais Poliméricos",
+      "Fundamentos de Transferência de Calor",
+      "Materiais Cerâmicos e Vidros",
+      "Processamento Avançado de Polímeros I",
+      "Propriedades Eletrónicas dos Materiais",
+      "Reologia",
+      "Composição e Modificação de Polímeros",
+      "Laboratório de Materiais III",
+      "Metalurgia Física",
+      "Ótica e Lasers",
+      "Processamento de Cerâmicos",
+      "Tratamentos Térmicos",
+      "Degradação de Materiais",
+      "Maquinagem e Conformação",
+      "Modelação e Simulação Computacionais",
+      "Seleção e Aplicação de Materiais",
+      "Técnicas Avançadas de Caracterização",
+      "Tecnologia de Vácuo e Aplicações",
+      "Ciência e Tecnologia de Filmes Finos",
+      "Fundição e Soldadura",
+      "Materiais Nanoestruturados",
+      "Processamento Avançado de Polímeros II",
+      "Projeto Integrador em Engenharia de Materiais",
+      "Técnicas de Processamento de Polímeros",
+      "Materiais Compósitos Avançados",
+      "Tópicos de Organização da Produção"
+    ]
+  },
+  "Engenharia de Sistemas  (Mestrado)": {
+    "id": 4911,
+    "classes": [ "Gestão da Produção", "Logística", "Simulação" ]
+  },
+  "Arquitetura (Mestrado Integrado)": {
+    "id": 4854,
+    "classes": [
+      "Geometria",
+      "Laboratório de Desenho",
+      "Teoria da Arquitetura I e História da Arquitetura I",
+      "Movimentos de Arte e Arquitetura Contemporânea",
+      "Projeto I",
+      "Antropologia",
+      "Projeto II",
+      "História da Arquitetura II",
+      "Laboratório de Construção",
+      "Teoria da Arquitetura II",
+      "Desenho",
+      "Projeto III",
+      "Desenho Assistido por Computador",
+      "Projeto IV",
+      "História da Arquitetura III",
+      "Laboratório de Urbanística",
+      "Teoria da Arquitetura III",
+      "Estruturas",
+      "Projeto V",
+      "Processos de Construção",
+      "Projeto VI"
+    ]
+  },
+  "Engenharia e Gestão de Sistemas de Informação (Pós-Laboral) (Mestrado Integrado)": {
+    "id": 4905,
+    "classes": [
+      "Contabilidade",
+      "Fundamentos de Eletromagnetismo e Ótica",
+      "Fundamentos dos Sistemas de Informação",
+      "Introdução às Redes de Computadores",
+      "Investigação Operacional",
+      "Processo e Metodologias de Software",
+      "Bases de Dados 2",
+      "Desenvolvimento de Aplicações Informáticas",
+      "Marketing Omnicanal",
+      "Métodos Estatísticos",
+      "Programação para a Web",
+      "Engenharia de Dados para Suporte à Tomada de Decisão",
+      "Fundamentos de Sistemas Distribuídos",
+      "Implantação de Aplicações Informáticas Empresariais",
+      "Logística e Organização da Produção"
+    ]
+  },
+  "Sociologia (Licenciatura)": {
+    "id": 4943,
+    "classes": [
+      "Antropologia Geral",
+      "Metodologia das Ciências Sociais",
+      "Oficina de Iniciação à Sociologia",
+      "Sociologia Geral"
+    ]
+  },
+  "Psicologia (Mestrado Integrado)": {
+    "id": 4935,
+    "classes": [
+      "Competências de Comunicação Interpessoal",
+      "Estatística Aplicada à Psicologia I",
+      "Métodos Qualitativos de Investigação em Psicologia",
+      "Psicologia da Perceção",
+      "Psicologia do Desenvolvimento do Adulto e do Envelhecimento",
+      "Cognição Social",
+      "Estatística Aplicada à Psicologia II",
+      "Fundamentos de Avaliação Psicológica",
+      "Psicologia da Linguagem",
+      "Psicologia do Funcionamento Executivo",
+      "Escrita Científica em Psicologia",
+      "Ética e Deontologia",
+      "Modelos de Intervenção Psicológica Individual I",
+      "Psicologia da Inteligência",
+      "Psicologia da Personalidade",
+      "Psicopatologia",
+      "Modelos de Intervenção Psicológica em Contextos Sociais",
+      "Modelos de Intervenção Psicológica Individual II",
+      "Oficinas de Investigação em Psicologia"
+    ]
+  },
+  "Engenharia Civil (Mestrado Integrado)": {
+    "id": 4901,
+    "classes": [
+      "Análise de Estruturas Metálicas",
+      "Complementos de Análise Matemática para Engenharia",
+      "Geologia para a Engenharia Civil",
+      "Materiais de Construção",
+      "Métodos Estatísticos",
+      "Organização e Gestão da Construção",
+      "Resistência de Materiais",
+      "Hidroinformática",
+      "Infraestruturas de Transporte",
+      "Materiais e Tecnologias da Construção",
+      "Topografia Digital e Gestão de Obras",
+      "Água e Alterações Climáticas",
+      "Cálculo e Análise de Sistemas Estruturais",
+      "Estradas",
+      "Hidráulica Geral",
+      "Mecânica dos Solos e das Rochas",
+      "Modelação de Informação na Construção",
+      "Física das Construções",
+      "Mecânica dos Fluidos em Engenharia Civil",
+      "Métodos de Análise Estrutural",
+      "Planeamento do Território e Ambiente",
+      "Projeto em Engenharia Civil",
+      "Dimensionamento Geotécnico",
+      "Gestão de Projetos de Construção",
+      "Hidrologia Aplicada",
+      "Planeamento Urbano"
+    ]
+  },
+  "Arqueologia (Licenciatura)": {
+    "id": 4939,
+    "classes": [
+      "Civilização Grega",
+      "Civilizações Antigas",
+      "Introdução à Arqueologia",
+      "Pré-História",
+      "Pré-História Recente e Proto-História Europeia",
+      "Civilização Romana",
+      "Estágio Prático I",
+      "História da Arte Clássica",
+      "Idade Média Portuguesa I",
+      "Métodos e Técnicas em Arqueologia I",
+      "História da Arte Medieval",
+      "Idade Média Portuguesa II",
+      "Idade Moderna Portuguesa I",
+      "Métodos e Técnicas em Arqueologia II"
+    ]
+  },
+  "Educação (Licenciatura)": {
+    "id": 4944,
+    "classes": [
+      "Contextos Profissionais de Educação e Formação",
+      "Correntes da Pedagogia Contemporânea",
+      "Educação e Desenvolvimento Sustentável",
+      "Introdução às Ciências da Educação",
+      "Sociologia da Educação I",
+      "Tecnologia e Comunicação Educacional I",
+      "Filosofia da Educação",
+      "Introdução à Metodologia da Investigação em Educação",
+      "Perfis Profissionais em Educação e formação",
+      "Sociologia da Educação II",
+      "Tecnologia e Comunicação Educacional II"
+    ]
+  },
+  "Engenharia e Gestão de Sistemas de Informação (Mestrado Integrado)": {
+    "id": 4904,
+    "classes": [
+      "Contabilidade",
+      "Fundamentos de Eletromagnetismo e Ótica",
+      "Fundamentos dos Sistemas de Informação",
+      "Introdução às Redes de Computadores",
+      "Investigação Operacional",
+      "Processo e Metodologias de Software",
+      "Bases de Dados 2",
+      "Desenvolvimento de Aplicações Informáticas",
+      "Marketing Omnicanal",
+      "Métodos Estatísticos",
+      "Programação para a Web",
+      "Engenharia de Dados para Suporte à Tomada de Decisão",
+      "Fundamentos de Sistemas Distribuídos",
+      "Implantação de Aplicações Informáticas Empresariais",
+      "Logística e Organização da Produção"
+    ]
+  },
+  "Línguas e Literaturas Europeias (Licenciatura)": {
+    "id": 4950,
+    "classes": [
+      "Inglês B2.1",
+      "Introdução ao Estudo da Literatura",
+      "Introdução às Ciências da Linguagem",
+      "Tecnologias de Comunicação em Humanidades"
+    ]
+  },
+  "Sociologia (Programa Doutoral)": { "id": 4976, "classes": [ "Tese" ] },
+  "Engenharia de Materiais (Doutoramento)": {
+    "id": 4923,
+    "classes": [ "Projeto de Tese em Engenharia de Materiais", "Tese " ]
+  },
+  "Engenharia Têxtil (Doutoramento)": {
+    "id": 4929,
+    "classes": [ "Projeto de Tese em Engenharia Têxtil", "Tese" ]
+  },
+  "Relações Internacionais (Licenciatura)": {
+    "id": 4893,
+    "classes": [
+      "Economia Política",
+      "Introdução à Ciência Política",
+      "Introdução às Relações Internacionais",
+      "Metodologia em Ciência Política"
+    ]
+  },
+  "Gestão e Tratamento de Resíduos (Doutoramento)": {
+    "id": 4991,
+    "classes": [ "Projeto de Tese em Gestão e Tratamento de Resíduos", "Tese" ]
+  },
+  "Ciências da Cultura (Doutoramento)": { "id": 4984, "classes": [ "Tese" ] },
+  "Engenharia Mecânica (Mestrado Integrado)": {
+    "id": 4908,
+    "classes": [
+      "Complementos de Análise Matemática para Engenharia",
+      "Estatística Aplicada",
+      "Mecânica dos Materiais I",
+      "Métodos Numéricos",
+      "Projeto Integrador em Engenharia Mecânica III",
+      "Termodinâmica",
+      "Automação Industrial",
+      "Introdução às Máquinas Elétricas e Acionamentos",
+      "Mecânica dos Fluidos",
+      "Mecânica dos Materiais II",
+      "Projeto Integrador em Engenharia Mecânica II",
+      "Tecnologias de Maquinagem e Conformação",
+      "Dinâmica de Estruturas e Vibrações",
+      "Especificação e Comando de Sistemas a Eventos Discretos",
+      "Mecânica Computacional",
+      "Órgãos de Máquinas I",
+      "Tecnologias de Fundição e Soldadura",
+      "Transferência de Calor",
+      "Controlo de Qualidade e Organização da Produção",
+      "Energética Industrial",
+      "Introdução à Engenharia e Manufatura Assistidos por Computador",
+      "Órgãos de Máquinas II",
+      "Projeto Integrador em Engenharia Mecânica IV",
+      "Teoria do Projeto Mecânico",
+      "Avaliação e Seleção de Projetos",
+      "Controlo de Processos",
+      "Tratamentos Térmicos de Ligas Metálicas"
+    ]
+  },
+  "Estudos da Criança (Mestrado)": {
+    "id": 4969,
+    "classes": [
+      "Direito da Criança e do Jovem",
+      "Fundamentos da Intervenção Psicoeducativa e Social com Crianças e Famílias",
+      "Metodologia de Investigação em Estudos da Criança",
+      "Sociologia da Infância",
+      "Direitos das Crianças e Políticas Públicas para a Infância",
+      "Intervenção e Promoção em Contexto Familiar"
+    ]
+  },
+  "Ciência Política e Relações Internacionais (Programa Doutoral)": {
+    "id": 4993,
+    "classes": [
+      "Complementos Avançados de Ciência Política",
+      "Complementos Avançados de Relações Internacionais",
+      "Metodologia de Investigação",
+      "Elaboração do Projeto",
+      "Exames Compreensivos",
+      "Seminário Temático",
+      "Elaboração Orientada da Tese"
+    ]
+  },
+  "Sustentabilidade do Ambiente Construído (Mestrado)": {
+    "id": 5001,
+    "classes": [
+      "Ciência da Sustentabilidade Urbana",
+      "Desempenho dos Edifícios",
+      "Materiais, Produtos e Sistemas para a Construção Sustentável",
+      "Panorâmica da Construção Sustentável",
+      "Princípios Ambientais",
+      "Sustentabilidade Económica e Social",
+      "Desempenho Urbano Sustentável",
+      "Métodos e Ferramentas",
+      "Processo de Projeto Integrado",
+      "Projeto de Investigação Integrado",
+      "Projeto Urbano Integrado",
+      "Reabilitação Sustentável de Edifícios",
+      "Dissertação em Sustentabilidade do Ambiente Construído"
+    ]
+  },
+  "Psicologia Básica (Programa Doutoral)": {
+    "id": 4937,
+    "classes": [
+      "Investigação Laboratorial em Psicologia Básica",
+      "Seminário de Investigação 1",
+      "Temas de Psicologia Experimental",
+      "Tese",
+      "Seminário de Investigação 2",
+      "Seminário de Investigação 3"
+    ]
+  },
+  "Ciências da Literatura (Doutoramento)": { "id": 4986, "classes": [ "Tese" ] },
+  "Fabrico Digital Direto para as Indústrias dos Polímeros e Moldes (Programa Doutoral)": {
+    "id": 5047,
+    "classes": [
+      "Planeamento da Tese",
+      "Seminários Avançados em Fabrico Digital Direto"
+    ]
+  },
+  "Avaliação Aplicada à Formação nas Profissões da Saúde (Mestrado)": {
+    "id": 5049,
+    "classes": [
+      "Acreditação da Formação nas Profissões da Saúde",
+      "Avaliação na Formação nas Profissões da Saúde",
+      "Desenho Curricular na Formação nas Profissões da Saúde",
+      "Desenho, Implementação, Gestão e Avaliação de Projetos",
+      "Dissertação",
+      "Metodologias de Investigação em Formação nas Profissões da Saúde",
+      "Teorias de Ensino e Aprendizagem nas Profissões da Saúde"
+    ]
+  },
+  "Psicologia Aplicada (Mestrado)": {
+    "id": 4992,
+    "classes": [
+      "Avaliação e Intervenção Clínica II",
+      "Avaliação e Intervenção Psicoeducacional I",
+      "Avaliação e Intervenção Social, Comunitária e Organizacional I",
+      "Avaliação em Psicologia Aplicada I",
+      "Investigação em Psicologia Aplicada I"
+    ]
+  },
+  "Ensino de Música (Mestrado)": {
+    "id": 4966,
+    "classes": [
+      "Ciências Musicais I",
+      "Currículo e Avaliação",
+      "Formação Musical I",
+      "Fundamentos da Didática da Música",
+      "Metodologia do Ensino Especializado das Ciências Musicais",
+      "Psicologia do Desenvolvimento",
+      "A Escola como Organização Educativa",
+      "Ciências Musicais II",
+      "Formação Musical II",
+      "Princípios e Práticas do Ensino da Formação Musical",
+      "Tecnologia Educativa",
+      "Estágio Profissional",
+      "Avaliação e Conceção de Materiais Didáticos de Ciências Musicais e de Formação Musical"
+    ]
+  },
+  "Ensino do 1º Ciclo do Ensino Básico e de Matemática e Ciências Naturais no 2º Ciclo do Ensino Básico (Mestrado)": {
+    "id": 5015,
+    "classes": [
+      "Abordagens Curriculares Integradas na Educação Básica",
+      "Didática da Educação Visual, Musical, Dramática e Físico-Motora",
+      "Didática da Matemática dos 6 aos 12 anos",
+      "Discurso, Textos e Estratégias Interpretativas",
+      "Inclusão e Necessidades Educativas Especiais",
+      "Teoria Elementar de Números",
+      "Didática da História e da Geografia para a Educação Básica",
+      "Didática das Ciências para a Educação Básica",
+      "Química e o Ambiente",
+      "Temas de Didática da Língua Portuguesa para a Educação Básica",
+      "Temas de Saúde e Ambiente"
+    ]
+  },
+  "Cadeias de Produção Agrícola - da mesa ao campo (Programa Doutoral)": {
+    "id": 5025,
+    "classes": [
+      "Competências Interpessoais I",
+      "Metodologias de Investigação",
+      "Projeto de Tese",
+      "Seminário I"
+    ]
+  },
+  "Educação Especial  (Mestrado)": {
+    "id": 4961,
+    "classes": [
+      "Educação Inclusiva e Necessidades Especiais",
+      "Metodologia de Investigação em Educação",
+      "Práticas Centradas na Família em Intervenção Precoce na Infância"
+    ]
+  },
+  "Ciências da Educação (Mestrado)": {
+    "id": 4959,
+    "classes": [
+      "Metodologia de Investigação em Ciências da Educação",
+      "Políticas Educativas nos Contextos Nacional e Local",
+      "Sociologia da Administração da Educação",
+      "Temas de Administração Educacional",
+      "Análise de Dados e Projeto em Administração Educacional",
+      "Investigação Portuguesa em Sociologia da Educação",
+      "Métodos de Administração Educacional",
+      "Sociologia das Organizações Educativas",
+      "Dissertação"
+    ]
+  },
+  "Ensino de Inglês no 1º Ciclo do Ensino Básico (Mestrado)": {
+    "id": 5021,
+    "classes": [
+      "Língua e Cultura Inglesas",
+      "Metodologia de Ensino de Inglês a Crianças I",
+      "Psicologia do Desenvolvimento da Criança e do Adolescente"
+    ]
+  },
+  "Geociências (Mestrado)": {
+    "id": 4988,
+    "classes": [
+      "Caraterização e Avaliação de Impacte Ambiental",
+      "Cartografia",
+      "Modelação em Sistemas Geoambientais",
+      "Recursos Informáticos e SIG Aplicados às Geociências",
+      "Técnicas de Investigação em Geociências",
+      "Áreas Protegidas e Ordenamento do Território",
+      "Geoturismo e Geoparques",
+      "Gestão e Valorização de Património Geológico",
+      "Inventariação e Caraterização de Património Geológico",
+      "Roteiros Geológicos",
+      "Projeto em Geociências",
+      "Temas Atuais em Geociências"
+    ]
+  },
+  "Arqueologia (Programa Doutoral)": { "id": 4973, "classes": [ "Tese" ] },
+  "Modelação de Informação na Construção de Edifícios - BIM A+ (Mestrado Europeu) (Mestrado)": {
+    "id": 5034,
+    "classes": [
+      "Gestão de Informação e Colaboração em BIM",
+      "Modelação na Arquitetura e Engenharia",
+      "Modelação Paramétrica em BIM",
+      "Reabilitação e Análise de Sustentabilidade Baseadas em BIM",
+      "Sistemas de Dados Avançados e Interoperabilidade em BIM",
+      "Utilização e Aplicações de 4D, 5D e 6D",
+      "Dissertação em BIM"
+    ]
+  },
+  "Ciências da Administração (Programa Doutoral)": {
+    "id": 4994,
+    "classes": [
+      "Complementos de Gestão Pública",
+      "Metodologia de Investigação em Administração e Políticas Públicas",
+      "Tópicos em Análise e Avaliação de Políticas",
+      "Elaboração do Projeto",
+      "Exames Compreensivos",
+      "Seminário Temático",
+      "Elaboração Orientada da Dissertação"
+    ]
+  },
+  "Geografia (Programa Doutoral)": {
+    "id": 4975,
+    "classes": [
+      "Geografia Aplicada",
+      "Investigação Teórica em Geografia",
+      "Métodos de Análise e Interpretação da Paisagem",
+      "Projeto de Investigação em Estudos da Paisagem",
+      "Tese"
+    ]
+  },
+  "Estudos da Criança (Programa Doutoral)": {
+    "id": 4972,
+    "classes": [
+      "Fundamentos e Práticas de Investigação em Estudos da Criança",
+      "Projeto de Tese em Educação Artística",
+      "Temas Avançados em Educação Artística",
+      "Temas Avançados em Metodologias de Investigação em Estudos da Criança",
+      "Tese"
+    ]
+  },
+  "Ciências da Educação (Programa Doutoral)": { "id": 4971, "classes": [ "Tese" ] },
+  "Crime, Diferença e Desigualdade (Mestrado)": {
+    "id": 4956,
+    "classes": [
+      "Desenvolvimento e Desigualdades Sociais",
+      "Estudos Sociais do Crime I",
+      "Psicologia do Crime",
+      "Tópicos de Direito Penal",
+      "Cultura, Diferença e Desigualdade",
+      "Estudos Sociais do Crime II",
+      "Justiça e Reinserção Social",
+      "Seminário de Investigação em Crime, Diferença e Desigualdade",
+      "Dissertação"
+    ]
+  },
+  "Optometria e Ciências da Visão (Programa Doutoral)": {
+    "id": 4989,
+    "classes": [ "Preparação e Apresentação do Projeto de Tese" ]
+  },
+  "Filosofia (Doutoramento)": { "id": 4987, "classes": [ "Tese" ] },
+  "Geometria e Medida para o Ensino Secundário (Curso Breve Creditado)": {
+    "id": 5135,
+    "classes": [ "Geometria e Medida para o Ensino Secundário" ]
+  },
+  "Álgebra para o Ensino Secundário (Curso Breve Creditado)": {
+    "id": 5136,
+    "classes": [
+      "Lógica e Teoria de Conjuntos",
+      "Radicais e Polinómios",
+      "Funções Polinomiais e Racionais"
+    ]
+  },
+  "Metodologias e Práticas de Tradução e Comunicação (Formação Especializada)": {
+    "id": 5123,
+    "classes": [
+      "Introdução à Metodologia e Prática de Comunicação em Contextos Multilingues",
+      "Estágio"
+    ]
+  },
+  "Programa Executivo em \"e-Commerce Internacional\" (Curso Breve Creditado)": {
+    "id": 5129,
+    "classes": [ "Programa Executivo e-Commerce Internacional" ]
+  },
+  "Tecnologia e Sistemas de Informação (Programa Doutoral)": {
+    "id": 4931,
+    "classes": [
+      "Planeamento da Tese",
+      "Seminário de TSI 1",
+      "Tópicos de Investigação em TSI 1"
+    ]
+  },
+  "História (Mestrado)": {
+    "id": 4957,
+    "classes": [
+      "Metodologias de Investigação em História",
+      "Seminário de Projeto I",
+      "Teoria da História e do Conhecimento Histórico"
+    ]
+  },
+  "Engenharia Mecatrónica (Mestrado)": {
+    "id": 4913,
+    "classes": [
+      "Dinâmica de Sistemas Mecânicos",
+      "Eletrónica de Potência e Sistemas de Acionamento",
+      "Modelação Computacional",
+      "Processamento de Imagem e Visão por Computador",
+      "Seleção de Materiais",
+      "Sistemas Pneumáticos e Óleo-hidráulicos",
+      "Aquisição de Dados e Instrumentação Virtual",
+      "Automação Segura",
+      "Controlo Ótimo e Adaptativo",
+      "Máquinas de Comando Numérico",
+      "Projeto de Sistemas Mecatrónicos",
+      "Robótica",
+      "Dissertação"
+    ]
+  },
+  "Espanhol Língua Segunda e Língua Estrangeira (Mestrado)": {
+    "id": 4983,
+    "classes": [
+      "Criação, Edição e Avaliação de Materiais Didáticos",
+      "Metodologias de Ensino de Espanhol em Contextos Multilingues",
+      "Planificação e Avaliação das Atividades da Língua Orais e Escritas",
+      "Programação e Avaliação em ELE",
+      "Tecnologias Aplicadas às Línguas",
+      "Aquisição de Espanhol como L2 e LE",
+      "Gramática Pedagógica e Aquisição de Léxico",
+      "Organização e Gestão Académica de Cursos de EL2/ELE",
+      "Saberes e Competências Culturais e SócioCulturais em Contexto de ELE",
+      "Seminário de Iniciação à Investigação em LE e L2"
+    ]
+  },
+  "Direito Tributário (Mestrado)": {
+    "id": 5030,
+    "classes": [
+      "Impostos sobre o Consumo",
+      "Impostos sobre o Rendimento",
+      "Teoria da Imposição Tributária",
+      "Teoria Geral da Relação Jurídica Tributária"
+    ]
+  },
+  "Sistemas Avançados de Engenharia para a Indústria (Programa Doutoral)": {
+    "id": 5009,
+    "classes": [
+      "Cultura Mundial e Competências em Línguas I",
+      "Excelência Organizacional e Gestão da Qualidade",
+      "Materiais em Física Avançada",
+      "Propriedade Industrial e Estratégia Privada de Inovação",
+      "Sistemas Avançados de Produção e Logística",
+      "Sistemas Avançados de Software e de Informação",
+      "Cultura Mundial e Competências em Línguas II",
+      "Gestão de Projetos e da Mudança",
+      "Métodos de Investigação e Comunicação Científica",
+      "Modelação, Simulação e Otimização",
+      "Sistemas Embebidos e Informática Industrial",
+      "Visualização da Informação e Sistemas Avançados de CAD",
+      "Tese em Sistemas Avançados de Engenharia"
+    ]
+  },
+  "Educação (Mestrado)": {
+    "id": 4960,
+    "classes": [
+      "Educação de Adultos e Intervenção Comunitária",
+      "História e Fundamentos da Educação de Adultos",
+      "Investigação em Educação e Desenvolvimento de Projetos",
+      "Políticas de Educação e Formação ao Longo da Vida"
+    ]
+  },
+  "Engenharia do Produto (Mestrado)": {
+    "id": 4998,
+    "classes": [
+      "Desenvolvimento Integrado de Produto",
+      "Ecodesign e Ecoeficiência",
+      "Gestão de Custos no Desenvolvimento de Novos Produtos",
+      "Laboratório de Inovação",
+      "Materiais e Tecnologias Avançadas",
+      "Engenharia Assistida por Computador",
+      "Laboratório de Desenvolvimento",
+      "Planeamento e Gestão de Projetos de Desenvolvimento de Produtos"
+    ]
+  },
+  "Psicologia da Educação (Mestrado)": {
+    "id": 5063,
+    "classes": [
+      "Consulta Psicológica Educacional",
+      "Educação e Parentalidade",
+      "Instrução, Tecnologia e Aprendizagem",
+      "Maus-tratos, Educação e Desenvolvimento"
+    ]
+  },
+  "Educação Pré-Escolar (Mestrado)": {
+    "id": 4962,
+    "classes": [
+      "Inclusão e Necessidades Educativas Especiais",
+      "Iniciação à Matemática e às Ciências na Educação de Infância",
+      "Linguagem e Pensamento Histórico e Geográfico na Educação de Infância",
+      "Metodologia da Educação de Infância",
+      "Observação, Documentação e Avaliação na Educação de Infância",
+      "Temas de Pedagogia na Educação de Infância",
+      "Didática da Educação Visual, Musical, Dramática e Físico-Motora na Creche e no Jardim de Infância",
+      "Metodologia da Educação em Creche",
+      "Estágio"
+    ]
+  },
+  "Gestão (Mestrado)": {
+    "id": 5050,
+    "classes": [
+      "Comportamento Organizacional",
+      "Contabilidade Financeira Avançada",
+      "Estratégia de Marketing",
+      "Finanças Empresariais",
+      "Gestão de Operações",
+      "Análise de Dados e Competências Transversais",
+      "Complementos de Contabilidade de Gestão",
+      "Controlo de Gestão e Avaliação do Desempenho",
+      "Metodologia e Proposta de Investigação em Gestão"
+    ]
+  },
+  "Arqueologia (Mestrado)": {
+    "id": 4953,
+    "classes": [
+      "Seminário de Metodologias de Investigação em Arqueologia",
+      "Seminário em Materiais Arqueológicos e Tecnologias",
+      "Seminário em Temas de Investigação"
+    ]
+  },
+  "Psicologia Aplicada (Programa Doutoral)": {
+    "id": 4936,
+    "classes": [
+      "Estudos Avançados em Psicologia Aplicada I",
+      "Métodos de Investigação e Análise de Dados I",
+      "Projeto de Investigação/Tese I",
+      "Estudos Avançados em Psicologia Aplicada II",
+      "Métodos de Investigação e Análise de Dados II",
+      "Projeto de Investigação/Tese II",
+      "Estudos Avançados em Psicologia Aplicada III",
+      "Métodos de Investigação e Análise de Dados III",
+      "Projeto de Investigação/Tese III",
+      "Estudos Avançados em Psicologia Aplicada IV",
+      "Métodos de Investigação e Análise de Dados IV",
+      "Projeto de Investigação/Tese IV",
+      "Estudos Avançados em Psicologia Aplicada V",
+      "Projeto de Investigação/Tese V",
+      "Estudos Avançados em Psicologia Aplicada VI",
+      "Projeto de Investigação/Tese VI"
+    ]
+  },
+  "Ensino de História no 3º Ciclo do Ensino Básico e no Ensino Secundário (Mestrado)": {
+    "id": 5020,
+    "classes": [
+      "Cidade e Centro Histórico",
+      "Currículo e Avaliação",
+      "Metodologia do Ensino da História I",
+      "Psicologia do Desenvolvimento",
+      "Teoria da História e do Conhecimento Histórico",
+      "A Escola como Organização Educativa",
+      "Metodologia do Ensino da História II",
+      "Tecnologia Educativa",
+      "Temas de História I",
+      "Temas de História II",
+      "Estágio Profissional",
+      "Avaliação e Conceção de Materiais Didáticos de História"
+    ]
+  },
+  "Ensino de Biologia e Geologia no 3º Ciclo no Ensino Básico e no Ensino Secundário (Mestrado)": {
+    "id": 4964,
+    "classes": [
+      "Biologia Celular e Funcional",
+      "Currículo e Avaliação",
+      "Metodologia do Ensino de Biologia e Geologia I",
+      "Métodos de Investigação em Geociências",
+      "Psicologia do Desenvolvimento",
+      "A Escola como Organização Educativa",
+      "Metodologia do Ensino de Biologia e Geologia II",
+      "Métodos de Cartografia Geológica",
+      "Tecnologia Educativa",
+      "Temas Avançados em Biologia",
+      "Estágio Profissional",
+      "Avaliação e Conceção de Materiais Didáticos de Biologia e Geologia"
+    ]
+  },
+  "Psicologia Clínica e Psicoterapia de Adultos (Mestrado)": {
+    "id": 5070,
+    "classes": [
+      "Formulação de Caso em Psicoterapia",
+      "Modelos de Mudança em Psicoterapia",
+      "Neurociências dos Processos Psicopatológicos do Adulto",
+      "Processos Relacionais e Competências Avançadas de Atendimento Clínico",
+      "Processos Transdiagnósticos em Psicopatologia",
+      "Avaliação e Intervenção Clínica com Adultos I",
+      "Avaliação e Intervenção Clínica com Adultos II",
+      "Estatística Avançada Aplicada à Psicologia",
+      "Projeto de Investigação em Psicologia Clínica e Psicoterapia de Adultos",
+      "Psicofarmacologia",
+      "Dissertação",
+      "Estágio em Psicologia Clínica e Psicoterapia de Adultos"
+    ]
+  },
+  "Sociologia do Género e da Sexualidade (Mestrado)": {
+    "id": 5048,
+    "classes": [
+      "Género, Comunicação e Linguagem",
+      "Metodologias de Investigação Social",
+      "Políticas da Sexualidade e Cidadania",
+      "Teorias do Género e da Sexualidade I",
+      "Género, Feminismos e Movimentos Sociais",
+      "Género, Trabalho e Emprego",
+      "Seminário de Projeto em Género e Sexualidade",
+      "Teorias do Género e da Sexualidade II"
+    ]
+  },
+  "Temas de Psicologia da Educação (Mestrado)": {
+    "id": 5029,
+    "classes": [
+      "Dificuldades de Aprendizagem",
+      "Maus-tratos, Desenvolvimento e Aprendizagem"
+    ]
+  },
+  "Ensino de Matemática no 3º Ciclo do Ensino Básico e no Secundário (Mestrado)": {
+    "id": 4968,
+    "classes": [
+      "A Prova em Matemática",
+      "Currículo e Avaliação",
+      "Metodologia do Ensino da Matemática I",
+      "Psicologia do Desenvolvimento",
+      "Tópicos de Geometria Euclidiana",
+      "A Escola como Organização Educativa",
+      "Metodologia do Ensino da Matemática II",
+      "Modelação Matemática",
+      "Tecnologia Educativa",
+      "Temas da Matemática",
+      "Estágio Profissional",
+      "Avaliação e Conceção de Materiais Didáticos de Matemática"
+    ]
+  },
+  "Estudos Culturais (Programa Doutoral)": {
+    "id": 5032,
+    "classes": [
+      "Comunicação Intercultural",
+      "Sociologia da Cultura",
+      "Teorias e Conceitos Itinerantes de Cultura",
+      "Projeto de Investigação em Estudos Culturais",
+      "Tese"
+    ]
+  },
+  "Ciências da Comunicação (Programa Doutoral)": {
+    "id": 4974,
+    "classes": [
+      "Seminário de Investigação",
+      "Semiótica Social",
+      "Sociologia dos Media",
+      "Projeto de Investigação",
+      "Supervisão e Elaboração da Tese"
+    ]
+  },
+  "Análise Estrutural Avançada e Projeto com Materiais Compósitos - FRP++ (Mestrado)": {
+    "id": 5046,
+    "classes": [
+      "Inspeção, Diagnóstico, Reparação e Reforço de Estruturas Existentes",
+      "Materiais Compósitos na Indústria",
+      "Mecânica dos Materiais Compósitos",
+      "Modelação Avançada e Projeto Assistido por Computador",
+      "Projeto de Estruturas com materiais FRP",
+      "Projeto Integrado",
+      "Dissertação"
+    ]
+  },
+  "Práticas Artísticas em Contextos Profissionais nas Artes Performativas (Formação Especializada)": {
+    "id": 5119,
+    "classes": [
+      "Gestão de Projetos Artísticos",
+      "Práticas Performativas Contemporâneas",
+      "Projeto Artístico",
+      "Estágio em Práticas Performativas Contemporâneas"
+    ]
+  },
+  "Educação a Distância e e-Learning (Programa Doutoral)": {
+    "id": 5102,
+    "classes": [
+      "Metodologias Avançadas de Investigação em Educação a Distância e e-Learning I",
+      "Temas Avançados em Educação a Distância e e-Learning I",
+      "Metodologias Avançadas de Investigação em Educação a Distância e e-Learning II",
+      "Projeto de Investigação em Educação a Distância e e-Learning",
+      "Temas Avançados em Educação a Distância e e-Learning II",
+      "Tese"
+    ]
+  },
+  "Bullying e Comportamentos Desafiantes em Contextos Socioeducativos (Curso Breve Creditado)": {
+    "id": 5110,
+    "classes": [
+      "A Etiologia do Comportamento Desafiante, Padrões Comportamentais e Estratégias de Intervenção",
+      "Manifestações, Implicações e Intervenções no Fenómeno Bullying"
+    ]
+  },
+  "Segurança e Boas Práticas em Contexto Laboratorial no âmbito das Biociências (Curso Breve Creditado)": {
+    "id": 5145,
+    "classes": [
+      "Segurança e Boas Práticas Laboratoriais",
+      "Boas Práticas de Utilização de Equipamento Laboratorial",
+      "Gestão de Resíduos Laboratoriais e Derrames"
+    ]
+  },
+  "Programa de Formação em Gestão Pública – FORGEP (Formação Especializada)": {
+    "id": 5115,
+    "classes": [ "Módulo de Formação em  Gestão Pública - FORGEP" ]
+  },
+  "Geografia e Planeamento (Licenciatura)": {
+    "id": 4941,
+    "classes": [
+      "Expressão Gráfica e Cartografia",
+      "Geografia Física",
+      "Geografia Humana",
+      "Introdução à Estatística",
+      "Introdução à Geologia",
+      "Teoria em Geografia",
+      "Biogeografia",
+      "Climatologia Geral",
+      "Estatística para a Geografia",
+      "Geografia da População",
+      "Introdução aos Sistemas de Informação Geográfica",
+      "Teorias e Metodologias de Planeamento",
+      "Bases de Dados Aplicadas a Sistemas de Informação Geográfica",
+      "Direito do Urbanismo e Ambiente",
+      "Geomorfologia Dinâmica e Climática",
+      "Instrumentos de Gestão Territorial",
+      "Planeamento Biofísico"
+    ]
+  },
+  "Gestão (Licenciatura)": {
+    "id": 4891,
+    "classes": [
+      "Álgebra Linear ",
+      "Cálculo para Economia e Gestão",
+      "Contabilidade Financeira I",
+      "Introdução ao Direito Empresarial",
+      "Microeconomia I",
+      "Evolução do Pensamento em Gestão",
+      "Instrumentos de Apoio à Economia e à Gestão",
+      "Macroeconomia I",
+      "Marketing",
+      "Sistemas de Informação para a Gestão",
+      "Contabilidade de Gestão I",
+      "Economia Portuguesa e Europeia",
+      "Introdução ao Comportamento Organizacional",
+      "Métodos de Previsão para a Gestão",
+      "Princípios de Finanças Empresariais",
+      "Contabilidade Financeira II",
+      "Fundamentos de Pesquisa de Marketing",
+      "Gestão de Recursos Humanos",
+      "Investigação Operacional para a Gestão",
+      "Investimentos Financeiros",
+      "Análise e Planeamento Financeiro",
+      "Ética e Responsabilidade Social",
+      "Gestão da Produção e Operações",
+      "Gestão Estratégica"
+    ]
+  },
+  "Educação Básica (Licenciatura)": {
+    "id": 4946,
+    "classes": [
+      "Ciências da Natureza I",
+      "Educação Física",
+      "Educação Visual e Plástica",
+      "Elementos de Matemática",
+      "Geografia de Portugal",
+      "Língua, Textualidade Literária e Estratégias Interpretativas",
+      "Ciências da Natureza II",
+      "Educação Musical",
+      "Estudos da Linguagem",
+      "Expressão Dramática e Movimento",
+      "Introdução à Pedagogia da Infância",
+      "Números e Numeração",
+      "Biologia Humana e Saúde",
+      "Expressão Dramática e Educação Musical",
+      "Geometria e Medida",
+      "Psicologia do Desenvolvimento e da Aprendizagem da Criança",
+      "Semântica e Pragmática do Português",
+      "Tecnologias de Informação e Comunicação na Prática Profissional",
+      "Literatura para a Infância e Juventude",
+      "Organizações, Contextos Educativos e Prática Profissional",
+      "Probabilidades e Estatística",
+      "Sociologia da Infância e da Educação",
+      "Temas de História Europeia"
+    ]
+  },
+  "Língua, Literatura e Cultura Inglesas (Mestrado)": {
+    "id": 4978,
+    "classes": [ "Literaturas de Expressão Inglesa", "Teoria do Texto Literário" ]
+  },
+  "Engenharia de Estruturas (Mestrado)": {
+    "id": 5022,
+    "classes": [
+      "Comportamento de Estruturas",
+      "Estruturas de Betão I",
+      "Estruturas Metálicas",
+      "Fundações",
+      "Modelação de Informação na Construção para Engenheiros de Estruturas",
+      "Projeto Integrado em Engenharia de Estruturas I",
+      "Dinâmica Estrutural e Engenharia Sísmica",
+      "Estabilidade de Taludes, Escavações e Estruturas de Contenção",
+      "Estruturas de Alvenaria e Madeira",
+      "Estruturas de Betão II",
+      "Estruturas Mistas em Aço e Betão",
+      "Projeto Integrado em Engenharia de Estruturas II",
+      "Análise Experimental, Inspeção e Monitorização",
+      "Pontes",
+      "Projeto Integrado em Engenharia de Estruturas III",
+      "Reparação e Reforço"
+    ]
+  },
+  "Ensino de Informática (Mestrado)": {
+    "id": 4965,
+    "classes": [
+      "Currículo e Avaliação",
+      "Metodologia do Ensino da Informática I",
+      "Psicologia do Desenvolvimento"
+    ]
+  },
+  "Engenharia Aeroespacial (Mestrado)": {
+    "id": 5103,
+    "classes": [
+      "Aerodinâmica Aeroespacial",
+      "Astrodinâmica para Aplicações Aeroespaciais",
+      "Estruturas Aeroespaciais",
+      "Propulsão e Sistemas de Potência",
+      "Sistemas de Materiais para Aplicações Aeroespaciais",
+      "Tópicos de Teoria de Sistemas",
+      "Design Aeroespacial Avançado",
+      "Projeto Aeroespacial"
+    ]
+  },
+  "Estudos Luso-Alemães (Mestrado)": {
+    "id": 5023,
+    "classes": [
+      "Estruturas Linguísticas",
+      "Português e Alemão em Contexto Académico",
+      "Transferências Culturais e Literárias I"
+    ]
+  },
+  "Ciência, Tecnologia e Gestão do Mar (Programa Doutoral)": { "id": 5040, "classes": [] },
+  "Psicologia do Trabalho e das Organizações (Mestrado)": {
+    "id": 5065,
+    "classes": [
+      "Políticas e Práticas de Gestão de Recursos Humanos",
+      "Psicologia das Organizações",
+      "Psicologia do Trabalho",
+      "Temas de Investigação em Psicologia do Trabalho e das Organizações"
+    ]
+  },
+  "Ciência e Tecnologia Alimentar e Nutrição (Programa Doutoral)": {
+    "id": 5003,
+    "classes": [ "Projeto de Tese em Ciência e Tecnologia Alimentar e Nutrição" ]
+  },
+  "Ensino de Filosofia no Ensino Secundário (Mestrado)": {
+    "id": 4970,
+    "classes": [
+      "Ciência, Tecnologia e Sociedade",
+      "Currículo e Avaliação",
+      "Metodologia do Ensino da Filosofia I",
+      "Pensamento Crítico",
+      "Psicologia do Desenvolvimento",
+      "A Escola como Organização Educativa",
+      "Metodologia do Ensino da Filosofia II",
+      "Pensamento Estético",
+      "Pensamento Ético-Político",
+      "Tecnologia Educativa",
+      "Estágio Profissional",
+      "Avaliação e Conceção de Materiais Didáticos de Filosofia"
+    ]
+  },
+  "Ensino de Física e de Química no 3º Ciclo do Ensino Básico e no Ensino Secundário (Mestrado)": {
+    "id": 4967,
+    "classes": [
+      "Complementos de Física I",
+      "Currículo e Avaliação",
+      "Metodologia do Ensino de Física e Química I",
+      "Psicologia do Desenvolvimento",
+      "Tópicos de Química Física",
+      "A Escola como Organização Educativa",
+      "Complementos de Física II",
+      "Complementos de Química Orgânica",
+      "Metodologia do Ensino de Física e Química II",
+      "Tecnologia Educativa",
+      "Estágio Profissional",
+      "Avaliação e Conceção de Materiais Didáticos de Física e Química"
+    ]
+  },
+  "Neuropsicologia Clínica e Experimental (Mestrado)": {
+    "id": 5038,
+    "classes": [
+      "Métodos de Investigação em Neuropsicologia",
+      "Neuroanatomia Funcional",
+      "Neurociência Cognitiva, Emocional e Social",
+      "Rotação Laboratorial em Neuropsicologia Experimental - Major",
+      "Avaliação Neuropsicológica",
+      "Competências de Neuropsicologia Clínica",
+      "Reabilitação Neuropsicológica",
+      "Rotação Laboratorial em Neuropsicologia Experimental - Minor",
+      "Síndromes Neuropsicológicos e Psicopatológicos",
+      "Estágio em Neuropsicologia Clínica e Experimental",
+      "Tese de Mestrado em Neuropsicologia Clínica e Experimental"
+    ]
+  },
+  "Educação Pré-Escolar e Ensino do 1º Ciclo do Ensino Básico (Mestrado)": {
+    "id": 4963,
+    "classes": [
+      "Complementos de Matemática e de Ciências para a Infância",
+      "Didática da Educação Visual, Musical, Dramática e Físico-Motora",
+      "Discursos, Textos e Estratégias Interpretativas",
+      "Educação Visual, Musical, Dramática e Físico-Motora",
+      "Inclusão e Necessidades Educativas Especiais",
+      "Metodologia da Educação de Infância",
+      "Abordagens Curriculares Integradas na Educação Básica",
+      "Complementos de Didática da Língua Portuguesa para a Educação Básica",
+      "Didática da História e da Geografia para a Educação Básica",
+      "Didática da Literatura para a Educação Básica",
+      "Didática da Matemática dos 4 aos 10 anos",
+      "Didática das Ciências para a Educação Básica",
+      "Estágio",
+      "Temas de Pedagogia na Educação de Infância"
+    ]
+  },
+  "Engenharia Biomédica (Mestrado)": {
+    "id": 5075,
+    "classes": [
+      "Aplicação de Biomateriais",
+      "Avaliação de Propriedades de Biomateriais",
+      "Bioinformática",
+      "Biomecânica",
+      "Componentes Mecânicos e Tribologia",
+      "Modelação e Simulação Biomecânicas",
+      "Biomateriais Avançados e Biomiméticos",
+      "Engenharia de Tecidos e Células Estaminais",
+      "Projeto de Dispositivos Médicos e Reabilitação",
+      "Sistemas Multi-físicos, Biofluídica e Biocorrosão",
+      "Técnicas de Processamento e Modificação de Biomateriais"
+    ]
+  },
+  "Ensino de Português no 3º Ciclo do Ensino Básico e no Ensino Secundário (Mestrado)": {
+    "id": 5017,
+    "classes": [
+      "Currículo e Avaliação",
+      "Metodologia do Ensino de Português I",
+      "Psicologia do Desenvolvimento",
+      "Temas de Linguística Portuguesa",
+      "Temas de Literatura Portuguesa Contemporânea",
+      "A Escola como Organização Educativa",
+      "Linguística do Texto",
+      "Metodologia do Ensino de Português II",
+      "Tecnologia Educativa",
+      "Temas de Literatura e Cinema",
+      "Estágio Profissional",
+      "Avaliação e Conceção de Materiais Didáticos de Português"
+    ]
+  },
+  "Lideranças Escolares (Curso Breve Creditado)": {
+    "id": 5109,
+    "classes": [
+      "Lideranças Intermédias na Organização Escolar",
+      "Modelos de Governação das Escolas e Estilos de Gestão e Liderança",
+      "O Exercício da Liderança na Organização Escolar",
+      "Política Educativa e Modelos de Governação da Escola Pública"
+    ]
+  },
+  "Comunicação, Conflitos e Negociação para o Alto Rendimento (Curso Breve Creditado)": {
+    "id": 5114,
+    "classes": [ "Comunicação, Conflitos e Negociação para o Alto Rendimento" ]
+  },
+  "Filosofia Política (Mestrado)": {
+    "id": 4981,
+    "classes": [
+      "Ética e Política",
+      "Temas de História da Filosofia Política",
+      "Teorias da Justiça",
+      "Seminário de Investigação em Filosofia Politica",
+      "Teorias da Democracia",
+      "Teorias do Reconhecimento",
+      "Dissertação"
+    ]
+  },
+  "Promoção da Saúde e de Estilos de Vida Saudáveis (Curso Breve Creditado)": {
+    "id": 5124,
+    "classes": [
+      "Conceção, Implementação e Avaliação de Processos de Cocriação em Promoção e Educação para a Saúde em Áreas Específicas",
+      "Identificação de Necessidades e Prioridades em Promoção e Educação para a Saúde e Desenvolvimento de Competências Socio Emocionais",
+      "Literacia em Saúde e Determinantes da Saúde",
+      "Modelos, Abordagens e Ética em Promoção e Educação para a Saúde"
+    ]
+  },
+  "Psicoterapia: Contributos da Investigação para a Melhoria dos Serviços (Curso Breve Creditado)": {
+    "id": 5108,
+    "classes": [
+      "Conhecimento Técnico-Científico Aplicado ao Contexto Real",
+      "Implementação do Tratamento e Controlo de Qualidade",
+      "Intervenções Baseadas na Evidência em Psicoterapia",
+      "O Terapeuta como Peça-chave no Processo e Resultado da Psicoterapia",
+      "Resultado e Processo em Psicoterapia"
+    ]
+  },
+  "Sustentabilidade Ambiental e Gestão de Riscos (Curso Breve Creditado)": {
+    "id": 5147,
+    "classes": [
+      "Iniciação à Análise Espacial com Sistemas de Informação Geográfica",
+      "Mudanças Climáticas, Ambiente e Riscos Naturais",
+      "Sistemas de Informação Geográfica Aplicados ao Ambiente e à Gestão do Território"
+    ]
+  },
+  "Governação Pública e Direitos Fundamentais na Era Digital (Formação Especializada)": {
+    "id": 5130,
+    "classes": [
+      "Garantias dos Titulares de Direitos e Regime Sancionatório",
+      "Governação Pública Digital e Direitos Fundamentais",
+      "Implementação do RGPD nas Autarquias Locais"
+    ]
+  },
+  "Projeto de Sistemas Ciberfísicos no Contexto da Indústria 4.0 (Curso Breve Creditado)": {
+    "id": 5163,
+    "classes": [ "Projeto de Sistemas Ciberfísicos no Contexto da Indústria 4.0" ]
+  },
+  "Planeamento Familiar e Contraceção (Curso Breve Creditado)": {
+    "id": 5180,
+    "classes": [
+      "Práticas de Planeamento Familiar em Contexto Laboratorial",
+      "Promoção da Saúde Sexual e Reprodutiva"
+    ]
+  },
+  "Inovação e Empreendedorismo (Formação Especializada)": {
+    "id": 5173,
+    "classes": [
+      "Empreendedorismo e Valorização da Inovação",
+      "Sistemas de Inovação"
+    ]
+  },
+  "Gestão Curricular na Educação Pré-escolar (Formação Especializada)": {
+    "id": 5187,
+    "classes": [ "Gestão Curricular na Educação Pré-escolar" ]
+  },
+  "Cenografia  (Curso Breve Creditado)": { "id": 5197, "classes": [ "Teoria e Prática da Cenografia" ] },
+  "Soluções Empresariais Digitais (Formação Especializada)": { "id": 5174, "classes": [ "Soluções Empresariais Digitais" ] },
+  "Introdução à Gestão de Projetos de Engenharia (Formação Especializada)": {
+    "id": 5149,
+    "classes": [
+      "Análise e Conceção de Sistemas de Produção na Construção",
+      "Gestão Integrada de Projetos",
+      "Maturidade e Qualidade no Projeto de Sistemas de Informação"
+    ]
+  },
+  "Números e Regularidades para o Ensino Básico (Curso Breve Creditado)": {
+    "id": 5112,
+    "classes": [
+      "Números e Operações",
+      "Números Racionais",
+      "Padrões e Regularidades"
+    ]
+  },
+  "Inteligência Artificial para Apoio à Tomada de Decisão (Curso Breve Creditado)": { "id": 5195, "classes": [] },
+  "Gestão Integrada de Áreas de Exploração de Recursos Minerais (Curso Breve Creditado)": {
+    "id": 5159,
+    "classes": [
+      "Caraterização e Avaliação de Impacte Ambiental",
+      "Equilíbrio e Evolução de Resíduos Mineiros"
+    ]
+  },
+  "Prevalência, Progressão e Controlo da Miopia (Curso Breve Creditado)": {
+    "id": 5146,
+    "classes": [
+      "Definição e Classificação da Miopia",
+      "Prevalência e Modelos de Desenvolvimento e Progressão da Miopia",
+      "Avaliação Clínica do Paciente Potencialmente Míope e Míope",
+      "Fundamentação dos Métodos de Controlo da Progressão da Miopia",
+      "Intervenções para a Prevenção e Controlo da Progressão da Miopia"
+    ]
+  },
+  "Engenharia de Polímeros (Mestrado Integrado)": {
+    "id": 4903,
+    "classes": [
+      "Ciência de Polímeros II",
+      "Complementos de Análise Matemática para Engenharia",
+      "Introdução ao Projeto com Polímeros",
+      "Programação e Algoritmia",
+      "Reologia I",
+      "Ciência de Polímeros III",
+      "Eletrotecnia e Eletrónica",
+      "Fenómenos de Transferência em Engenharia de Polímeros",
+      "Mecânica de Materiais em Engenharia de Polímeros",
+      "Métodos Numéricos",
+      "Ciência de Polímeros IV",
+      "Engenharia de Custos",
+      "Processamento de Polímeros",
+      "Projeto de Moldes",
+      "Reologia II",
+      "Desenvolvimento de Sistemas Poliméricos",
+      "Fabrico Digital com Polímeros",
+      "Sustentabilidade e Ecodesign",
+      "Tópicos Avançados de Moldação por Injeção"
+    ]
+  },
+  "Tecnologia e Ciência Alimentar (Mestrado)": {
+    "id": 5004,
+    "classes": [
+      "Métodos de Análise da Qualidade Alimentar",
+      "Microbiologia dos Alimentos: da Preservação à Segurança",
+      "Propriedades Físico-Químicas dos Alimentos",
+      "Tecnologia Alimentar"
+    ]
+  },
+  "Economia (Programa Doutoral)": {
+    "id": 4995,
+    "classes": [
+      "Econometria Avançada I",
+      "Economia Matemática",
+      "Macroeconomia Avançada I",
+      "Microeconomia Avançada I"
+    ]
+  },
+  "Engenharia e Gestão Industrial (Mestrado)": {
+    "id": 5066,
+    "classes": [
+      "Ergonomia e Fatores Humanos",
+      "Gestão de Projetos Industriais",
+      "Modelação e Análise de Processos",
+      "Modelação e Simulação",
+      "Organização Avançada de Sistemas de Produção",
+      "Projeto Integrado em Engenharia e Gestão Industrial",
+      "Fiabilidade e Gestão da Manutenção",
+      "Gestão da Cadeia de Abastecimento",
+      "Gestão Estratégica e Marketing Industrial",
+      "Projeto e Fabrico Assistidos por Computador",
+      "Qualidade e Modelos Organizacionais",
+      "Sistemas de Informação para a Produção",
+      "Análise Inteligente de Dados",
+      "Métodos de Investigação em Engenharia Industrial e de Sistemas",
+      "Seminários em Engenharia e Gestão Industrial"
+    ]
+  },
+  "Materiais e Processamento Avançados (Programa Doutoral)": {
+    "id": 5014,
+    "classes": [ "Projeto de Tese", "Seminário de Engenharia de Materiais" ]
+  },
+  "Ciências da Linguagem (Mestrado)": {
+    "id": 4977,
+    "classes": [
+      "Temas de Fonética e Fonologia",
+      "Temas de Linguística Histórica",
+      "Temas de Pragmática",
+      "Temas de Sintaxe",
+      "Significado e Cognição"
+    ]
+  },
+  "Literaturas de Língua Portuguesa (Mestrado)": {
+    "id": 4979,
+    "classes": [
+      "Temas de Literatura Brasileira",
+      "Temas de Literatura Portuguesa",
+      "Temas de Literaturas Africanas de Língua Portuguesa"
+    ]
+  },
+  "Psicologia da Justiça (Mestrado)": {
+    "id": 5071,
+    "classes": [
+      "Avaliação e Intervenção em Ofensores Jovens",
+      "Formulação de Caso em Psicologia da Justiça",
+      "Noções Gerais de Direito Penal e Família e Crianças",
+      "Teorias e Sistemas de Justiça",
+      "Vitimologia e Prática Forense",
+      "Avaliação e Intervenção em Ofensores Adultos",
+      "Estatística Avançada Aplicada à Psicologia",
+      "Intervenção Psicológica com Vítimas",
+      "Projeto de Investigação em Psicologia da Justiça"
+    ]
+  },
+  "Estatística para Ciência de Dados (Mestrado)": {
+    "id": 5052,
+    "classes": [
+      "Estatística Computacional",
+      "Fundamentos e Aplicações da Estatística",
+      "Inferência Estatística",
+      "Modelos Lineares",
+      "Análise Estatística Multivariada",
+      "Métodos de Previsão e Séries Temporais",
+      "Modelos Lineares Generalizados e Aplicações",
+      "Teoria de Aprendizagem Estatística"
+    ]
+  },
+  "Gestão de Unidades de Saúde (Mestrado)": {
+    "id": 5089,
+    "classes": [
+      "Contabilidade e Controlo de Gestão em Unidades de Saúde",
+      "Direito em Saúde",
+      "Ética e Deontologia em Saúde",
+      "Finanças em Organizações de Saúde",
+      "Políticas e Sistemas de Saúde",
+      "Tópicos de Economia da Saúde",
+      "Comportamento Organizacional e Gestão de Recursos Humanos em Saúde",
+      "Comunicação em Saúde",
+      "Estratégia e Marketing em Saúde",
+      "Gestão da Qualidade e Segurança em Saúde",
+      "Logística em Unidades de Saúde",
+      "Sistemas de Informação e Tecnologia em Saúde",
+      "Análise de Dados em Saúde",
+      "Metodologia e Proposta de Investigação em Gestão"
+    ]
+  },
+  "Engenharia Mecânica (Mestrado)": {
+    "id": 5069,
+    "classes": [
+      "Controlo de Processos",
+      "Dinâmica de Estruturas e Vibrações",
+      "Materiais Metálicos e Não-Metálicos Avançados",
+      "Mecânica dos Sólidos Não-Linear",
+      "Mecânica Estrutural",
+      "Tratamentos Térmicos de Ligas Metálicas",
+      "Desenvolvimento Virtual de Produto",
+      "Estruturas Aeronáuticas e de Veículos",
+      "Fadiga e Mecânica da Fratura",
+      "Laboratório de Desenvolvimento em Construção Mecânica",
+      "Máquinas Térmicas e de Fluxo",
+      "Seleção de Materiais",
+      "Análise Experimental de Tensões",
+      "Avaliação e Seleção de Projetos",
+      "Materiais Compósitos Estruturais",
+      "Projeto Integrador em Engenharia Mecânica",
+      "Seminários de Industrialização em Construção Mecânica",
+      "Técnicas de Simulação Avançada",
+      "Dissertação"
+    ]
+  },
+  "Engenharia e Gestão da Qualidade (Mestrado)": {
+    "id": 4997,
+    "classes": [
+      "Ferramentas da Qualidade",
+      "Implementação e Certificação de Sistemas de Gestão da Qualidade",
+      "Introdução à Gestão da Qualidade",
+      "Lean Six-Sigma",
+      "Sustentabilidade e Responsabilidade Social",
+      "Técnicas Estatísticas",
+      "Análise Multivariada de Dados em Qualidade",
+      "Fiabilidade",
+      "Metrologia",
+      "Organização e Gestão da Manutenção",
+      "Sistemas de Avaliação de Desempenho"
+    ]
+  },
+  "Líderes para Indústrias Tecnológicas (Programa Doutoral)": {
+    "id": 4933,
+    "classes": [
+      "Design de Produto",
+      "Gestão da Inovação",
+      "Gestão de Sistemas de Fabrico",
+      "Seminários Tecnológicos",
+      "Sistemas de Engenharia e Projeto",
+      "Desenvolvimento de Produto",
+      "Gestão para a Engenharia",
+      "Inovação e Empreendedorismo",
+      "Liderança",
+      "Métodos de Investigação em Engenharia",
+      "Tese",
+      "Tese"
+    ]
+  },
+  "Comunicação de Ciência (Mestrado)": {
+    "id": 5039,
+    "classes": [
+      "Comunicação Estratégica de Ciência e Tecnologia",
+      "Estudos Sociais de Ciência e Tecnologia",
+      "Introdução à Comunicação de Ciência",
+      "Metodologias de Investigação e Intervenção",
+      "Ciência no Espaço Público",
+      "Seminários e Projeto",
+      "Temas Críticos de Ciência e Tecnologia"
+    ]
+  },
+  "Aprendizagem da Leitura e da Escrita no 1ª CEB: do Rastreio às Estratégias de Intervenção Diferenciada (Curso Breve Creditado)": {
+    "id": 5137,
+    "classes": [
+      "Modelos Multinível e Diferenciação Pedagógica",
+      "Sistema Alfabético de Escrita",
+      "Competências Facilitadoras da Aprendizagem da Leitura e da Escrita",
+      "Processos Mentais e Princípios de Ensino Inicial da Leitura e de Escrita",
+      "Fatores de Complexidade e Princípios de Ensino da Ortografia"
+    ]
+  },
+  "Matemática e Aplicações (Programa Doutoral)": {
+    "id": 5091,
+    "classes": [
+      "Seminário em Matemática 1",
+      "Seminário em Matemática 2",
+      "Tese"
+    ]
+  },
+  "Mediação Comunitária e Intercultural (Curso Breve Creditado)": {
+    "id": 5133,
+    "classes": [
+      "Fundamentos, Modelos e Características da Mediação Comunitária e Intercultural",
+      "Educação e Cidadania Global para a Convivência Inclusiva",
+      "Procedimentos, Estratégias e Técnicas de Mediação Comunitária e Intercultural",
+      "Processos de Diagnóstico, Avaliação Compreensiva da Mediação Comunitária e Intercultural"
+    ]
+  },
+  "Tecnologia e Comunicação Educacional (Curso Breve Creditado)": {
+    "id": 5138,
+    "classes": [
+      "Paradigma Tecnológico da Educação",
+      "Natureza da Comunicação Educacional",
+      "Teorias e Modelos de Comunicação Educacional",
+      "Ecologias da Comunicação e Contextos Educacionais",
+      "Comunicação e Tecnologias Digitais"
+    ]
+  },
+  "Sistemas Mecatrónicos I4.0 (Formação Especializada)": {
+    "id": 5176,
+    "classes": [ "Robótica Industrial", "Sistemas Ciberfísicos" ]
+  },
+  "Técnico Especial de Planeamento de Construção (Formação Especializada)": {
+    "id": 5157,
+    "classes": [
+      "Building Information Modeling para Planeamento de Obra",
+      "Conceitos Gerais do Planeamento de Obra I",
+      "Conceitos Gerais do Planeamento de Obra II",
+      "Novos Desafios na Construção",
+      "Estágio em Planeamento de Obra"
+    ]
+  },
+  "Análise Química e Caracterização (Curso Breve Creditado)": {
+    "id": 5154,
+    "classes": [
+      "Amostragem e Tratamento de Amostras",
+      "Ferramentas Quimiométricas",
+      "Técnicas de Caracterização de Materiais",
+      "Técnicas Espetroscópicas",
+      "Validação de Métodos Analíticos"
+    ]
+  },
+  "Programa Executivo em Marketing Digital e e-Commerce (Curso Breve Creditado)": {
+    "id": 5127,
+    "classes": [ "Programa Executivo em Marketing Digital e e-Commerce" ]
+  },
+  "Engenharia e Gestão de Operações Hospitalares - Lean Healthcare (Formação Especializada)": {
+    "id": 5162,
+    "classes": [
+      "Engenharia e Gestão de Operações Hospitalares - Lean Healthcare"
+    ]
+  },
+  "Ferramentas para a Integração de Recursos Naturais no Território (Curso Breve Creditado)": {
+    "id": 5160,
+    "classes": [
+      "Cartografia",
+      "Recursos Informáticos e SIG Aplicados às Geociências"
+    ]
+  },
+  "Robótica Colaborativa e Flexível para a Fábrica do Futuro (Formação Especializada)": {
+    "id": 5178,
+    "classes": [ "Robótica Colaborativa e Flexível para a Fábrica do Futuro" ]
+  },
+  "Cultura e Comunicação Empresarial entre Portugal e a Ásia (Curso Breve Creditado)": {
+    "id": 5120,
+    "classes": [
+      "Cultura e Comunicação Empresarial entre Portugal e a Ásia",
+      "Estágio"
+    ]
+  },
+  "Adaptação das Plantas às Alterações Climáticas (Curso Breve Creditado)": { "id": 5200, "classes": [] },
+  "Design de Produto e Processos Têxteis (Curso Breve Creditado)": { "id": 5179, "classes": [ "Design Thinking e Inovação Digital" ] },
+  "Acessibilidade e Design Inclusivo (Formação Especializada)": { "id": 5118, "classes": [ "Acessibilidade e Design Inclusivo" ] },
+  "Executive IPSS (Curso Breve Creditado)": { "id": 5155, "classes": [ "Executive IPSS" ] },
+  "Fabricação Robótica em Design, Arquitetura e Construção (Formação Especializada)": {
+    "id": 5156,
+    "classes": [
+      "Design para o Fabrico Digital",
+      "Projeto Computacional e Fabricação Robótica em Design, Arquitetura e Construção",
+      "Projeto Integrado de Design e Fabrico Digital"
+    ]
+  },
+  "Geometria e Medida para o Ensino Básico (Curso Breve Creditado)": { "id": 5152, "classes": [ "Geometria e Medida para o Ensino Básico" ] },
+  "Intercâmbios Interculturais no Coro de Clarinetes (Curso Breve Creditado)": {
+    "id": 5175,
+    "classes": [ "Intercâmbios Interculturais no Coro de Clarinetes" ]
+  },
+  "Formação Complementar em Física – Curso IV (Curso Breve Creditado)": {
+    "id": 5164,
+    "classes": [ "Física da Matéria Condensada", "Física Quântica I" ]
+  },
+  "Paleografia e Diplomática (Curso Breve Creditado)": {
+    "id": 5141,
+    "classes": [
+      "Conceitos de Paleografia e Análise Diplomática",
+      "Prática de Leitura e Transcrição Paleográfica"
+    ]
+  },
+  "Competências Transversais em Comunicação (Formação Especializada)": {
+    "id": 5143,
+    "classes": [
+      "Comunicação Estratégica para os Média Sociais",
+      "Práticas de Comunicação Audiovisual"
+    ]
+  },
+  "Desenho de Ruas (Curso Breve Creditado)": { "id": 5194, "classes": [ "Desenho de Ruas" ] },
+  "Criação de Conteúdos em Ambientes Digitais (Formação Especializada)": { "id": 5107, "classes": [ "Criação de Conteúdos Digitais", "Estágio" ] },
+  "Reestruturação Empresarial  (Curso Breve Creditado)": { "id": 5183, "classes": [ "Reestruturação Empresarial " ] },
+  "Supervisão Pedagógica e Desenvolvimento Profissional de Educadores e Professores: Princípios e Práticas (Curso Breve Creditado)": {
+    "id": 5121,
+    "classes": [
+      "Supervisão Pedagógica e Desenvolvimento Profissional de Educadores e Professores: Princípios e Práticas"
+    ]
+  },
+  "Criação de Ambientes Inteligentes (Formação Especializada)": {
+    "id": 5170,
+    "classes": [
+      "Aprendizagem Máquina ",
+      "Dispositivos Sensores e Internet das Coisas"
+    ]
+  },
+  "Curso Prático em Fundamentos da Cirurgia Minimamente Invasiva (Curso Breve Creditado)": {
+    "id": 5196,
+    "classes": [ "Curso Prático em Fundamentos da Cirurgia Minimamente Invasiva" ]
+  },
+  "Tecnologia de Fachadas e Envolventes de Edifícios (Formação Especializada)": { "id": 5117, "classes": [] },
+  "Inovação e Transição Digital nas Empresas (Formação Especializada)": {
+    "id": 5191,
+    "classes": [ "Inovação e Transição Digital nas Empresas" ]
+  },
+  "Gestão de Pessoas na Administração Pública (Formação Especializada)": {
+    "id": 5199,
+    "classes": [
+      "Administração Pública e Sustentabilidade",
+      "Atração, seleção e acolhimento na Administração Pública",
+      "Desenvolvimento de pessoas na Administração Pública",
+      "Ética na Administração Pública",
+      "Gestão da Mudança e Modernização Administrativa",
+      "Inovação na Administração Pública",
+      "Instrumentos de Gestão de Pessoas",
+      "Liderança Imersiva",
+      "Liderança na Administração Pública",
+      "Liderança na Ética e na Sustentabilidade"
+    ]
+  },
+  "Amamentação e Sustentabilidade Social (Curso Breve Creditado)": {
+    "id": 5182,
+    "classes": [
+      "Aleitamento Materno - Conceitos, Teorias e Orientações",
+      "Aleitamento Materno no Contexto da Prática"
+    ]
+  },
+  "Metodologias de Registo e Tratamento Digital Aplicadas à Arqueologia, História e Património (Curso Breve Creditado)": {
+    "id": 5186,
+    "classes": [
+      "Metodologias de Registo e Tratamento Digital Aplicadas à Arqueologia, História e Património"
+    ]
+  },
+  "Medicina (Doutoramento)": { "id": 5210, "classes": [ "Projeto de Tese em Medicina", "Tese" ] },
+  "Desenvolvimento de Projetos de Intervenção em Gerontologia Educativa (Curso Breve Creditado)": {
+    "id": 5151,
+    "classes": [
+      "Intervenção Comunitária e Envelhecimento",
+      "Projeto de Intervenção em Gerontologia Educativa"
+    ]
+  },
+  "Abordagem de Uma Só Saúde na Interação Fungo-Hospedeiro e Virulência (Curso Breve Creditado)": {
+    "id": 5201,
+    "classes": [
+      "Abordagem de Uma Só Saúde na Interação Fungo-Hospedeiro e Virulência"
+    ]
+  },
+  "Engenharia de Telecomunicações e Informática (Licenciatura)": {
+    "id": 5062,
+    "classes": [
+      "Álgebra Linear e Geometria Analítica para Engenharia",
+      "Cálculo para Engenharia",
+      "Circuitos de Corrente Contínua e de Corrente Alternada",
+      "Instrumentação e Projeto de Circuitos",
+      "Programação Imperativa",
+      "Algoritmos e Estruturas de Dados",
+      "Análise Matemática para Engenharia",
+      "Eletrónica Geral",
+      "Fundamentos de Estatística Aplicada",
+      "Fundamentos de Física",
+      "Sistemas Digitais",
+      "Arquitetura e Tecnologia de Computadores",
+      "Complementos de Análise Matemática para Engenharia",
+      "Métodos Numéricos",
+      "Programação Orientada aos Objetos",
+      "Sinais e Sistemas",
+      "Sistemas Operativos",
+      "Desenvolvimento Integrado de Software",
+      "Eletromagnetismo para Engenharia",
+      "Fundamentos de Bases de Dados",
+      "Fundamentos de Investigação Operacional",
+      "Teoria dos Sistemas para as Telecomunicações",
+      "Criptografia e Segurança em Redes",
+      "Ondas Eletromagnéticas e Antenas",
+      "Processamento Digital de Sinal",
+      "Redes de Computadores I",
+      "Sistemas Distribuídos"
+    ]
+  },
+  "Património Cultural (Mestrado)": {
+    "id": 5027,
+    "classes": [ "Cultura e Património", "Património Cultural e Sociedade" ]
+  },
+  "Engenharia Biomédica (Licenciatura)": {
+    "id": 5060,
+    "classes": [
+      "Álgebra Linear para Engenharia",
+      "Cálculo para Engenharia",
+      "Ciências dos Materiais",
+      "Desenho e Representação Gráfica",
+      "Introdução à Engenharia Biomédica",
+      "Tópicos de Biologia Celular e Molecular",
+      "Análise Matemática para Engenharia",
+      "Estatística Biomédica",
+      "Fisiologia Humana I",
+      "Fundamentos de Física",
+      "Química Orgânica para Engenharia",
+      "Seminários em Engenharia Biomédica",
+      "Algoritmos e Técnicas de Programação",
+      "Eletrónica",
+      "Fisiologia Humana II",
+      "Fundamentos de Bioquímica",
+      "Mecânica dos Fluidos",
+      "Mecânica dos Sólidos",
+      "Complementos de Eletrónica e Sistemas Digitais",
+      "Fenómenos Interfaciais",
+      "Introdução aos Paradigmas da Programação",
+      "Métodos Numéricos",
+      "Química-Física dos Materiais",
+      "Transferência de Calor e Massa",
+      "Biomateriais",
+      "Inteligência Artificial em Engenharia Biomédica",
+      "Investigação Operacional",
+      "Processamento de Biomateriais",
+      "Processamento de Sinal Contínuo e Discreto"
+    ]
+  },
+  "Marketing e Estratégia (Programa Doutoral)": {
+    "id": 4996,
+    "classes": [
+      "Comportamento do Consumidor",
+      "Gestão Estratégica",
+      "Metodologia de Investigação em Marketing e Estratégia"
+    ]
+  },
+  "Engenharia Civil (Mestrado)": {
+    "id": 5073,
+    "classes": [
+      "Cálculo e Análise de Sistemas Estruturais",
+      "Dimensionamento Geotécnico",
+      "Gestão de Projetos de Construção",
+      "Hidrologia Aplicada",
+      "Planeamento Urbano"
+    ]
+  },
+  "Engenharia Química e Biológica (Mestrado)": {
+    "id": 5074,
+    "classes": [
+      "Projeto em Engenharia de Processo",
+      "Biotecnologia Industrial",
+      "Dinâmica e Controlo de Processos",
+      "Laboratórios de Engenharia Química e Biológica",
+      "Química Fina Industrial",
+      "Biotecnologia Molecular Avançada",
+      "Inovação e Bioempresas"
+    ]
+  },
+  "Tradução e Comunicação Multilingue (Mestrado)": {
+    "id": 4980,
+    "classes": [
+      "Ferramentas e Recursos para Tradução",
+      "Metodologias e Práticas de Tradução e Comunicação I",
+      "Metodologias e Práticas de Tradução e Comunicação II",
+      "Teorias Contemporâneas da Tradução"
+    ]
+  },
+  "Biotecnologia (Mestrado)": {
+    "id": 5024,
+    "classes": [
+      "Bioinformática e Biologia de Sistemas",
+      "Biotecnologia Alimentar",
+      "Laboratórios Integrados de Biotecnologia",
+      "Reatores Biológicos",
+      "Separação e Purificação de Bioprodutos"
+    ]
+  },
+  "Medicina (Mestrado Integrado)": {
+    "id": 5044,
+    "classes": [
+      "Fundamentos de Medicina 1",
+      "Fundamentos de Medicina 2",
+      "Introdução à Formação em Medicina",
+      "Perfil Académico 1",
+      "Fundamentos de Medicina 3",
+      "Fundamentos de Medicina 4",
+      "Percursos Complementares em Medicina",
+      "Perfil Académico 2",
+      "IB-Bioestatística das Ciências da Saúde",
+      "IB-Bioinformática em Ciências da Saúde",
+      "IB-Epidemiologia",
+      "IB-Estágio Laboratorial",
+      "IB-Fundamentos de Genética, Desenvolvimento e Neoplasia",
+      "IB-Fundamentos de Imunologia e Infeção",
+      "IB-Fundamentos de Neurociências",
+      "IB-Metodologias de Investigação",
+      "Introdução à Prática Médica",
+      "Prática Clínica e Perfil Académico 1",
+      "Prática Clínica e Perfil Académico 2",
+      "Prática Clínica e Perfil Académico 3",
+      "Prática Clínica e Perfil Académico 4",
+      "Prática Clínica e Perfil Académico 5",
+      "Perfil Profissional",
+      "Prática Profissional",
+      "Transição para a Prática Profissional"
+    ]
+  },
+  "Biodiversidade, Ecologia e Alterações Globais (Mestrado)": {
+    "id": 5051,
+    "classes": [
+      "Biodiversidade, Funcionamento e Serviços dos Ecossistemas",
+      "Ecologia da Paisagem e Conservação",
+      "Ecologia Molecular e Evolução",
+      "Ecologia Quantitativa",
+      "Tópicos Avançados em Ecologia e Alterações Globais",
+      "Ecologia de Campo e de Laboratório",
+      "Projeto em Biodiversidade, Ecologia e Alterações Globais"
+    ]
+  },
+  "Media Arts (Mestrado)": {
+    "id": 5090,
+    "classes": [
+      "Atelier Experimental de Arte Sonora",
+      "História das Media Arts",
+      "Introdução à Programação para Media Arts",
+      "Projeto Laboratorial em Media Arts I",
+      "Atelier Experimental de Imagem em Movimento",
+      "Projeto Laboratorial em Media Arts II",
+      "Teoria dos Media Digitais"
+    ]
+  },
+  "Ciências Criminais (Mestrado)": {
+    "id": 5042,
+    "classes": [
+      "Metodologia do Trabalho Científico",
+      "Modelos Prisionais e Correcionais",
+      "Políticas de Justiça Penal",
+      "Prova, Verdade e Justiça",
+      "Desvio e Crime",
+      "Tópicos Avançados de Criminologia ",
+      "Vítima e Sistema de Justiça Criminal"
+    ]
+  },
+  "Avaliação das Aprendizagens à Luz do Conhecimento do(s) Domínio(s) da(s) Didática(s) Específica(s) (Curso Breve Creditado)": {
+    "id": 5140,
+    "classes": [
+      "O Papel da Avaliação nas/das/para as Aprendizagens",
+      "Modalidades da Avaliação das Aprendizagens",
+      "Os Documentos Curriculares em Vigor: Princípios e Conceções Subjacentes",
+      "Os Saberes Disciplinares e os Processos da sua Construção Natureza e Especificidade",
+      "Critérios, Procedimentos e Dispositivos de Avaliação no Âmbito"
+    ]
+  },
+  "Fundamentos para a Investigação Científica (Formação Especializada)": {
+    "id": 5098,
+    "classes": [
+      "(Bio)Ética e Propriedade Intelectual em Investigação Científica",
+      "Princípios Básicos de Gestão Técnico-Científica e Financeira De Projetos",
+      "Segurança e Saúde em Contextos de Investigação Científica"
+    ]
+  },
+  "Programa Executivo Marketing Digital e e-Business (Formação Especializada)": {
+    "id": 5128,
+    "classes": [ "Programa Executivo Marketing Digital e e-Business" ]
+  },
+  "Abordagem Integrada nos Cuidados de Saúde para Profissionais de Saúde (Formação Especializada)": {
+    "id": 5125,
+    "classes": [
+      "Cuidados de Saúde Integrados: Introdução, Organização e Prática baseada na Evidência",
+      "Implementação de Cuidados de Saúde Integrados: Contextos, Relações e Treino em Educação Interprofissional em Saúde",
+      "Treino de Competências, Comunicação e Ética em Cuidados de Saúde Integrados"
+    ]
+  },
+  "Gestão da Produção na Indústria 4.0 (Formação Especializada)": {
+    "id": 5150,
+    "classes": [
+      "Gestão da Inovação e Modelos de Negócio Digitais",
+      "Gestão da Produção Colaborativa e em Tempo Real",
+      "Introdução à Indústria 4.0 e aos Sistemas Ciberfísicos",
+      "Logística Avançada",
+      "Projeto Integrado de Gestão da Produção",
+      "Simulação da Produção e Digital Twins"
+    ]
+  },
+  "Proteção e Segurança Radiológica (Curso Breve Creditado)": {
+    "id": 5126,
+    "classes": [
+      "Deteção da Radiação e seus Efeitos Biológicos",
+      "Noções de Física da Radiação",
+      "Procedimentos e Legislação em Segurança Radiológica",
+      "Proteção Radiológica"
+    ]
+  },
+  "Recursos em Plantas Medicinais e Alimentares (Programa Doutoral)": {
+    "id": 5205,
+    "classes": [
+      "Projeto em Agro-Alimentar",
+      "Tópicos Avançados em Biodiversidade e Ecologia",
+      "Tópicos Avançados em Ciências Agro-alimentares",
+      "Tópicos Avançados em Ciências da Vida e da Saúde",
+      "Tese",
+      "Rotação Laboratorial 1",
+      "Rotação Laboratorial 2"
+    ]
+  },
+  "Enfermagem Médico-cirúrgica, na Área de Enfermagem à Pessoa em Situação Crítica (Mestrado)": {
+    "id": 5189,
+    "classes": [
+      "Enfermagem Médico-Cirúrgica I",
+      "Enfermagem Médico-Cirúrgica II",
+      "Enfermagem, Desenvolvimento Profissional e Organizacional",
+      "Investigação e Ética em Enfermagem",
+      "Prevenção e Controlo da Infeção Associada aos Cuidados de Saúde",
+      "Emergência, Exceção e Catástrofe",
+      "Enfermagem à Pessoa em Situação Crítica e/ou Falência Orgânica",
+      "Estágio"
+    ]
+  },
+  "Ciência e Tecnologia Cervejeira (Formação Especializada)": {
+    "id": 5161,
+    "classes": [
+      "Introdução à Produção de Cerveja e Matérias-Primas",
+      "Maltagem, Fabrico de Mosto e Fermentação",
+      "Operações Finais e Garantia da Qualidade ",
+      "Projeto em Tecnologia Cervejeira"
+    ]
+  },
+  "Técnico Especial de Construção  (Formação Especializada)": {
+    "id": 5158,
+    "classes": [
+      "Building Information Modeling para a Coordenação de Obra",
+      "Conceitos Gerais da Gestão de Obra I",
+      "Conceitos Gerais da Gestão de Obra II",
+      "Novos Desafios na Construção",
+      "Estágio em Coordenação e Gestão de Obra"
+    ]
+  },
+  "Formação Complementar em Física – Curso V (Curso Breve Creditado)": {
+    "id": 5165,
+    "classes": [ "Laboratório de Eletromagnetismo e Ótica", "Ótica" ]
+  },
+  "Design Thinking e Inovação Digital (Curso Breve Creditado)": { "id": 5177, "classes": [ "Design Thinking e Inovação Digital" ] },
+  "Curso de Alta Direção em Administração Pública (CADAP) (Formação Especializada)": { "id": 5131, "classes": [ "Alta Direção em Administração Pública" ] },
+  "Gestão e Governação de Empresas Familiares (Curso Breve Creditado)": {
+    "id": 5185,
+    "classes": [ "Gestão e Governação de Empresas Familiares" ]
+  },
+  "Motivação e Autorregulação da Aprendizagem (Curso Breve Creditado)": {
+    "id": 5148,
+    "classes": [ "Motivação e Autorregulação da Aprendizagem" ]
+  },
+  "Transformar Ideias em Negócios (Curso Breve Creditado)": { "id": 5193, "classes": [ "Transformar Ideias em Negócios " ] },
+  "Liderar  para o Alto Rendimento (Curso Breve Creditado)": { "id": 5113, "classes": [ "Liderar para o Alto Rendimento" ] },
+  "Cibersegurança (Formação Especializada)": {
+    "id": 5192,
+    "classes": [
+      "Engenharia da Cibersegurança",
+      "Fundamentos e Gestão da Cibersegurança"
+    ]
+  },
+  "Formação Complementar em Física – Curso VI (Curso Breve Creditado)": {
+    "id": 5166,
+    "classes": [ "Fundamentos de Biofísica", "Laboratório de Física Moderna" ]
+  },
+  "Intervenção Comunitária e Gestão de Infodemia (Formação Especializada)": {
+    "id": 5181,
+    "classes": [
+      "Gestão de Infodemia",
+      "Promoção da Saúde e Intervenção Comunitária",
+      "Saúde Pública e Epidemiologia"
+    ]
+  },
+  "Chefias da Autoridade Tributária (Formação Especializada)": { "id": 5171, "classes": [ "Ciências da Administração " ] },
+  "Engenharia Têxtil  (Mestrado Integrado)": {
+    "id": 5000,
+    "classes": [
+      "Acabamentos Convencionais e Funcionais",
+      "Complementos de Análise Matemática para Engenharia",
+      "Desenho Têxtil",
+      "Eletricidade e Eletromagnetismo",
+      "Não Tecidos e Estruturas Híbridas",
+      "Tecnologia da Tecelagem",
+      "Tratamento Prévio e Tingimento I",
+      "Análise de Custos Industriais",
+      "Estatística Aplicada à Indústria Têxtil e do Vestuário",
+      "Projeto Integrador em Engenharia Têxtil II",
+      "Tecnologia da Tricotagem"
+    ]
+  },
+  "Filosofia (Licenciatura)": {
+    "id": 4948,
+    "classes": [
+      "Antropologia Filosófica",
+      "Ética",
+      "Filosofia Antiga",
+      "Metodologia do Trabalho Filosófico",
+      "Teoria do Conhecimento",
+      "Filosofia da Mente",
+      "Filosofia da Religião",
+      "Filosofia Medieval",
+      "História do Pensamento Político e Social",
+      "Lógica e Teorias da Argumentação",
+      "Ética Aplicada",
+      "Filosofia da Linguagem",
+      "Filosofia Moderna I",
+      "Temas do Pensamento Português"
+    ]
+  },
+  "Geologia  (Licenciatura)": {
+    "id": 5011,
+    "classes": [
+      "Geologia Geral",
+      "Mineralogia",
+      "Química Geral",
+      "Tópicos de Matemática EC"
+    ]
+  },
+  "Proteção Civil e Gestão do Território (Licenciatura)": {
+    "id": 5037,
+    "classes": [
+      "Direito da Proteção Civil",
+      "Estatística Aplicada à Proteção Civil",
+      "Expressão Gráfica e Cartografia",
+      "Instrumentos de Gestão Territorial",
+      "Introdução à Geologia",
+      "Introdução à Proteção Civil",
+      "Climatologia Geral",
+      "Geografia da População",
+      "Higiene e Segurança do Trabalho",
+      "Introdução aos Sistemas de Informação Geográfica",
+      "Projeto em Proteção Civil e Gestão do Território I",
+      "Riscos Naturais e Ordenamento do Território",
+      "Comunicação Estratégica e Território",
+      "Deteção Remota e Sistemas de Informação Geográfica",
+      "Geografia das Florestas e dos Incêndios Florestais",
+      "Geografia Física de Portugal",
+      "Planeamento Municipal"
+    ]
+  },
+  "Biologia e Geologia (Licenciatura)": {
+    "id": 5031,
+    "classes": [
+      "Biologia Molecular e da Célula",
+      "Fundamentos de Matemática",
+      "Geologia Geral",
+      "Mineralogia",
+      "Química Geral",
+      "Biologia e Diversidade Vegetal",
+      "Estrutura e Função de Biomoléculas",
+      "Fundamentos de Química Orgânica",
+      "Petrologia I",
+      "Tópicos de Física",
+      "Bioenergética e Metabolismo",
+      "Diversidade Animal",
+      "Estatística e Análise de Dados",
+      "Geoquímica",
+      "Petrologia II",
+      "Cartas e Estruturas Geológicas",
+      "Fisiologia Animal",
+      "Fisiologia Vegetal",
+      "Geomorfologia",
+      "Microbiologia",
+      "Ecologia Geral",
+      "Genética",
+      "Geologia Ambiental",
+      "Paleontologia e Estratigrafia",
+      "Recursos Hídricos"
+    ]
+  },
+  "Engenharia Mecânica (Licenciatura)": {
+    "id": 5056,
+    "classes": [
+      "Álgebra Linear para Engenharia",
+      "Cálculo para Engenharia",
+      "Ciência e Tecnologia dos Materiais",
+      "Desenho e Métodos Gráficos",
+      "Física Geral"
+    ]
+  },
+  "Engenharia Informática (Licenciatura)": {
+    "id": 5055,
+    "classes": [
+      "Álgebra Linear para Engenharia",
+      "Cálculo para Engenharia",
+      "Laboratórios de Informática I",
+      "Programação Funcional",
+      "Tópicos de Matemática Discreta"
+    ]
+  },
+  "Engenharia e Gestão Industrial (Licenciatura)": {
+    "id": 5053,
+    "classes": [
+      "Álgebra Linear para Engenharia",
+      "Cálculo para Engenharia",
+      "Introdução à Engenharia e Gestão Industrial",
+      "Introdução à Engenharia Económica",
+      "Programação de Computadores I",
+      "Projeto Integrado em Engenharia e Gestão Industrial I",
+      "Análise Matemática para Engenharia",
+      "Desenho Técnico",
+      "Estatística Aplicada",
+      "Fundamentos de Física",
+      "Gestão de Custos",
+      "Programação de Computadores II",
+      "Complementos de Análise Matemática para Engenharia",
+      "Comportamento de Materiais",
+      "Eletricidade e Eletromagnetismo",
+      "Ergonomia e Estudo do Trabalho",
+      "Processos e Sistemas de Fabrico"
+    ]
+  },
+  "Economia Industrial e da Empresa (Mestrado)": {
+    "id": 5086,
+    "classes": [
+      "Economia dos Mercados e da Concorrência",
+      "Empreendedorismo",
+      "Empresa e Mercados",
+      "Estatística e Econometria para Economia Aplicada",
+      "Tópicos de Economia Industrial e da Empresa",
+      "Análise de Dados e Competências Transversais",
+      "Estratégia Empresarial",
+      "Metodologia e Proposta de Investigação em Economia"
+    ]
+  },
+  "Engenharia Têxtil (Licenciatura)": {
+    "id": 5082,
+    "classes": [
+      "Álgebra Linear para Engenharia",
+      "Cálculo para Engenharia",
+      "Desenho Técnico",
+      "Introdução à Indústria Têxtil e do Vestuário",
+      "Programação e Algoritmia",
+      "Química Têxtil",
+      "Análise Matemática para Engenharia",
+      "Corantes e Pigmentos",
+      "Física Geral",
+      "Materiais Têxteis",
+      "Projeto Integrador em Engenharia Têxtil I",
+      "Tecnologia de Produção de Produtos Filiformes",
+      "Complementos de Análise Matemática para Engenharia",
+      "Desenho Têxtil",
+      "Eletricidade e Eletromagnetismo",
+      "Tecnologia da Tecelagem",
+      "Termodinâmica e Transferência de Calor",
+      "Tratamento Prévio e Tingimento I",
+      "Análise de Custos Industriais",
+      "Eletrotecnia e Eletrónica",
+      "Estatística Aplicada à Indústria Têxtil e do Vestuário",
+      "Projeto Integrador em Engenharia Têxtil II",
+      "Tecnologia da Tricotagem",
+      "Tratamento Prévio e Tingimento II",
+      "Acabamentos Convencionais e Funcionais",
+      "Controlo de Qualidade Têxtil",
+      "Estamparia Convencional e Digital",
+      "Investigação Operacional",
+      "Não Tecidos e Estruturas Híbridas",
+      "Tecnologias da Confeção",
+      "Ergonomia e Estudo do Trabalho na Indústria Têxtil e do Vestuário",
+      "Projeto Individual em Engenharia Têxtil"
+    ]
+  },
+  "Biotecnologia Marinha e Aquacultura (Programa Doutoral)": { "id": 5028, "classes": [ "Inovação e Empreendedorismo" ] },
+  "Artes Visuais (Licenciatura)": {
+    "id": 5035,
+    "classes": [
+      "Atelier de Artes Visuais I",
+      "Correntes Artísticas I",
+      "Desenho e Perceção",
+      "Fundamentos de Geometria",
+      "Práticas Oficinais I",
+      "Atelier de Artes Visuais II",
+      "Correntes Artísticas II",
+      "Desenho e Corpo",
+      "Geometria e Arte",
+      "Práticas Oficinais II",
+      "Arte Contemporânea I",
+      "Atelier de Artes Visuais III",
+      "Desenho e Matérias",
+      "Oficina de Impressão",
+      "Práticas Artísticas",
+      "Arte Contemporânea II",
+      "Atelier de Artes Visuais IV",
+      "Desenho e Práticas",
+      "Espaço, Território e Contexto",
+      "Oficina de Têxtil",
+      "Atelier de Artes Visuais V",
+      "Estudos da Performance",
+      "Oficina de Moldes e Modelação",
+      "Teoria da Imagem"
+    ]
+  },
+  "Engenharia e Gestão de Sistemas de Informação (Mestrado)": {
+    "id": 5068,
+    "classes": [
+      "Análise e Conceção de Sistemas de Informação",
+      "Aprendizagem Automática em Sistemas Empresariais",
+      "Apresentação e Visualização de Informação",
+      "Gestão Estratégica Empresarial",
+      "Infraestruturas de Tecnologia da Informação"
+    ]
+  },
+  "Física (Licenciatura)": {
+    "id": 5019,
+    "classes": [
+      "Álgebra Linear e Geometria Analítica para Ciências",
+      "Cálculo para Ciências",
+      "Introdução à Física Experimental",
+      "Introdução à Física Moderna",
+      "Química Geral",
+      "Cálculo Vetorial",
+      "Complementos de Cálculo e de Geometria Analítica",
+      "Laboratório de Física Moderna",
+      "Linguagens para Computação Numérica",
+      "Mecânica Newtoniana",
+      "Análise Complexa e de Fourier",
+      "Eletromagnetismo",
+      "Física dos Meios Contínuos",
+      "Laboratório de Mecânica Newtoniana",
+      "Mecânica Analítica e Ondas",
+      "Física Quântica I",
+      "Laboratório de Eletromagnetismo e Ótica",
+      "Laboratório de Termodinâmica",
+      "Ótica",
+      "Termodinâmica e Física Estatística",
+      "Complementos de Eletromagnetismo",
+      "Eletrónica e Instrumentação em Física",
+      "Física Computacional",
+      "Física Quântica II"
+    ]
+  },
+  "Geografia (Mestrado)": {
+    "id": 5041,
+    "classes": [
+      "Metodologias e Investigação em Geografia",
+      "Prospetiva e Planeamento Estratégico"
+    ]
+  },
+  "Engenharia e Gestão de Operações (Mestrado)": {
+    "id": 5092,
+    "classes": [
+      "Economia para Engenharia",
+      "Gestão da Qualidade",
+      "Logística e Distribuição",
+      "Técnicas Estatísticas",
+      "Tópicos de Gestão da Produção",
+      "Tópicos de Investigação Operacional",
+      "Análise e Gestão do Risco",
+      "Avaliação de Projetos",
+      "Gestão da Inovação e da Tecnologia",
+      "Gestão Estratégica e Marketing Industrial",
+      "Gestão Integrada de Projetos",
+      "Sistemas de Produção Lean",
+      "Dissertação",
+      "Ergonomia, Higiene e Segurança Ocupacionais",
+      "Métodos de Investigação em Engenharia Industrial e de Sistemas",
+      "Projeto Integrador"
+    ]
+  },
+  "Engenharia e Gestão de Sistemas de Informação (Licenciatura)": {
+    "id": 5054,
+    "classes": [
+      "Álgebra Linear e Geometria Analítica para Engenharia",
+      "Algoritmos e Estruturas de Dados 1",
+      "Cálculo para Engenharia",
+      "Fundamentos de Organização e Gestão",
+      "Fundamentos dos Sistemas de Informação",
+      "Algoritmos e Estruturas de Dados 2",
+      "Fundamentos de Eletromagnetismo e Ótica",
+      "Introdução à Economia",
+      "Sistemas de Computação",
+      "Tópicos de Matemática Discreta",
+      "Bases de Dados 1",
+      "Contabilidade",
+      "Processo e Metodologias de Software",
+      "Programação com Objetos",
+      "Sistemas Operativos",
+      "Bases de Dados 2",
+      "Desenvolvimento de Aplicações Informáticas",
+      "Introdução às Redes de Computadores",
+      "Métodos Estatísticos",
+      "Métodos Numéricos e Otimização Não Linear",
+      "Engenharia de Dados para Suporte à Tomada de Decisão",
+      "Fundamentos de Sistemas Distribuídos",
+      "Implantação de Aplicações Informáticas Empresariais",
+      "Investigação Operacional",
+      "Logística e Organização da Produção",
+      "Desenvolvimento Organizacional com Tecnologias da Informação",
+      "Gestão Financeira",
+      "Programação para a Web",
+      "Técnicas de Inteligência Artificial"
+    ]
+  },
+  "Cognição Humana (Mestrado)": {
+    "id": 5064,
+    "classes": [
+      "Investigação em Cognição Humana",
+      "Julgamento e Tomada de Decisão",
+      "Memória Humana: Fundamentos e Aplicações",
+      "Processos Atencionais e Percetivos",
+      "Psicolinguística",
+      "Cognição Comparada",
+      "Estatística Avançada Aplicada à Psicologia",
+      "Projeto de Investigação em Cognição Humana",
+      "Psicologia Evolutiva"
+    ]
+  },
+  "Engenharia de Materiais (Mestrado)": {
+    "id": 5085,
+    "classes": [
+      "Complementos de Mecânica dos Materiais",
+      "Degradação de Materiais",
+      "Processamento Avançado de Polímeros I",
+      "Propriedades Eletrónicas dos Materiais",
+      "Seleção e Aplicação de Materiais",
+      "Tecnologia de Vácuo e Aplicações",
+      "Ciência e Tecnologia de Filmes Finos",
+      "Composição e Modificação de Polímeros",
+      "Fundição e Soldadura",
+      "Materiais Nanoestruturados",
+      "Ótica e Lasers",
+      "Processamento Avançado de Polímeros II",
+      "Maquinagem e Conformação",
+      "Técnicas Avançadas de Caracterização",
+      "Tópicos de Organização da Produção"
+    ]
+  },
+  "Português Língua Não Materna (Mestrado)": {
+    "id": 5153,
+    "classes": [
+      "Didática do Português Língua Não Materna",
+      "Gramática e Comunicação I",
+      "Temas de Cultura dos Países de Língua Portuguesa"
+    ]
+  },
+  "Design e Inovação de Produtos Têxteis e Acessórios (Mestrado)": {
+    "id": 5168,
+    "classes": [
+      "Ciência do Conforto e Fisiologia do Vestuário",
+      "Criação de Marcas de Moda",
+      "Design Avançado de Vestuário",
+      "Design de Têxteis de Interiores",
+      "Metodologias de Desenvolvimento de Novos Produtos",
+      "Sustentabilidade e Economia Circular na Indústria Têxtil e do Vestuário",
+      "Design de Calçado e Acessórios",
+      "Design de Têxteis de Moda",
+      "Marketing e Gestão Internacional do Negócio de Moda",
+      "Projeto em Design e Marketing"
+    ]
+  },
+  "Autonomia e Flexibilidade para a Inovação Curricular (Curso Breve Creditado)": {
+    "id": 5139,
+    "classes": [
+      "Políticas Educativas e Curriculares: da LBSE à Atualidade",
+      "Conceitos de Currículo e de Desenvolvimento Curricular",
+      "O Professor como Decisor Curricular (Autonomia Profissional)",
+      "Metodologia de Projeto e Cultura Colaborativa",
+      "Autonomia, Flexibilidade, Articulação e Inovação Curricular",
+      "Da Legislação às Práticas Curriculares: Caminhos de Inovação e Mudança"
+    ]
+  },
+  "Gestão de Stress para o Alto Rendimento (Curso Breve Creditado)": { "id": 5116, "classes": [ "Gestão de Stress para o Alto Rendimento" ] },
+  "Conhecimentos e Competências para Intervenção Psicológica no Trauma (Curso Breve Creditado)": {
+    "id": 5172,
+    "classes": [
+      "Avaliação e Intervenção Psicológica com Pessoas com História de Trauma",
+      "Compreender o Trauma e as Competências e Práticas Profissionais para a Intervenção no Trauma"
+    ]
+  },
+  "Arquitetura e Construção de Terra (Mestrado)": {
+    "id": 5203,
+    "classes": [
+      "Análise e Projeto Estrutural",
+      "Arquitetura de Terra e Cultura Construtiva",
+      "Conservação de Construções de Terra",
+      "Dimensionamento Funcional e Sustentabilidade",
+      "Materiais de Terra",
+      "Projeto Integrador em Construção de Terra",
+      "Dissertação"
+    ]
+  },
+  "Formação e Desenvolvimento de Competências de Profissionais da Área da Educação (Formação Especializada)": {
+    "id": 5122,
+    "classes": [
+      "Intervenção em Dificuldades de Aprendizagem",
+      "Planeamento e Reorganização da Carreira",
+      "Processos Motivacionais e de Autorregulação"
+    ]
+  },
+  "FA&gt;AP: Dirigentes Intermédios (Formação Especializada)": {
+    "id": 5198,
+    "classes": [
+      "Contabilidade Pública e Controlo de Gestão",
+      "Governação Digital na Administração Pública",
+      "Normas de Gestão Pública",
+      "Organização e Gestão Pública",
+      "Políticas e Projetos Públicos",
+      "Trabalho em grupo e tutoria"
+    ]
+  },
+  "Ciências do Ambiente  (Licenciatura)": {
+    "id": 5007,
+    "classes": [
+      "Biologia Molecular e da Célula",
+      "Física",
+      "Química Geral",
+      "Tópicos de Matemática EC",
+      "Zoologia",
+      "Botânica",
+      "Complementos de Física",
+      "Estatística EC",
+      "Fundamentos de Química Orgânica",
+      "Geologia Dinâmica",
+      "Cartografia Temática",
+      "Ecologia Geral",
+      "Genética",
+      "Materiais Geológicos",
+      "Microbiologia Geral",
+      "Recursos Paisagísticos",
+      "Ecofisiologia",
+      "Ecologia das Populações",
+      "Ferramentas Aplicadas às Ciências do Ambiente",
+      "Introdução ao Direito do Ambiente",
+      "Métodos Instrumentais de Análise",
+      "Recursos Geológicos",
+      "Da Energia do Carbono às Renováveis",
+      "Economia do Ambiente e dos Recursos Naturais",
+      "Geologia Ambiental",
+      "Pedologia e Conservação de Solos",
+      "Sistema Terra - Atmosfera"
+    ]
+  },
+  "Criminologia e Justiça Criminal (Licenciatura)": {
+    "id": 5005,
+    "classes": [
+      "Direito Constitucional em Criminologia",
+      "Direito Penal I em Criminologia",
+      "Introdução à Criminologia",
+      "Introdução ao Direito",
+      "Métodos Quantitativos e Qualitativos",
+      "Sociologia do Crime",
+      "Bases Neuro-Psicológicas do Crime",
+      "Direito Penal II em Criminologia",
+      "Investigação Aplicada em Criminologia",
+      "Noções de Filosofia do Direito",
+      "Psicologia Criminal e do Ofensor"
+    ]
+  },
+  "Engenharia de Telecomunicações e Informática (Mestrado Integrado)": {
+    "id": 5012,
+    "classes": [
+      "Arquitetura e Tecnologia de Computadores",
+      "Complementos de Análise Matemática para Engenharia",
+      "Gestão de Projetos de Tecnologias de Informação",
+      "Métodos Numéricos",
+      "Programação Orientada aos Objetos",
+      "Seminários de Telecomunicações e Informática",
+      "Desenvolvimento Integrado de Software",
+      "Eletromagnetismo para Engenharia",
+      "Eletrónica Geral",
+      "Fundamentos de Investigação Operacional",
+      "Teoria dos Sistemas para as Telecomunicações",
+      "Emulação e Simulação de Redes de Telecomunicações",
+      "Ondas Eletromagnéticas e Antenas",
+      "Redes de Computadores I",
+      "Sinais e Sistemas",
+      "Sistemas Operativos",
+      "Fundamentos de Bases de Dados",
+      "Processamento Digital de Sinal",
+      "Projeto Integrado de Telecomunicações",
+      "Redes de Computadores II",
+      "Sistemas Distribuídos",
+      "Criptografia e Segurança em Redes",
+      "Gestão e Virtualização de Redes",
+      "Redes Móveis",
+      "Tecnologias de Comunicações Óticas"
+    ]
+  },
+  "Engenharia Química e Biológica (Licenciatura)": {
+    "id": 5059,
+    "classes": [
+      "Álgebra Linear para Engenharia",
+      "Cálculo para Engenharia",
+      "Computação e Programação",
+      "Introdução à Engenharia de Processo",
+      "Química Analítica para Engenharia",
+      "Tópicos de Biologia Celular e Molecular",
+      "Análise Matemática para Engenharia",
+      "Fundamentos de Física",
+      "Fundamentos de Microbiologia",
+      "Métodos Instrumentais e Análise de Dados",
+      "Projeto em Engenharia Química e Biológica I",
+      "Química Orgânica para Engenharia",
+      "Bioquímica e Fisiologia Microbianas",
+      "Complementos de Análise Matemática para Engenharia",
+      "Eletricidade e Eletromagnetismo",
+      "Fenómenos de Transferência I",
+      "Métodos Numéricos",
+      "Termodinâmica Química",
+      "Biologia Molecular Aplicada",
+      "Engenharia Económica",
+      "Fenómenos de Transferência II",
+      "Química-Física"
+    ]
+  },
+  "Engenharia Eletrónica Industrial e Computadores (Mestrado)": { "id": 5072, "classes": [] },
+  "Marketing (Licenciatura)": {
+    "id": 5045,
+    "classes": [
+      "Introdução à Gestão",
+      "Marketing",
+      "Matemática para Gestão",
+      "Princípios de Microeconomia",
+      "Psicologia do Consumidor",
+      "Direito do Consumo",
+      "Estatística Aplicada à Gestão",
+      "Introdução à Gestão Financeira",
+      "Marketing Estratégico",
+      "Princípios de Macroeconomia",
+      "Comportamento do Consumidor",
+      "Contabilidade Financeira I",
+      "Ética no Marketing e Responsabilidade Social Corporativa",
+      "Fundamentos de Pesquisa de Marketing",
+      "Gestão do Produto e Marca",
+      "Comunicação Integrada de Marketing",
+      "Contabilidade de Gestão I",
+      "Marketing de Serviços e Relacional",
+      "Pesquisa de Marketing Aplicada",
+      "Sistemas de Informação de Marketing",
+      "Canais de Distribuição e Gestão de Força de Vendas",
+      "Logística",
+      "Marketing Digital",
+      "Marketing Internacional",
+      "Princípios de Empreendedorismo",
+      "Gestão Estratégica",
+      "Projeto de Marketing"
+    ]
+  },
+  "Negócios Internacionais  (Mestrado)": {
+    "id": 5144,
+    "classes": [
+      "Direito, Consumo e Negócios",
+      "Estratégia e Marketing Internacional",
+      "Logística Internacional",
+      "Tópicos de Economia da Empresa Multinacional",
+      "Tópicos de Economia Global",
+      "Análise de Dados e Competências Transversais",
+      "Metodologia e Proposta de Investigação",
+      "Tópicos de Negócios Internacionais"
+    ]
+  },
+  "Economia Social  (Mestrado)": {
+    "id": 5088,
+    "classes": [
+      "Economia das Instituições e do Terceiro Sector",
+      "História da Economia Social",
+      "Métodos para a Economia Social",
+      "Tópicos de Economia"
+    ]
+  },
+  "Direito Transnacional da Empresa e das Tecnologias Digitais (Mestrado)": {
+    "id": 5099,
+    "classes": [
+      "Contratos Internacionais",
+      "Dimensão Transfronteiriça e Internacional do Direito da Empresa",
+      "Direito dos Contratos na Ordem Jurídica Portuguesa",
+      "Metodologia da Investigação Científica do Direito",
+      "Responsabilidade Civil na Economia Digital"
+    ]
+  },
+  "Engenharia Têxtil (Mestrado)": {
+    "id": 5083,
+    "classes": [
+      "Engenharia e Desenvolvimento de Novos Produtos",
+      "Projeto em Engenharia Têxtil I",
+      "Sustentabilidade e Economia Circular na Indústria Têxtil e do Vestuário"
+    ]
+  },
+  "Ensino de Artes Visuais no 3.º Ciclo do Ensino Básico e no Ensino Secundário (Mestrado)": {
+    "id": 5204,
+    "classes": [
+      "Currículo e Avaliação",
+      "Didática do Desenho",
+      "História da Cultura Artística",
+      "Processos e Práticas da Geometria Descritiva",
+      "Psicologia do Desenvolvimento",
+      "A Escola como Organização Educativa",
+      "Educação Artística",
+      "Processos Artísticos",
+      "Tecnologia Educativa",
+      "Tecnologias das Artes Visuais",
+      "Estágio Profissional",
+      "Avaliação e Conceção de Materiais Didáticos de Artes Visuais"
+    ]
+  },
+  "Design para a Comunicação de Moda (Mestrado)": {
+    "id": 5169,
+    "classes": [
+      "Comunicação de Coleções",
+      "Criação de Marcas de Moda",
+      "Design para Comunicação de Produtos de Moda I",
+      "Estratégias Digitais na Moda",
+      "Merchandising e Comunicação no Ponto de Venda",
+      "Produção de Eventos de Moda",
+      "Design para Comunicação de Produtos de Moda II",
+      "Marketing e Gestão Internacional do Negócio de Moda",
+      "Produção de Imagem de Moda",
+      "Projeto em Design de Comunicação de Moda"
+    ]
+  },
+  "Enfermagem de Reabilitação (Mestrado)": {
+    "id": 5190,
+    "classes": [
+      "Enfermagem, Desenvolvimento Profissional e Organizacional",
+      "Funcionalidade e Incapacidade",
+      "Fundamentos de Enfermagem de Reabilitação à Pessoa, Família e Comunidade",
+      "Investigação e Ética em Enfermagem",
+      "Processos Anatomo-Fisiopatológicos no Contexto da Enfermagem de Reabilitação",
+      "Cuidados de Enfermagem de Reabilitação à Pessoa com Compromisso nos Processos Neurológico, Cardiorrespiratório e Musculoesquelético",
+      "Transições em Saúde e Capacitação para o Autocuidado"
+    ]
+  },
+  "Análise do Risco e Gestão de Infraestruturas Civis (Mestrado)": {
+    "id": 5202,
+    "classes": [
+      "Fiabilidade e Análise de Risco de Infraestruturas",
+      "Gestão de Infraestruturas e Ferramentas de Apoio à Decisão",
+      "Introdução à Avaliação de Risco e Gestão de Infraestruturas",
+      "Monitorização e Digitalização de Infraestruturas",
+      "Projeto Integrado em Análise de Risco e Gestão de Infraestruturas",
+      "Técnicas de Avaliação e Intervenção em Infraestruturas",
+      "Dissertação"
+    ]
+  },
+  "Desigualdades Sociais e Educativas e Dispositivos Pedagógicos numa Educação Intercultural (Curso Breve Creditado)": {
+    "id": 5134,
+    "classes": [
+      "Desigualdades Sociais e Escolares e o Papel do Professor no Combate às Desigualdades Educativas",
+      "Desigualdade e Diferença: Modelos de Educação Intercultural e sua Relação com o Trabalho Escolar",
+      "A Construção, Implementação e Avaliação de Dispositivos Pedagógico",
+      "Reflexividade e Ação: a Partilha de Experiências"
+    ]
+  },
+  "Psicologia (Programa Doutoral)": {
+    "id": 5106,
+    "classes": [
+      "Estudos Avançados em Psicologia",
+      "Métodos de Investigação e Análise de Dados em Psicologia I",
+      "Métodos de Investigação e Análise de Dados em Psicologia II",
+      "Temas Avançados em Aprendizagem e Comportamento Animal",
+      "Tese"
+    ]
+  },
+  "School of CEOs – sharp training for first-time CEOs (Curso Breve Creditado)": {
+    "id": 5111,
+    "classes": [ "School of CEOs – sharp training for first-time CEOs" ]
+  },
+  "Educação Especial, Domínio Cognitivo e Motor (Formação Especializada)": {
+    "id": 5188,
+    "classes": [
+      "Dificuldades Intelectuais e Motoras",
+      "Educação Inclusiva e Necessidades Especiais",
+      "Metodologia de Investigação em Educação"
+    ]
+  },
+  "História e Património do Minho (Curso Breve Creditado)": {
+    "id": 5142,
+    "classes": [
+      "História e Património Cultural do Minho",
+      "Práticas de Valorização, Planeamento e Gestão Patrimonial",
+      "Educação Patrimonial e Estratégias de Promoção Digital do Património"
+    ]
+  },
+  "Gestão de Projetos de Engenharia (Mestrado)": {
+    "id": 5008,
+    "classes": [
+      "Avaliação Económica de Projetos de Engenharia",
+      "Gestão de Equipas e da Comunicação",
+      "Gestão Estratégica e Organizacional",
+      "Gestão Integrada de Projetos",
+      "Sistemas de Informação para Gestão de Projetos"
+    ]
+  },
+  "Engenharia Física (Mestrado Integrado)": {
+    "id": 4999,
+    "classes": [
+      "Análise Complexa e de Fourier",
+      "Eletromagnetismo",
+      "Introdução à Eletrónica",
+      "Laboratório de Mecânica Newtoniana",
+      "Mecânica Analítica e Ondas",
+      "Complementos de Eletrónica e Sistemas Digitais",
+      "Física Estatística",
+      "Laboratório de Eletromagnetismo",
+      "Mecânica Quântica",
+      "Programação Imperativa",
+      "Sistemas de Computação",
+      "Complementos de Mecânica Quântica",
+      "Física Computacional para Engenheiros",
+      "Instrumentação Avançada",
+      "Introdução às Microtecnologias no Silício",
+      "Processamento de Sinal Contínuo e Discreto",
+      "Programação Probabilística",
+      "Tópicos Avançados de Eletromagnetismo",
+      "Computação Ciber-Física",
+      "Física do Estado Sólido",
+      "Instrumentação",
+      "Introdução à Ótica",
+      "Teoria do Controlo",
+      "Física de Semicondutores e Nanoestruturas",
+      "Fotónica I",
+      "Micro-robótica",
+      "Nanodispositivos e Nanoeletrónica",
+      "Tópicos em Biofísica e Bionanossistemas",
+      "Circuitos Integrados Analógicos",
+      "Física e Tecnologia dos Materiais",
+      "Fotónica II",
+      "Fundamentos de Física de Microssistemas",
+      "Micro e Nanofabricação",
+      "Sensores Integrados",
+      "Sistemas EIetrónicos para Imagem Médica e Radioisótopos",
+      "Dissertação",
+      "Formação Empresarial e Empreendedorismo"
+    ]
+  },
+  "Engenharia Civil (Licenciatura)": {
+    "id": 5057,
+    "classes": [
+      "Álgebra Linear e Geometria Analítica para Engenharia",
+      "Cálculo para Engenharia",
+      "Ciência dos Materiais de Construção",
+      "Desenho para Engenharia Civil",
+      "Introdução à Engenharia Civil",
+      "Programação e Algoritmia",
+      "Análise Matemática para Engenharia",
+      "Física Geral",
+      "Mecânica das Estruturas",
+      "Métodos Numéricos",
+      "Representação Gráfica e Digitalização em Engenharia Civil",
+      "Complementos de Análise Matemática para Engenharia",
+      "Geologia para a Engenharia Civil",
+      "Materiais de Construção",
+      "Métodos Estatísticos",
+      "Organização e Gestão da Construção",
+      "Resistência de Materiais",
+      "Materiais e Tecnologias da Construção",
+      "Mecânica dos Fluidos em Engenharia Civil",
+      "Métodos de Análise Estrutural",
+      "Planeamento do Território e Ambiente",
+      "Topografia Digital e Gestão de Obras",
+      "Análise de Estruturas Metálicas",
+      "Estradas",
+      "Hidráulica Geral",
+      "Mecânica dos Solos e das Rochas"
+    ]
+  },
+  "Economia Monetária, Bancária e Financeira (Mestrado)": {
+    "id": 5087,
+    "classes": [
+      "Tópicos de Análise Económica",
+      "Tópicos de Econometria",
+      "Tópicos de Economia Financeira",
+      "Tópicos de Economia Monetária",
+      "Tópicos de Seguros e Cálculo Atuarial",
+      "Análise de Dados e Competências Transversais",
+      "Metodologia e Proposta de Investigação em Economia",
+      "Tópicos de Economia Bancária"
+    ]
+  },
+  "Administração Pública  (Mestrado)": {
+    "id": 5093,
+    "classes": [
+      "Administração e Gestão Pública",
+      "Análise de Dados e Competências Transversais",
+      "Modelos de Prestação de Serviços",
+      "Políticas Públicas"
+    ]
+  },
+  "Engenharia de Polímeros (Licenciatura)": {
+    "id": 5081,
+    "classes": [
+      "Álgebra Linear para Engenharia",
+      "Cálculo para Engenharia",
+      "Introdução à Engenharia de Polímeros",
+      "Programação e Algoritmia",
+      "Química Orgânica para Engenharia",
+      "Análise Matemática para Engenharia",
+      "Ciência de Polímeros I",
+      "Física Geral",
+      "Métodos Estatísticos",
+      "Representação Gráfica e Modelação Digital",
+      "Ciência de Polímeros II",
+      "Complementos de Análise Matemática para Engenharia",
+      "Eletricidade e Eletromagnetismo",
+      "Introdução ao Projeto com Polímeros",
+      "Reologia I",
+      "Ciência de Polímeros III",
+      "Fenómenos de Transferência em Engenharia de Polímeros",
+      "Mecânica de Materiais em Engenharia de Polímeros",
+      "Métodos Numéricos em Engenharia de Polímeros",
+      "Reologia II",
+      "Caracterização de Sistemas Poliméricos",
+      "Ciência de Polímeros IV",
+      "Eletrotecnia e Eletrónica",
+      "Engenharia de Custos",
+      "Processamento de Polímeros",
+      "Desenvolvimento de Sistemas Poliméricos",
+      "Organização da Produção",
+      "Plásticos e Ambiente",
+      "Sustentabilidade e Ecodesign"
+    ]
+  },
+  "Engenharia de Polímeros (Mestrado)": {
+    "id": 5084,
+    "classes": [
+      "Compósitos de Matriz Polimérica",
+      "Projeto de Moldes",
+      "Seminário em Engenharia de Polímeros",
+      "Tópicos Avançados de Extrusão",
+      "Tópicos Avançados de Moldação por Injeção",
+      "Comportamento e Qualidade de Materiais Plásticos",
+      "Desenvolvimento de Produto com Polímeros",
+      "Fabrico Digital com Polímeros"
+    ]
+  },
+  "Psicologia Clínica na Infância e Adolescência (Mestrado)": {
+    "id": 5076,
+    "classes": [
+      "Competências de Atendimento Clínico na Infância e na Adolescência",
+      "Intervenção Psicológica na Infância",
+      "Neurociências do Desenvolvimento Cognitivo e Socio-emocional",
+      "Psicopatologia do Desenvolvimento e Desenvolvimento Positivo",
+      "Psicopatologia e Avaliação Psicológica na Infância",
+      "Estatística Avançada Aplicada à Psicologia",
+      "Intervenção Psicológica na Adolescência",
+      "Projeto de Investigação em Psicologia Clínica da Infância e da Adolescência",
+      "Psicopatologia e Avaliação Psicológica na Adolescência"
+    ]
+  },
+  "Engenharia Física (Mestrado)": {
+    "id": 5078,
+    "classes": [
+      "Física de Semicondutores e Nanoestruturas",
+      "Fotónica I",
+      "Instrumentação Avançada",
+      "Micro-robótica",
+      "Nanodispositivos e Nanoeletrónica",
+      "Tópicos em Biofísica e Bionanossistemas",
+      "Circuitos Integrados Analógicos",
+      "Física e Tecnologia dos Materiais",
+      "Fotónica II",
+      "Fundamentos de Física de Microssistemas",
+      "Micro e Nanofabricação",
+      "Sistemas EIetrónicos para Imagem Médica e Radioisótopos",
+      "Dissertação",
+      "Engenharia Física Aplicada",
+      "Formação Empresarial e Empreendedorismo"
+    ]
+  },
+  "História (Programa Doutoral)": {
+    "id": 5167,
+    "classes": [
+      "Metodologias e Técnicas de Investigação em História",
+      "Problemas e Debates da Investigação em História",
+      "Projeto de Investigação em História",
+      "Seminário de Especialidade em Demografia Histórica",
+      "Tese"
+    ]
+  },
+  "Enfermagem Comunitária na Área da Enfermagem de Saúde Familiar (Mestrado)": {
+    "id": 5211,
+    "classes": [
+      "A Família como Unidade de Cuidados",
+      "Cuidados à Família ao Longo do Ciclo Vital",
+      "Enfermagem, Desenvolvimento Profissional e Organizacional",
+      "Investigação e Ética em Enfermagem",
+      "Referenciais Sociopolíticos e Epistemológicos da Enfermagem de Saúde Familiar",
+      "Comunicação e Interação em Enfermagem de Saúde Familiar",
+      "Modelos e Técnicas de Avaliação e Intervenção Familiar"
+    ]
+  },
+  "Estudos Interculturais Português/Chinês (Mestrado)": {
+    "id": 5132,
+    "classes": [
+      "Comunicação Intercultural I",
+      "Gramática Aplicada do Chinês I",
+      "Comunicação Intercultural II",
+      "Gramática Aplicada do Chinês II",
+      "Aspetos Sociolinguísticos da Escrita Chinesa e Tradução Intercultural",
+      "Cultura e Comunicação Empresarial entre Portugal e China",
+      "Fundamentos de Ensino de Português e Chinês Línguas Estrangeiras",
+      "Seminário de Investigação em Estudos Interculturais Português e Chinês"
+    ]
+  },
+  "Enfermagem de Saúde Infantil e Pediátrica (Mestrado)": {
+    "id": 5212,
+    "classes": [
+      "Criança em Situação de Doença",
+      "Enfermagem, Desenvolvimento Profissional e Organizacional",
+      "Investigação e Ética em Enfermagem",
+      "Modelos de Cuidados e Políticas em Enfermagem de Saúde Infantil e Pediátrica",
+      "Saúde e Processo de Desenvolvimento da Criança",
+      "Conceitos Metaparadigmáticos da Enfermagem de Saúde Infantil e Pediátrica e Desenvolvimento Profissional",
+      "Contextos e Abordagens na Prestação de Cuidados à Criança",
+      "Cuidar a Criança em Situação de Especial Complexidade"
+    ]
+  }
+}
