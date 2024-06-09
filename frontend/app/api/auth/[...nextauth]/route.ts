@@ -30,7 +30,6 @@ export const authOptions: AuthOptions = {
         password: {},
       },
       async authorize(credentials, req) {
-        console.log(credentials);
         const user = (await UserController.get(credentials?.email ?? '')) as
           | UserDB
           | null
@@ -42,8 +41,6 @@ export const authOptions: AuthOptions = {
           credentials?.password ?? '',
           user.password,
         );
-
-        console.log(isPasswordValid);
 
         if (!isPasswordValid) return null;
 

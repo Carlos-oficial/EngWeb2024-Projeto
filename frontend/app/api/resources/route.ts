@@ -78,7 +78,10 @@ export async function GET(req: NextApiRequest) {
         _id: resource._id.toString(),
         title: resource.title,
         description: resource.description,
-        documentType: document_type_name,
+        documentType: {
+          _id: resource.documentTypeId,
+          name: document_type_name,
+        },
         documentFormat: resource.documentFormat,
         userEmail: resource.userEmail,
         userName: user_name,

@@ -2,7 +2,10 @@ export type ResourceDTO = {
   _id: string;
   title: string;
   description: string;
-  documentType: string;
+  documentType: {
+    _id: string;
+    name: string;
+  };
   documentFormat: string;
   userEmail: string;
   userName: string;
@@ -17,6 +20,7 @@ export type ResourceDTO = {
     name: string;
   };
   createdAt: Date;
+  favoritesNr: number;
 };
 
 export type ResourceDB = {

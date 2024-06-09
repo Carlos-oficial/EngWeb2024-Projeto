@@ -90,7 +90,7 @@ export default function ResourceCard({
         </div>
         <div className='flex justify-between items-center pb-2'>
           <div className='flex space-x-2'>
-            <Badge>{resource.documentType}</Badge>
+            <Badge>{resource.documentType.name}</Badge>
             <Badge variant={'secondary'}>{resource.documentFormat}</Badge>
           </div>
         </div>

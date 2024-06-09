@@ -76,8 +76,15 @@ export default function Navbar({
       </div>
       <nav className='grid gap-1 p-2'>
         <NavLink active={pathname === '/dashboard'} href='/dashboard'>
-          <i className='ph ph-folder text-xl'></i>
-          <span>Resources</span>
+          <i className='ph ph-fire text-xl'></i>
+          <span>Popular</span>
+        </NavLink>
+        <NavLink
+          active={pathname === '/dashboard/newest'}
+          href='/dashboard/newest'
+        >
+          <i className='ph ph-seal text-xl'></i>
+          <span>Newest</span>
         </NavLink>
         <NavLink
           active={pathname === '/dashboard/favorites'}
@@ -85,10 +92,6 @@ export default function Navbar({
         >
           <i className='ph ph-star text-xl'></i>
           <span>Favorites</span>
-        </NavLink>
-        <NavLink active={pathname === '/dashboard/feed'} href='/dashboard/feed'>
-          <i className='ph ph-users-three text-xl'></i>
-          <span>Feed</span>
         </NavLink>
       </nav>
     </div>

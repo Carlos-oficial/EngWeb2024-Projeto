@@ -11,11 +11,11 @@ export default function NavHeader({
   const pathname = usePathname();
   const page_title =
     pathname === '/dashboard'
-      ? 'Resources'
+      ? 'Popular'
       : pathname === '/dashboard/favorites'
         ? 'Favorites'
-        : pathname === '/dashboard/feed'
-          ? 'Feed'
+        : pathname === '/dashboard/newest'
+          ? 'Newest'
           : 'Profile';
 
   return (

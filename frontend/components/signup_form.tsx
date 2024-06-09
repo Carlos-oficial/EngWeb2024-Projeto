@@ -176,36 +176,36 @@ export default function SignUpForm({
           <Button type='submit' className='w-full'>
             Create an account
           </Button>
-          {Object.values(providers).map((provider) => {
-            if (provider.name !== 'Email') {
-              return (
-                <Button
-                  key={provider.name}
-                  variant='outline'
-                  className='flex space-x-2 w-full'
-                  onClick={() => handleProviderSignIn(provider)}
-                >
-                  <i
-                    className={`ph-fill ph-${provider.name.toLowerCase()}-logo`}
-                  ></i>
-                  <p>Sign in with {provider.name}</p>
-                </Button>
-              );
-            }
-          })}
-          {error && (
-            <div className='space-y-1'>
-              <span className='text-center text-red-500 flex space-x-2 items-center justify-center'>
-                <i className='ph ph-warning'></i>
-                <p>Sorry, something went wrong!</p>
-              </span>
-              <p className='flex text-xs justify-center text-red-500'>
-                {error} Error
-              </p>
-            </div>
-          )}
         </form>
       </Form>
+      {Object.values(providers).map((provider) => {
+        if (provider.name !== 'Email') {
+          return (
+            <Button
+              key={provider.name}
+              variant='outline'
+              className='flex space-x-2 w-full'
+              onClick={() => handleProviderSignIn(provider)}
+            >
+              <i
+                className={`ph-fill ph-${provider.name.toLowerCase()}-logo`}
+              ></i>
+              <p>Create an account with {provider.name}</p>
+            </Button>
+          );
+        }
+      })}
+      {error && (
+        <div className='space-y-1'>
+          <span className='text-center text-red-500 flex space-x-2 items-center justify-center'>
+            <i className='ph ph-warning'></i>
+            <p>Sorry, something went wrong!</p>
+          </span>
+          <p className='flex text-xs justify-center text-red-500'>
+            {error} Error
+          </p>
+        </div>
+      )}
       <div className='mt-4 text-center text-sm'>
         Already have an account?{' '}
         <Link href='/auth/signin' className='underline'>

@@ -12,6 +12,15 @@ export const listResources = async () => {
   try {
     const response = await fetch('/api/resources');
     const data = (await response.json()) as ResourceDTO[];
+
+    // get favorites nr for each resource
+    await Promise.all(
+      data.map(async (resource) => {
+        const favorites = await getResourceFavorites(resource._id);
+        resource.favoritesNr = favorites.length;
+      }),
+    );
+
     return data;
   } catch (error) {
     throw new Error((error as Error).message);
@@ -47,9 +56,9 @@ export const getUserFavorites = async (userEmail: string) => {
   }
 };
 
-export const getResourceFavorites = async (userEmail: string) => {
+export const getResourceFavorites = async (resourceId: string) => {
   try {
-    const response = await fetch('/api/resources/' + userEmail + '/favorites');
+    const response = await fetch('/api/resources/' + resourceId + '/favorites');
     const data = (await response.json()) as string[];
     return data;
   } catch (error) {
