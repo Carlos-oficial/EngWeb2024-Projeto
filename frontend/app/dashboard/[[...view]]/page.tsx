@@ -5,12 +5,22 @@ import Spinner from '@/components/spinner';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
 import { useState, useEffect, useCallback } from 'react';
-import { getUserFavorites, listResources } from '@/lib/data';
+import { listFavoriteResources, listResources } from '@/lib/data';
 import { ResourceDTO } from '@/lib/types';
 import ResourceDialog from '@/components/resource_dialog';
 import ResourceFilters from '@/components/resource_filters';
 import { useSession } from 'next-auth/react';
 import SignInCard from '@/components/signin_card';
+// import { useSearchParams } from 'next/navigation';
+// import {
+//   Breadcrumb,
+//   BreadcrumbEllipsis,
+//   BreadcrumbItem,
+//   BreadcrumbLink,
+//   BreadcrumbList,
+//   BreadcrumbPage,
+//   BreadcrumbSeparator,
+// } from '@/components/ui/breadcrumb';
 
 const searchAttributes = [
   'title',
@@ -81,6 +91,7 @@ function filterResources(
 
 export default function Resources({ params }: { params: { view?: string[] } }) {
   const session = useSession();
+  // const searchParams = useSearchParams();
 
   const [resources, setResources] = useState<ResourceDTO[] | null>(null);
   const [shownResources, setShownResources] = useState<ResourceDTO[] | null>(
@@ -112,36 +123,39 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
 
   // fetch resources and apply necessary treatment (filtering, sorting, etc.)
   const refreshResources = useCallback(() => {
-    listResources()
-      .then((resources) => {
-        if (params.view) {
-          if (params.view[0] === 'newest') {
+    if (
+      session.status === 'authenticated' &&
+      params.view &&
+      params.view[0] === 'favorites'
+    ) {
+      listFavoriteResources(session.data.user.email)
+        .then((resources) =>
+          setResources(
+            resources.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
+          ),
+        )
+        .catch((error: Error) => setError(error.message));
+    } else {
+      listResources()
+        .then((resources) => {
+          if (params.view) {
+            // sort by newest
+            if (params.view[0] === 'newest') {
+              setResources(
+                resources?.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
+              );
+            }
+          } else {
+            // sort by popularity
             setResources(
-              resources?.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
+              resources?.sort((a, b) =>
+                a.favoritesNr < b.favoritesNr ? 1 : -1,
+              ),
             );
           }
-          if (
-            session.status === 'authenticated' &&
-            params.view[0] === 'favorites'
-          ) {
-            getUserFavorites(session.data.user.email)
-              .then((userFavorites) =>
-                setResources(
-                  resources
-                    ?.filter((resource) => userFavorites.includes(resource._id))
-                    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
-                ),
-              )
-              .catch((error: Error) => setError(error.message));
-          }
-        } else {
-          // sort by popularity
-          setResources(
-            resources?.sort((a, b) => (a.favoritesNr < b.favoritesNr ? 1 : -1)),
-          );
-        }
-      })
-      .catch((error: Error) => setError(error.message));
+        })
+        .catch((error: Error) => setError(error.message));
+    }
   }, [params.view, session.status, session.data?.user.email]);
 
   useEffect(() => {
@@ -159,9 +173,28 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
       </div>
     );
   } else {
-    return shownResources != null ? (
+    return error.length > 0 ? (
+      <main className='flex flex-col justify-center items-center h-full'>
+        {error.length > 0 && (
+          <Alert variant='destructive' className='w-fit'>
+            <AlertTitle className='flex items-center space-x-1'>
+              <i className='ph ph-warning'></i>
+              <p>Error</p>
+            </AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+      </main>
+    ) : (
       <main className='flex h-full w-full'>
         <div className='p-5 space-y-3 overflow-scroll w-full'>
+          {/* {(searchParams.get('course') || searchParams.get('hashtag')) && (
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>Home</BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          )} */}
           <div className='flex space-x-2'>
             <Input
               type='text'
@@ -171,11 +204,17 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
             />
             <ResourceDialog refreshResources={refreshResources} />
           </div>
-          <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-3'>
-            {shownResources.map((resource) => (
-              <ResourceCard resource={resource} key={resource._id} />
-            ))}
-          </div>
+          {shownResources !== null ? (
+            <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-3'>
+              {shownResources.map((resource) => (
+                <ResourceCard resource={resource} key={resource._id} />
+              ))}
+            </div>
+          ) : (
+            <div className='flex items-center justify-center h-5/6'>
+              <Spinner />
+            </div>
+          )}
         </div>
         <div className='hidden xl:block min-w-72 border-l border-border p-2'>
           <ResourceFilters
@@ -187,20 +226,6 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
             setSubjectId={setSubjectId}
           />
         </div>
-      </main>
-    ) : (
-      <main className='flex flex-col justify-center items-center h-full'>
-        {error.length > 0 ? (
-          <Alert variant='destructive' className='w-fit'>
-            <AlertTitle className='flex items-center space-x-1'>
-              <i className='ph ph-warning'></i>
-              <p>Error</p>
-            </AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        ) : (
-          <Spinner />
-        )}
       </main>
     );
   }

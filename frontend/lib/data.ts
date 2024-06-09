@@ -27,6 +27,19 @@ export const listResources = async () => {
   }
 };
 
+export const listFavoriteResources = async (userEmail: string) => {
+  try {
+    const userFavorites = await getUserFavorites(userEmail);
+    const favoriteResources = (await fetch(
+      '/api/resources?' +
+        new URLSearchParams({ ids: userFavorites.toString() }).toString(),
+    )) as ResourceDTO[];
+    return favoriteResources;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
 export const listResourcesByUser = async (userEmail: string) => {
   try {
     const response = await fetch('/api/resources?userEmail=' + userEmail);

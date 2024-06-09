@@ -23,6 +23,7 @@ export const dynamic = 'force-dynamic'; // defaults to auto
 export async function GET(req: NextApiRequest) {
   try {
     await connectMongo();
+
     const resources_db =
       ((await ResourceController.list({ ...req.query })) as ResourceDB[]) ?? [];
 

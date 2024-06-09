@@ -7,7 +7,7 @@ export const list = (query: mongoose.FilterQuery<ResourceDB>) => {
   return Resource.find(query).exec();
 };
 
-export const listIds = (ids: string[]) => {
+export const listByIds = (ids: string[]) => {
   return Resource.find({ _id: { $in: ids } }).exec();
 };
 

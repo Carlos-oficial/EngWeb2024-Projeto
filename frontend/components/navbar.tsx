@@ -22,9 +22,7 @@ export default function Navbar({
   const isProfile =
     session.status === 'authenticated' &&
     session.data.user.email === pathname.split('/').pop() &&
-    pathname.includes('/dashboard/') &&
-    !pathname.includes('/dashboard/favorites') &&
-    !pathname.includes('/dashboard/feed');
+    pathname.includes('/dashboard/profile/');
 
   return (
     <div
@@ -37,7 +35,8 @@ export default function Navbar({
             className={`w-full h-11 justify-between ${isProfile && 'ring-1 ring-ring'}`}
             onClick={
               session.status === 'authenticated'
-                ? () => router.push('/dashboard/' + session.data.user.email)
+                ? () =>
+                    router.push('/dashboard/profile/' + session.data.user.email)
                 : () => router.push('/auth/signin')
             }
           >

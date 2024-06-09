@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 import {
@@ -36,6 +36,7 @@ export default function ResourceCard({
 }: ResourceCardProps) {
   const session = useSession();
   const router = useRouter();
+  const pathname = usePathname();
   const [favoriteCounter, setFavoriteCounter] = useState<number>(0);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
@@ -98,7 +99,11 @@ export default function ResourceCard({
         <CardDescription>{resource.description}</CardDescription>
         <div className='flex text-sm text-muted-foreground space-x-2'>
           {resource.hashtags.map((hashtag) => (
-            <Link key={hashtag} href='#' className='hover:underline'>
+            <Link
+              key={hashtag}
+              href={`${pathname}?tag=${hashtag}`}
+              className='hover:underline'
+            >
               {hashtag}
             </Link>
           ))}
@@ -109,7 +114,7 @@ export default function ResourceCard({
           <li className='flex space-x-2 font-semibold'>
             <i className='ph ph-chalkboard-teacher text-lg'></i>
             <Link
-              href={`/resources/${resource.course._id}/${resource.subject._id}`}
+              href={`${pathname}?course=${resource.course._id}&subject=${resource.subject._id}`}
               className='hover:underline'
             >
               {resource.subject.name}
@@ -118,7 +123,7 @@ export default function ResourceCard({
           <li className='flex space-x-2 max-w-full text-muted-foreground'>
             <i className='ph ph-graduation-cap text-lg'></i>
             <Link
-              href={`/resources/${resource.course._id}`}
+              href={`${pathname}?course=${resource.course._id}`}
               className='hover:underline'
             >
               {resource.course.name}
