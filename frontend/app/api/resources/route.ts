@@ -14,18 +14,34 @@ import {
   UserDB,
 } from '@/lib/types';
 import { NextResponse, NextRequest } from 'next/server';
-import type { NextApiRequest } from 'next';
 import { ObjectId } from 'mongodb';
 import fs from 'node:fs/promises';
 
 export const dynamic = 'force-dynamic'; // defaults to auto
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: NextRequest) {
   try {
     await connectMongo();
 
-    const resources_db =
-      ((await ResourceController.list({ ...req.query })) as ResourceDB[]) ?? [];
+    const ids_sp = (req.nextUrl.searchParams.get('ids') as string) ?? '';
+    const ids = ids_sp === '' ? null : ids_sp.split(',');
+
+    const userEmail = req.nextUrl.searchParams.get('userEmail') ?? '';
+
+    let resources_db: ResourceDB[] = [];
+    if (ids) {
+      resources_db =
+        ((await ResourceController.listByIds(ids)) as ResourceDB[]) ?? [];
+    } else if (userEmail) {
+      resources_db =
+        ((await ResourceController.listbyUser(userEmail)) as ResourceDB[]) ??
+        [];
+    } else {
+      resources_db =
+        ((await ResourceController.list({
+          ...req.nextUrl.searchParams,
+        })) as ResourceDB[]) ?? [];
+    }
 
     // get unique subject, course ids, document type ids and user emails
     const subject_ids = Array.from(

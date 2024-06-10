@@ -129,11 +129,11 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
       params.view[0] === 'favorites'
     ) {
       listFavoriteResources(session.data.user.email)
-        .then((resources) =>
+        .then((resources) => {
           setResources(
             resources.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
-          ),
-        )
+          );
+        })
         .catch((error: Error) => setError(error.message));
     } else {
       listResources()
