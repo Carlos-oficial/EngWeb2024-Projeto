@@ -93,6 +93,24 @@ export default function Navbar({
           <span>Favorites</span>
         </NavLink>
       </nav>
+      <div className='p-2 border-t border-border justify-end'>
+        <div className='flex space-x-2 items-center'>
+          <Button
+            variant={'outline'}
+            className={`w-full h-11 justify-between ${isProfile && 'ring-1 ring-ring'}`}
+            onClick={
+              session.status === 'authenticated'
+                ? () =>
+                    router.push('/dashboard/profile/' + session.data.user.email)
+                : () => router.push('/auth/signin')
+            }
+          >
+            <div className='flex space-x-3 items-center'>
+              Sign Out
+            </div>
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
