@@ -27,6 +27,10 @@ export const getFavorites = (email: string) => {
   return FavoritesPerUser.findOne({ userEmail: email }).exec();
 };
 
+export const listFavorites = () => {
+  return FavoritesPerUser.find().exec();
+};
+
 export const postFavorites = (email: string, list: string[]) => {
   return FavoritesPerUser.updateOne(
     { userEmail: email },

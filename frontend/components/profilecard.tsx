@@ -20,6 +20,7 @@ export default function ProfileCard({
   email: string;
   name: string;
 }) {
+  const [open, setOpen] = useState<boolean>(false);
   const [image, setImage] = useState<string>('');
 
   useEffect(() => {
@@ -27,12 +28,13 @@ export default function ProfileCard({
       const user = await getUser(email);
       setImage(user.image);
     }
-
-    fetchUserData().catch(() => {});
-  }, [email]);
+    if (open) {
+      fetchUserData().catch(() => {});
+    }
+  }, [email, open]);
 
   return (
-    <HoverCard>
+    <HoverCard onOpenChange={() => setOpen(!open)}>
       <HoverCardTrigger>
         <Button
           variant='link'

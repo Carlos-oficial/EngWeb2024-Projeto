@@ -7,52 +7,88 @@ import {
   UserDB,
   UserSignUp,
 } from './types';
+import { PAGE_SIZE } from './utils';
 
-export const listResources = async () => {
+export const listResources = async (
+  type: 'popular' | 'newest' | 'all',
+  page: number,
+) => {
   try {
-    const response = await fetch('/api/resources');
+    const response = await fetch(`/api/resources/${type}/${page}`);
     const data = (await response.json()) as ResourceDTO[];
-
-    // get favorites nr for each resource
-    await Promise.all(
-      data.map(async (resource) => {
-        const favorites = await getResourceFavorites(resource._id);
-        resource.favoritesNr = favorites.length;
-      }),
-    );
-
-    return data;
+    const countResponse = await fetch('/api/resources/count');
+    const count = (await countResponse.json()) as number;
+    const pagesNr = Math.ceil(count / PAGE_SIZE);
+    return {
+      data: data,
+      pagesNr: pagesNr,
+    };
   } catch (error) {
     throw new Error((error as Error).message);
   }
 };
 
-export const listFavoriteResources = async (userEmail: string) => {
+export const listFavoriteResources = async (
+  userEmail: string,
+  page: number,
+) => {
   try {
     const userFavorites = await getUserFavorites(userEmail);
-    if (userFavorites.length === 0) return [];
+    if (userFavorites.length === 0) return { data: [], pagesNr: 0 };
 
     const response = await fetch(
-      '/api/resources?' +
+      `/api/resources/ids/${page}?` +
         new URLSearchParams({ ids: userFavorites.toString() }).toString(),
     );
-
     const favoriteResources = (await response.json()) as ResourceDTO[];
-    return favoriteResources;
+
+    const countResponse = await fetch(
+      `/api/resources/ids/count?` +
+        new URLSearchParams({ ids: userFavorites.toString() }).toString(),
+    );
+    const count = (await countResponse.json()) as number;
+    const pagesNr = Math.ceil(count / PAGE_SIZE);
+    return {
+      data: favoriteResources,
+      pagesNr: pagesNr,
+    };
   } catch (error) {
     throw new Error((error as Error).message);
   }
 };
 
-export const listResourcesByUser = async (userEmail: string) => {
+export const listResourcesByUser = async (userEmail: string, page: number) => {
   try {
-    const response = await fetch('/api/resources?userEmail=' + userEmail);
+    const response = await fetch(`/api/resources/from/${userEmail}/${page}`);
     const data = (await response.json()) as ResourceDTO[];
-    return data;
+    const countResponse = await fetch(`/api/resources/from/${userEmail}/count`);
+    const count = (await countResponse.json()) as number;
+    const pagesNr = Math.ceil(count / PAGE_SIZE);
+    return {
+      data: data,
+      pagesNr: pagesNr,
+    };
   } catch (error) {
     throw new Error((error as Error).message);
   }
 };
+
+export const searchResources = async (query: string, page: number) => {
+  try {
+    const response = await fetch(`/api/resources/search/${page}?q=${query}`);
+    const data = (await response.json()) as ResourceDTO[];
+    const countResponse = await fetch(`/api/resources/search/count?q=${query}`);
+    const count = (await countResponse.json()) as number;
+    const pagesNr = Math.ceil(count / PAGE_SIZE);
+    return {
+      data: data,
+      pagesNr: pagesNr,
+    };
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
 export const getUser = async (userEmail: string) => {
   try {
     const response = await fetch('/api/users/' + userEmail);

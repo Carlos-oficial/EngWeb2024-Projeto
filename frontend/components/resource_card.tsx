@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -18,12 +18,7 @@ import ProfileCard from '@/components/profilecard';
 import { timeAgo, formatNumber } from '@/lib/utils';
 import { ResourceDTO } from '@/lib/types';
 import { useSession } from 'next-auth/react';
-import {
-  addFavorite,
-  getResourceFavorites,
-  getUserFavorites,
-  removeFavorite,
-} from '@/lib/data';
+import { addFavorite, removeFavorite } from '@/lib/data';
 
 interface ResourceCardProps {
   resource: ResourceDTO;
@@ -37,23 +32,10 @@ export default function ResourceCard({
   const session = useSession();
   const router = useRouter();
   const pathname = usePathname();
-  const [favoriteCounter, setFavoriteCounter] = useState<number>(0);
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (session.data?.user?.email) {
-      getUserFavorites(session.data?.user?.email)
-        .then((favorites) => {
-          setIsFavorite(favorites.includes(resource._id));
-        })
-        .catch((error: Error) => console.error(error.message));
-    }
-    getResourceFavorites(resource._id)
-      .then((favorites) => {
-        setFavoriteCounter(favorites.length);
-      })
-      .catch((error: Error) => console.error(error.message));
-  }, [session, resource._id]);
+  const [favoriteCounter, setFavoriteCounter] = useState<number>(
+    resource.favoritesNr,
+  );
+  const [isFavorite, setIsFavorite] = useState<boolean>(resource.isFavorite);
 
   function handleFavorite() {
     if (session.status === 'authenticated') {

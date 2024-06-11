@@ -21,6 +21,7 @@ export type ResourceDTO = {
   };
   createdAt: Date;
   favoritesNr: number;
+  isFavorite: boolean;
 };
 
 export type ResourceDB = {

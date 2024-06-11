@@ -11,7 +11,18 @@ import ResourceDialog from '@/components/resource_dialog';
 import ResourceFilters from '@/components/resource_filters';
 import { useSession } from 'next-auth/react';
 import SignInCard from '@/components/signin_card';
-// import { useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination';
+import { range } from '@/lib/utils';
+
 // import {
 //   Breadcrumb,
 //   BreadcrumbEllipsis,
@@ -91,7 +102,8 @@ function filterResources(
 
 export default function Resources({ params }: { params: { view?: string[] } }) {
   const session = useSession();
-  // const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   const [resources, setResources] = useState<ResourceDTO[] | null>(null);
   const [shownResources, setShownResources] = useState<ResourceDTO[] | null>(
@@ -99,6 +111,9 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
   );
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [error, setError] = useState<string>('');
+
+  const [pageNr, setPageNr] = useState<number | null>(null);
+  const [totalPages, setTotalPages] = useState<number | null>(null);
 
   // filters
   const [documentTypeId, setDocumentTypeId] = useState<string>('All');
@@ -123,40 +138,49 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
 
   // fetch resources and apply necessary treatment (filtering, sorting, etc.)
   const refreshResources = useCallback(() => {
-    if (
-      session.status === 'authenticated' &&
-      params.view &&
-      params.view[0] === 'favorites'
-    ) {
-      listFavoriteResources(session.data.user.email)
-        .then((resources) => {
-          setResources(
-            resources.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
-          );
-        })
-        .catch((error: Error) => setError(error.message));
+    if (searchParams.has('p')) {
+      setPageNr(parseInt(searchParams.get('p') as string));
     } else {
-      listResources()
-        .then((resources) => {
-          if (params.view) {
-            // sort by newest
-            if (params.view[0] === 'newest') {
-              setResources(
-                resources?.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
-              );
-            }
-          } else {
-            // sort by popularity
-            setResources(
-              resources?.sort((a, b) =>
-                a.favoritesNr < b.favoritesNr ? 1 : -1,
-              ),
-            );
-          }
-        })
-        .catch((error: Error) => setError(error.message));
+      setPageNr(1);
     }
-  }, [params.view, session.status, session.data?.user.email]);
+    if (pageNr !== null) {
+      if (
+        session.status === 'authenticated' &&
+        params.view &&
+        params.view[0] === 'favorites'
+      ) {
+        listFavoriteResources(session.data.user.email, pageNr)
+          .then((res) => {
+            setResources(res.data);
+            setTotalPages(res.pagesNr);
+            console.log(res.pagesNr);
+          })
+          .catch((error: Error) => setError(error.message));
+      } else if (params.view && params.view[0] === 'newest') {
+        listResources('newest', pageNr)
+          .then((res) => {
+            setResources(res.data);
+            setTotalPages(res.pagesNr);
+            console.log(res.pagesNr);
+          })
+          .catch((error: Error) => setError(error.message));
+      } else {
+        listResources('popular', pageNr)
+          .then((res) => {
+            setResources(res.data);
+            setTotalPages(res.pagesNr);
+            console.log(res.pagesNr);
+          })
+          .catch((error: Error) => setError(error.message));
+      }
+    }
+  }, [
+    params.view,
+    session.status,
+    session.data?.user.email,
+    pageNr,
+    searchParams,
+  ]);
 
   useEffect(() => {
     refreshResources();
@@ -214,6 +238,32 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
             <div className='flex items-center justify-center h-5/6'>
               <Spinner />
             </div>
+          )}
+          {totalPages && (
+            <Pagination className='pt-3'>
+              <PaginationContent>
+                {pageNr && pageNr > 1 && (
+                  <PaginationItem>
+                    <PaginationPrevious href={`${pathname}?p=${pageNr - 1}`} />
+                  </PaginationItem>
+                )}
+                {range(1, totalPages + 1).map((i) => (
+                  <PaginationItem key={i}>
+                    <PaginationLink
+                      href={`${pathname}?p=${i}`}
+                      isActive={pageNr === i}
+                    >
+                      {i}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
+                {pageNr && pageNr < totalPages && (
+                  <PaginationItem>
+                    <PaginationNext href={`${pathname}?p=${pageNr + 1}`} />
+                  </PaginationItem>
+                )}
+              </PaginationContent>
+            </Pagination>
           )}
         </div>
         <div className='hidden xl:block min-w-72 border-l border-border p-2'>

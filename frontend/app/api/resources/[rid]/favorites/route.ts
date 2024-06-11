@@ -15,7 +15,7 @@ export async function GET(
 
     if (!params.rid) {
       return NextResponse.json(
-        { message: 'No user id provided' },
+        { message: 'No resource id provided' },
         { status: HttpStatusCode.BadRequest },
       );
     }
