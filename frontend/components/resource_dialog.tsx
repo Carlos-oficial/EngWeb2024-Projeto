@@ -212,12 +212,17 @@ export default function ResourceDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className='flex space-x-1'>
-          <i className='ph ph-file-plus'></i>
-          <p>Add Resource</p>
-        </Button>
-      </DialogTrigger>
+      {
+        session.status === 'authenticated' && (
+          <DialogTrigger asChild>
+            <Button className='flex space-x-1'>
+              <i className='ph ph-file-plus'></i>
+              <p>Add Resource</p>
+            </Button>
+          </DialogTrigger>
+        )
+      }
+      
       <DialogContent className='h-full md:max-h-[calc(70vh)] overflow-y-scroll'>
         {session.status === 'loading' ? (
           <Spinner />

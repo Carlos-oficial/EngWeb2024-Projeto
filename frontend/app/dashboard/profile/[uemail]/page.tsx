@@ -47,7 +47,7 @@ export default function Profile({ params }: { params: { uemail: string } }) {
                 {
                   session.data?.user.email === params.uemail && (
                     <Button variant={'outline'} className='mt-4'>
-                      Edit Profile
+                      Edit Profiler
                     </Button>
                   )
                 }
