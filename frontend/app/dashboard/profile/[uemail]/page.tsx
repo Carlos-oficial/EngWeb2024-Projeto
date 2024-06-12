@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react';
 import ResourceCard from '@/components/resource_card';
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { Button } from '@/components/ui/button';
+import ProfileEditDialog from '@/components/profile_dialog';
 
 export default function Profile({ params }: { params: { uemail: string } }) {
   const [resources, setResources] = useState<ResourceDTO[] | null>(null);
@@ -29,33 +30,9 @@ export default function Profile({ params }: { params: { uemail: string } }) {
   }, [session]);
 
   return (
-    <div>
-      <div>
-        <p></p>
-        <div className='p-5 space-y-3 overflow-scroll w-full'>
-          <div className="mx-16 my-4 mb-8">
-            <div className='flex flew-col gap-3"'>
-              <div className='rounded-full overflow-hidden'>
-                <Avatar>
-                  <AvatarImage src={userData?.image} />
-                </Avatar>
-              </div>
-
-              <div className='mx-8 my-4'>
-                <p className='text-5xl font-semibold'>{userData?.name}</p>
-                <p className='text-lg font-normal mt-2'>{userData?.email}</p>
-                {
-                  session.data?.user.email === params.uemail && (
-                    <Button variant={'outline'} className='mt-4'>
-                      Edit Profiler
-                    </Button>
-                  )
-                }
-              </div>
-            </div>
-          </div>          
-        </div>
-        <div className='px-5 space-y-3 overflow-scroll w-full py-2 border-t border-border'>
+    <div className='flex h-full w-full'>
+      <div className='p-5 space-y-3 overflow-scroll w-full'>
+        <div className='px-5 space-y-3 overflow-scroll w-full py-2 border-border'>
             <p className='text-2xl font-bold my-4'>Resources</p>
             <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-3'>
             {resources
@@ -64,9 +41,25 @@ export default function Profile({ params }: { params: { uemail: string } }) {
                 ))
               : 'Loading...'}
             </div>
-          </div>
-        
+        </div>
       </div>
+      <div className='p-5 space-y-3 overflow-scroll w-1/3 h-full border-l border-border'>
+          <div className="mx-16 my-4 mb-8">
+              <div className='rounded-full overflow-hidden'>
+                <Avatar>
+                  <AvatarImage src={userData?.image} />
+                </Avatar>
+              </div>
+
+              <p className='text-5xl font-semibold text-center mt-8'>{userData?.name}</p>
+              <p className='text-lg font-normal text-center mt-2'>{userData?.email}</p>
+              {
+                session.data?.user.email === decodeURIComponent(params.uemail) && (
+                  <ProfileEditDialog></ProfileEditDialog>                  
+                )
+              }
+          </div>          
+        </div>
     </div>
   );
 }
