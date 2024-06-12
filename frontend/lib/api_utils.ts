@@ -4,13 +4,11 @@ import * as SubjectController from '@/controllers/Subject';
 import * as CourseController from '@/controllers/Course';
 import * as UserController from '@/controllers/User';
 import * as DocumentTypeController from '@/controllers/DocumentType';
-import * as ResourceController from '@/controllers/Resource';
 import * as CommentController from '@/controllers/Comment';
 import {
   CommentDB,
   CourseDB,
   DocumentTypeDB,
-  FavoritePerResourceDB,
   ResourceDB,
   ResourceDTO,
   SubjectDB,
@@ -37,21 +35,34 @@ export const dbsToDtos = async (resources: ResourceDB[]) => {
     new Set(resources.map((resource) => resource.documentTypeId)),
   );
 
-  // get subjects, courses, document types, users and favorites
+  // get subjects, courses, document types, users and comments
   const subjects =
     ((await SubjectController.listByIds(subject_ids)) as SubjectDB[]) ?? [];
   const courses =
     ((await CourseController.listByIds(course_ids)) as CourseDB[]) ?? [];
-  const users =
-    ((await UserController.listByEmails(user_emails)) as UserDB[]) ?? [];
   const document_types =
     ((await DocumentTypeController.listByIds(
       document_type_ids,
     )) as DocumentTypeDB[]) ?? [];
-  const resourceFavorites =
-    ((await ResourceController.listFavorites()) as FavoritePerResourceDB[]) ??
-    [];
+  const users =
+    ((await UserController.listByEmails(user_emails)) as UserDB[]) ?? [];
   const comments = ((await CommentController.list()) as CommentDB[]) ?? [];
+
+  // get user interactions
+  let interactions = {
+    favoritedResourceIds: [] as string[],
+    upvotedResourceIds: [] as string[],
+    downvotedResourceIds: [] as string[],
+  };
+  if (session?.user?.email) {
+    interactions = (await UserController.getInteractions(
+      session.user.email,
+    )) as {
+      favoritedResourceIds: string[];
+      upvotedResourceIds: string[];
+      downvotedResourceIds: string[];
+    };
+  }
 
   return resources.map((resource) => {
     const subject_name =
@@ -74,26 +85,17 @@ export const dbsToDtos = async (resources: ResourceDB[]) => {
           new ObjectId(document_type._id).toString() ===
           new ObjectId(resource.documentTypeId).toString(),
       )?.name ?? '';
-    const favoritesNr =
-      resourceFavorites.find(
-        (r) =>
-          new ObjectId(r.resourceId).toString() ===
-          new ObjectId(resource._id).toString(),
-      )?.userEmails.length ?? 0;
-    const isFavorite =
-      session?.user?.email &&
-      resourceFavorites.some(
-        (r) =>
-          r.userEmails.includes(session.user.email) &&
-          new ObjectId(r.resourceId).toString() ===
-            new ObjectId(resource._id).toString(),
-      );
     const commentsNr =
       comments.filter(
         (c) =>
           new ObjectId(c.resourceId).toString() ===
           new ObjectId(resource._id).toString(),
       ).length ?? 0;
+    const isFavorite = interactions.favoritedResourceIds.includes(resource._id);
+    const isUpvoted = interactions.upvotedResourceIds.includes(resource._id);
+    const isDownvoted = interactions.downvotedResourceIds.includes(
+      resource._id,
+    );
 
     return {
       _id: resource._id.toString(),
@@ -117,9 +119,13 @@ export const dbsToDtos = async (resources: ResourceDB[]) => {
         name: course_name,
       },
       createdAt: resource.createdAt,
-      favoritesNr: favoritesNr,
-      isFavorite: isFavorite,
+      favoritesNr: resource.favoritesNr,
+      upvotesNr: resource.upvotesNr,
+      downloadsNr: resource.downloadsNr,
       commentsNr: commentsNr,
+      isFavorite: isFavorite,
+      isUpvoted: isUpvoted,
+      isDownvoted: isDownvoted,
     };
   }) as ResourceDTO[];
 };

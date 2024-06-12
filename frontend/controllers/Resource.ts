@@ -1,33 +1,18 @@
 import { ResourceDB } from '@/lib/types';
-import FavoritesPerResource from '@/models/FavoritesPerResource';
 import Resource from '@/models/Resource';
-import { PAGE_SIZE, getSkip } from '@/lib/utils';
+import { getSkip } from '@/lib/utils';
+import { config } from '@/lib/config';
 
 export const listAll = (page: number) => {
   return Resource.find()
     .sort({ createdAt: -1 })
     .skip(getSkip(page))
-    .limit(PAGE_SIZE)
+    .limit(config.pages.PAGE_SIZE)
     .exec();
 };
 
-const FAV_FACTOR = 0.6;
-const COMMENT_FACTOR = 0.1;
-
 export const listPopular = (page: number) => {
   return Resource.aggregate([
-    {
-      $lookup: {
-        from: 'favoritesperresources',
-        localField: '_id',
-        foreignField: 'resourceId',
-        as: 'favorites',
-      },
-    },
-    {
-      $unwind: { path: '$favorites', preserveNullAndEmptyArrays: true },
-    },
-
     {
       $lookup: {
         from: 'comments',
@@ -49,18 +34,28 @@ export const listPopular = (page: number) => {
         courseId: 1,
         createdAt: 1,
         userEmail: 1,
+        favoritesNr: 1,
+        upvotesNr: 1,
+        downvotesNr: 1,
+        downloadsNr: 1,
         popularity: {
           $add: [
             {
-              $multiply: [
-                { $size: { $ifNull: ['$favorites.userEmails', []] } },
-                FAV_FACTOR,
-              ],
+              $multiply: ['$upvotesNr', config.popularity.UPVOTE_FACTOR],
+            },
+            {
+              $multiply: ['$downvotesNr', config.popularity.DOWNVOTE_FACTOR],
+            },
+            {
+              $multiply: ['$favoritesNr', config.popularity.FAV_FACTOR],
+            },
+            {
+              $multiply: ['$downloadsNr', config.popularity.DOWNLOAD_FACTOR],
             },
             {
               $multiply: [
                 { $size: { $ifNull: ['$comments', []] } },
-                COMMENT_FACTOR,
+                config.popularity.COMMENT_FACTOR,
               ],
             },
           ],
@@ -70,7 +65,7 @@ export const listPopular = (page: number) => {
     { $sort: { popularity: -1, createdAt: -1 } },
   ])
     .skip(getSkip(page))
-    .limit(PAGE_SIZE)
+    .limit(config.pages.PAGE_SIZE)
     .exec();
 };
 
@@ -78,7 +73,7 @@ export const listNewest = (page: number) => {
   return Resource.find()
     .sort({ createdAt: -1 })
     .skip(getSkip(page))
-    .limit(PAGE_SIZE)
+    .limit(config.pages.PAGE_SIZE)
     .exec();
 };
 
@@ -90,7 +85,7 @@ export const listByIds = (ids: string[], page: number) => {
   return Resource.find({ _id: { $in: ids } })
     .sort({ createdAt: -1 })
     .skip(getSkip(page))
-    .limit(PAGE_SIZE)
+    .limit(config.pages.PAGE_SIZE)
     .exec();
 };
 
@@ -104,7 +99,7 @@ export const listbyUser = (email: string, page: number) => {
   return Resource.find({ userEmail: email })
     .sort({ createdAt: -1 })
     .skip(getSkip(page))
-    .limit(PAGE_SIZE)
+    .limit(config.pages.PAGE_SIZE)
     .exec();
 };
 
@@ -183,6 +178,9 @@ const searchPipeline = (query: string) => [
       },
       createdAt: 1,
       favoritesNr: 1,
+      upvotesNr: 1,
+      downvotesNr: 1,
+      downloadsNr: 1,
     },
   },
 ];
@@ -190,7 +188,7 @@ const searchPipeline = (query: string) => [
 export const search = (query: string, page: number) => {
   return Resource.aggregate(searchPipeline(query))
     .skip(getSkip(page))
-    .limit(PAGE_SIZE)
+    .limit(config.pages.PAGE_SIZE)
     .exec();
 };
 
@@ -214,10 +212,6 @@ export const remove = (id: string) => {
   return Resource.findByIdAndDelete(id).exec();
 };
 
-export const getFavorites = (id: string) => {
-  return FavoritesPerResource.findOne({ resourceId: id }).exec();
-};
-
-export const listFavorites = () => {
-  return FavoritesPerResource.find().exec();
+export const addDownload = (id: string) => {
+  return Resource.updateOne({ _id: id }, { $inc: { downloadsNr: 1 } }).exec();
 };

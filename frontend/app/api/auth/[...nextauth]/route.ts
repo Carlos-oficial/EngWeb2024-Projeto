@@ -62,14 +62,6 @@ export const authOptions: AuthOptions = {
 
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      await UserController.getFavorites(user.email as string).then(
-        async (res) => {
-          if (res === null) {
-            await UserController.postFavorites(user.email as string, []);
-          }
-        },
-      );
-
       return true;
     },
     async redirect({ url, baseUrl }) {

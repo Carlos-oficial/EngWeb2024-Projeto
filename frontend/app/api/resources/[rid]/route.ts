@@ -7,8 +7,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import fs from 'node:fs/promises';
 
-export const dynamic = 'force-dynamic'; // defaults to auto
-
 export async function GET(
   req: NextRequest,
   { params }: { params: { rid: string } },

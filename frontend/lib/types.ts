@@ -21,8 +21,12 @@ export type ResourceDTO = {
   };
   createdAt: Date;
   favoritesNr: number;
-  isFavorite: boolean;
+  upvotesNr: number;
+  downloadsNr: number;
   commentsNr: number;
+  isFavorite: boolean;
+  isUpvoted: boolean;
+  isDownvoted: boolean;
 };
 
 export type ResourceDB = {
@@ -36,6 +40,10 @@ export type ResourceDB = {
   courseId: string;
   createdAt: Date;
   userEmail: string;
+  favoritesNr: number;
+  upvotesNr: number;
+  downvotesNr: number;
+  downloadsNr: number;
 };
 
 export type SubjectDB = {
@@ -61,6 +69,9 @@ export type UserDB = {
   password: string;
   image: string;
   emailVerified: Date | null;
+  favoritedResourceIds: string[];
+  upvotedResourceIds: string[];
+  downvotedResourceIds: string[];
 };
 
 export type UserSignUp = {

@@ -125,8 +125,8 @@ export default function ResourceDialog({
         setOpen(false);
         setTimeout(() => {
           toast({
-            title: 'Resource submitted successfully ✅',
-            description: 'Thank you for your contribution 💙',
+            title: 'Resource submitted successfully!',
+            description: 'Thank you for your contribution.',
           });
           refreshResources();
         }, 300);

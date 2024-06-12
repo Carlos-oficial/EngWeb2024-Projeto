@@ -81,7 +81,7 @@ export default function SignUpForm({
     signUp(values as UserSignUp)
       .then(() => {
         toast({
-          title: 'Sign up successful!',
+          description: 'Sign up successful!',
         });
         handleCredentialSignIn(values.email, values.password);
       })

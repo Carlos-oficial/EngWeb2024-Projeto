@@ -17,9 +17,16 @@ import ProfileCard from '@/components/profilecard';
 import { timeAgo, formatNumber } from '@/lib/utils';
 import { ResourceDTO } from '@/lib/types';
 import { useSession } from 'next-auth/react';
-import { addFavorite, removeFavorite } from '@/lib/data';
 import CommentDialog from '@/components/comment_dialog';
-import { useRouter } from 'next/navigation';
+import {
+  addUpvote,
+  removeUpvote,
+  addDownvote,
+  removeDownvote,
+  addFavorite,
+  removeFavorite,
+} from '@/lib/data';
+import { useToast } from './ui/use-toast';
 
 interface ResourceCardProps {
   resource: ResourceDTO;
@@ -32,48 +39,126 @@ export default function ResourceCard({
 }: ResourceCardProps) {
   const session = useSession();
   const pathname = usePathname();
-  const router = useRouter();
+  const { toast } = useToast();
 
   const [favoriteCounter, setFavoriteCounter] = useState<number>(
     resource.favoritesNr,
   );
+  const [downloadCounter, setDownloadCounter] = useState<number>(
+    resource.downloadsNr,
+  );
+  const [upvoteCounter, setUpvoteCounter] = useState<number>(
+    resource.upvotesNr,
+  );
   const [isFavorite, setIsFavorite] = useState<boolean>(resource.isFavorite);
-  const [downloadCounter, setDownloadCounter] = useState<number>(0);
-  const [upvoteCounter, setUpvoteCounter] = useState<number>(0);
-  const [isUpvoted, setIsUpvoted] = useState<boolean>(false);
-  const [isDownvoted, setIsDownvoted] = useState<boolean>(false);
+  const [isUpvoted, setIsUpvoted] = useState<boolean>(resource.isUpvoted);
+  const [isDownvoted, setIsDownvoted] = useState<boolean>(resource.isDownvoted);
 
-  function handleDownload() {
-    router.push(`/api/resources/${resource._id}/download`);
-    setDownloadCounter(downloadCounter + 1);
+  function handleDownload(event: React.MouseEvent<HTMLButtonElement>) {
+    try {
+      event.stopPropagation();
+      fetch(`/api/resources/${resource._id}/download`)
+        .then((response) => {
+          response
+            .blob()
+            .then((blob) => {
+              const url = window.URL.createObjectURL(new Blob([blob]));
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = `${resource._id}.${resource.documentFormat.toLowerCase()}`;
+              document.body.appendChild(a);
+              a.click();
+              a.remove();
+              setDownloadCounter(downloadCounter + 1);
+              toast({
+                description: 'Download started.',
+              });
+            })
+            .catch(() => {});
+        })
+        .catch(() => {});
+    } catch (error) {
+      toast({
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.',
+      });
+    }
   }
 
   function handleUpvote() {
-    // TODO
-    setIsUpvoted(!isUpvoted);
-    setIsDownvoted(false);
-    setUpvoteCounter(isUpvoted ? upvoteCounter - 1 : upvoteCounter + 1);
+    try {
+      if (session.status === 'authenticated') {
+        if (isUpvoted) {
+          setUpvoteCounter(upvoteCounter - 1);
+          removeUpvote(session.data.user.email, resource._id)
+            .then(() => {})
+            .catch(() => setUpvoteCounter(upvoteCounter + 1));
+        } else {
+          setUpvoteCounter(upvoteCounter + 1);
+          isDownvoted && handleDownvote();
+          addUpvote(session.data.user.email, resource._id)
+            .then(() => {})
+            .catch(() => {
+              setUpvoteCounter(upvoteCounter - 1);
+              handleDownvote();
+            });
+        }
+        setIsUpvoted(!isUpvoted);
+      }
+    } catch (error) {
+      toast({
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.',
+      });
+    }
   }
 
   function handleDownvote() {
-    // TODO
-    setIsDownvoted(!isDownvoted);
-    setUpvoteCounter(isUpvoted ? upvoteCounter - 1 : upvoteCounter);
-    setIsUpvoted(false);
+    try {
+      if (session.status === 'authenticated') {
+        if (isDownvoted) {
+          removeDownvote(session.data.user.email, resource._id)
+            .then(() => {})
+            .catch(() => {});
+        } else {
+          isUpvoted && handleUpvote();
+          addDownvote(session.data.user.email, resource._id)
+            .then(() => {})
+            .catch(() => {
+              handleUpvote();
+            });
+        }
+        setIsDownvoted(!isDownvoted);
+      }
+    } catch (error) {
+      toast({
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.',
+      });
+    }
   }
 
   function handleFavorite() {
-    if (session.status === 'authenticated') {
-      if (isFavorite) {
-        removeFavorite(session.data.user.email, resource._id)
-          .then(() => setFavoriteCounter(favoriteCounter - 1))
-          .catch(() => {});
-      } else {
-        addFavorite(session.data.user.email, resource._id)
-          .then(() => setFavoriteCounter(favoriteCounter + 1))
-          .catch(() => {});
+    try {
+      if (session.status === 'authenticated') {
+        if (isFavorite) {
+          setFavoriteCounter(favoriteCounter - 1);
+          removeFavorite(session.data.user.email, resource._id)
+            .then(() => {})
+            .catch(() => setFavoriteCounter(favoriteCounter + 1));
+        } else {
+          setFavoriteCounter(favoriteCounter + 1);
+          addFavorite(session.data.user.email, resource._id)
+            .then(() => {})
+            .catch(() => setFavoriteCounter(favoriteCounter - 1));
+        }
+        setIsFavorite(!isFavorite);
       }
-      setIsFavorite(!isFavorite);
+    } catch (error) {
+      toast({
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.',
+      });
     }
   }
 
@@ -95,6 +180,7 @@ export default function ResourceCard({
               session.status === 'authenticated' ? handleFavorite : () => {}
             }
             className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
+            title='Favorite'
           >
             <i
               className={`${isFavorite ? 'ph-fill' : 'ph'} ph-star text-lg`}
@@ -182,6 +268,7 @@ export default function ResourceCard({
             onClick={handleDownload}
             className={`flex space-x-1 ${session.status === 'authenticated' && 'hover:text-primary'} transition-all text-muted-foreground`}
             title='Download'
+            type='button'
           >
             <i className={`ph ph-download-simple text-lg`}></i>
             <p className='text-sm'>{formatNumber(downloadCounter)}</p>

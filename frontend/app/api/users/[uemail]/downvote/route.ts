@@ -6,33 +6,6 @@ import { HttpStatusCode } from 'axios';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { getServerSession } from 'next-auth';
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { uemail: string } },
-) {
-  try {
-    await connectMongo();
-
-    if (!params.uemail) {
-      return NextResponse.json(
-        { message: 'No user email provided' },
-        { status: HttpStatusCode.BadRequest },
-      );
-    }
-
-    const favorites = (await UserController.getFavorites(params.uemail)) as {
-      favoritedResourceIds: string[];
-    };
-
-    return NextResponse.json(favorites?.favoritedResourceIds ?? []);
-  } catch (error) {
-    return NextResponse.json(
-      { message: error as Error },
-      { status: HttpStatusCode.BadRequest },
-    );
-  }
-}
-
 export async function POST(
   req: NextRequest,
   { params }: { params: { uemail: string } },
@@ -67,10 +40,10 @@ export async function POST(
       );
     }
 
-    await UserController.addFavorite(params.uemail, body.resourceId);
+    await UserController.addDownvote(params.uemail, body.resourceId);
 
     return NextResponse.json(
-      { message: 'Favorite added' },
+      { message: 'Downvote added' },
       { status: HttpStatusCode.Ok },
     );
   } catch (error) {
@@ -115,10 +88,10 @@ export async function DELETE(
       );
     }
 
-    await UserController.removeFavorite(params.uemail, body.resourceId);
+    await UserController.removeDownvote(params.uemail, body.resourceId);
 
     return NextResponse.json(
-      { message: 'Favorite removed' },
+      { message: 'Downvote removed' },
       { status: HttpStatusCode.Ok },
     );
   } catch (error) {

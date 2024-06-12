@@ -16,6 +16,7 @@ import { nameInitials } from '@/lib/utils';
 import TextareaAutosize from 'react-textarea-autosize';
 import { Button } from './ui/button';
 import { useToast } from './ui/use-toast';
+import { timeAgo } from '@/lib/utils';
 
 export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
   const session = useSession();
@@ -37,7 +38,7 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
           setCommentsCounter(commentsCounter + 1);
           setTimeout(() => {
             toast({
-              title: 'Comment sent ✅',
+              description: 'Your comment has been sent.',
             });
           }, 300);
         })
@@ -63,6 +64,7 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
           disabled={session.status !== 'authenticated'}
           onClick={session.status === 'authenticated' ? () => {} : () => {}}
           className={`flex space-x-1 ${session.status === 'authenticated' && 'hover:text-green-500'} transition-all text-muted-foreground`}
+          title='Comment'
         >
           <i className={`ph ph-chat-circle text-lg`}></i>
           <p className='text-sm'>{formatNumber(commentsCounter)}</p>
@@ -81,10 +83,12 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
               <div className='w-0.5 bg-border grow h-[calc(100%-2.75rem)] m-auto'></div>
             </div>
             <div className='space-y-3 w-full'>
-              <div className='flex space-x-2'>
-                <h4 className='text-sm font-semibold'>{resource.userName}</h4>
-                <p className='text-sm'>{resource.userEmail}</p>
-              </div>
+              <p className='text-sm'>
+                <span className='font-bold'>{resource.userName}</span>{' '}
+                <span className='text-muted-foreground'>
+                  {resource.userEmail} · {timeAgo(resource.createdAt)}
+                </span>
+              </p>
               <div className='w-full border-border border rounded-lg space-y-2'>
                 <CardHeader>
                   <div className='flex justify-between pb-2'>

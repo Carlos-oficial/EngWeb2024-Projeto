@@ -10,6 +10,10 @@ interface IResource {
   courseId: string;
   createdAt: Date;
   userEmail: string;
+  favoritesNr: number;
+  upvotesNr: number;
+  downvotesNr: number;
+  downloadsNr: number;
 }
 
 const ResourceSchema = new Schema<IResource>({
@@ -22,6 +26,10 @@ const ResourceSchema = new Schema<IResource>({
   courseId: { type: String, ref: 'Course', required: true },
   createdAt: { type: Date, required: true },
   userEmail: { type: String, ref: 'User', required: true },
+  favoritesNr: { type: Number, default: 0 },
+  upvotesNr: { type: Number, default: 0 },
+  downvotesNr: { type: Number, default: 0 },
+  downloadsNr: { type: Number, default: 0 },
 });
 
 const Resource =

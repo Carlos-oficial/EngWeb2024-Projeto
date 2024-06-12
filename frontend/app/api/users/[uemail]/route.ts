@@ -5,8 +5,6 @@ import { NextResponse } from 'next/server';
 import { HttpStatusCode } from 'axios';
 import { NextApiRequest } from 'next';
 
-export const dynamic = 'force-dynamic'; // defaults to auto
-
 export async function GET(req: NextApiRequest) {
   try {
     await connectMongo();
