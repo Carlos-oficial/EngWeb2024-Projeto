@@ -50,6 +50,7 @@ function searchResources(resources: ResourceDTO[] | null, searchQuery: string) {
       !searchQuery.split('').every((c) => c === ' ')
     ) {
       return resources.filter((resource) => {
+        const queryWords = searchQuery.toLowerCase().split(' ');
         for (const attr of searchAttributes) {
           let value;
           const fst = attr.split('.')[0] as keyof ResourceDTO;
@@ -61,7 +62,6 @@ function searchResources(resources: ResourceDTO[] | null, searchQuery: string) {
             value = resource[fst][snd];
           } else value = resource[attr as keyof ResourceDTO];
 
-          const queryWords = searchQuery.toLowerCase().split(' ');
           if (
             queryWords.every((word) =>
               String(value).toLowerCase().includes(word),
@@ -395,7 +395,7 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
             </Pagination>
           )}
         </div>
-        <div className='hidden xl:block min-w-72 border-l border-border p-2'>
+        <div className='hidden xl:block min-w-72 max-w-72 border-l border-border p-2'>
           <ResourceFilters
             documentTypeId={documentTypeId}
             setDocumentTypeId={setDocumentTypeId}

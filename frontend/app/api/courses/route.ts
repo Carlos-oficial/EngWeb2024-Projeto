@@ -25,9 +25,9 @@ export async function POST(req: NextRequest) {
 
     const body = (await req.json()) as Partial<CourseDB>;
 
-    await CourseController.create(body);
+    const response = (await CourseController.create(body)) as string;
 
-    return NextResponse.json(body);
+    return NextResponse.json(response);
   } catch (error) {
     return NextResponse.json(
       { message: (error as Error).message },
