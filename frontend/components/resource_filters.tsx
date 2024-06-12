@@ -12,6 +12,7 @@ import { CourseDB, SubjectDB, DocumentTypeDB } from '@/lib/types';
 
 import { listSubjects, listCourses, listDocumentTypes } from '@/lib/data';
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 export default function ResourceFilters({
   documentTypeId,
@@ -28,6 +29,8 @@ export default function ResourceFilters({
   subjectId: string;
   setSubjectId: (subjectId: string) => void;
 }) {
+  const searchParams = useSearchParams();
+
   // filters
   const [documentTypes, setDocumentTypes] = useState<DocumentTypeDB[]>([]);
   const [courses, setCourses] = useState<CourseDB[]>([]);
@@ -65,11 +68,7 @@ export default function ResourceFilters({
       <h1 className='text-xl font-bold h-11 flex items-center'>Filters</h1>
       <div className='w-full space-y-2'>
         <Label htmlFor='types'>Resource Type</Label>
-        <Select
-          defaultValue={documentTypeId}
-          onValueChange={setDocumentTypeId}
-          id='types'
-        >
+        <Select defaultValue={documentTypeId} onValueChange={setDocumentTypeId}>
           <SelectTrigger>
             <SelectValue />
           </SelectTrigger>
@@ -83,53 +82,52 @@ export default function ResourceFilters({
           </SelectContent>
         </Select>
       </div>
-      <div className='w-full space-y-2'>
-        <Label htmlFor='courses'>Course</Label>
-        <Select
-          defaultValue={courseId}
-          onValueChange={setCourseId}
-          id='courses'
-        >
-          <SelectTrigger>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value='All'>All</SelectItem>
-            {courses.map((course) => (
-              <SelectItem
-                key={course._id.toString()}
-                value={course._id.toString()}
-              >
-                {course.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-      <div className='w-full space-y-2'>
-        <Label htmlFor='subjects'>Subject</Label>
-        <Select
-          defaultValue={subjectId}
-          onValueChange={setSubjectId}
-          id='subjects'
-          disabled={courseId === 'All'}
-        >
-          <SelectTrigger>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value='All'>All</SelectItem>
-            {shownSubjects.map((subject) => (
-              <SelectItem
-                key={subject._id.toString()}
-                value={subject._id.toString()}
-              >
-                {subject.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
+      {!searchParams.has('course') && (
+        <div className='w-full space-y-2'>
+          <Label htmlFor='courses'>Course</Label>
+          <Select defaultValue={courseId} onValueChange={setCourseId}>
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='All'>All</SelectItem>
+              {courses.map((course) => (
+                <SelectItem
+                  key={course._id.toString()}
+                  value={course._id.toString()}
+                >
+                  {course.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
+      {!searchParams.has('subject') && (
+        <div className='w-full space-y-2'>
+          <Label htmlFor='subjects'>Subject</Label>
+          <Select
+            defaultValue={subjectId}
+            onValueChange={setSubjectId}
+            disabled={courseId === 'All'}
+          >
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='All'>All</SelectItem>
+              {shownSubjects.map((subject) => (
+                <SelectItem
+                  key={subject._id.toString()}
+                  value={subject._id.toString()}
+                >
+                  {subject.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
     </div>
   );
 }

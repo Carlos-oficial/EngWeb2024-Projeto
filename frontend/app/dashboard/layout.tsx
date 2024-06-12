@@ -10,7 +10,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(true);
+  const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
 
   return (
     <>

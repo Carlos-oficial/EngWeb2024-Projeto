@@ -11,6 +11,9 @@ export const listAll = (page: number) => {
     .exec();
 };
 
+const FAV_FACTOR = 0.6;
+const COMMENT_FACTOR = 0.1;
+
 export const listPopular = (page: number) => {
   return Resource.aggregate([
     {
@@ -24,6 +27,16 @@ export const listPopular = (page: number) => {
     {
       $unwind: { path: '$favorites', preserveNullAndEmptyArrays: true },
     },
+
+    {
+      $lookup: {
+        from: 'comments',
+        localField: '_id',
+        foreignField: 'resourceId',
+        as: 'comments',
+      },
+    },
+
     {
       $project: {
         _id: 1,
@@ -36,10 +49,25 @@ export const listPopular = (page: number) => {
         courseId: 1,
         createdAt: 1,
         userEmail: 1,
-        favoritesNr: { $size: { $ifNull: ['$favorites.userEmails', []] } },
+        popularity: {
+          $add: [
+            {
+              $multiply: [
+                { $size: { $ifNull: ['$favorites.userEmails', []] } },
+                FAV_FACTOR,
+              ],
+            },
+            {
+              $multiply: [
+                { $size: { $ifNull: ['$comments', []] } },
+                COMMENT_FACTOR,
+              ],
+            },
+          ],
+        },
       },
     },
-    { $sort: { favoritesNr: -1, createdAt: -1 } },
+    { $sort: { popularity: -1, createdAt: -1 } },
   ])
     .skip(getSkip(page))
     .limit(PAGE_SIZE)

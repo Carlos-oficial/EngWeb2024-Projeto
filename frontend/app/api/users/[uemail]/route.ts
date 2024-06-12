@@ -15,7 +15,14 @@ export async function GET(req: NextApiRequest) {
 
     const user = (await UserController.get(uemail)) as UserDB;
 
-    return NextResponse.json(user);
+    const safeUser = {
+      _id: user._id,
+      email: user.email,
+      name: user.name,
+      image: user.image,
+    };
+
+    return NextResponse.json(safeUser);
   } catch (error) {
     return NextResponse.json(
       { message: error as Error },

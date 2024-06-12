@@ -27,7 +27,6 @@ export async function GET(
 
     return NextResponse.json(favorites?.resourceIds ?? []);
   } catch (error) {
-    console.error(error);
     return NextResponse.json(
       { message: error as Error },
       { status: HttpStatusCode.BadRequest },
@@ -54,7 +53,7 @@ export async function POST(
 
     if (!res) {
       return NextResponse.json(
-        { message: 'Favorite does not exist on specified resource' },
+        { message: 'Resource does not exist' },
         { status: HttpStatusCode.BadRequest },
       );
     }
@@ -92,7 +91,7 @@ export async function DELETE(
 
     if (!res) {
       return NextResponse.json(
-        { message: 'Favorite does not exist on specified resource' },
+        { message: 'Resource does not exist' },
         { status: HttpStatusCode.BadRequest },
       );
     }

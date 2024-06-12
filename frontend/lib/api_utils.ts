@@ -5,7 +5,9 @@ import * as CourseController from '@/controllers/Course';
 import * as UserController from '@/controllers/User';
 import * as DocumentTypeController from '@/controllers/DocumentType';
 import * as ResourceController from '@/controllers/Resource';
+import * as CommentController from '@/controllers/Comment';
 import {
+  CommentDB,
   CourseDB,
   DocumentTypeDB,
   FavoritePerResourceDB,
@@ -49,6 +51,7 @@ export const dbsToDtos = async (resources: ResourceDB[]) => {
   const resourceFavorites =
     ((await ResourceController.listFavorites()) as FavoritePerResourceDB[]) ??
     [];
+  const comments = ((await CommentController.list()) as CommentDB[]) ?? [];
 
   return resources.map((resource) => {
     const subject_name =
@@ -85,6 +88,12 @@ export const dbsToDtos = async (resources: ResourceDB[]) => {
           new ObjectId(r.resourceId).toString() ===
             new ObjectId(resource._id).toString(),
       );
+    const commentsNr =
+      comments.filter(
+        (c) =>
+          new ObjectId(c.resourceId).toString() ===
+          new ObjectId(resource._id).toString(),
+      ).length ?? 0;
 
     return {
       _id: resource._id.toString(),
@@ -110,6 +119,7 @@ export const dbsToDtos = async (resources: ResourceDB[]) => {
       createdAt: resource.createdAt,
       favoritesNr: favoritesNr,
       isFavorite: isFavorite,
+      commentsNr: commentsNr,
     };
   }) as ResourceDTO[];
 };

@@ -22,6 +22,7 @@ export type ResourceDTO = {
   createdAt: Date;
   favoritesNr: number;
   isFavorite: boolean;
+  commentsNr: number;
 };
 
 export type ResourceDB = {
@@ -81,6 +82,14 @@ export type FavoritePerUserDB = {
   _id: string;
   userEmail: string;
   resourceIds: string[];
+};
+
+export type CommentDB = {
+  _id: string;
+  resourceId: string;
+  userEmail: string;
+  message: string;
+  createdAt: Date;
 };
 
 export interface CustomUser {

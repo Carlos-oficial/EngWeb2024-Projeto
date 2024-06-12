@@ -56,11 +56,11 @@ type FormValues = z.infer<typeof formSchema>;
 const formSchema = z.object({
   title: z
     .string({ required_error: 'Title is required' })
-    .min(10, { message: 'Title must be at least 15 characters' })
+    .min(10, { message: 'Title must be at least 10 characters' })
     .max(50, { message: 'Title must be at most 50 characters' }),
   description: z
     .string({ required_error: 'Description is required' })
-    .min(20, { message: 'Description must be at least 30 characters' })
+    .min(20, { message: 'Description must be at least 20 characters' })
     .max(100, { message: 'Description must be at most 100 characters' }),
   documentTypeId: z.string({ required_error: 'Resource type is required' }), // é um ID
   hashtags: z.string().regex(new RegExp('^(#\\w+)?( #\\w+)*$'), {
@@ -125,8 +125,8 @@ export default function ResourceDialog({
         setOpen(false);
         setTimeout(() => {
           toast({
-            title: 'Resource submitted successfully!',
-            description: 'Thank you for your contribution <3',
+            title: 'Resource submitted successfully ✅',
+            description: 'Thank you for your contribution 💙',
           });
           refreshResources();
         }, 300);

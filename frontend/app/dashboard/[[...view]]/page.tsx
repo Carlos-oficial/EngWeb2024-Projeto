@@ -21,17 +21,14 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import { range } from '@/lib/utils';
-
-// import {
-//   Breadcrumb,
-//   BreadcrumbEllipsis,
-//   BreadcrumbItem,
-//   BreadcrumbLink,
-//   BreadcrumbList,
-//   BreadcrumbPage,
-//   BreadcrumbSeparator,
-// } from '@/components/ui/breadcrumb';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import Link from 'next/link';
 
 const searchAttributes = [
   'title',
@@ -124,6 +121,36 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
     setSearchQuery(e.target.value);
   }
 
+  function getCourseName(courseId: string) {
+    return (
+      resources?.find((r) => r.course._id === courseId)?.course.name || '...'
+    );
+  }
+
+  function getSubjectName(subjectId: string) {
+    return (
+      resources?.find((r) => r.subject._id === subjectId)?.subject.name || '...'
+    );
+  }
+
+  function getSearchParamsUrl() {
+    let acc = 0;
+    let url = '';
+    if (searchParams.has('course')) {
+      url += `${acc > 0 ? '&' : '?'}course=${searchParams.get('course')}`;
+      acc++;
+    }
+    if (searchParams.has('subject')) {
+      url += `${acc > 0 ? '&' : '?'}subject=${subjectId}`;
+      acc++;
+    }
+    if (searchParams.has('tag')) {
+      url += `${acc > 0 ? '&' : '?'}tag=${searchParams.get('tag')}`;
+      acc++;
+    }
+    return url;
+  }
+
   useEffect(() => {
     let newShownResources = resources;
     newShownResources = searchResources(newShownResources, searchQuery);
@@ -143,6 +170,23 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
     } else {
       setPageNr(1);
     }
+
+    if (searchParams.has('course')) {
+      setCourseId(searchParams.get('course') as string);
+    } else {
+      setCourseId('All');
+    }
+
+    if (searchParams.has('subject')) {
+      setSubjectId(searchParams.get('subject') as string);
+    } else {
+      setSubjectId('All');
+    }
+
+    if (searchParams.has('tag')) {
+      setSearchQuery('#' + searchParams.get('tag'));
+    }
+
     if (pageNr !== null) {
       if (
         session.status === 'authenticated' &&
@@ -153,7 +197,6 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
           .then((res) => {
             setResources(res.data);
             setTotalPages(res.pagesNr);
-            console.log(res.pagesNr);
           })
           .catch((error: Error) => setError(error.message));
       } else if (params.view && params.view[0] === 'newest') {
@@ -161,7 +204,6 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
           .then((res) => {
             setResources(res.data);
             setTotalPages(res.pagesNr);
-            console.log(res.pagesNr);
           })
           .catch((error: Error) => setError(error.message));
       } else {
@@ -169,7 +211,6 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
           .then((res) => {
             setResources(res.data);
             setTotalPages(res.pagesNr);
-            console.log(res.pagesNr);
           })
           .catch((error: Error) => setError(error.message));
       }
@@ -211,55 +252,143 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
       </main>
     ) : (
       <main className='flex h-full w-full'>
-        <div className='p-5 space-y-3 overflow-scroll w-full'>
-          {/* {(searchParams.get('course') || searchParams.get('hashtag')) && (
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>Home</BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          )} */}
-          <div className='flex space-x-2'>
-            <Input
-              type='text'
-              placeholder='Search any resource...'
-              value={searchQuery}
-              onChange={handleSearchQueryChange}
-            />
-            <ResourceDialog refreshResources={refreshResources} />
+        <div className='h-full flex flex-col justify-between p-5 overflow-scroll w-full'>
+          <div className='space-y-3 w-full'>
+            {(searchParams.has('course') || searchParams.has('hashtag')) && (
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink asChild className='flex items-center'>
+                      <Link href={pathname}>
+                        {params.view && params.view[0] === 'favorites' ? (
+                          <i className='ph ph-star text-lg'></i>
+                        ) : params.view && params.view[0] === 'newest' ? (
+                          <i className='ph ph-seal text-lg'></i>
+                        ) : (
+                          <i className='ph ph-fire text-lg'></i>
+                        )}
+                      </Link>
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink
+                      asChild
+                      className='flex space-x-2 items-center'
+                    >
+                      <Link
+                        href={`${pathname}?course=${searchParams.get('course')}`}
+                      >
+                        <i className='ph ph-graduation-cap text-lg'></i>
+                        <span>
+                          {getCourseName(searchParams.get('course') ?? '')}
+                        </span>
+                      </Link>
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  {searchParams.has('subject') && (
+                    <>
+                      <BreadcrumbSeparator />
+                      <BreadcrumbItem>
+                        <BreadcrumbLink
+                          asChild
+                          className='flex space-x-2 items-center'
+                        >
+                          <Link
+                            href={`${pathname}?course=${searchParams.get(
+                              'course',
+                            )}&subject=${searchParams.get('subject')}`}
+                          >
+                            <i className='ph ph-chalkboard-teacher text-lg'></i>
+                            <span>
+                              {getSubjectName(
+                                searchParams.get('subject') ?? '',
+                              )}
+                            </span>
+                          </Link>
+                        </BreadcrumbLink>
+                      </BreadcrumbItem>
+                    </>
+                  )}
+                </BreadcrumbList>
+              </Breadcrumb>
+            )}
+            <div className='flex space-x-2'>
+              <Input
+                type='text'
+                placeholder='Search any resource...'
+                value={searchQuery}
+                onChange={handleSearchQueryChange}
+              />
+              <ResourceDialog refreshResources={refreshResources} />
+            </div>
+            {shownResources !== null ? (
+              <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-3'>
+                {shownResources.map((resource) => (
+                  <ResourceCard resource={resource} key={resource._id} />
+                ))}
+              </div>
+            ) : (
+              <div className='flex items-center justify-center h-[calc(100vh-10rem)]'>
+                <Spinner />
+              </div>
+            )}
           </div>
-          {shownResources !== null ? (
-            <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-3'>
-              {shownResources.map((resource) => (
-                <ResourceCard resource={resource} key={resource._id} />
-              ))}
-            </div>
-          ) : (
-            <div className='flex items-center justify-center h-5/6'>
-              <Spinner />
-            </div>
-          )}
-          {totalPages && (
-            <Pagination className='pt-3'>
+          {totalPages && pageNr && (
+            <Pagination className='pt-6'>
               <PaginationContent>
-                {pageNr && pageNr > 1 && (
+                {pageNr > 1 && (
                   <PaginationItem>
-                    <PaginationPrevious href={`${pathname}?p=${pageNr - 1}`} />
+                    <PaginationPrevious
+                      href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${pageNr - 1}`}
+                    />
                   </PaginationItem>
                 )}
-                {range(1, totalPages + 1).map((i) => (
-                  <PaginationItem key={i}>
+                {pageNr - 1 > 0 && (
+                  <PaginationItem>
                     <PaginationLink
-                      href={`${pathname}?p=${i}`}
-                      isActive={pageNr === i}
+                      href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${pageNr - 1}`}
                     >
-                      {i}
+                      {pageNr - 1}
                     </PaginationLink>
                   </PaginationItem>
-                ))}
-                {pageNr && pageNr < totalPages && (
+                )}
+                <PaginationItem>
+                  <PaginationLink
+                    href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${pageNr}`}
+                    isActive
+                  >
+                    {pageNr}
+                  </PaginationLink>
+                </PaginationItem>
+                {pageNr + 1 <= totalPages && (
                   <PaginationItem>
-                    <PaginationNext href={`${pathname}?p=${pageNr + 1}`} />
+                    <PaginationLink
+                      href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${pageNr + 1}`}
+                    >
+                      {pageNr + 1}
+                    </PaginationLink>
+                  </PaginationItem>
+                )}
+                {totalPages > 2 && pageNr < totalPages - 1 && (
+                  <>
+                    <PaginationItem>
+                      <PaginationEllipsis />
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink
+                        href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${totalPages}`}
+                      >
+                        {totalPages}
+                      </PaginationLink>
+                    </PaginationItem>
+                  </>
+                )}
+                {pageNr < totalPages && (
+                  <PaginationItem>
+                    <PaginationNext
+                      href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${pageNr + 1}`}
+                    />
                   </PaginationItem>
                 )}
               </PaginationContent>

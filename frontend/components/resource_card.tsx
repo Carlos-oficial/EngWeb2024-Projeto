@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 import {
@@ -12,13 +12,14 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import ProfileCard from '@/components/profilecard';
 import { timeAgo, formatNumber } from '@/lib/utils';
 import { ResourceDTO } from '@/lib/types';
 import { useSession } from 'next-auth/react';
 import { addFavorite, removeFavorite } from '@/lib/data';
+import CommentDialog from '@/components/comment_dialog';
+import { useRouter } from 'next/navigation';
 
 interface ResourceCardProps {
   resource: ResourceDTO;
@@ -30,12 +31,36 @@ export default function ResourceCard({
   ...props
 }: ResourceCardProps) {
   const session = useSession();
-  const router = useRouter();
   const pathname = usePathname();
+  const router = useRouter();
+
   const [favoriteCounter, setFavoriteCounter] = useState<number>(
     resource.favoritesNr,
   );
   const [isFavorite, setIsFavorite] = useState<boolean>(resource.isFavorite);
+  const [downloadCounter, setDownloadCounter] = useState<number>(0);
+  const [upvoteCounter, setUpvoteCounter] = useState<number>(0);
+  const [isUpvoted, setIsUpvoted] = useState<boolean>(false);
+  const [isDownvoted, setIsDownvoted] = useState<boolean>(false);
+
+  function handleDownload() {
+    router.push(`/api/resources/${resource._id}/download`);
+    setDownloadCounter(downloadCounter + 1);
+  }
+
+  function handleUpvote() {
+    // TODO
+    setIsUpvoted(!isUpvoted);
+    setIsDownvoted(false);
+    setUpvoteCounter(isUpvoted ? upvoteCounter - 1 : upvoteCounter + 1);
+  }
+
+  function handleDownvote() {
+    // TODO
+    setIsDownvoted(!isDownvoted);
+    setUpvoteCounter(isUpvoted ? upvoteCounter - 1 : upvoteCounter);
+    setIsUpvoted(false);
+  }
 
   function handleFavorite() {
     if (session.status === 'authenticated') {
@@ -53,7 +78,11 @@ export default function ResourceCard({
   }
 
   return (
-    <Card {...props} className='flex flex-col justify-between overflow-hidden'>
+    <Card
+      {...props}
+      className='flex flex-col justify-between overflow-hidden hover:bg-gray-50 hover:text-accent-foreground transition-all'
+      onClick={() => console.log('clicked')}
+    >
       <CardHeader>
         <div className='flex justify-between items-center pb-2'>
           <span className='text-sm text-muted-foreground'>
@@ -65,31 +94,37 @@ export default function ResourceCard({
             onClick={
               session.status === 'authenticated' ? handleFavorite : () => {}
             }
-            className={`flex space-x-1 items-center ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
+            className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
           >
-            <i className={`${isFavorite ? 'ph-fill' : 'ph'} ph-star`}></i>
+            <i
+              className={`${isFavorite ? 'ph-fill' : 'ph'} ph-star text-lg`}
+            ></i>
             <p className='text-sm'>{formatNumber(favoriteCounter)}</p>
           </button>
         </div>
-        <div className='flex justify-between items-center pb-2'>
+        <div className='flex justify-between pb-2'>
           <div className='flex space-x-2'>
             <Badge>{resource.documentType.name}</Badge>
             <Badge variant={'secondary'}>{resource.documentFormat}</Badge>
           </div>
         </div>
         <CardTitle>{resource.title}</CardTitle>
-        <CardDescription>{resource.description}</CardDescription>
-        <div className='flex text-sm text-muted-foreground space-x-2'>
-          {resource.hashtags.map((hashtag) => (
-            <Link
-              key={hashtag}
-              href={`${pathname}?tag=${hashtag}`}
-              className='hover:underline'
-            >
-              {hashtag}
-            </Link>
-          ))}
-        </div>
+        {resource.description && resource.description.length > 0 && (
+          <CardDescription>{resource.description}</CardDescription>
+        )}
+        {resource.hashtags && resource.hashtags.length > 0 && (
+          <div className='flex text-sm text-muted-foreground space-x-2'>
+            {resource.hashtags.map((hashtag) => (
+              <Link
+                key={hashtag}
+                href={`${pathname}?tag=${hashtag.split('#')[1]}`}
+                className='hover:underline'
+              >
+                {hashtag}
+              </Link>
+            ))}
+          </div>
+        )}
       </CardHeader>
       <CardContent>
         <ul className='space-y-1 text-sm overflow-hidden'>
@@ -114,30 +149,43 @@ export default function ResourceCard({
         </ul>
       </CardContent>
       <CardFooter>
-        <div
-          className={`grid ${session.status === 'authenticated' ? 'grid-rows-2' : 'grid-rows-1'}  xl:grid-cols-6 xl:grid-rows-none gap-2 w-full`}
-        >
-          <Button
-            className={`w-full space-x-2 ${session.status === 'authenticated' ? 'xl:col-span-5' : 'xl:col-span-6'}`}
-            onClick={() =>
-              router.push(`/api/resources/${resource._id}/download`)
-            }
-            variant={'outline'}
-            title='Download resource'
-          >
-            <i className='ph ph-download-simple'></i>
-            <span>Download</span>
-          </Button>
-          {session.status === 'authenticated' && (
-            <Button
-              variant={'outline'}
-              onClick={() => router.push(`/api/download/${resource._id}`)}
-              title='Share resource on feed'
-              className='xl:col-span-1'
+        <div className='flex w-full justify-between'>
+          <div className='flex space-x-4'>
+            <button
+              disabled={session.status !== 'authenticated'}
+              onClick={
+                session.status === 'authenticated' ? handleUpvote : () => {}
+              }
+              className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-orange-500' : ''} transition-all ${isUpvoted ? 'text-orange-500' : 'text-muted-foreground'}`}
+              title='Upvote'
             >
-              <i className='ph ph-share'></i>
-            </Button>
-          )}
+              <i
+                className={`${isUpvoted ? 'ph-fill' : 'ph'} ph-arrow-fat-up text-lg`}
+              ></i>
+              <p className='text-sm'>{formatNumber(upvoteCounter)}</p>
+            </button>
+            <button
+              disabled={session.status !== 'authenticated'}
+              onClick={
+                session.status === 'authenticated' ? handleDownvote : () => {}
+              }
+              className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-purple-500' : ''} transition-all ${isDownvoted ? 'text-purple-500' : 'text-muted-foreground'}`}
+              title='Downvote'
+            >
+              <i
+                className={`${isDownvoted ? 'ph-fill' : 'ph'} ph-arrow-fat-down text-lg`}
+              ></i>
+            </button>
+          </div>
+          <CommentDialog resource={resource} />
+          <button
+            onClick={handleDownload}
+            className={`flex space-x-1 ${session.status === 'authenticated' && 'hover:text-primary'} transition-all text-muted-foreground`}
+            title='Download'
+          >
+            <i className={`ph ph-download-simple text-lg`}></i>
+            <p className='text-sm'>{formatNumber(downloadCounter)}</p>
+          </button>
         </div>
       </CardFooter>
     </Card>

@@ -6,6 +6,7 @@ import {
   DocumentTypeDB,
   UserDB,
   UserSignUp,
+  CommentDB,
 } from './types';
 import { PAGE_SIZE } from './utils';
 
@@ -279,6 +280,39 @@ export const signUp = async (userInfo: UserSignUp) => {
     const data = (await response.json()) as UserDB;
 
     return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const listResourceComments = async (resourceId: string) => {
+  try {
+    const response = await fetch(`/api/resources/${resourceId}/comments`);
+    const data = (await response.json()) as CommentDB[];
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const addComment = async (
+  resourceId: string,
+  userEmail: string,
+  message: string,
+) => {
+  try {
+    await fetch('/api/users/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        resourceId: resourceId,
+        userEmail: userEmail,
+        message: message,
+        createdAt: new Date().toISOString(),
+      }),
+    });
   } catch (error) {
     throw new Error((error as Error).message);
   }
