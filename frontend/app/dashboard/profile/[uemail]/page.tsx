@@ -40,12 +40,17 @@ export default function Profile({ params }: { params: { uemail: string } }) {
                   <AvatarImage src={userData?.image} />
                 </Avatar>
               </div>
+
               <div className='mx-8 my-4'>
                 <p className='text-5xl font-semibold'>{userData?.name}</p>
                 <p className='text-lg font-normal mt-2'>{userData?.email}</p>
-                <Button variant={'outline'} className='mt-4'>
-                  Edit Profile
-                </Button>
+                {
+                  session.data?.user.email === params.uemail && (
+                    <Button variant={'outline'} className='mt-4'>
+                      Edit Profile
+                    </Button>
+                  )
+                }
               </div>
             </div>
           </div>          
