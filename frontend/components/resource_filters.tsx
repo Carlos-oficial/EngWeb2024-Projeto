@@ -81,7 +81,6 @@ export default function ResourceFilters({
 
   return (
     <div className='flex flex-col items-center space-y-2'>
-      <h1 className='text-xl font-bold h-11 flex items-center'>Filters</h1>
       <div className='w-full space-y-2'>
         <Label htmlFor='types'>Resource Type</Label>
         <Select defaultValue={documentTypeId} onValueChange={setDocumentTypeId}>

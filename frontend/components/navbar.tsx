@@ -66,7 +66,7 @@ export default function Navbar({
           </Button>
           <Button
             variant='outline'
-            className='lg:hidden h-11 w-12'
+            className='lg:hidden h-11 w-11'
             onClick={() => setIsOpen(false)}
           >
             <i className='ph ph-x'></i>

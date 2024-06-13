@@ -27,7 +27,7 @@ import {
   removeFavorite,
 } from '@/lib/data';
 import { useToast } from './ui/use-toast';
-import EditDialog from './edit_dialog';
+import ActionsMenu from './actions_menu';
 
 interface ResourceCardProps {
   resource: ResourceDTO;
@@ -181,7 +181,7 @@ export default function ResourceCard({
           <div className='flex space-x-2'>
             {session.status === 'authenticated' &&
             session.data.user.email === resource.userEmail ? (
-              <EditDialog
+              <ActionsMenu
                 resource={resource}
                 refreshResources={refreshResources}
               />

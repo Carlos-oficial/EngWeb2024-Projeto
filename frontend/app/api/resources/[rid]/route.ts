@@ -51,7 +51,10 @@ export async function PUT(
   }
 }
 
-export async function DELETE({ params }: { params: { rid: string } }) {
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { rid: string } },
+) {
   try {
     const session = await getServerSession(authOptions);
 

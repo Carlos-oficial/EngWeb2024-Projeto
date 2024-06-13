@@ -83,7 +83,7 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
               <div className='w-0.5 bg-border grow h-[calc(100%-2.75rem)] m-auto'></div>
             </div>
             <div className='space-y-3 w-full'>
-              <p className='text-sm'>
+              <p className='text-sm text-left'>
                 <span className='font-bold'>{resource.userName}</span>{' '}
                 <span className='text-muted-foreground'>
                   {resource.userEmail} · {timeAgo(resource.createdAt)}
@@ -99,9 +99,11 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
                       </Badge>
                     </div>
                   </div>
-                  <CardTitle>{resource.title}</CardTitle>
+                  <CardTitle className='text-left'>{resource.title}</CardTitle>
                   {resource.description && resource.description.length > 0 && (
-                    <CardDescription>{resource.description}</CardDescription>
+                    <CardDescription className='text-left'>
+                      {resource.description}
+                    </CardDescription>
                   )}
                   {resource.hashtags && resource.hashtags.length > 0 && (
                     <div className='flex text-sm text-muted-foreground space-x-2'>
@@ -124,7 +126,7 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
                   </ul>
                 </CardContent>
               </div>
-              <div className='text-sm'>
+              <div className='text-sm text-left'>
                 <span className='text-muted-foreground'>
                   Replying to{' '}
                   <span className='text-primary'>{resource.userEmail}</span>

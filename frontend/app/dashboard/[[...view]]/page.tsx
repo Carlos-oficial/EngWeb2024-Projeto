@@ -252,8 +252,8 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
       </main>
     ) : (
       <main className='flex h-full w-full'>
-        <div className='h-full flex flex-col justify-between p-5 overflow-y-scroll w-full'>
-          <div className='space-y-3 w-full'>
+        <div className='h-full flex flex-col justify-between p-4 overflow-y-scroll w-full'>
+          <div className='space-y-4 w-full'>
             {(searchParams.has('course') || searchParams.has('hashtag')) && (
               <Breadcrumb>
                 <BreadcrumbList>
@@ -323,7 +323,7 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
               <ResourceDialog refreshResources={refreshResources} />
             </div>
             {shownResources !== null ? (
-              <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-3'>
+              <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
                 {shownResources.map((resource) => (
                   <ResourceCard
                     resource={resource}

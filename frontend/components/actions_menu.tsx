@@ -22,7 +22,12 @@ import { z } from 'zod';
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
 import { Button } from './ui/button';
 import { DialogClose } from '@radix-ui/react-dialog';
-
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import {
   listSubjects,
   listCourses,
@@ -31,6 +36,7 @@ import {
   addSubject,
   addCourse,
   addDocumentType,
+  deleteResource,
 } from '@/lib/data';
 import { Popover, PopoverTrigger, PopoverContent } from './ui/popover';
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
@@ -49,6 +55,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import Spinner from './spinner';
 import AddForm from './add_form';
 import SignInCard from './signin_card';
@@ -79,7 +96,7 @@ const formSchema = z.object({
     .min(1, { message: 'Course is required' }),
 });
 
-export default function EditDialog({
+export default function ActionsMenu({
   resource,
   refreshResources,
 }: {
@@ -236,13 +253,72 @@ export default function EditDialog({
     updateShownSubjects();
   }, [subjects, updateShownSubjects]);
 
+  const handleDeleteResource = () => {
+    deleteResource(resource._id)
+      .then(() => {
+        toast({
+          description: 'Resource deleted.',
+        });
+      })
+      .catch(() => {
+        toast({
+          title: 'Uh oh! Something went wrong.',
+          description: 'Resource could not be deleted.',
+        });
+      });
+    refreshResources();
+  };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <button>
-          <i className='ph ph-pencil-simple text-muted-foreground hover:text-primary text-lg'></i>
-        </button>
-      </DialogTrigger>
+      <AlertDialog>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button>
+              <i className='ph-bold ph-dots-three text-lg text-muted-foreground hover:text-primary'></i>
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>
+              <DialogTrigger asChild>
+                <button className='flex justify-between w-full items-center'>
+                  <span>Edit</span>
+                  <i className='ph ph-pencil-simple'></i>
+                </button>
+              </DialogTrigger>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <button className='flex justify-between w-full items-center'>
+                <span>Unlist</span>
+                <i className='ph ph-box-arrow-down'></i>
+              </button>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <AlertDialogTrigger asChild>
+                <button className='flex justify-between w-full items-center'>
+                  <span>Delete</span>
+                  <i className='ph ph-trash'></i>
+                </button>
+              </AlertDialogTrigger>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete your
+              resource and remove its data from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteResource}>
+              Continue
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
       <DialogContent className='max-w-[420px]'>
         {session.status === 'loading' ? (
           <Spinner />

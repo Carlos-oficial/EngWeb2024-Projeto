@@ -239,6 +239,22 @@ export const editResource = async (
   }
 };
 
+export const deleteResource = async (resourceId: string) => {
+  try {
+    const response = await fetch(`/api/resources/${resourceId}`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to delete resource');
+    }
+
+    return;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
 export const listSubjects = async () => {
   try {
     const response = await fetch('/api/subjects');
