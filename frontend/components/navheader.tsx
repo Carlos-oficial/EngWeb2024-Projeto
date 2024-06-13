@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { Button } from './ui/button';
+import ModeToggle from './mode_toggle';
 
 export default function NavHeader({
   setIsNavbarOpen,
@@ -29,6 +30,7 @@ export default function NavHeader({
         >
           <i className='ph ph-list'></i>
         </Button>
+        <ModeToggle/>
       </div>
     </header>
   );
