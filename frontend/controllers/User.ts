@@ -22,6 +22,14 @@ export const update = (email: string, subject: Partial<UserDB>) => {
   return User.findOneAndUpdate({ userEmail: email }, subject).exec();
 };
 
+export const updateEmail = (oldEmail: string, newEmail: string) => {
+  return User.updateOne({ email: oldEmail }, { email: newEmail }).exec();
+}
+
+export const updateName = (email: string, name: string) => {
+  return User.updateOne({ email: email }, { name: name }).exec();
+}
+
 export const getInteractions = (email: string) => {
   return User.findOne({ email: email })
     .select('favoritedResourceIds upvotedResourceIds downvotedResourceIds')
