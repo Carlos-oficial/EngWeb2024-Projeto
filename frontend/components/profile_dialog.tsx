@@ -53,9 +53,6 @@ export default function ProfileDialog({ name, email }: ProfileDialogProps) {
   const { toast } = useToast();
 
   const onSubmit: SubmitHandler<FormValues> = (values: FormValues) => {
-    /*
-    Falta a implementação do submit
-    */
   };
 
   return (

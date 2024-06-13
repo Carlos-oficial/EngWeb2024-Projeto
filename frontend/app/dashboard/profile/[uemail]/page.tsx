@@ -8,7 +8,15 @@ import ResourceCard from '@/components/resource_card';
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { Button } from '@/components/ui/button';
 import ProfileEditDialog from '@/components/profile_dialog';
-import { countByUser } from '@/controllers/Resource';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination';
 
 export default function Profile({ params }: { params: { uemail: string } }) {
   const [resources, setResources] = useState<ResourceDTO[] | null>(null);
@@ -17,7 +25,6 @@ export default function Profile({ params }: { params: { uemail: string } }) {
   const session = useSession();
 
   const decodeEmail = decodeURIComponent(params.uemail);
-
 
   useEffect(() => {
     if (params.uemail) {

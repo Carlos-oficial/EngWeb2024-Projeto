@@ -4,6 +4,7 @@ import { UserDB } from '@/lib/types';
 import { NextResponse } from 'next/server';
 import { HttpStatusCode } from 'axios';
 import { NextApiRequest } from 'next';
+// import { NextResponse, NextRequest } from 'next/server';
 
 export async function GET(req: NextApiRequest) {
   try {
@@ -28,3 +29,34 @@ export async function GET(req: NextApiRequest) {
     );
   }
 }
+
+// export async function PUT(req: NextRequest) {
+//   try {
+//     await connectMongo();
+
+//     const formData = await req.formData();
+
+//     const body = (await req.json()) as { name: string; email: string };
+
+//     const user = (await UserController.get(body.email)) as UserDB;
+    
+//     if (!user) {
+//       return NextResponse.json(
+//         { message: 'User does not exist' },
+//         { status: HttpStatusCode.BadRequest },
+//       );
+//     }
+
+//     await UserController.updateName(body.email, body.name);
+
+//     return NextResponse.json(
+//       { message: 'Name updated' },
+//       { status: HttpStatusCode.Ok },
+//     );
+//   } catch (error) {
+//     return NextResponse.json(
+//       { message: error as Error },
+//       { status: HttpStatusCode.BadRequest },
+//     );
+//   }
+// }
