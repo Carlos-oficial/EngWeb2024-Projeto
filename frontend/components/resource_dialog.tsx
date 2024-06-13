@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-
+import { useCallback, useEffect, useRef, useState, forwardRef } from 'react';
+import { Check, ChevronsUpDown } from "lucide-react"
 import {
   Dialog,
   DialogContent,
@@ -47,6 +47,22 @@ import { useSession } from 'next-auth/react';
 import Spinner from '@/components/spinner';
 import AddForm from '@/components/add_form';
 
+import { cn } from "@/lib/utils"
+import {
+  Command,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+
+
 import { listSubjects, listCourses, listDocumentTypes } from '@/lib/data';
 
 type FormValues = z.infer<typeof formSchema>;
@@ -80,6 +96,28 @@ const formSchema = z.object({
 //   } else return items;
 // }
 
+import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
+import { Command as CommandPrimitive } from 'cmdk';
+
+const CustomCommandInput = forwardRef<
+  React.ElementRef<typeof CommandPrimitive.Input>,
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
+>(({ className, ...props }, ref) => (
+  <div className='flex items-center border px-3' cmdk-input-wrapper=''>
+
+    <MagnifyingGlassIcon className='mr-2 h-4 w-4 shrink-0 opacity-50' />
+    <CommandPrimitive.Input
+      ref={ref}
+      className={cn(
+        'flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
+        className,
+      )}
+      {...props}
+    />
+  </div>
+));
+
+
 export default function ResourceDialog({
   refreshResources,
 }: {
@@ -87,7 +125,12 @@ export default function ResourceDialog({
 }) {
   const session = useSession();
   const [error, setError] = useState<string>('');
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(true);
+  const [courseQueryOpen, setCourseQueryOpen] = useState<boolean>(false);
+  const [courseSearchQuery, setCourseSearchQuery] = useState<string>('');
+  const [subjectQueryOpen, setSubjectQueryOpen] = useState<boolean>(false);
+
+  const [subjectSearchQuery, setSubjectSearchQuery] = useState<string>('');
   const [documentTypes, setDocumentTypes] = useState<DocumentTypeDB[]>([]);
   const [courses, setCourses] = useState<CourseDB[]>([]);
   const [subjects, setSubjects] = useState<SubjectDB[]>([]);
@@ -179,10 +222,16 @@ export default function ResourceDialog({
       .catch((error: Error) => setError(error.message));
   };
 
-  const handleCourseValueChange = (value: string) => {
-    form.setValue('courseId', value);
+  const handleCourseValueChange = (course: CourseDB) => {
+    form.setValue('courseId', course._id);
     updateShownSubjects();
   };
+
+
+  const handleSubjectValueChange = (subject: SubjectDB) => {
+    form.setValue('subjectId', subject._id);
+
+  }
 
   const updateShownSubjects = useCallback(() => {
     setShownSubjects(
@@ -217,7 +266,7 @@ export default function ResourceDialog({
   const fileRef = form.register('file');
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={(o) => { setOpen(o); setCourseQueryOpen(false) }}>
       <DialogTrigger asChild>
         <Button className='flex space-x-1'>
           <i className='ph ph-file-plus'></i>
@@ -356,39 +405,56 @@ export default function ResourceDialog({
                   render={({ field }) => (
                     <FormItem className='max-w-[calc(32rem-3rem-2px)]'>
                       <FormLabel>Course</FormLabel>
-                      <Select
-                        onValueChange={handleCourseValueChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent className='max-h-40'>
-                          {/* <input
-                            className='w-full h-8 text-sm px-2 focus:bg-muted hover:bg-muted focus-visible:outline-none focus-visible:ring-1 ring-ring rounded pb-1'
-                            type='text'
-                            placeholder='Search any course...'
-                            value={courseSearchQuery}
-                            onChange={handleCourseSearchQueryChange}
-                          /> */}
-                          {courses.map((course) => (
-                            <SelectItem
-                              key={course._id.toString()}
-                              value={course._id.toString()}
-                              className='max-w-[calc(32rem-3rem-2px)]'
-                            >
-                              {course.name}
-                            </SelectItem>
-                          ))}
-                          <AddForm
-                            action={handleAddCourse}
-                            fieldId='course'
-                            placeholder='Type a new course name...'
-                          />
-                        </SelectContent>
-                      </Select>
+                        <Command className="shadow-sm" >
+                          {(courseSearchQuery && !courseQueryOpen) ? 
+                            <div 
+                            className='flex w-full rounded-md overflow-scroll overflow-x-auto bg-transparent py-3 text-sm outline-none'
+                            onClick={() => setCourseQueryOpen(!courseQueryOpen)} > 
+                              {courseSearchQuery} 
+                            </div>:
+                            <CustomCommandInput placeholder="Course ..." onClick={() => setCourseQueryOpen(!courseQueryOpen)}/>
+                          }
+                          {courseQueryOpen &&
+                            <CommandList >
+                              <CommandEmpty>No subject found.</CommandEmpty>
+                              <CommandGroup>
+                                {courses.map((course) => (
+                                  <div onClick={() => {
+                                    setCourseSearchQuery(course.name === courseSearchQuery ? "" : course.name)
+                                    if (course.name !== courseSearchQuery)
+                                      handleCourseValueChange(course)
+                                    setCourseQueryOpen(false)
+                                  }}>
+
+                                    <CommandItem
+                                      value={course.name}
+                                      className='max-w-[calc(32rem-3rem-2px)]'
+
+                                      onSelect={(currentValue) => {
+
+                                        setCourseSearchQuery(currentValue === courseSearchQuery ? "" : currentValue)
+                                        if (currentValue !== courseSearchQuery)
+                                          handleCourseValueChange(course)
+
+                                        setCourseQueryOpen(false)
+                                      }}
+                                    >
+                                      <Check
+                                        className={cn(
+                                          "mr-2 h-4 w-4",
+                                          courseSearchQuery === course.name ? "opacity-100" : "opacity-0"
+                                        )}
+                                      />
+                                      {course.name}
+                                    </CommandItem>
+                                  </div>
+                                ))}
+
+                              </CommandGroup>
+                            </CommandList>
+                          }
+                        </Command>
+
                       <FormMessage />
                     </FormItem>
                   )}
@@ -399,6 +465,7 @@ export default function ResourceDialog({
                   render={({ field }) => (
                     <FormItem className='max-w-[calc(32rem-3rem-2px)]'>
                       <FormLabel>Subject</FormLabel>
+
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}

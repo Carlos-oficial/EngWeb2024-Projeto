@@ -1,14 +1,1 @@
-{
-    "_id": {
-        "$oid": "665da30b910471349ce53c8f"
-    },
-    "provider": "github",
-    "type": "oauth",
-    "providerAccountId": "93908742",
-    "access_token": "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",
-    "token_type": "bearer",
-    "scope": "read:user,user:email",
-    "userId": {
-        "$oid": "665da30b910471349ce53c8e"
-    }
-}
+{"_id":{"$oid":"6669c77a3f824668d352a986"},"provider":"github","type":"oauth","providerAccountId":"93908742","access_token":"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","token_type":"bearer","scope":"read:user,user:email","userId":{"$oid":"6669c77a3f824668d352a985"}}
