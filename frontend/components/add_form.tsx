@@ -17,7 +17,7 @@ export default function AddForm({
   }
 
   return (
-    <div className='flex space-x-1 items-center pt-1 mt-1 border-t border-gray-200'>
+    <div className='flex space-x-1 items-center pt-1 mt-1 border-t border-border max-w-full p-2 pb-1'>
       <input
         className='w-full h-8 text-sm px-2 focus:bg-muted hover:bg-muted focus-visible:outline-none focus-visible:ring-1 ring-ring rounded'
         type='text'

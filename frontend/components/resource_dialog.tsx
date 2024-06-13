@@ -21,6 +21,21 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
+import { cn } from '@/lib/utils';
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -69,17 +84,6 @@ const formSchema = z.object({
   file: z.instanceof(FileList),
 });
 
-// function search(query: string, items: Pick<CourseDB | SubjectDB, 'name'>[]) {
-//   if (query.length > 0 && !query.split('').every((c) => c === ' ')) {
-//     const queryWords = query.toLowerCase().split(' ');
-//     return items.filter((item) => {
-//       if (queryWords.every((word) => item.name.toLowerCase().includes(word)))
-//         return true;
-//       return false;
-//     });
-//   } else return items;
-// }
-
 export default function ResourceDialog({
   refreshResources,
 }: {
@@ -92,6 +96,9 @@ export default function ResourceDialog({
   const [courses, setCourses] = useState<CourseDB[]>([]);
   const [subjects, setSubjects] = useState<SubjectDB[]>([]);
   const [shownSubjects, setShownSubjects] = useState<SubjectDB[]>([]);
+
+  const [open1, setOpen1] = useState(false);
+  const [open2, setOpen2] = useState(false);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -356,39 +363,76 @@ export default function ResourceDialog({
                   render={({ field }) => (
                     <FormItem className='max-w-[calc(32rem-3rem-2px)]'>
                       <FormLabel>Course</FormLabel>
-                      <Select
-                        onValueChange={handleCourseValueChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent className='max-h-40'>
-                          {/* <input
-                            className='w-full h-8 text-sm px-2 focus:bg-muted hover:bg-muted focus-visible:outline-none focus-visible:ring-1 ring-ring rounded pb-1'
-                            type='text'
-                            placeholder='Search any course...'
-                            value={courseSearchQuery}
-                            onChange={handleCourseSearchQueryChange}
-                          /> */}
-                          {courses.map((course) => (
-                            <SelectItem
-                              key={course._id.toString()}
-                              value={course._id.toString()}
-                              className='max-w-[calc(32rem-3rem-2px)]'
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={'outline'}
+                              role='combobox'
+                              aria-expanded={open1}
+                              className={`w-full justify-between overflow-x-hidden font-normal ${field.value === '' && 'text-muted-foreground hover:text-muted-foreground'}`}
                             >
-                              {course.name}
-                            </SelectItem>
-                          ))}
-                          <AddForm
-                            action={handleAddCourse}
-                            fieldId='course'
-                            placeholder='Type a new course name...'
-                          />
-                        </SelectContent>
-                      </Select>
+                              {field.value !== ''
+                                ? courses.find(
+                                    (course) => course._id === field.value,
+                                  )?.name
+                                : 'Please select a course...'}
+                              <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className='w-[calc(32rem-3rem-2px)] p-0'>
+                          <Command
+                            filter={(value, search) => {
+                              if (
+                                courses
+                                  .find((course) => course._id === value)
+                                  ?.name.toLowerCase()
+                                  .includes(search.toLowerCase())
+                              )
+                                return 1;
+                              return 0;
+                            }}
+                          >
+                            <CommandInput
+                              placeholder='Search course...'
+                              className='h-9'
+                            />
+                            <CommandList>
+                              <CommandEmpty>No course found.</CommandEmpty>
+                              <CommandGroup>
+                                {courses.map((course) => (
+                                  <CommandItem
+                                    className='data-[disabled]:pointer-events-auto data-[disabled]:opacity-100'
+                                    key={course._id.toString()}
+                                    value={course._id.toString()}
+                                    onSelect={(currentValue) => {
+                                      currentValue !== field.value &&
+                                        handleCourseValueChange(currentValue);
+                                      setOpen1(false);
+                                    }}
+                                  >
+                                    {course.name}
+                                    <CheckIcon
+                                      className={cn(
+                                        'ml-auto h-4 w-4',
+                                        field.value === course._id
+                                          ? 'opacity-100'
+                                          : 'opacity-0',
+                                      )}
+                                    />
+                                  </CommandItem>
+                                ))}
+                              </CommandGroup>
+                              <AddForm
+                                action={handleAddCourse}
+                                fieldId='course'
+                                placeholder='Type a new course name...'
+                              />
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -399,33 +443,77 @@ export default function ResourceDialog({
                   render={({ field }) => (
                     <FormItem className='max-w-[calc(32rem-3rem-2px)]'>
                       <FormLabel>Subject</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                        disabled={form.getValues('courseId') === ''}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent className='max-h-40'>
-                          {shownSubjects.map((subject) => (
-                            <SelectItem
-                              key={subject._id.toString()}
-                              value={subject._id.toString()}
-                              className='max-w-[calc(32rem-3rem-2px)]'
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={'outline'}
+                              role='combobox'
+                              aria-expanded={open2}
+                              className={`w-full justify-between overflow-x-hidden font-normal ${field.value === '' && 'text-muted-foreground hover:text-muted-foreground'}`}
+                              disabled={form.getValues('courseId') === ''}
                             >
-                              {subject.name}
-                            </SelectItem>
-                          ))}
-                          <AddForm
-                            action={handleAddSubject}
-                            fieldId='subject'
-                            placeholder='Type a new subject name...'
-                          />
-                        </SelectContent>
-                      </Select>
+                              {field.value !== ''
+                                ? shownSubjects.find(
+                                    (subject) => subject._id === field.value,
+                                  )?.name
+                                : 'Please select a subject...'}
+                              <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className='w-[calc(32rem-3rem-2px)] p-0'>
+                          <Command
+                            filter={(value, search) => {
+                              if (
+                                shownSubjects
+                                  .find((subject) => subject._id === value)
+                                  ?.name.toLowerCase()
+                                  .includes(search.toLowerCase())
+                              )
+                                return 1;
+                              return 0;
+                            }}
+                          >
+                            <CommandInput
+                              placeholder='Search subject...'
+                              className='h-9'
+                            />
+                            <CommandList>
+                              <CommandEmpty>No subject found.</CommandEmpty>
+                              <CommandGroup>
+                                {shownSubjects.map((subject) => (
+                                  <CommandItem
+                                    className='data-[disabled]:pointer-events-auto data-[disabled]:opacity-100'
+                                    key={subject._id.toString()}
+                                    value={subject._id.toString()}
+                                    onSelect={(currentValue) => {
+                                      currentValue !== field.value &&
+                                        field.onChange(currentValue);
+                                      setOpen2(false);
+                                    }}
+                                  >
+                                    {subject.name}
+                                    <CheckIcon
+                                      className={cn(
+                                        'ml-auto h-4 w-4',
+                                        field.value === subject._id
+                                          ? 'opacity-100'
+                                          : 'opacity-0',
+                                      )}
+                                    />
+                                  </CommandItem>
+                                ))}
+                              </CommandGroup>
+                              <AddForm
+                                action={handleAddSubject}
+                                fieldId='subject'
+                                placeholder='Type a new subject name...'
+                              />
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
                       <FormMessage />
                     </FormItem>
                   )}

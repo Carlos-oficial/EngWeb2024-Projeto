@@ -5,11 +5,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import { Label } from './ui/label';
-
 import { CourseDB, SubjectDB, DocumentTypeDB } from '@/lib/types';
-
 import { listSubjects, listCourses, listDocumentTypes } from '@/lib/data';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -36,6 +49,9 @@ export default function ResourceFilters({
   const [courses, setCourses] = useState<CourseDB[]>([]);
   const [subjects, setSubjects] = useState<SubjectDB[]>([]);
   const [shownSubjects, setShownSubjects] = useState<SubjectDB[]>([]);
+
+  const [open1, setOpen1] = useState<boolean>(false);
+  const [open2, setOpen2] = useState<boolean>(false);
 
   useEffect(() => {
     setShownSubjects(
@@ -72,7 +88,7 @@ export default function ResourceFilters({
           <SelectTrigger>
             <SelectValue />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className='w-[271px]'>
             <SelectItem value='All'>All</SelectItem>
             {documentTypes.map((type) => (
               <SelectItem key={type._id.toString()} value={type._id.toString()}>
@@ -85,47 +101,162 @@ export default function ResourceFilters({
       {!searchParams.has('course') && (
         <div className='w-full space-y-2'>
           <Label htmlFor='courses'>Course</Label>
-          <Select defaultValue={courseId} onValueChange={setCourseId}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value='All'>All</SelectItem>
-              {courses.map((course) => (
-                <SelectItem
-                  key={course._id.toString()}
-                  value={course._id.toString()}
-                >
-                  {course.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <Popover open={open1} onOpenChange={setOpen1}>
+            <PopoverTrigger asChild>
+              <Button
+                variant={'outline'}
+                role='combobox'
+                aria-expanded={open1}
+                className='w-full justify-between overflow-x-hidden font-normal'
+              >
+                {courseId !== 'All'
+                  ? courses.find((course) => course._id === courseId)?.name
+                  : 'All'}
+                <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className='w-[271px] p-0'>
+              <Command
+                filter={(value, search) => {
+                  if (
+                    courses
+                      .find((course) => course._id === value)
+                      ?.name.toLowerCase()
+                      .includes(search.toLowerCase())
+                  )
+                    return 1;
+                  return 0;
+                }}
+              >
+                <CommandInput placeholder='Search course...' className='h-9' />
+                <CommandList>
+                  <CommandEmpty>No course found.</CommandEmpty>
+                  <CommandGroup>
+                    <CommandItem
+                      className='data-[disabled]:pointer-events-auto data-[disabled]:opacity-100'
+                      value='All'
+                      onSelect={(currentValue) => {
+                        currentValue !== courseId && setCourseId(currentValue);
+                        setOpen1(false);
+                      }}
+                    >
+                      All
+                      <CheckIcon
+                        className={cn(
+                          'ml-auto h-4 w-4',
+                          courseId === 'All' ? 'opacity-100' : 'opacity-0',
+                        )}
+                      />
+                    </CommandItem>
+                    {courses.map((course) => (
+                      <CommandItem
+                        className='data-[disabled]:pointer-events-auto data-[disabled]:opacity-100'
+                        key={course._id.toString()}
+                        value={course._id.toString()}
+                        onSelect={(currentValue) => {
+                          currentValue !== courseId &&
+                            setCourseId(currentValue);
+                          setOpen1(false);
+                        }}
+                      >
+                        {course.name}
+                        <CheckIcon
+                          className={cn(
+                            'ml-auto h-4 w-4',
+                            courseId === course._id
+                              ? 'opacity-100'
+                              : 'opacity-0',
+                          )}
+                        />
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+            </PopoverContent>
+          </Popover>
         </div>
       )}
       {!searchParams.has('subject') && (
         <div className='w-full space-y-2'>
           <Label htmlFor='subjects'>Subject</Label>
-          <Select
-            defaultValue={subjectId}
-            onValueChange={setSubjectId}
-            disabled={courseId === 'All'}
-          >
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value='All'>All</SelectItem>
-              {shownSubjects.map((subject) => (
-                <SelectItem
-                  key={subject._id.toString()}
-                  value={subject._id.toString()}
-                >
-                  {subject.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <Popover open={open2} onOpenChange={setOpen2}>
+            <PopoverTrigger asChild>
+              <Button
+                variant={'outline'}
+                role='combobox'
+                aria-expanded={open2}
+                className='w-full justify-between overflow-x-hidden font-normal'
+                disabled={courseId === 'All'}
+              >
+                {subjectId !== 'All'
+                  ? shownSubjects.find((subject) => subject._id === subjectId)
+                      ?.name
+                  : 'All'}
+                <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className='w-[271px] p-0'>
+              <Command
+                filter={(value, search) => {
+                  if (
+                    shownSubjects
+                      .find((subject) => subject._id === value)
+                      ?.name.toLowerCase()
+                      .includes(search.toLowerCase())
+                  )
+                    return 1;
+                  return 0;
+                }}
+              >
+                <CommandInput placeholder='Search subject...' className='h-9' />
+                <CommandList>
+                  <CommandEmpty>No subject found.</CommandEmpty>
+                  <CommandGroup>
+                    <CommandItem
+                      className='data-[disabled]:pointer-events-auto data-[disabled]:opacity-100'
+                      value='All'
+                      onSelect={(currentValue) => {
+                        currentValue !== subjectId &&
+                          setSubjectId(currentValue);
+                        setOpen2(false);
+                      }}
+                    >
+                      All
+                      <CheckIcon
+                        className={cn(
+                          'ml-auto h-4 w-4',
+                          subjectId === 'All' ? 'opacity-100' : 'opacity-0',
+                        )}
+                      />
+                    </CommandItem>
+                    {shownSubjects.map((subject) => (
+                      <CommandItem
+                        className='data-[disabled]:pointer-events-auto data-[disabled]:opacity-100'
+                        key={subject._id.toString()}
+                        value={subject._id.toString()}
+                        onSelect={(currentValue) => {
+                          currentValue !== subjectId &&
+                            setSubjectId(currentValue);
+                          setOpen2(false);
+                        }}
+                      >
+                        {subject.name}
+                        <CheckIcon
+                          className={cn(
+                            'ml-auto h-4 w-4',
+                            subjectId === subject._id
+                              ? 'opacity-100'
+                              : 'opacity-0',
+                          )}
+                        />
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+            </PopoverContent>
+          </Popover>
         </div>
       )}
     </div>
