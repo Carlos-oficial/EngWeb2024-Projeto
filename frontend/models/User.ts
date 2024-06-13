@@ -12,7 +12,7 @@ interface User {
   downvotedResourceIds: string[];
 }
 
-const ResourceSchema = new Schema<User>({
+const UserSchema = new Schema<User>({
   name: { type: String, required: true },
   email: { type: String, unique: true },
   password: { type: String, required: true },
@@ -24,6 +24,6 @@ const ResourceSchema = new Schema<User>({
   downvotedResourceIds: { type: [String], default: [] },
 });
 
-const User = models.User || model<User>('User', ResourceSchema);
+const User = models.User || model<User>('User', UserSchema);
 
 export default User;
