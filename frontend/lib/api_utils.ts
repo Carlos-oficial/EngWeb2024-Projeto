@@ -126,6 +126,7 @@ export const dbsToDtos = async (resources: ResourceDB[]) => {
       isFavorite: isFavorite,
       isUpvoted: isUpvoted,
       isDownvoted: isDownvoted,
+      edited: resource.edited ?? null,
     };
   }) as ResourceDTO[];
 };

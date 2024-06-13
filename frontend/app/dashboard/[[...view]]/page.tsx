@@ -325,7 +325,11 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
             {shownResources !== null ? (
               <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-3'>
                 {shownResources.map((resource) => (
-                  <ResourceCard resource={resource} key={resource._id} />
+                  <ResourceCard
+                    resource={resource}
+                    refreshResources={refreshResources}
+                    key={resource._id}
+                  />
                 ))}
               </div>
             ) : (

@@ -74,12 +74,18 @@ const formSchema = z.object({
     .string({ required_error: 'Description is required' })
     .min(20, { message: 'Description must be at least 20 characters' })
     .max(100, { message: 'Description must be at most 100 characters' }),
-  documentTypeId: z.string({ required_error: 'Resource type is required' }), // é um ID
   hashtags: z.string().regex(new RegExp('^(#\\w+)?( #\\w+)*$'), {
     message: 'Hashtags must be separated by spaces and start with #',
   }),
-  subjectId: z.string({ required_error: 'Subject is required' }), // é um ID
-  courseId: z.string({ required_error: 'Course is required' }), // é um ID
+  documentTypeId: z
+    .string({ required_error: 'Resource type is required' })
+    .min(1, { message: 'Resource type is required' }),
+  subjectId: z
+    .string({ required_error: 'Subject is required' })
+    .min(1, { message: 'Subject is required' }),
+  courseId: z
+    .string({ required_error: 'Course is required' })
+    .min(1, { message: 'Course is required' }),
   file: z.instanceof(FileList),
 });
 
@@ -112,6 +118,8 @@ export default function ResourceDialog({
     },
   });
 
+  console.log(session);
+
   const { toast } = useToast();
 
   const onSubmit: SubmitHandler<FormValues> = (values: FormValues) => {
@@ -133,7 +141,6 @@ export default function ResourceDialog({
 
     submitResource(formData)
       .then(() => {
-        // TODO: Post to feed
         setOpen(false);
         setTimeout(() => {
           toast({
@@ -199,22 +206,24 @@ export default function ResourceDialog({
   }, [form, subjects]);
 
   useEffect(() => {
-    listDocumentTypes()
-      .then((data) =>
-        setDocumentTypes(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
-      )
-      .catch((error: Error) => setError(error.message));
-    listCourses()
-      .then((data) =>
-        setCourses(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
-      )
-      .catch((error: Error) => setError(error.message));
-    listSubjects()
-      .then((data) =>
-        setSubjects(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
-      )
-      .catch((error: Error) => setError(error.message));
-  }, []);
+    if (open) {
+      listDocumentTypes()
+        .then((data) =>
+          setDocumentTypes(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
+        )
+        .catch((error: Error) => setError(error.message));
+      listCourses()
+        .then((data) =>
+          setCourses(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
+        )
+        .catch((error: Error) => setError(error.message));
+      listSubjects()
+        .then((data) =>
+          setSubjects(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
+        )
+        .catch((error: Error) => setError(error.message));
+    }
+  }, [open]);
 
   useEffect(() => {
     updateShownSubjects();

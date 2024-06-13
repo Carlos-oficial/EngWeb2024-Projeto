@@ -27,6 +27,7 @@ export type ResourceDTO = {
   isFavorite: boolean;
   isUpvoted: boolean;
   isDownvoted: boolean;
+  edited: Date;
 };
 
 export type ResourceDB = {
@@ -44,6 +45,7 @@ export type ResourceDB = {
   upvotesNr: number;
   downvotesNr: number;
   downloadsNr: number;
+  edited: Date;
 };
 
 export type SubjectDB = {

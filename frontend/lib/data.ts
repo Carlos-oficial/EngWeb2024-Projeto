@@ -7,6 +7,7 @@ import {
   UserDB,
   UserSignUp,
   CommentDB,
+  ResourceDB,
 } from './types';
 import { config } from '@/lib/config';
 
@@ -206,6 +207,31 @@ export const submitResource = async (formData: FormData) => {
     }
 
     const data = (await response.json()) as ResourceDTO;
+
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const editResource = async (
+  resourceId: string,
+  resourceInfo: Partial<ResourceDB>,
+) => {
+  try {
+    const response = await fetch(`/api/resources/${resourceId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(resourceInfo),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to edit resource');
+    }
+
+    const data = (await response.json()) as ResourceDB;
 
     return data;
   } catch (error) {

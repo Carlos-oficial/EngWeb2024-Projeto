@@ -14,6 +14,7 @@ interface IResource {
   upvotesNr: number;
   downvotesNr: number;
   downloadsNr: number;
+  edited: Date;
 }
 
 const ResourceSchema = new Schema<IResource>({
@@ -30,6 +31,7 @@ const ResourceSchema = new Schema<IResource>({
   upvotesNr: { type: Number, default: 0 },
   downvotesNr: { type: Number, default: 0 },
   downloadsNr: { type: Number, default: 0 },
+  edited: { type: Date },
 });
 
 const Resource =

@@ -27,14 +27,17 @@ import {
   removeFavorite,
 } from '@/lib/data';
 import { useToast } from './ui/use-toast';
+import EditDialog from './edit_dialog';
 
 interface ResourceCardProps {
   resource: ResourceDTO;
+  refreshResources: () => void;
   [key: string]: unknown;
 }
 
 export default function ResourceCard({
   resource,
+  refreshResources,
   ...props
 }: ResourceCardProps) {
   const session = useSession();
@@ -165,7 +168,7 @@ export default function ResourceCard({
   return (
     <Card
       {...props}
-      className='flex flex-col justify-between overflow-hidden hover:bg-gray-50 hover:text-accent-foreground transition-all'
+      className='flex flex-col justify-between overflow-hidden dark:hover:bg-gray-900 hover:bg-gray-50 hover:text-accent-foreground transition-all'
       onClick={() => console.log('clicked')}
     >
       <CardHeader>
@@ -173,20 +176,31 @@ export default function ResourceCard({
           <span className='text-sm text-muted-foreground'>
             <ProfileCard email={resource.userEmail} name={resource.userName} />{' '}
             · {timeAgo(resource.createdAt)}
+            {resource.edited !== null && ' · Edited'}
           </span>
-          <button
-            disabled={session.status !== 'authenticated'}
-            onClick={
-              session.status === 'authenticated' ? handleFavorite : () => {}
-            }
-            className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
-            title='Favorite'
-          >
-            <i
-              className={`${isFavorite ? 'ph-fill' : 'ph'} ph-star text-lg`}
-            ></i>
-            <p className='text-sm'>{formatNumber(favoriteCounter)}</p>
-          </button>
+          <div className='flex space-x-2'>
+            {session.status === 'authenticated' &&
+            session.data.user.email === resource.userEmail ? (
+              <EditDialog
+                resource={resource}
+                refreshResources={refreshResources}
+              />
+            ) : (
+              <button
+                disabled={session.status !== 'authenticated'}
+                onClick={
+                  session.status === 'authenticated' ? handleFavorite : () => {}
+                }
+                className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
+                title='Favorite'
+              >
+                <i
+                  className={`${isFavorite ? 'ph-fill' : 'ph'} ph-star text-lg`}
+                ></i>
+                <p className='text-sm'>{formatNumber(favoriteCounter)}</p>
+              </button>
+            )}
+          </div>
         </div>
         <div className='flex justify-between pb-2'>
           <div className='flex space-x-2'>

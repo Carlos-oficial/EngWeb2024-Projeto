@@ -38,6 +38,7 @@ export const listPopular = (page: number) => {
         upvotesNr: 1,
         downvotesNr: 1,
         downloadsNr: 1,
+        edited: 1,
         popularity: {
           $add: [
             {
@@ -181,6 +182,7 @@ const searchPipeline = (query: string) => [
       upvotesNr: 1,
       downvotesNr: 1,
       downloadsNr: 1,
+      edited: 1,
     },
   },
 ];
