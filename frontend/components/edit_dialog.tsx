@@ -159,8 +159,26 @@ export default function EditDialog({
           setSubjects(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
         )
         .catch((error: Error) => setError(error.message));
+    } else {
+      setTimeout(() => {
+        form.setValue('title', resource.title);
+        form.setValue('description', resource.description);
+        form.setValue('hashtags', resource.hashtags.join(' '));
+        form.setValue('documentTypeId', resource.documentType._id);
+        form.setValue('subjectId', resource.subject._id);
+        form.setValue('courseId', resource.course._id);
+      }, 300);
     }
-  }, [open]);
+  }, [
+    open,
+    form,
+    resource.title,
+    resource.description,
+    resource.hashtags,
+    resource.documentType._id,
+    resource.subject._id,
+    resource.course._id,
+  ]);
 
   const updateShownSubjects = useCallback(() => {
     if (subjects) {
