@@ -7,9 +7,9 @@ uri = (id) =>
 
 const jsdom = require("jsdom");
 
-for (let index = 4847; index <= 5212; index++) {
+function getCourse(courseId,print) {
   axios
-    .get(uri(index))
+    .get(uri(courseId))
     .then((r) => {
       const dom = new jsdom.JSDOM(r.data);
       document = dom.window.document;
@@ -26,12 +26,26 @@ for (let index = 4847; index <= 5212; index++) {
           list.push(document.getElementById(id).innerHTML);
           i++;
         } catch (err) {
-          break;
+          id = `ctl00_PlaceHolderMain_ctlPlanosCurso_linhas_ctl${i_s}_lblNome`
+          if (!document.getElementById(id))
+            break;
+          else{
+          i++;
+
+          }
         }
       }
-      res[curso.innerHTML] = { id: index, classes: list };
-      console.error(index);
-      if (index == 5212) console.log(res);
+      res[curso.innerHTML] = { id: courseId, classes: list };
+      console.error(courseId);
+      if (print) console.log(res);
     })
     .catch((err) => console.log(err));
+}
+
+if (process.argv.length > 2) {
+  getCourse(process.argv[2],true)
+} else {
+  for (let index = 4847; index <= 5212; index++) 
+    getCourse(index,index == 5212)
+  
 }
