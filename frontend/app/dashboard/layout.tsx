@@ -10,7 +10,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(true);
+  const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -18,7 +18,7 @@ export default function RootLayout({
         <Navbar isOpen={isNavbarOpen} setIsOpen={setIsNavbarOpen} />
         <div className='w-full flex flex-col'>
           <NavHeader setIsNavbarOpen={setIsNavbarOpen} />
-          <main className='grow w-full overflow-x-auto overflow-y-scroll max-h-[calc(100vh-61px)]'>
+          <main className='grow w-full overflow-x-auto max-h-[calc(100vh-61px)]'>
             {children}
           </main>
         </div>

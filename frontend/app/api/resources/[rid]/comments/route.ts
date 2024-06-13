@@ -1,31 +1,29 @@
 import connectMongo from '@/lib/mongoose';
-import * as ResourceController from '@/controllers/Resource';
 import { NextRequest, NextResponse } from 'next/server';
 import { HttpStatusCode } from 'axios';
-import { FavoritePerResourceDB } from '@/lib/types';
-
-export const dynamic = 'force-dynamic'; // defaults to auto
+import * as CommentController from '@/controllers/Comment';
+import { CommentDB } from '@/lib/types';
 
 export async function GET(
   req: NextRequest,
   { params }: { params: { rid: string } },
 ) {
   try {
-    await connectMongo();
-
     if (!params.rid) {
       return NextResponse.json(
-        { message: 'No user id provided' },
+        { message: 'No resource id provided' },
         { status: HttpStatusCode.BadRequest },
       );
     }
-    const favorites = (await ResourceController.getFavorites(
-      params.rid,
-    )) as FavoritePerResourceDB;
 
-    return NextResponse.json(favorites?.userEmails ?? []);
+    await connectMongo();
+
+    const comments = (await CommentController.getResourceComments(
+      params.rid,
+    )) as CommentDB[];
+
+    return NextResponse.json(comments);
   } catch (error) {
-    console.error(error);
     return NextResponse.json(
       { message: error as Error },
       { status: HttpStatusCode.BadRequest },

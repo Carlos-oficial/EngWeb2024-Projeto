@@ -6,49 +6,90 @@ import {
   DocumentTypeDB,
   UserDB,
   UserSignUp,
+  CommentDB,
 } from './types';
+import { config } from '@/lib/config';
 
-export const listResources = async () => {
+export const listResources = async (
+  type: 'popular' | 'newest' | 'all',
+  page: number,
+) => {
   try {
-    const response = await fetch('/api/resources');
+    const response = await fetch(`/api/resources/${type}/${page}`);
     const data = (await response.json()) as ResourceDTO[];
-
-    // get favorites nr for each resource
-    await Promise.all(
-      data.map(async (resource) => {
-        const favorites = await getResourceFavorites(resource._id);
-        resource.favoritesNr = favorites.length;
-      }),
-    );
-
-    return data;
+    const countResponse = await fetch('/api/resources/count');
+    const count = (await countResponse.json()) as number;
+    const pagesNr = Math.ceil(count / config.pages.PAGE_SIZE);
+    return {
+      data: data,
+      pagesNr: pagesNr,
+    };
   } catch (error) {
     throw new Error((error as Error).message);
   }
 };
 
-export const listFavoriteResources = async (userEmail: string) => {
+export const listFavoriteResources = async (
+  userEmail: string,
+  page: number,
+) => {
   try {
     const userFavorites = await getUserFavorites(userEmail);
-    const favoriteResources = (await fetch(
-      '/api/resources?' +
+    if (userFavorites.length === 0) return { data: [], pagesNr: 0 };
+
+    const response = await fetch(
+      `/api/resources/ids/${page}?` +
         new URLSearchParams({ ids: userFavorites.toString() }).toString(),
-    )) as ResourceDTO[];
-    return favoriteResources;
+    );
+    const favoriteResources = (await response.json()) as ResourceDTO[];
+
+    const countResponse = await fetch(
+      `/api/resources/ids/count?` +
+        new URLSearchParams({ ids: userFavorites.toString() }).toString(),
+    );
+    const count = (await countResponse.json()) as number;
+    const pagesNr = Math.ceil(count / config.pages.PAGE_SIZE);
+    return {
+      data: favoriteResources,
+      pagesNr: pagesNr,
+    };
   } catch (error) {
     throw new Error((error as Error).message);
   }
 };
 
-export const listResourcesByUser = async (userEmail: string) => {
+export const listResourcesByUser = async (userEmail: string, page: number) => {
   try {
-    const response = await fetch('/api/resources?userEmail=' + userEmail);
+    const response = await fetch(`/api/resources/from/${userEmail}/${page}`);
     const data = (await response.json()) as ResourceDTO[];
-    return data;
+    const countResponse = await fetch(`/api/resources/from/${userEmail}/count`);
+    const count = (await countResponse.json()) as number;
+    const pagesNr = Math.ceil(count / config.pages.PAGE_SIZE);
+    return {
+      data: data,
+      pagesNr: pagesNr,
+    };
   } catch (error) {
     throw new Error((error as Error).message);
   }
 };
+
+export const searchResources = async (query: string, page: number) => {
+  try {
+    const response = await fetch(`/api/resources/search/${page}?q=${query}`);
+    const data = (await response.json()) as ResourceDTO[];
+    const countResponse = await fetch(`/api/resources/search/count?q=${query}`);
+    const count = (await countResponse.json()) as number;
+    const pagesNr = Math.ceil(count / config.pages.PAGE_SIZE);
+    return {
+      data: data,
+      pagesNr: pagesNr,
+    };
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
 export const getUser = async (userEmail: string) => {
   try {
     const response = await fetch('/api/users/' + userEmail);
@@ -59,19 +100,9 @@ export const getUser = async (userEmail: string) => {
   }
 };
 
-export const getUserFavorites = async (userEmail: string) => {
+const getUserFavorites = async (userEmail: string) => {
   try {
     const response = await fetch('/api/users/' + userEmail + '/favorites');
-    const data = (await response.json()) as string[];
-    return data;
-  } catch (error) {
-    throw new Error((error as Error).message);
-  }
-};
-
-export const getResourceFavorites = async (resourceId: string) => {
-  try {
-    const response = await fetch('/api/resources/' + resourceId + '/favorites');
     const data = (await response.json()) as string[];
     return data;
   } catch (error) {
@@ -96,6 +127,62 @@ export const addFavorite = async (userEmail: string, resourceId: string) => {
 export const removeFavorite = async (userEmail: string, resourceId: string) => {
   try {
     await fetch('/api/users/' + userEmail + '/favorites', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ resourceId: resourceId }),
+    });
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const addUpvote = async (userEmail: string, resourceId: string) => {
+  try {
+    await fetch('/api/users/' + userEmail + '/upvote', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ resourceId: resourceId }),
+    });
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const removeUpvote = async (userEmail: string, resourceId: string) => {
+  try {
+    await fetch('/api/users/' + userEmail + '/upvote', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ resourceId: resourceId }),
+    });
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const addDownvote = async (userEmail: string, resourceId: string) => {
+  try {
+    await fetch('/api/users/' + userEmail + '/downvote', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ resourceId: resourceId }),
+    });
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const removeDownvote = async (userEmail: string, resourceId: string) => {
+  try {
+    await fetch('/api/users/' + userEmail + '/downvote', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -239,6 +326,39 @@ export const signUp = async (userInfo: UserSignUp) => {
     const data = (await response.json()) as UserDB;
 
     return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const listResourceComments = async (resourceId: string) => {
+  try {
+    const response = await fetch(`/api/resources/${resourceId}/comments`);
+    const data = (await response.json()) as CommentDB[];
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const addComment = async (
+  resourceId: string,
+  userEmail: string,
+  message: string,
+) => {
+  try {
+    await fetch('/api/users/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        resourceId: resourceId,
+        userEmail: userEmail,
+        message: message,
+        createdAt: new Date().toISOString(),
+      }),
+    });
   } catch (error) {
     throw new Error((error as Error).message);
   }

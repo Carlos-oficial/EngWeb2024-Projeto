@@ -7,8 +7,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import fs from 'node:fs/promises';
 
-export const dynamic = 'force-dynamic'; // defaults to auto
-
 export async function GET(
   req: NextRequest,
   { params }: { params: { rid: string } },
@@ -43,7 +41,7 @@ export async function PUT(
 
       return NextResponse.json(body);
     } else {
-      return NextResponse.json({ status: HttpStatusCode.Forbidden });
+      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
     }
   } catch (error) {
     return NextResponse.json(
@@ -56,6 +54,12 @@ export async function PUT(
 export async function DELETE({ params }: { params: { rid: string } }) {
   try {
     const session = await getServerSession(authOptions);
+
+    if (!session)
+      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+
+    await connectMongo();
+
     const resource = (await ResourceController.get(params.rid)) as ResourceDB;
 
     if (!resource)
@@ -63,8 +67,6 @@ export async function DELETE({ params }: { params: { rid: string } }) {
 
     // verify user is owner of file
     if (session && session.user.email === resource.userEmail) {
-      await connectMongo();
-
       await ResourceController.remove(params.rid);
 
       const fileName = `${params.rid}.${resource.documentFormat.toLowerCase()}`;
@@ -76,7 +78,7 @@ export async function DELETE({ params }: { params: { rid: string } }) {
         { status: HttpStatusCode.Ok },
       );
     } else {
-      return NextResponse.json({ status: HttpStatusCode.Forbidden });
+      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
     }
   } catch (error) {
     return NextResponse.json(

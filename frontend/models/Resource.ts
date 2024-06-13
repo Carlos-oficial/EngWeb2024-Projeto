@@ -10,18 +10,26 @@ interface IResource {
   courseId: string;
   createdAt: Date;
   userEmail: string;
+  favoritesNr: number;
+  upvotesNr: number;
+  downvotesNr: number;
+  downloadsNr: number;
 }
 
 const ResourceSchema = new Schema<IResource>({
-  title: { type: String },
-  description: { type: String },
-  documentTypeId: { type: String, ref: 'DocumentType' },
-  documentFormat: { type: String },
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  documentTypeId: { type: String, ref: 'DocumentType', required: true },
+  documentFormat: { type: String, required: true },
   hashtags: { type: String },
-  subjectId: { type: String, ref: 'Subject' },
-  courseId: { type: String, ref: 'Course' },
-  createdAt: { type: Date },
-  userEmail: { type: String, ref: 'User' },
+  subjectId: { type: String, ref: 'Subject', required: true },
+  courseId: { type: String, ref: 'Course', required: true },
+  createdAt: { type: Date, required: true },
+  userEmail: { type: String, ref: 'User', required: true },
+  favoritesNr: { type: Number, default: 0 },
+  upvotesNr: { type: Number, default: 0 },
+  downvotesNr: { type: Number, default: 0 },
+  downloadsNr: { type: Number, default: 0 },
 });
 
 const Resource =

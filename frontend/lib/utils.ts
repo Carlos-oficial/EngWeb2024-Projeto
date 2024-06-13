@@ -57,3 +57,11 @@ export function nameInitials(name: string) {
     .join('')
     .toUpperCase();
 }
+
+export const PAGE_SIZE = 30;
+
+export const getSkip = (page: number) => (page - 1) * PAGE_SIZE;
+
+export function range(start: number, end: number): number[] {
+  return Array.from({ length: end - start }, (_, index) => index + start);
+}

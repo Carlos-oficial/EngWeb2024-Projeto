@@ -3,9 +3,12 @@ import { model, models, Schema } from 'mongoose';
 interface User {
   name: string;
   email: string;
-  password: string; // for local users
+  password: string;
   image: string;
   emailVerified: Date | null;
+  favoritedResourceIds: string[];
+  upvotedResourceIds: string[];
+  downvotedResourceIds: string[];
 }
 
 const ResourceSchema = new Schema<User>({
@@ -14,6 +17,9 @@ const ResourceSchema = new Schema<User>({
   password: { type: String, required: true },
   image: { type: String },
   emailVerified: { type: Date },
+  favoritedResourceIds: { type: [String], default: [] },
+  upvotedResourceIds: { type: [String], default: [] },
+  downvotedResourceIds: { type: [String], default: [] },
 });
 
 const User = models.User || model<User>('User', ResourceSchema);

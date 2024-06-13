@@ -29,8 +29,8 @@ const formSchema = z.object({
     .email()
     .min(1, { message: 'Please provide a valid email' }),
   password: z
-    .string({ required_error: 'Please provide a valid password' })
-    .min(16, { message: 'Password must be at least 16 characters long' }),
+    .string({ required_error: 'Please provide a password' })
+    .min(1, { message: 'Please provide a password' }),
 });
 
 export default function SignInForm({

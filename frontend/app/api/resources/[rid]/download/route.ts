@@ -16,6 +16,7 @@ export async function GET(
     const fileName = `${params.rid}.${resource.documentFormat.toLowerCase()}`;
     const filePath = `./public/uploads/${resource.userEmail}/${fileName}`;
     const file = await fs.readFile(filePath);
+    await ResourceController.addDownload(params.rid);
 
     const response = new NextResponse(file);
     response.headers.set(

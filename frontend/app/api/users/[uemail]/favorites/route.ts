@@ -3,9 +3,8 @@ import * as UserController from '@/controllers/User';
 import * as ResourceController from '@/controllers/Resource';
 import { NextRequest, NextResponse } from 'next/server';
 import { HttpStatusCode } from 'axios';
-import { FavoritePerUserDB } from '@/lib/types';
-
-export const dynamic = 'force-dynamic'; // defaults to auto
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth';
 
 export async function GET(
   req: NextRequest,
@@ -21,13 +20,12 @@ export async function GET(
       );
     }
 
-    const favorites = (await UserController.getFavorites(
-      params.uemail,
-    )) as FavoritePerUserDB;
+    const favorites = (await UserController.getFavorites(params.uemail)) as {
+      favoritedResourceIds: string[];
+    };
 
-    return NextResponse.json(favorites?.resourceIds ?? []);
+    return NextResponse.json(favorites?.favoritedResourceIds ?? []);
   } catch (error) {
-    console.error(error);
     return NextResponse.json(
       { message: error as Error },
       { status: HttpStatusCode.BadRequest },
@@ -40,7 +38,11 @@ export async function POST(
   { params }: { params: { uemail: string } },
 ) {
   try {
-    await connectMongo();
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+    }
 
     if (!params.uemail) {
       return NextResponse.json(
@@ -49,12 +51,18 @@ export async function POST(
       );
     }
 
+    if (session.user.email !== params.uemail) {
+      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+    }
+
+    await connectMongo();
+
     const body = (await req.json()) as { resourceId: string };
     const res: unknown = await ResourceController.get(body.resourceId);
 
     if (!res) {
       return NextResponse.json(
-        { message: 'Favorite does not exist on specified resource' },
+        { message: 'Resource does not exist' },
         { status: HttpStatusCode.BadRequest },
       );
     }
@@ -78,7 +86,11 @@ export async function DELETE(
   { params }: { params: { uemail: string } },
 ) {
   try {
-    await connectMongo();
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+    }
 
     if (!params.uemail) {
       return NextResponse.json(
@@ -87,12 +99,18 @@ export async function DELETE(
       );
     }
 
+    if (session.user.email !== params.uemail) {
+      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+    }
+
+    await connectMongo();
+
     const body = (await req.json()) as { resourceId: string };
     const res: unknown = await ResourceController.get(body.resourceId);
 
     if (!res) {
       return NextResponse.json(
-        { message: 'Favorite does not exist on specified resource' },
+        { message: 'Resource does not exist' },
         { status: HttpStatusCode.BadRequest },
       );
     }

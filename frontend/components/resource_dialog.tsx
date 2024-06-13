@@ -30,8 +30,6 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
 import {
   addCourse,
   addDocumentType,
@@ -56,11 +54,11 @@ type FormValues = z.infer<typeof formSchema>;
 const formSchema = z.object({
   title: z
     .string({ required_error: 'Title is required' })
-    .min(10, { message: 'Title must be at least 15 characters' })
+    .min(10, { message: 'Title must be at least 10 characters' })
     .max(50, { message: 'Title must be at most 50 characters' }),
   description: z
     .string({ required_error: 'Description is required' })
-    .min(20, { message: 'Description must be at least 30 characters' })
+    .min(20, { message: 'Description must be at least 20 characters' })
     .max(100, { message: 'Description must be at most 100 characters' }),
   documentTypeId: z.string({ required_error: 'Resource type is required' }), // é um ID
   hashtags: z.string().regex(new RegExp('^(#\\w+)?( #\\w+)*$'), {
@@ -71,7 +69,16 @@ const formSchema = z.object({
   file: z.instanceof(FileList),
 });
 
-// TODO: Fetch courses, subjects and document types from the API
+// function search(query: string, items: Pick<CourseDB | SubjectDB, 'name'>[]) {
+//   if (query.length > 0 && !query.split('').every((c) => c === ' ')) {
+//     const queryWords = query.toLowerCase().split(' ');
+//     return items.filter((item) => {
+//       if (queryWords.every((word) => item.name.toLowerCase().includes(word)))
+//         return true;
+//       return false;
+//     });
+//   } else return items;
+// }
 
 export default function ResourceDialog({
   refreshResources,
@@ -85,7 +92,6 @@ export default function ResourceDialog({
   const [courses, setCourses] = useState<CourseDB[]>([]);
   const [subjects, setSubjects] = useState<SubjectDB[]>([]);
   const [shownSubjects, setShownSubjects] = useState<SubjectDB[]>([]);
-  const [postToFeed, setPostToFeed] = useState<boolean | 'indeterminate'>(true);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -126,7 +132,7 @@ export default function ResourceDialog({
         setTimeout(() => {
           toast({
             title: 'Resource submitted successfully!',
-            description: 'Thank you for your contribution <3',
+            description: 'Thank you for your contribution.',
           });
           refreshResources();
         }, 300);
@@ -300,7 +306,7 @@ export default function ResourceDialog({
                   control={form.control}
                   name='documentTypeId'
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className='max-w-[calc(32rem-3rem-2px)]'>
                       <FormLabel>Resource Type</FormLabel>
                       <Select
                         onValueChange={field.onChange}
@@ -316,6 +322,7 @@ export default function ResourceDialog({
                             <SelectItem
                               key={type._id.toString()}
                               value={type._id.toString()}
+                              className='max-w-[calc(32rem-3rem-2px)]'
                             >
                               {type.name}
                             </SelectItem>
@@ -352,7 +359,7 @@ export default function ResourceDialog({
                   control={form.control}
                   name='courseId'
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className='max-w-[calc(32rem-3rem-2px)]'>
                       <FormLabel>Course</FormLabel>
                       <Select
                         onValueChange={handleCourseValueChange}
@@ -364,10 +371,18 @@ export default function ResourceDialog({
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent className='max-h-40'>
+                          {/* <input
+                            className='w-full h-8 text-sm px-2 focus:bg-muted hover:bg-muted focus-visible:outline-none focus-visible:ring-1 ring-ring rounded pb-1'
+                            type='text'
+                            placeholder='Search any course...'
+                            value={courseSearchQuery}
+                            onChange={handleCourseSearchQueryChange}
+                          /> */}
                           {courses.map((course) => (
                             <SelectItem
                               key={course._id.toString()}
                               value={course._id.toString()}
+                              className='max-w-[calc(32rem-3rem-2px)]'
                             >
                               {course.name}
                             </SelectItem>
@@ -387,7 +402,7 @@ export default function ResourceDialog({
                   control={form.control}
                   name='subjectId'
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className='max-w-[calc(32rem-3rem-2px)]'>
                       <FormLabel>Subject</FormLabel>
                       <Select
                         onValueChange={field.onChange}
@@ -404,6 +419,7 @@ export default function ResourceDialog({
                             <SelectItem
                               key={subject._id.toString()}
                               value={subject._id.toString()}
+                              className='max-w-[calc(32rem-3rem-2px)]'
                             >
                               {subject.name}
                             </SelectItem>
@@ -419,14 +435,6 @@ export default function ResourceDialog({
                     </FormItem>
                   )}
                 />
-                <div className='flex items-center space-x-2 pt-3'>
-                  <Checkbox
-                    id='post'
-                    onCheckedChange={setPostToFeed}
-                    checked={postToFeed}
-                  />
-                  <Label htmlFor='post'>Post on Feed</Label>
-                </div>
                 {error.length > 0 && (
                   <Alert variant='destructive' className='pt-4'>
                     <AlertTitle className='flex items-center space-x-1'>
