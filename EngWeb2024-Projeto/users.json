@@ -1,9 +1,1 @@
-{
-    "_id": {
-        "$oid": "665da30b910471349ce53c8e"
-    },
-    "name": "Cralos",
-    "email": "carlosribeiro2003oficial@gmail.com",
-    "image": "https://avatars.githubusercontent.com/u/93908742?v=4",
-    "emailVerified": null
-}
+{"_id":{"$oid":"6669c77a3f824668d352a985"},"name":"Cralos","email":"carlosribeiro2003oficial@gmail.com","image":"https://avatars.githubusercontent.com/u/93908742?v=4","emailVerified":null,"favoritedResourceIds":["6669c8053f824668d352a9af"]}

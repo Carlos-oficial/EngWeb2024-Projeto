@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-
 import {
   Dialog,
   DialogContent,
@@ -186,8 +185,8 @@ export default function ResourceDialog({
       .catch((error: Error) => setError(error.message));
   };
 
-  const handleCourseValueChange = (value: string) => {
-    form.setValue('courseId', value);
+  const handleCourseValueChange = (courseId: string) => {
+    form.setValue('courseId', courseId);
     updateShownSubjects();
   };
 
