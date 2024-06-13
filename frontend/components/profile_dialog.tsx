@@ -1,20 +1,16 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,7 +21,6 @@ import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { useToast } from '@/components/ui/use-toast';
 import SignInCard from '@/components/signin_card';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
@@ -39,7 +34,12 @@ const formSchema = z.object({
   email: z.string({ required_error: 'Email is required' }).email({ message: 'Invalid email address' }),
 });
 
-export default function ProfileEditDialog() {
+interface ProfileDialogProps {
+  name: string;
+  email: string;
+}
+
+export default function ProfileDialog({ name, email }: ProfileDialogProps) {
   const session = useSession();
   const [error, setError] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
@@ -47,8 +47,8 @@ export default function ProfileEditDialog() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "tester", // Replace this with the actual name from the user data
-      email:"tester"
+      name: name,
+      email: email,
     },
   });
 
@@ -80,12 +80,7 @@ export default function ProfileEditDialog() {
           <Spinner />
         ) : session.status === 'authenticated' ? (
           <>
-            <DialogHeader>
-              <DialogTitle>Edit Profile</DialogTitle>
-              <DialogDescription>
-                Update your profile information here. Click save when you&apos;re done.
-              </DialogDescription>
-            </DialogHeader>
+            <DialogTitle>Edit Profile</DialogTitle>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -100,7 +95,6 @@ export default function ProfileEditDialog() {
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
-                      <FormDescription>Your full name.</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -114,15 +108,13 @@ export default function ProfileEditDialog() {
                       <FormControl>
                         <Input type='email' {...field} />
                       </FormControl>
-                      <FormDescription>Your email address.</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                {error.length > 0 && (
+                {error && (
                   <Alert variant='destructive' className='pt-4'>
                     <AlertTitle className='flex items-center space-x-1'>
-                      <i className='ph ph-warning'></i>
                       <p>Error</p>
                     </AlertTitle>
                     <AlertDescription>{error}</AlertDescription>
@@ -130,7 +122,6 @@ export default function ProfileEditDialog() {
                 )}
                 <DialogFooter className='pt-3'>
                   <Button type='submit' className='flex space-x-1'>
-                    <i className='ph ph-file-arrow-up'></i>
                     <p>Save</p>
                   </Button>
                 </DialogFooter>

@@ -8,6 +8,7 @@ import ResourceCard from '@/components/resource_card';
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { Button } from '@/components/ui/button';
 import ProfileEditDialog from '@/components/profile_dialog';
+import { countByUser } from '@/controllers/Resource';
 
 export default function Profile({ params }: { params: { uemail: string } }) {
   const [resources, setResources] = useState<ResourceDTO[] | null>(null);
@@ -17,10 +18,11 @@ export default function Profile({ params }: { params: { uemail: string } }) {
 
   const decodeEmail = decodeURIComponent(params.uemail);
 
+
   useEffect(() => {
     if (params.uemail) {
-      listResourcesByUser(decodeEmail)
-        .then((resources) => setResources(resources))
+      listResourcesByUser(decodeEmail, 1)
+        .then((resources: { data: ResourceDTO[]; pagesNr: number; }) => setResources(resources.data))
         .catch((error: Error) => setError(error.message));
     }
   }, [params.uemail]);
@@ -54,11 +56,10 @@ export default function Profile({ params }: { params: { uemail: string } }) {
               <AvatarImage src={userData?.image} />
             </Avatar>
           </div>
-
           <p className='text-5xl font-semibold text-center mt-8'>{userData?.name}</p>
           <p className='text-lg font-normal text-center mt-2'>{userData?.email}</p>
           {session.data?.user.email === decodeURIComponent(params.uemail) && (
-            <ProfileEditDialog />
+            <ProfileEditDialog name={userData?.name} email={userData?.email}/>
           )}
           {error && <p className='text-red-500 text-center mt-4'>{error}</p>}
         </div>
