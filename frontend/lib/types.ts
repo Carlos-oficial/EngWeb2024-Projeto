@@ -69,6 +69,7 @@ export type UserDB = {
   password: string;
   image: string;
   emailVerified: Date | null;
+  isAdmin: boolean;
   favoritedResourceIds: string[];
   upvotedResourceIds: string[];
   downvotedResourceIds: string[];
@@ -103,22 +104,12 @@ export type CommentDB = {
   createdAt: Date;
 };
 
-export interface CustomUser {
-  id: string;
-  name: string;
-  email: string;
-  image: string;
-  emailVerified: Date | null;
-}
-
-export type CustomSession = {
-  user: CustomUser;
-  expires: string;
-};
-
 declare module 'next-auth' {
   interface Session {
-    user: CustomUser;
+    user: Pick<
+      UserDB,
+      '_id' | 'name' | 'email' | 'image' | 'emailVerified' | 'isAdmin'
+    >;
     expires: string;
   }
 }

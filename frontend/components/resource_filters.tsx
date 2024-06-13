@@ -143,7 +143,7 @@ export default function ResourceFilters({
                       All
                       <CheckIcon
                         className={cn(
-                          'ml-auto h-4 w-4',
+                          'ml-auto h-4 min-w-4',
                           courseId === 'All' ? 'opacity-100' : 'opacity-0',
                         )}
                       />
@@ -162,7 +162,7 @@ export default function ResourceFilters({
                         {course.name}
                         <CheckIcon
                           className={cn(
-                            'ml-auto h-4 w-4',
+                            'ml-auto h-4 min-w-4',
                             courseId === course._id
                               ? 'opacity-100'
                               : 'opacity-0',
@@ -191,7 +191,7 @@ export default function ResourceFilters({
               >
                 {subjectId !== 'All'
                   ? shownSubjects.find((subject) => subject._id === subjectId)
-                      ?.name
+                      ?.name ?? 'All'
                   : 'All'}
                 <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
               </Button>
@@ -225,7 +225,7 @@ export default function ResourceFilters({
                       All
                       <CheckIcon
                         className={cn(
-                          'ml-auto h-4 w-4',
+                          'ml-auto h-4 min-w-4',
                           subjectId === 'All' ? 'opacity-100' : 'opacity-0',
                         )}
                       />
@@ -244,7 +244,7 @@ export default function ResourceFilters({
                         {subject.name}
                         <CheckIcon
                           className={cn(
-                            'ml-auto h-4 w-4',
+                            'ml-auto h-4 min-w-4',
                             subjectId === subject._id
                               ? 'opacity-100'
                               : 'opacity-0',

@@ -328,11 +328,13 @@ export default function ResourceDialog({
                               {type.name}
                             </SelectItem>
                           ))}
-                          <AddForm
-                            action={handleAddDocumentType}
-                            fieldId='documentType'
-                            placeholder='Type a new resource type name...'
-                          />
+                          {session.data.user.isAdmin && (
+                            <AddForm
+                              action={handleAddDocumentType}
+                              fieldId='documentType'
+                              placeholder='Type a new resource type name...'
+                            />
+                          )}
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -362,7 +364,7 @@ export default function ResourceDialog({
                   render={({ field }) => (
                     <FormItem className='max-w-[calc(32rem-3rem-2px)]'>
                       <FormLabel>Course</FormLabel>
-                      <Popover>
+                      <Popover open={open1} onOpenChange={setOpen1}>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -414,7 +416,7 @@ export default function ResourceDialog({
                                     {course.name}
                                     <CheckIcon
                                       className={cn(
-                                        'ml-auto h-4 w-4',
+                                        'ml-auto h-4 min-w-4',
                                         field.value === course._id
                                           ? 'opacity-100'
                                           : 'opacity-0',
@@ -423,11 +425,13 @@ export default function ResourceDialog({
                                   </CommandItem>
                                 ))}
                               </CommandGroup>
-                              <AddForm
-                                action={handleAddCourse}
-                                fieldId='course'
-                                placeholder='Type a new course name...'
-                              />
+                              {session.data.user.isAdmin && (
+                                <AddForm
+                                  action={handleAddCourse}
+                                  fieldId='course'
+                                  placeholder='Type a new course name...'
+                                />
+                              )}
                             </CommandList>
                           </Command>
                         </PopoverContent>
@@ -442,20 +446,20 @@ export default function ResourceDialog({
                   render={({ field }) => (
                     <FormItem className='max-w-[calc(32rem-3rem-2px)]'>
                       <FormLabel>Subject</FormLabel>
-                      <Popover>
+                      <Popover open={open2} onOpenChange={setOpen2}>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
                               variant={'outline'}
                               role='combobox'
                               aria-expanded={open2}
-                              className={`w-full justify-between overflow-x-hidden font-normal ${field.value === '' && 'text-muted-foreground hover:text-muted-foreground'}`}
+                              className={`w-full justify-between overflow-x-hidden font-normal ${(field.value === '' || !shownSubjects.find((subject) => subject._id === field.value)) && 'text-muted-foreground hover:text-muted-foreground'}`}
                               disabled={form.getValues('courseId') === ''}
                             >
                               {field.value !== ''
                                 ? shownSubjects.find(
                                     (subject) => subject._id === field.value,
-                                  )?.name
+                                  )?.name ?? 'Please select a subject...'
                                 : 'Please select a subject...'}
                               <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
                             </Button>
@@ -495,7 +499,7 @@ export default function ResourceDialog({
                                     {subject.name}
                                     <CheckIcon
                                       className={cn(
-                                        'ml-auto h-4 w-4',
+                                        'ml-auto h-4 min-w-4',
                                         field.value === subject._id
                                           ? 'opacity-100'
                                           : 'opacity-0',
@@ -504,11 +508,13 @@ export default function ResourceDialog({
                                   </CommandItem>
                                 ))}
                               </CommandGroup>
-                              <AddForm
-                                action={handleAddSubject}
-                                fieldId='subject'
-                                placeholder='Type a new subject name...'
-                              />
+                              {session.data.user.isAdmin && (
+                                <AddForm
+                                  action={handleAddSubject}
+                                  fieldId='subject'
+                                  placeholder='Type a new subject name...'
+                                />
+                              )}
                             </CommandList>
                           </Command>
                         </PopoverContent>

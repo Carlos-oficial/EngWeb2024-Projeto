@@ -17,7 +17,12 @@ export default function ModeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline' size='icon' className='w-11 h-11' title='Appearance'>
+        <Button
+          variant='outline'
+          size='icon'
+          className='w-11 h-11'
+          title='Appearance'
+        >
           {resolvedTheme === 'light' ? (
             <i className='ph ph-sun text-lg'></i>
           ) : (

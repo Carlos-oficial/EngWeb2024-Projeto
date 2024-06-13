@@ -6,6 +6,7 @@ interface User {
   password: string;
   image: string;
   emailVerified: Date | null;
+  isAdmin: boolean;
   favoritedResourceIds: string[];
   upvotedResourceIds: string[];
   downvotedResourceIds: string[];
@@ -17,6 +18,7 @@ const ResourceSchema = new Schema<User>({
   password: { type: String, required: true },
   image: { type: String },
   emailVerified: { type: Date },
+  isAdmin: { type: Boolean, default: false },
   favoritedResourceIds: { type: [String], default: [] },
   upvotedResourceIds: { type: [String], default: [] },
   downvotedResourceIds: { type: [String], default: [] },

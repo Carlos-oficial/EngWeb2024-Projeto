@@ -48,6 +48,7 @@ export const authOptions: AuthOptions = {
           email: user.email,
           name: user.name,
           image: user.image ?? '',
+          isAdmin: user.isAdmin ?? false,
         };
       },
     }),
