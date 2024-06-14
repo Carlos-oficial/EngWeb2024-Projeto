@@ -16,7 +16,7 @@ import {
 } from '@/lib/types';
 import { ObjectId } from 'mongodb';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/authOptions';
 
 export const dbsToDtos = async (resources: ResourceDB[]) => {
   const session = await getServerSession(authOptions);
@@ -129,4 +129,79 @@ export const dbsToDtos = async (resources: ResourceDB[]) => {
       edited: resource.edited ?? null,
     };
   }) as ResourceDTO[];
+};
+
+export const dbToDto = async (resource: ResourceDB) => {
+  const session = await getServerSession(authOptions);
+
+  const subject =
+    ((await SubjectController.get(resource.subjectId)) as SubjectDB) ?? {};
+  const subject_name = subject.name ?? '';
+  const course =
+    ((await CourseController.get(resource.courseId)) as CourseDB) ?? {};
+  const course_name = course.name ?? '';
+  const user = ((await UserController.get(resource.userEmail)) as UserDB) ?? {};
+  const user_name = user.name ?? '';
+  const document_type =
+    ((await DocumentTypeController.get(
+      resource.documentTypeId,
+    )) as DocumentTypeDB) ?? {};
+  const document_type_name = document_type.name ?? '';
+  const comments =
+    ((await CommentController.getResourceComments(
+      resource._id,
+    )) as CommentDB[]) ?? [];
+  const commentsNr = comments.length ?? 0;
+
+  // get user interactions
+  let interactions = {
+    favoritedResourceIds: [] as string[],
+    upvotedResourceIds: [] as string[],
+    downvotedResourceIds: [] as string[],
+  };
+  if (session?.user?.email) {
+    interactions = (await UserController.getInteractions(
+      session.user.email,
+    )) as {
+      favoritedResourceIds: string[];
+      upvotedResourceIds: string[];
+      downvotedResourceIds: string[];
+    };
+  }
+
+  const isFavorite = interactions.favoritedResourceIds.includes(resource._id);
+  const isUpvoted = interactions.upvotedResourceIds.includes(resource._id);
+  const isDownvoted = interactions.downvotedResourceIds.includes(resource._id);
+
+  return {
+    _id: resource._id.toString(),
+    title: resource.title,
+    description: resource.description,
+    documentType: {
+      _id: resource.documentTypeId,
+      name: document_type_name,
+    },
+    documentFormat: resource.documentFormat,
+    userEmail: resource.userEmail,
+    userName: user_name,
+    hashtags: resource.hashtags.split(' '),
+    subject: {
+      _id: resource.subjectId,
+      courseId: resource.courseId,
+      name: subject_name,
+    },
+    course: {
+      _id: resource.courseId,
+      name: course_name,
+    },
+    createdAt: resource.createdAt,
+    favoritesNr: resource.favoritesNr,
+    upvotesNr: resource.upvotesNr,
+    downloadsNr: resource.downloadsNr,
+    commentsNr: commentsNr,
+    isFavorite: isFavorite,
+    isUpvoted: isUpvoted,
+    isDownvoted: isDownvoted,
+    edited: resource.edited ?? null,
+  } as ResourceDTO;
 };

@@ -61,22 +61,60 @@ export default function ResourceFilters({
     );
   }, [subjects, courseId]);
 
+  function minutesAgo(a: Date, b: Date, minutes: number) {
+    return a.getTime() - b.getTime() < minutes * 60 * 1000;
+  }
+
   useEffect(() => {
-    listDocumentTypes()
-      .then((data) =>
-        setDocumentTypes(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
-      )
-      .catch((error: Error) => console.error(error.message));
-    listCourses()
-      .then((data) =>
-        setCourses(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
-      )
-      .catch((error: Error) => console.error(error.message));
-    listSubjects()
-      .then((data) =>
-        setSubjects(data.sort((a, b) => (a.name < b.name ? -1 : 1))),
-      )
-      .catch((error: Error) => console.error(error.message));
+    const dt_date = localStorage.getItem('documentTypesUpdatedAt');
+    const c_date = localStorage.getItem('coursesUpdatedAt');
+    const s_date = localStorage.getItem('subjectsUpdatedAt');
+    const dt = localStorage.getItem('documentTypes');
+    const c = localStorage.getItem('courses');
+    const s = localStorage.getItem('subjects');
+
+    if (!dt || !dt_date || minutesAgo(new Date(), new Date(dt_date), 5))
+      listDocumentTypes()
+        .then((data) => {
+          setDocumentTypes(data.sort((a, b) => (a.name < b.name ? -1 : 1)));
+          localStorage.setItem('documentTypes', JSON.stringify(data));
+          localStorage.setItem('documentTypesUpdatedAt', Date.now().toString());
+        })
+        .catch((error: Error) => console.error(error.message));
+    else
+      setDocumentTypes(
+        (JSON.parse(dt) as DocumentTypeDB[]).sort((a, b) =>
+          a.name < b.name ? -1 : 1,
+        ),
+      );
+    if (!c || !c_date || minutesAgo(new Date(), new Date(c_date), 5))
+      listCourses()
+        .then((data) => {
+          setCourses(data.sort((a, b) => (a.name < b.name ? -1 : 1)));
+          localStorage.setItem('courses', JSON.stringify(data));
+          localStorage.setItem('coursesUpdatedAt', Date.now().toString());
+        })
+        .catch((error: Error) => console.error(error.message));
+    else
+      setCourses(
+        (JSON.parse(c) as CourseDB[]).sort((a, b) =>
+          a.name < b.name ? -1 : 1,
+        ),
+      );
+    if (!s || !s_date || minutesAgo(new Date(), new Date(s_date), 5))
+      listSubjects()
+        .then((data) => {
+          setSubjects(data.sort((a, b) => (a.name < b.name ? -1 : 1)));
+          localStorage.setItem('subjects', JSON.stringify(data));
+          localStorage.setItem('subjectsUpdatedAt', Date.now().toString());
+        })
+        .catch((error: Error) => console.error(error.message));
+    else
+      setSubjects(
+        (JSON.parse(s) as SubjectDB[]).sort((a, b) =>
+          a.name < b.name ? -1 : 1,
+        ),
+      );
   }, []);
 
   return (
@@ -136,6 +174,7 @@ export default function ResourceFilters({
                       value='All'
                       onSelect={(currentValue) => {
                         currentValue !== courseId && setCourseId(currentValue);
+                        setSubjectId('All');
                         setOpen1(false);
                       }}
                     >

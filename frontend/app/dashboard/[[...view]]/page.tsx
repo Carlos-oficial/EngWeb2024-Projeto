@@ -88,7 +88,9 @@ function filterResources(
         (documentTypeId === 'All' ||
           resource.documentType._id === documentTypeId) &&
         (courseId === 'All' || resource.course._id === courseId) &&
-        (subjectId === 'All' || resource.subject._id === subjectId)
+        (subjectId === 'All' ||
+          courseId === 'All' ||
+          resource.subject._id === subjectId)
       )
         return true;
       return false;
@@ -163,8 +165,7 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
     setShownResources(newShownResources);
   }, [searchQuery, documentTypeId, courseId, subjectId, resources]);
 
-  // fetch resources and apply necessary treatment (filtering, sorting, etc.)
-  const refreshResources = useCallback(() => {
+  useEffect(() => {
     if (searchParams.has('p')) {
       setPageNr(parseInt(searchParams.get('p') as string));
     } else {
@@ -186,7 +187,10 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
     if (searchParams.has('tag')) {
       setSearchQuery('#' + searchParams.get('tag'));
     }
+  }, [searchParams]);
 
+  // fetch resources and apply necessary treatment (filtering, sorting, etc.)
+  const refreshResources = useCallback(() => {
     if (pageNr !== null) {
       if (
         session.status === 'authenticated' &&
@@ -215,13 +219,7 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
           .catch((error: Error) => setError(error.message));
       }
     }
-  }, [
-    params.view,
-    session.status,
-    session.data?.user.email,
-    pageNr,
-    searchParams,
-  ]);
+  }, [params.view, session.status, session.data?.user.email, pageNr]);
 
   useEffect(() => {
     refreshResources();

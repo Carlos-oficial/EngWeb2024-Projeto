@@ -3,7 +3,7 @@ import * as UserController from '@/controllers/User';
 import * as ResourceController from '@/controllers/Resource';
 import { NextRequest, NextResponse } from 'next/server';
 import { HttpStatusCode } from 'axios';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/authOptions';
 import { getServerSession } from 'next-auth';
 
 export async function POST(

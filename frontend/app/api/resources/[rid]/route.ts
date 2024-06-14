@@ -4,8 +4,9 @@ import { ResourceDB } from '@/lib/types';
 import { NextRequest, NextResponse } from 'next/server';
 import { HttpStatusCode } from 'axios';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/authOptions';
 import fs from 'node:fs/promises';
+import { dbToDto } from '@/lib/api_utils';
 
 export async function GET(
   req: NextRequest,
@@ -16,7 +17,9 @@ export async function GET(
 
     const resource = (await ResourceController.get(params.rid)) as ResourceDB;
 
-    return NextResponse.json(resource);
+    const resourceDTO = await dbToDto(resource);
+
+    return NextResponse.json(resourceDTO);
   } catch (error) {
     return NextResponse.json(
       { message: error as Error },

@@ -6,7 +6,8 @@ export function middleware(request: NextRequest) {
   const routes = request.nextUrl.pathname.split('/');
   if (
     routes.length > 4 ||
-    (routes[2] && !['favorites', 'newest', 'profile'].includes(routes[2]))
+    (routes[2] &&
+      !['favorites', 'newest', 'profile', 'resource'].includes(routes[2]))
   )
     return NextResponse.redirect(new URL('/404', request.url));
 }

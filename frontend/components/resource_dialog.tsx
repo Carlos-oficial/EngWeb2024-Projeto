@@ -118,8 +118,6 @@ export default function ResourceDialog({
     },
   });
 
-  console.log(session);
-
   const { toast } = useToast();
 
   const onSubmit: SubmitHandler<FormValues> = (values: FormValues) => {

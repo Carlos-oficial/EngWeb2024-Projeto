@@ -4,7 +4,7 @@ import { HttpStatusCode } from 'axios';
 import * as CommentController from '@/controllers/Comment';
 import { CommentDB } from '@/lib/types';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/authOptions';
 
 export async function POST(req: NextRequest) {
   try {
