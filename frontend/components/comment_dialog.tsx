@@ -62,7 +62,6 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
       <DialogTrigger asChild>
         <button
           disabled={session.status !== 'authenticated'}
-          onClick={session.status === 'authenticated' ? () => {} : () => {}}
           className={`flex space-x-1 ${session.status === 'authenticated' && 'hover:text-green-500'} transition-all text-muted-foreground`}
           title='Comment'
         >
@@ -153,6 +152,7 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
                 className='placeholder:text-muted-foreground focus-visible:outline-none rounded w-full resize-none h-fit'
                 autoComplete='off'
                 maxLength={280}
+                required
               ></TextareaAutosize>
             </div>
             <div className='flex w-full justify-end'>

@@ -255,6 +255,16 @@ export const deleteResource = async (resourceId: string) => {
   }
 };
 
+export const getResource = async (resourceId: string) => {
+  try {
+    const response = await fetch('/api/resources/' + resourceId);
+    const data = (await response.json()) as ResourceDTO;
+    return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
 export const listSubjects = async () => {
   try {
     const response = await fetch('/api/subjects');

@@ -28,6 +28,7 @@ import {
 } from '@/lib/data';
 import { useToast } from './ui/use-toast';
 import ActionsMenu from './actions_menu';
+import { useRouter } from 'next/navigation';
 
 interface ResourceCardProps {
   resource: ResourceDTO;
@@ -42,6 +43,7 @@ export default function ResourceCard({
 }: ResourceCardProps) {
   const session = useSession();
   const pathname = usePathname();
+  const router = useRouter();
   const { toast } = useToast();
 
   const [favoriteCounter, setFavoriteCounter] = useState<number>(
@@ -169,7 +171,7 @@ export default function ResourceCard({
     <Card
       {...props}
       className='flex flex-col justify-between overflow-hidden dark:hover:bg-gray-900 hover:bg-gray-50 hover:text-accent-foreground transition-all'
-      onClick={() => console.log('clicked')}
+      onClick={() => router.push(`/dashboard/resource/${resource._id}`)}
     >
       <CardHeader>
         <div className='flex justify-between items-center pb-2'>
@@ -181,15 +183,22 @@ export default function ResourceCard({
           <div className='flex space-x-2'>
             {session.status === 'authenticated' &&
             session.data.user.email === resource.userEmail ? (
-              <ActionsMenu
-                resource={resource}
-                refreshResources={refreshResources}
-              />
+              <div onClick={(e) => e.stopPropagation()}>
+                <ActionsMenu
+                  resource={resource}
+                  refreshResources={refreshResources}
+                />
+              </div>
             ) : (
               <button
                 disabled={session.status !== 'authenticated'}
                 onClick={
-                  session.status === 'authenticated' ? handleFavorite : () => {}
+                  session.status === 'authenticated'
+                    ? (e) => {
+                        e.stopPropagation();
+                        handleFavorite();
+                      }
+                    : () => {}
                 }
                 className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
                 title='Favorite'
@@ -219,6 +228,7 @@ export default function ResourceCard({
                 key={hashtag}
                 href={`${pathname}?tag=${hashtag.split('#')[1]}`}
                 className='hover:underline'
+                onClick={(e) => e.stopPropagation()}
               >
                 {hashtag}
               </Link>
@@ -233,6 +243,7 @@ export default function ResourceCard({
             <Link
               href={`${pathname}?course=${resource.course._id}&subject=${resource.subject._id}`}
               className='hover:underline'
+              onClick={(e) => e.stopPropagation()}
             >
               {resource.subject.name}
             </Link>
@@ -242,6 +253,7 @@ export default function ResourceCard({
             <Link
               href={`${pathname}?course=${resource.course._id}`}
               className='hover:underline'
+              onClick={(e) => e.stopPropagation()}
             >
               {resource.course.name}
             </Link>
@@ -254,7 +266,12 @@ export default function ResourceCard({
             <button
               disabled={session.status !== 'authenticated'}
               onClick={
-                session.status === 'authenticated' ? handleUpvote : () => {}
+                session.status === 'authenticated'
+                  ? (e) => {
+                      e.stopPropagation();
+                      handleUpvote();
+                    }
+                  : () => {}
               }
               className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-orange-500' : ''} transition-all ${isUpvoted ? 'text-orange-500' : 'text-muted-foreground'}`}
               title='Upvote'
@@ -267,7 +284,12 @@ export default function ResourceCard({
             <button
               disabled={session.status !== 'authenticated'}
               onClick={
-                session.status === 'authenticated' ? handleDownvote : () => {}
+                session.status === 'authenticated'
+                  ? (e) => {
+                      e.stopPropagation();
+                      handleDownvote();
+                    }
+                  : () => {}
               }
               className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-purple-500' : ''} transition-all ${isDownvoted ? 'text-purple-500' : 'text-muted-foreground'}`}
               title='Downvote'
@@ -277,9 +299,14 @@ export default function ResourceCard({
               ></i>
             </button>
           </div>
-          <CommentDialog resource={resource} />
+          <div onClick={(e) => e.stopPropagation()}>
+            <CommentDialog resource={resource} />
+          </div>
           <button
-            onClick={handleDownload}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDownload(e);
+            }}
             className={`flex space-x-1 ${session.status === 'authenticated' && 'hover:text-primary'} transition-all text-muted-foreground`}
             title='Download'
             type='button'
