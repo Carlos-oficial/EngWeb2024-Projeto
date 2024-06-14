@@ -6,8 +6,8 @@ import {
   DocumentTypeDB,
   UserDB,
   UserSignUp,
-  CommentDB,
   ResourceDB,
+  CommentDTO,
 } from './types';
 import { config } from '@/lib/config';
 
@@ -386,7 +386,7 @@ export const signUp = async (userInfo: UserSignUp) => {
 export const listResourceComments = async (resourceId: string) => {
   try {
     const response = await fetch(`/api/resources/${resourceId}/comments`);
-    const data = (await response.json()) as CommentDB[];
+    const data = (await response.json()) as CommentDTO[];
     return data;
   } catch (error) {
     throw new Error((error as Error).message);

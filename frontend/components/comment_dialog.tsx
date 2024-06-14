@@ -47,15 +47,12 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
   }
 
   useEffect(() => {
-    async function fetchUserData() {
-      const user = await getUser(resource.userEmail);
-      setImage(user.image);
-    }
-
     if (open) {
-      fetchUserData().catch(() => {});
+      getUser(resource?.userEmail ?? '')
+        .then((user) => setImage(user.image))
+        .catch(() => {});
     }
-  }, [resource.userEmail, open]);
+  }, [resource, open]);
 
   return (
     <Dialog open={open} onOpenChange={() => setOpen(!open)}>
@@ -149,7 +146,7 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
                     : 'Be the first to comment!'
                 }
                 rows={1}
-                className='placeholder:text-muted-foreground focus-visible:outline-none rounded w-full resize-none h-fit'
+                className='placeholder:text-muted-foreground focus-visible:outline-none rounded w-full resize-none h-fit bg-background'
                 autoComplete='off'
                 maxLength={280}
                 required

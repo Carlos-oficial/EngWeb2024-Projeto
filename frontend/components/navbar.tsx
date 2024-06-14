@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import NavLink from '@/components/navlink';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { nameInitials } from '@/lib/utils';
@@ -16,6 +16,7 @@ export default function Navbar({
   setIsOpen: (isOpen: boolean) => void;
 }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const router = useRouter();
   const session = useSession();
 
@@ -26,7 +27,7 @@ export default function Navbar({
 
   return (
     <div
-      className={`${isOpen ? 'translate-x-0' : '-translate-x-full'} absolute bg-background w-full lg:min-w-64 lg:w-auto h-screen border-r border-border lg:translate-x-0 lg:relative transition-all duration-300`}
+      className={`${isOpen ? 'translate-x-0' : '-translate-x-full'} absolute z-50 bg-background w-full lg:min-w-64 lg:w-auto h-screen border-r border-border lg:translate-x-0 lg:relative transition-all duration-300`}
     >
       <div className='p-2 border-b border-border'>
         <div className='flex space-x-2 items-center'>
@@ -74,19 +75,31 @@ export default function Navbar({
         </div>
       </div>
       <nav className='grid gap-1 p-2'>
-        <NavLink active={pathname === '/dashboard'} href='/dashboard'>
+        <NavLink
+          active={
+            pathname === '/dashboard' ||
+            searchParams.get('from') === 'dashboard'
+          }
+          href='/dashboard'
+        >
           <i className='ph ph-fire text-xl'></i>
           <span>Popular</span>
         </NavLink>
         <NavLink
-          active={pathname === '/dashboard/newest'}
+          active={
+            pathname === '/dashboard/newest' ||
+            searchParams.get('from') === 'newest'
+          }
           href='/dashboard/newest'
         >
           <i className='ph ph-seal text-xl'></i>
           <span>Newest</span>
         </NavLink>
         <NavLink
-          active={pathname === '/dashboard/favorites'}
+          active={
+            pathname === '/dashboard/favorites' ||
+            searchParams.get('from') === 'favorites'
+          }
           href='/dashboard/favorites'
         >
           <i className='ph ph-star text-xl'></i>

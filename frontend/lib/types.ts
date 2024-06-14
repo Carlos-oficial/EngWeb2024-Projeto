@@ -106,6 +106,16 @@ export type CommentDB = {
   createdAt: Date;
 };
 
+export type CommentDTO = {
+  _id: string;
+  resourceId: string;
+  userName: string;
+  userEmail: string;
+  userImage: string;
+  message: string;
+  createdAt: Date;
+};
+
 declare module 'next-auth' {
   interface Session {
     user: Pick<

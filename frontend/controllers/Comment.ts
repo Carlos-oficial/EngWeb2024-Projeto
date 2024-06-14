@@ -26,7 +26,7 @@ export const update = (id: string, comment: Partial<CommentDB>) => {
 };
 
 export const getResourceComments = (resourceId: string) => {
-  return Comment.find({ resourceId: resourceId }).exec();
+  return Comment.find({ resourceId: resourceId }).sort({ createdAt: 1 }).exec();
 };
 
 export const getUserComments = (userEmail: string) => {

@@ -171,7 +171,11 @@ export default function ResourceCard({
     <Card
       {...props}
       className='flex flex-col justify-between overflow-hidden dark:hover:bg-gray-900 hover:bg-gray-50 hover:text-accent-foreground transition-all'
-      onClick={() => router.push(`/dashboard/resource/${resource._id}`)}
+      onClick={() =>
+        router.push(
+          `/dashboard/resource/${resource._id}?from=${pathname.split('/').pop()}`,
+        )
+      }
     >
       <CardHeader>
         <div className='flex justify-between items-center pb-2'>
