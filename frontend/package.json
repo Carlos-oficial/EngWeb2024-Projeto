@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "all": "npm-run-all --parallel docker dev",
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "docker": "docker compose up",
     "build": "prettier --check . && next build",
     "format": "prettier --write .",
