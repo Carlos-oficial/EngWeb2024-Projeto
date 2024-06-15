@@ -1,32 +1,35 @@
 import { setIsLocked } from '@/controllers/Resource';
 import { authOptions } from '@/lib/authOptions';
 import { HttpStatusCode } from 'axios';
-import { Http2ServerRequest } from 'http2';
 import { getServerSession } from 'next-auth/next';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest,
-    { params }: { params: { rid: string } },
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { rid: string } },
 ) {
-    try {
+  try {
+    const session = await getServerSession(authOptions);
 
-        const session = await getServerSession(authOptions);
-        if (session?.user.isAdmin) {
-            setIsLocked(params.rid, true)    
+    if (!session)
+      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+
+    if (session?.user.isAdmin) {
+      await setIsLocked(params.rid, true);
     } else {
-            return NextResponse.json(
-                { message: "Not an admin user" },
-                { status: HttpStatusCode.BadRequest })
-        }
-    } catch (error) {
-        return NextResponse.json(
-            { message: error as Error },
-            { status: HttpStatusCode.BadRequest })
-    } finally {
-    return NextResponse.json(
-      {message: "OK"},
-      {status: HttpStatusCode.Ok}
-    )
-  }
+      return NextResponse.json(
+        { message: 'You must be an admin to perform this task.' },
+        { status: HttpStatusCode.Unauthorized },
+      );
+    }
 
-} 
+    return NextResponse.json({
+      message: 'Resource locked successfully.',
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { message: error as Error },
+      { status: HttpStatusCode.BadRequest },
+    );
+  }
+}

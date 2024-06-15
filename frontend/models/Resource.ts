@@ -15,9 +15,8 @@ interface IResource {
   downvotesNr: number;
   downloadsNr: number;
   edited: Date;
-  isVisible:boolean;
-  isLocked:boolean;
-  
+  isVisible: boolean;
+  isLocked: boolean;
 }
 
 const ResourceSchema = new Schema<IResource>({
@@ -35,8 +34,8 @@ const ResourceSchema = new Schema<IResource>({
   downvotesNr: { type: Number, default: 0 },
   downloadsNr: { type: Number, default: 0 },
   edited: { type: Date },
-  isVisible: {type:Boolean, default:true},
-  isLocked:  {type:Boolean, default:false}
+  isVisible: { type: Boolean, default: true },
+  isLocked: { type: Boolean, default: false },
 });
 
 const Resource =

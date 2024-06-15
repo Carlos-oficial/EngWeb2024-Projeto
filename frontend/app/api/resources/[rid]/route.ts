@@ -34,6 +34,19 @@ export async function PUT(
 ) {
   try {
     const session = await getServerSession(authOptions);
+
+    if (!session)
+      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+
+    const resource = (await ResourceController.get(params.rid)) as ResourceDB;
+
+    if (!resource) {
+      return NextResponse.json(
+        { message: 'Resource not found.' },
+        { status: HttpStatusCode.NotFound },
+      );
+    }
+
     const body = (await req.json()) as Partial<ResourceDB>;
 
     // verify user is owner of file
@@ -68,8 +81,12 @@ export async function DELETE(
 
     const resource = (await ResourceController.get(params.rid)) as ResourceDB;
 
-    if (!resource)
-      return NextResponse.json({ status: HttpStatusCode.BadRequest });
+    if (!resource) {
+      return NextResponse.json(
+        { message: 'Resource not found.' },
+        { status: HttpStatusCode.NotFound },
+      );
+    }
 
     // verify user is owner of file
     if (session && session.user.email === resource.userEmail) {

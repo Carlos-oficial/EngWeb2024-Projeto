@@ -21,7 +21,7 @@ export async function GET(
 
     const resources =
       ((await ResourceController.listByIds(
-        session?.user ?? { email: "", isAdmin: false },
+        session?.user ?? { email: '', isAdmin: false },
         ids,
         params.page,
       )) as ResourceDB[]) ?? [];

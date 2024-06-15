@@ -1,3 +1,4 @@
+import { HttpStatusCode } from 'axios';
 import {
   ResourceDTO,
   SubjectDB,
@@ -76,7 +77,6 @@ export const listResourcesByUser = async (userEmail: string, page: number) => {
   }
 };
 
-
 export const searchResources = async (query: string, page: number) => {
   try {
     const response = await fetch(`/api/resources/search/${page}?q=${query}`);
@@ -93,29 +93,36 @@ export const searchResources = async (query: string, page: number) => {
   }
 };
 
-export const makeVisible = async (resourceId:string) =>{
+export const makeVisible = async (resourceId: string) => {
   const response = await fetch(`/api/resources/${resourceId}/show`, {
     method: 'GET',
   });
-}
-export const makeInvisible = async (resourceId:string) =>{
+
+  if (response.status === (HttpStatusCode.Unauthorized as number)) {
+    throw new Error("You've been blocked from performing this action.");
+  }
+};
+export const makeInvisible = async (resourceId: string) => {
   const response = await fetch(`/api/resources/${resourceId}/hide`, {
     method: 'GET',
   });
-}
 
-export const lock = async (resourceId:string) =>{
-  const response = await fetch(`/api/resources/${resourceId}/lock`, {
+  if (response.status === (HttpStatusCode.Unauthorized as number)) {
+    throw new Error("You've been blocked from performing this action.");
+  }
+};
+
+export const lock = async (resourceId: string) => {
+  await fetch(`/api/resources/${resourceId}/lock`, {
     method: 'GET',
   });
-}
+};
 
-export const unlock = async (resourceId:string) =>{
-  const response = await fetch(`/api/resources/${resourceId}/unlock`, {
+export const unlock = async (resourceId: string) => {
+  await fetch(`/api/resources/${resourceId}/unlock`, {
     method: 'GET',
   });
-}
-
+};
 
 export const getUser = async (userEmail: string) => {
   try {

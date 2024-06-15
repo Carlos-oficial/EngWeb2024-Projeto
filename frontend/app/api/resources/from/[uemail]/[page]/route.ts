@@ -16,7 +16,7 @@ export async function GET(
     const session = await getServerSession(authOptions);
 
     const resources = (await ResourceController.listbyUser(
-      session?.user ?? { email: "", isAdmin: false },
+      session?.user ?? { email: '', isAdmin: false },
       params.uemail,
       params.page,
     )) as ResourceDB[];

@@ -78,7 +78,7 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
       .then((comments) => {
         setComments(comments);
       })
-      .catch(() => { });
+      .catch(() => {});
   }, [params.rid]);
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
             description: 'Your comment has been sent.',
           });
         })
-        .catch(() => { });
+        .catch(() => {});
     }
   }
 
@@ -129,9 +129,9 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
                   description: 'Download started.',
                 });
               })
-              .catch(() => { });
+              .catch(() => {});
           })
-          .catch(() => { });
+          .catch(() => {});
       } catch (error) {
         toast({
           title: 'Uh oh! Something went wrong.',
@@ -148,13 +148,13 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
           if (isUpvoted) {
             setUpvoteCounter(upvoteCounter - 1);
             removeUpvote(session.data.user.email, resource._id)
-              .then(() => { })
+              .then(() => {})
               .catch(() => setUpvoteCounter(upvoteCounter + 1));
           } else {
             setUpvoteCounter(upvoteCounter + 1);
             isDownvoted && handleDownvote();
             addUpvote(session.data.user.email, resource._id)
-              .then(() => { })
+              .then(() => {})
               .catch(() => {
                 setUpvoteCounter(upvoteCounter - 1);
                 handleDownvote();
@@ -177,12 +177,12 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
         if (session.status === 'authenticated') {
           if (isDownvoted) {
             removeDownvote(session.data.user.email, resource._id)
-              .then(() => { })
-              .catch(() => { });
+              .then(() => {})
+              .catch(() => {});
           } else {
             isUpvoted && handleUpvote();
             addDownvote(session.data.user.email, resource._id)
-              .then(() => { })
+              .then(() => {})
               .catch(() => {
                 handleUpvote();
               });
@@ -205,12 +205,12 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
           if (isFavorite) {
             setFavoriteCounter(favoriteCounter - 1);
             removeFavorite(session.data.user.email, resource._id)
-              .then(() => { })
+              .then(() => {})
               .catch(() => setFavoriteCounter(favoriteCounter + 1));
           } else {
             setFavoriteCounter(favoriteCounter + 1);
             addFavorite(session.data.user.email, resource._id)
-              .then(() => { })
+              .then(() => {})
               .catch(() => setFavoriteCounter(favoriteCounter - 1));
           }
           setIsFavorite(!isFavorite);
@@ -268,7 +268,8 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
                   </div>
 
                   {session.status === 'authenticated' &&
-                    (session.data.user.email === resource.userEmail || session.data.user.isAdmin) ? (
+                  (session.data.user.email === resource.userEmail ||
+                    session.data.user.isAdmin) ? (
                     <div onClick={(e) => e.stopPropagation()}>
                       <ActionsMenu
                         resource={resource}
@@ -281,10 +282,10 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
                       onClick={
                         session.status === 'authenticated'
                           ? (e) => {
-                            e.stopPropagation();
-                            handleFavorite();
-                          }
-                          : () => { }
+                              e.stopPropagation();
+                              handleFavorite();
+                            }
+                          : () => {}
                       }
                       className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
                       title='Favorite'
@@ -330,10 +331,10 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
                       onClick={
                         session.status === 'authenticated'
                           ? (e) => {
-                            e.stopPropagation();
-                            handleUpvote();
-                          }
-                          : () => { }
+                              e.stopPropagation();
+                              handleUpvote();
+                            }
+                          : () => {}
                       }
                       className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-orange-500' : ''} transition-all ${isUpvoted ? 'text-orange-500' : 'text-muted-foreground'}`}
                       title='Upvote'
@@ -348,10 +349,10 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
                       onClick={
                         session.status === 'authenticated'
                           ? (e) => {
-                            e.stopPropagation();
-                            handleDownvote();
-                          }
-                          : () => { }
+                              e.stopPropagation();
+                              handleDownvote();
+                            }
+                          : () => {}
                       }
                       className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-purple-500' : ''} transition-all ${isDownvoted ? 'text-purple-500' : 'text-muted-foreground'}`}
                       title='Downvote'
@@ -434,7 +435,7 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
       </div>
       {previewOn && (
         <div
-          className={`border-border border rounded-lg p-4 overflow-y-scroll ${resource.documentFormat === 'PDF' ? 'h-[calc(100vh-2rem-61px)]' : 'h-fit'} hidden lg:block`}
+          className={`border-border border rounded-lg p-4 overflow-hidden ${resource.documentFormat === 'PDF' ? 'h-[calc(100vh-2rem-61px)]' : 'h-fit'} hidden lg:block`}
         >
           <Badge variant={'secondary'} className='mb-4'>
             Preview
@@ -457,7 +458,7 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
             />
           )}
         </div>
-      )}  
+      )}
     </main>
   ) : (
     <div className='flex items-center justify-center h-[calc(100vh-10rem)]'>

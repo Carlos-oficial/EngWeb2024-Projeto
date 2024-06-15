@@ -188,7 +188,8 @@ export default function ResourceCard({
           </span>
           <div className='flex space-x-2'>
             {session.status === 'authenticated' &&
-            (session.data.user.email === resource.userEmail || session.data.user.isAdmin) ? (
+            (session.data.user.email === resource.userEmail ||
+              session.data.user.isAdmin) ? (
               <div onClick={(e) => e.stopPropagation()}>
                 <ActionsMenu
                   resource={resource}

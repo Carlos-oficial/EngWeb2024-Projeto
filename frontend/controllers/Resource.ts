@@ -1,8 +1,17 @@
-import { ResourceDB } from '@/lib/types';
+import { ResourceDB, UserDB } from '@/lib/types';
 import Resource from '@/models/Resource';
 import { getSkip } from '@/lib/utils';
 import { config } from '@/lib/config';
-import User from '@/models/User';
+
+function matchCriteria(user: Pick<UserDB, 'email' | 'isAdmin'>) {
+  if (!user.isAdmin) {
+    return {
+      $or: [{ userEmail: user.email }, { isVisible: true }],
+    };
+  } else {
+    return {};
+  }
+}
 
 export const listAll = (page: number) => {
   return Resource.find()
@@ -12,23 +21,10 @@ export const listAll = (page: number) => {
     .exec();
 };
 
-interface userData { email: string, isAdmin: boolean }
-
-function matchCriteria(user: userData) {
-  let matchCriteria;
-  if (!user.isAdmin) {
-    return {
-      $or: [
-        { userEmail: user.email },
-        { isVisible: true }
-      ]
-    };
-  } else {
-    return {};
-  }
-}
-
-export const listPopular = (user: userData, page: number) => {
+export const listPopular = (
+  user: Pick<UserDB, 'email' | 'isAdmin'>,
+  page: number,
+) => {
   return Resource.aggregate([
     {
       $lookup: {
@@ -58,6 +54,8 @@ export const listPopular = (user: userData, page: number) => {
         downvotesNr: 1,
         downloadsNr: 1,
         edited: 1,
+        isVisible: 1,
+        isLocked: 1,
         popularity: {
           $add: [
             {
@@ -83,12 +81,16 @@ export const listPopular = (user: userData, page: number) => {
       },
     },
     { $sort: { popularity: -1, createdAt: -1 } },
-  ]).skip(getSkip(page))
+  ])
+    .skip(getSkip(page))
     .limit(config.pages.PAGE_SIZE)
     .exec();
 };
 
-export const listNewest = (user: userData, page: number) => {
+export const listNewest = (
+  user: Pick<UserDB, 'email' | 'isAdmin'>,
+  page: number,
+) => {
   return Resource.find(matchCriteria(user))
     .sort({ createdAt: -1 })
     .skip(getSkip(page))
@@ -96,34 +98,50 @@ export const listNewest = (user: userData, page: number) => {
     .exec();
 };
 
-export const countAll = () => {
-  return Resource.find().countDocuments().exec();
+export const countAll = (user: Pick<UserDB, 'email' | 'isAdmin'>) => {
+  return Resource.find(matchCriteria(user)).countDocuments().exec();
 };
 
-export const listByIds = (user:userData,ids: string[], page: number) => {
-  return Resource.find({ _id: { $in: ids } ,... matchCriteria(user)})
+export const listByIds = (
+  user: Pick<UserDB, 'email' | 'isAdmin'>,
+  ids: string[],
+  page: number,
+) => {
+  return Resource.find({ _id: { $in: ids }, ...matchCriteria(user) })
     .sort({ createdAt: -1 })
     .skip(getSkip(page))
     .limit(config.pages.PAGE_SIZE)
     .exec();
 };
 
-export const countByIds = (ids: string[]) => {
-  return Resource.find({ _id: { $in: ids } })
+export const countByIds = (
+  user: Pick<UserDB, 'email' | 'isAdmin'>,
+  ids: string[],
+) => {
+  return Resource.find({ _id: { $in: ids }, ...matchCriteria(user) })
     .countDocuments()
     .exec();
 };
 
-export const listbyUser = (user:userData,email: string, page: number) => {
-  return Resource.find({ userEmail: email , ... matchCriteria(user)} )
+export const listbyUser = (
+  user: Pick<UserDB, 'email' | 'isAdmin'>,
+  email: string,
+  page: number,
+) => {
+  return Resource.find({ userEmail: email, ...matchCriteria(user) })
     .sort({ createdAt: -1 })
     .skip(getSkip(page))
     .limit(config.pages.PAGE_SIZE)
     .exec();
 };
 
-export const countByUser = (email: string) => {
-  return Resource.find({ userEmail: email }).countDocuments().exec();
+export const countByUser = (
+  user: Pick<UserDB, 'email' | 'isAdmin'>,
+  email: string,
+) => {
+  return Resource.find({ userEmail: email, ...matchCriteria(user) })
+    .countDocuments()
+    .exec();
 };
 
 const searchPipeline = (query: string) => [
@@ -233,12 +251,12 @@ export const remove = (id: string) => {
 };
 
 export const setIsVisible = (id: string, value: boolean) => {
-  return Resource.findByIdAndUpdate(id, { $set: { isVisible: value } })
-}
+  return Resource.findByIdAndUpdate(id, { $set: { isVisible: value } });
+};
 
 export const setIsLocked = (id: string, value: boolean) => {
-  return Resource.findByIdAndUpdate(id, { $set: { isLocked: value } })
-}
+  return Resource.findByIdAndUpdate(id, { $set: { isLocked: value } });
+};
 
 export const addDownload = (id: string) => {
   return Resource.updateOne({ _id: id }, { $inc: { downloadsNr: 1 } }).exec();

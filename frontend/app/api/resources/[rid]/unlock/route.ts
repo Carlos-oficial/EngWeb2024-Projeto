@@ -4,27 +4,32 @@ import { HttpStatusCode } from 'axios';
 import { getServerSession } from 'next-auth/next';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest,
-    { params }: { params: { rid: string } },
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { rid: string } },
 ) {
-    try {
+  try {
+    const session = await getServerSession(authOptions);
 
-        const session = await getServerSession(authOptions);
-        if (session?.user.isAdmin) {
-            setIsLocked(params.rid, false)
-        } else {
-            return NextResponse.json(
-                { message: "Not an admin user" },
-                { status: HttpStatusCode.BadRequest })
-        }
-    } catch (error) {
-        return NextResponse.json(
-            { message: error as Error },
-            { status: HttpStatusCode.BadRequest })
-    }  finally {
+    if (!session)
+      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+
+    if (session?.user.isAdmin) {
+      await setIsLocked(params.rid, false);
+    } else {
+      return NextResponse.json(
+        { message: 'You must be an admin to perform this task.' },
+        { status: HttpStatusCode.Unauthorized },
+      );
+    }
+
+    return NextResponse.json({
+      message: 'Resource unlocked successfully.',
+    });
+  } catch (error) {
     return NextResponse.json(
-      {message: "OK"},
-      {status: HttpStatusCode.Ok}
-    )}
-
-} 
+      { message: error as Error },
+      { status: HttpStatusCode.BadRequest },
+    );
+  }
+}

@@ -14,7 +14,7 @@ export async function GET(
     await connectMongo();
     const session = await getServerSession(authOptions);
     const resources = (await ResourceController.listPopular(
-      session?.user ?? { email: "", isAdmin: false },
+      session?.user ?? { email: '', isAdmin: false },
       params.page,
     )) as ResourceDB[];
 

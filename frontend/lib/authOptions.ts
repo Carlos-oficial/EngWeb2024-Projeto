@@ -70,12 +70,12 @@ export const authOptions: AuthOptions = {
       return url;
     },
     async session({ session, user, token }) {
-      await connectMongo()
+      await connectMongo();
       const usr = (await UserController.get(session.user.email)) as
-      | UserDB
-      | null
-      | undefined;
-      session.user = {...session.user,isAdmin:usr?.isAdmin ?? false}
+        | UserDB
+        | null
+        | undefined;
+      session.user = { ...session.user, isAdmin: usr?.isAdmin ?? false };
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {

@@ -73,7 +73,7 @@ import {
 import Spinner from './spinner';
 import AddForm from './add_form';
 import SignInCard from './signin_card';
-import { toast } from './ui/use-toast';
+import { useToast } from './ui/use-toast';
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -107,26 +107,47 @@ export default function ActionsMenu({
   resource: ResourceDTO;
   refreshResources: () => void;
 }) {
+  const { toast } = useToast();
 
-  const [visible, setVisible] = useState<boolean>(resource.isVisible)
-  const [locked, setLocked] = useState<boolean>(resource.isLocked)
+  const [visible, setVisible] = useState<boolean>(resource.isVisible);
+  const [locked, setLocked] = useState<boolean>(resource.isLocked);
 
   const hanldleUnlist = () => {
-    setVisible(false)
+    setVisible(false);
     makeInvisible(resource._id)
-  }
+      .then(() => setVisible(false))
+      .catch((error: Error) => {
+        setVisible(true);
+        toast({
+          title: 'Uh oh! Something went wrong.',
+          description: error.message,
+        });
+      });
+  };
   const hanldleMakeVisible = () => {
-    setVisible(true)
+    setVisible(true);
     makeVisible(resource._id)
-  }
+      .then(() => setVisible(true))
+      .catch((error: Error) => {
+        setVisible(false);
+        toast({
+          title: 'Uh oh! Something went wrong.',
+          description: error.message,
+        });
+      });
+  };
   const hanldleUnlock = () => {
-    setLocked(false)
+    setLocked(false);
     unlock(resource._id)
-  }
+      .then(() => setLocked(false))
+      .catch(() => setLocked(true));
+  };
   const hanldleLock = () => {
-    setLocked(true)
+    setLocked(true);
     lock(resource._id)
-  }
+      .then(() => setLocked(true))
+      .catch(() => setLocked(false));
+  };
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -299,7 +320,7 @@ export default function ActionsMenu({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button>
-              <i className='ph-bold ph-dots-three text-lg text-muted-foreground hover:text-primary'></i>
+              <i className='ph-bold ph-dots-three text-lg text-muted-foreground hover:text-primary transition-colors'></i>
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
@@ -312,31 +333,45 @@ export default function ActionsMenu({
               </DialogTrigger>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              {visible ?
-
-                <button onClick={hanldleUnlist} className='flex justify-between w-full items-center'>
+              {visible ? (
+                <button
+                  onClick={hanldleUnlist}
+                  className='flex justify-between w-full items-center'
+                >
                   <span>Unlist</span>
                   <i className='ph ph-eye-slash'></i>
-                </button> :
-                <button onClick={hanldleMakeVisible} className='flex justify-between w-full items-center'>
-                  <span>Make visible</span>
+                </button>
+              ) : (
+                <button
+                  onClick={hanldleMakeVisible}
+                  className='flex justify-between w-full items-center'
+                >
+                  <span>List</span>
                   <i className='ph ph-eye'></i>
-                </button>}
+                </button>
+              )}
             </DropdownMenuItem>
-            {session.data?.user.isAdmin &&
+            {session.data?.user.isAdmin && (
               <DropdownMenuItem>
-                {locked ?
-                  <button onClick={hanldleUnlock} className='flex justify-between w-full items-center'>
+                {locked ? (
+                  <button
+                    onClick={hanldleUnlock}
+                    className='flex justify-between w-full items-center'
+                  >
                     <span>Unlock</span>
                     <i className='ph ph-lock-open'></i>
-                  </button> :
-                  <button onClick={hanldleLock} className='flex justify-between w-full items-center'>
+                  </button>
+                ) : (
+                  <button
+                    onClick={hanldleLock}
+                    className='flex justify-between w-full items-center'
+                  >
                     <span>Lock</span>
                     <i className='ph ph-lock'></i>
                   </button>
-                }
+                )}
               </DropdownMenuItem>
-            }
+            )}
             <DropdownMenuItem>
               <AlertDialogTrigger asChild>
                 <button className='flex justify-between w-full items-center'>
@@ -504,10 +539,10 @@ export default function ActionsMenu({
                                         <span>
                                           {field.value !== ''
                                             ? shownSubjects.find(
-                                              (subject) =>
-                                                subject._id === field.value,
-                                            )?.name ??
-                                            'Please select a subject...'
+                                                (subject) =>
+                                                  subject._id === field.value,
+                                              )?.name ??
+                                              'Please select a subject...'
                                             : 'Please select a subject...'}
                                         </span>
                                         <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
@@ -597,9 +632,9 @@ export default function ActionsMenu({
                                         <span>
                                           {field.value !== ''
                                             ? courses.find(
-                                              (course) =>
-                                                course._id === field.value,
-                                            )?.name
+                                                (course) =>
+                                                  course._id === field.value,
+                                              )?.name
                                             : 'Please select a course...'}
                                         </span>
                                         <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />

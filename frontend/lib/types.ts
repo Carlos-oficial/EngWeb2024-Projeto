@@ -29,7 +29,7 @@ export type ResourceDTO = {
   isUpvoted: boolean;
   isDownvoted: boolean;
   isVisible: boolean;
-  isLocked:boolean;
+  isLocked: boolean;
   edited: Date;
 };
 
@@ -49,7 +49,7 @@ export type ResourceDB = {
   downvotesNr: number;
   downloadsNr: number;
   isVisible: boolean;
-  isLocked:boolean;
+  isLocked: boolean;
   edited: Date;
 };
 
