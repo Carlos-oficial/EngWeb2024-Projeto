@@ -4,7 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ResourceDB } from '@/lib/types';
 import { HttpStatusCode } from 'axios';
 import { dbsToDtos } from '@/lib/api_utils';
-
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/authOptions';
 export async function GET(
   req: NextRequest,
   { params }: { params: { page: number } },
@@ -12,7 +13,9 @@ export async function GET(
   try {
     await connectMongo();
 
+    const session = await getServerSession(authOptions);
     const resources = (await ResourceController.listNewest(
+      session?.user ?? { email: "", isAdmin: false },
       params.page,
     )) as ResourceDB[];
 

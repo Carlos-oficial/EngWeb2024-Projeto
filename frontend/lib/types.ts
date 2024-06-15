@@ -28,6 +28,8 @@ export type ResourceDTO = {
   isFavorite: boolean;
   isUpvoted: boolean;
   isDownvoted: boolean;
+  isVisible: boolean;
+  isLocked:boolean;
   edited: Date;
 };
 
@@ -46,6 +48,8 @@ export type ResourceDB = {
   upvotesNr: number;
   downvotesNr: number;
   downloadsNr: number;
+  isVisible: boolean;
+  isLocked:boolean;
   edited: Date;
 };
 

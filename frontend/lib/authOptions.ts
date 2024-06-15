@@ -7,6 +7,7 @@ import * as UserController from '@/controllers/User';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { UserDB } from '@/lib/types';
 import { compare } from 'bcrypt';
+import connectMongo from './mongoose';
 
 export const authOptions: AuthOptions = {
   session: {
@@ -69,6 +70,12 @@ export const authOptions: AuthOptions = {
       return url;
     },
     async session({ session, user, token }) {
+      await connectMongo()
+      const usr = (await UserController.get(session.user.email)) as
+      | UserDB
+      | null
+      | undefined;
+      session.user = {...session.user,isAdmin:usr?.isAdmin ?? false}
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
