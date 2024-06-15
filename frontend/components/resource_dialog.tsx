@@ -86,7 +86,7 @@ const formSchema = z.object({
   courseId: z
     .string({ required_error: 'Course is required' })
     .min(1, { message: 'Course is required' }),
-  file: z.instanceof(FileList),
+  file: z.custom<FileList>(),
 });
 
 export default function ResourceDialog({

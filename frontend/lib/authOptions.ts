@@ -76,7 +76,6 @@ export const authOptions: AuthOptions = {
       | null
       | undefined;
       session.user = {...session.user,isAdmin:usr?.isAdmin ?? false}
-      console.log("session data:",session)
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
