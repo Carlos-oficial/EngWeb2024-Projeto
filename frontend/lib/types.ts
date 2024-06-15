@@ -9,6 +9,7 @@ export type ResourceDTO = {
   documentFormat: string;
   userEmail: string;
   userName: string;
+  userImage: string;
   hashtags: string[];
   subject: {
     _id: string;
@@ -118,6 +119,10 @@ export type CommentDTO = {
   userImage: string;
   message: string;
   createdAt: Date;
+};
+
+export type CommentWithResourceDTO = CommentDTO & {
+  resource: ResourceDTO;
 };
 
 declare module 'next-auth' {

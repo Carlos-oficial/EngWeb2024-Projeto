@@ -8,6 +8,7 @@ import {
   UserSignUp,
   ResourceDB,
   CommentDTO,
+  CommentWithResourceDTO,
 } from './types';
 import { config } from '@/lib/config';
 
@@ -215,6 +216,66 @@ export const removeDownvote = async (userEmail: string, resourceId: string) => {
       },
       body: JSON.stringify({ resourceId: resourceId }),
     });
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const listUpvotedResources = async (userEmail: string, page: number) => {
+  try {
+    const userUpvotesRes = await fetch(`/api/users/${userEmail}/upvote`);
+    const userUpvotes = (await userUpvotesRes.json()) as string[];
+    if (userUpvotes.length === 0) return { data: [], pagesNr: 0 };
+    const response = await fetch(
+      `/api/resources/ids/${page}?` +
+        new URLSearchParams({ ids: userUpvotes.toString() }).toString(),
+    );
+    const upvotedResources = (await response.json()) as ResourceDTO[];
+    const countResponse = await fetch(
+      `/api/resources/ids/count?` +
+        new URLSearchParams({ ids: userUpvotes.toString() }).toString(),
+    );
+    const count = (await countResponse.json()) as number;
+    const pagesNr = Math.ceil(count / config.pages.PAGE_SIZE);
+    return {
+      data: upvotedResources,
+      pagesNr: pagesNr,
+    };
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const listUserComments = async (userEmail: string, page: number) => {
+  try {
+    const userCommentsRes = await fetch(`/api/users/comments/${userEmail}`);
+    const userComments = (await userCommentsRes.json()) as CommentDTO[];
+    if (userComments.length === 0) return { data: [], pagesNr: 0 };
+    const userCommentsIds = userComments.map((c) => c.resourceId);
+    const response = await fetch(
+      `/api/resources/ids/${page}?` +
+        new URLSearchParams({ ids: userCommentsIds.toString() }).toString(),
+    );
+    const commentedResources = (await response.json()) as ResourceDTO[];
+    const countResponse = await fetch(
+      `/api/resources/ids/count?` +
+        new URLSearchParams({ ids: userCommentsIds.toString() }).toString(),
+    );
+    const count = (await countResponse.json()) as number;
+    const pagesNr = Math.ceil(count / config.pages.PAGE_SIZE);
+    const commentsWithResources = userComments.map((comment) => {
+      const resource = commentedResources.find(
+        (r) => r._id === comment.resourceId,
+      );
+      return {
+        ...comment,
+        resource: resource,
+      } as CommentWithResourceDTO;
+    });
+    return {
+      data: commentsWithResources.filter((c) => c.resource !== undefined),
+      pagesNr: pagesNr,
+    };
   } catch (error) {
     throw new Error((error as Error).message);
   }

@@ -79,6 +79,8 @@ export const dbsToDtos = async (resources: ResourceDB[]) => {
       )?.name ?? '';
     const user_name =
       users.find((user) => user.email === resource.userEmail)?.name ?? '';
+    const user_image =
+      users.find((user) => user.email === resource.userEmail)?.image ?? '';
     const document_type_name =
       document_types.find(
         (document_type) =>
@@ -108,6 +110,7 @@ export const dbsToDtos = async (resources: ResourceDB[]) => {
       documentFormat: resource.documentFormat,
       userEmail: resource.userEmail,
       userName: user_name,
+      userImage: user_image,
       hashtags: resource.hashtags.split(' '),
       subject: {
         _id: resource.subjectId,
@@ -144,6 +147,7 @@ export const dbToDto = async (resource: ResourceDB) => {
   const course_name = course.name ?? '';
   const user = ((await UserController.get(resource.userEmail)) as UserDB) ?? {};
   const user_name = user.name ?? '';
+  const user_image = user.image ?? '';
   const document_type =
     ((await DocumentTypeController.get(
       resource.documentTypeId,
@@ -186,6 +190,7 @@ export const dbToDto = async (resource: ResourceDB) => {
     documentFormat: resource.documentFormat,
     userEmail: resource.userEmail,
     userName: user_name,
+    userImage: user_image,
     hashtags: resource.hashtags.split(' '),
     subject: {
       _id: resource.subjectId,

@@ -22,8 +22,10 @@ export default function Navbar({
 
   const isProfile =
     session.status === 'authenticated' &&
-    session.data.user.email === pathname.split('/').pop() &&
-    pathname.includes('/dashboard/profile/');
+    (session.data.user.email === pathname.split('/').pop() ||
+      session.data.user.email === searchParams.get('from')?.split('/').pop()) &&
+    (pathname.startsWith('/dashboard/profile/') ||
+      searchParams.get('from')?.startsWith('/dashboard/profile/'));
 
   return (
     <div
@@ -78,7 +80,7 @@ export default function Navbar({
         <NavLink
           active={
             pathname === '/dashboard' ||
-            searchParams.get('from') === 'dashboard'
+            searchParams.get('from') === '/dashboard'
           }
           href='/dashboard'
         >
@@ -88,7 +90,7 @@ export default function Navbar({
         <NavLink
           active={
             pathname === '/dashboard/newest' ||
-            searchParams.get('from') === 'newest'
+            searchParams.get('from') === '/dashboard/newest'
           }
           href='/dashboard/newest'
         >
@@ -98,7 +100,7 @@ export default function Navbar({
         <NavLink
           active={
             pathname === '/dashboard/favorites' ||
-            searchParams.get('from') === 'favorites'
+            searchParams.get('from') === '/dashboard/favorites'
           }
           href='/dashboard/favorites'
         >
