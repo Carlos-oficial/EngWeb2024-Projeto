@@ -6,6 +6,33 @@ import { HttpStatusCode } from 'axios';
 import { authOptions } from '@/lib/authOptions';
 import { getServerSession } from 'next-auth';
 
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { uemail: string } },
+) {
+  try {
+    await connectMongo();
+
+    if (!params.uemail) {
+      return NextResponse.json(
+        { message: 'No user email provided' },
+        { status: HttpStatusCode.BadRequest },
+      );
+    }
+
+    const upvotes = (await UserController.getUpvotes(params.uemail)) as {
+      upvotedResourceIds: string[];
+    };
+
+    return NextResponse.json(upvotes?.upvotedResourceIds ?? []);
+  } catch (error) {
+    return NextResponse.json(
+      { message: error as Error },
+      { status: HttpStatusCode.BadRequest },
+    );
+  }
+}
+
 export async function POST(
   req: NextRequest,
   { params }: { params: { uemail: string } },

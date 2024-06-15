@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Dialog,
   DialogContent,
@@ -10,22 +12,23 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useSession } from 'next-auth/react';
 import { formatNumber } from '@/lib/utils';
 import { ResourceDTO } from '@/lib/types';
-import { addComment, getUser } from '@/lib/data';
-import { useEffect, useState } from 'react';
+import { addComment } from '@/lib/data';
+import { useState } from 'react';
 import { nameInitials } from '@/lib/utils';
 import TextareaAutosize from 'react-textarea-autosize';
 import { Button } from './ui/button';
 import { useToast } from './ui/use-toast';
 import { timeAgo } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
 
 export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
   const session = useSession();
+  const router = useRouter();
   const { toast } = useToast();
 
   const [commentsCounter, setCommentsCounter] = useState<number>(
     resource.commentsNr,
   );
-  const [image, setImage] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
 
   function handleComment(formData: FormData) {
@@ -46,14 +49,6 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
     }
   }
 
-  useEffect(() => {
-    if (open) {
-      getUser(resource?.userEmail ?? '')
-        .then((user) => setImage(user.image))
-        .catch(() => {});
-    }
-  }, [resource, open]);
-
   return (
     <Dialog open={open} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger asChild>
@@ -70,8 +65,13 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
         <DialogHeader>
           <div className='flex justify-start space-x-4 h-fit'>
             <div className='space-y-1.5 h-full'>
-              <Avatar>
-                <AvatarImage src={image} />
+              <Avatar
+                className='cursor-pointer'
+                onClick={() =>
+                  router.push(`/dashboard/profile/${resource.userEmail}`)
+                }
+              >
+                <AvatarImage src={resource.userImage} />
                 <AvatarFallback>
                   {nameInitials(resource.userName)}
                 </AvatarFallback>
@@ -79,7 +79,12 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
               <div className='w-0.5 bg-border grow h-[calc(100%-2.75rem)] m-auto'></div>
             </div>
             <div className='space-y-3 w-full'>
-              <p className='text-sm text-left'>
+              <p
+                className='text-sm text-left cursor-pointer'
+                onClick={() =>
+                  router.push(`/dashboard/profile/${resource.userEmail}`)
+                }
+              >
                 <span className='font-bold'>{resource.userName}</span>{' '}
                 <span className='text-muted-foreground'>
                   {resource.userEmail} · {timeAgo(resource.createdAt)}
@@ -146,7 +151,7 @@ export default function CommentDialog({ resource }: { resource: ResourceDTO }) {
                     : 'Be the first to comment!'
                 }
                 rows={1}
-                className='placeholder:text-muted-foreground focus-visible:outline-none rounded w-full resize-none h-fit bg-background'
+                className='placeholder:text-muted-foreground focus-visible:outline-none rounded w-full resize-none h-fit bg-background text-lg'
                 autoComplete='off'
                 maxLength={280}
                 required

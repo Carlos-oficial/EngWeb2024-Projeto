@@ -18,7 +18,6 @@ import {
 import TextareaAutosize from 'react-textarea-autosize';
 import { nameInitials, timeAgo, formatNumber } from '@/lib/utils';
 import {
-  getUser,
   addComment,
   addFavorite,
   removeFavorite,
@@ -30,13 +29,13 @@ import {
 import { useSession } from 'next-auth/react';
 import { useToast } from '@/components/ui/use-toast';
 import ActionsMenu from '@/components/actions_menu';
+import Comment from '@/components/comment';
 
 export default function ResourcePage({ params }: { params: { rid: string } }) {
   const session = useSession();
   const router = useRouter();
   const { toast } = useToast();
 
-  const [image, setImage] = useState<string>('');
   const [resource, setResource] = useState<ResourceDTO | null>(null);
   const [favoriteCounter, setFavoriteCounter] = useState<number>(0);
   const [downloadCounter, setDownloadCounter] = useState<number>(0);
@@ -69,7 +68,6 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
   const refreshComments = useCallback(() => {
     listResourceComments(params.rid)
       .then((comments) => {
-        console.log(comments);
         setComments(comments);
       })
       .catch(() => {});
@@ -82,12 +80,6 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
   useEffect(() => {
     refreshComments();
   }, [refreshComments]);
-
-  useEffect(() => {
-    getUser(resource?.userEmail ?? '')
-      .then((user) => setImage(user.image))
-      .catch(() => {});
-  }, [resource]);
 
   function handleComment(formData: FormData) {
     if (session.status === 'authenticated' && resource) {
@@ -229,14 +221,24 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
       <div className='flex flex-col p-4 h-full w-full sm:px-32 md:px-48 lg:px-40 2xl:px-96'>
         <div className='flex justify-start space-x-4 h-fit'>
           <div className='space-y-1.5 h-full'>
-            <Avatar>
-              <AvatarImage src={image} />
+            <Avatar
+              className='cursor-pointer'
+              onClick={() =>
+                router.push(`/dashboard/profile/${resource.userEmail}`)
+              }
+            >
+              <AvatarImage src={resource.userImage} />
               <AvatarFallback>{nameInitials(resource.userName)}</AvatarFallback>
             </Avatar>
             <div className='w-0.5 bg-border grow h-[calc(100%-3.25rem)] m-auto'></div>
           </div>
           <div className='space-y-3 w-full'>
-            <div className='text-sm text-left'>
+            <div
+              className='text-sm text-left cursor-pointer'
+              onClick={() =>
+                router.push(`/dashboard/profile/${resource.userEmail}`)
+              }
+            >
               <span className='font-bold'>{resource.userName}</span>{' '}
               <span className='text-muted-foreground'>
                 {resource.userEmail} · {timeAgo(resource.createdAt)}
@@ -392,7 +394,7 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
                   : 'Be the first to comment!'
               }
               rows={1}
-              className='placeholder:text-muted-foreground focus-visible:outline-none rounded w-full resize-none h-fit bg-background'
+              className='placeholder:text-muted-foreground focus-visible:outline-none rounded w-full resize-none h-fit bg-background text-lg'
               autoComplete='off'
               maxLength={280}
               value={newComment}
@@ -410,28 +412,7 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
         {comments !== null ? (
           <div className='flex flex-col justify-center items-start'>
             {comments.map((comment) => (
-              <div
-                key={comment._id}
-                className='flex space-x-3 items-center py-4 border-b border-border w-full'
-              >
-                <div className='space-y-1.5 h-full'>
-                  <Avatar>
-                    <AvatarImage src={image} />
-                    <AvatarFallback>
-                      {nameInitials(comment.userName)}
-                    </AvatarFallback>
-                  </Avatar>
-                </div>
-                <div className='space-y-1 w-full'>
-                  <div className='text-sm text-left'>
-                    <span className='font-bold'>{comment.userName}</span>{' '}
-                    <span className='text-muted-foreground'>
-                      {comment.userEmail} · {timeAgo(comment.createdAt)}
-                    </span>
-                  </div>
-                  <div>{comment.message}</div>
-                </div>
-              </div>
+              <Comment key={comment._id} comment={comment} />
             ))}
           </div>
         ) : (

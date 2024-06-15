@@ -13,15 +13,6 @@ import { useSession } from 'next-auth/react';
 import SignInCard from '@/components/signin_card';
 import { usePathname, useSearchParams } from 'next/navigation';
 import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from '@/components/ui/pagination';
-import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -29,6 +20,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import Link from 'next/link';
+import PaginationNav from '@/components/pagination_nav';
 
 const searchAttributes = [
   'title',
@@ -133,24 +125,6 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
     return (
       resources?.find((r) => r.subject._id === subjectId)?.subject.name || '...'
     );
-  }
-
-  function getSearchParamsUrl() {
-    let acc = 0;
-    let url = '';
-    if (searchParams.has('course')) {
-      url += `${acc > 0 ? '&' : '?'}course=${searchParams.get('course')}`;
-      acc++;
-    }
-    if (searchParams.has('subject')) {
-      url += `${acc > 0 ? '&' : '?'}subject=${subjectId}`;
-      acc++;
-    }
-    if (searchParams.has('tag')) {
-      url += `${acc > 0 ? '&' : '?'}tag=${searchParams.get('tag')}`;
-      acc++;
-    }
-    return url;
   }
 
   useEffect(() => {
@@ -337,64 +311,7 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
             )}
           </div>
           {totalPages && pageNr && (
-            <Pagination className='pt-6'>
-              <PaginationContent>
-                {pageNr > 1 && (
-                  <PaginationItem>
-                    <PaginationPrevious
-                      href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${pageNr - 1}`}
-                    />
-                  </PaginationItem>
-                )}
-                {pageNr - 1 > 0 && (
-                  <PaginationItem>
-                    <PaginationLink
-                      href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${pageNr - 1}`}
-                    >
-                      {pageNr - 1}
-                    </PaginationLink>
-                  </PaginationItem>
-                )}
-                <PaginationItem>
-                  <PaginationLink
-                    href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${pageNr}`}
-                    isActive
-                  >
-                    {pageNr}
-                  </PaginationLink>
-                </PaginationItem>
-                {pageNr + 1 <= totalPages && (
-                  <PaginationItem>
-                    <PaginationLink
-                      href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${pageNr + 1}`}
-                    >
-                      {pageNr + 1}
-                    </PaginationLink>
-                  </PaginationItem>
-                )}
-                {totalPages > 2 && pageNr < totalPages - 1 && (
-                  <>
-                    <PaginationItem>
-                      <PaginationEllipsis />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink
-                        href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${totalPages}`}
-                      >
-                        {totalPages}
-                      </PaginationLink>
-                    </PaginationItem>
-                  </>
-                )}
-                {pageNr < totalPages && (
-                  <PaginationItem>
-                    <PaginationNext
-                      href={`${pathname}${getSearchParamsUrl()}${getSearchParamsUrl() === '' ? '?' : '&'}p=${pageNr + 1}`}
-                    />
-                  </PaginationItem>
-                )}
-              </PaginationContent>
-            </Pagination>
+            <PaginationNav pageNr={pageNr} totalPages={totalPages} />
           )}
         </div>
         <div className='hidden xl:block min-w-72 max-w-72 border-l border-border p-2'>

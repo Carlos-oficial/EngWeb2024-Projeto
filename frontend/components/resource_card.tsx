@@ -172,15 +172,17 @@ export default function ResourceCard({
       {...props}
       className='flex flex-col justify-between overflow-hidden dark:hover:bg-gray-900 hover:bg-gray-50 hover:text-accent-foreground transition-all'
       onClick={() =>
-        router.push(
-          `/dashboard/resource/${resource._id}?from=${pathname.split('/').pop()}`,
-        )
+        router.push(`/dashboard/resource/${resource._id}?from=${pathname}`)
       }
     >
       <CardHeader>
         <div className='flex justify-between items-center pb-2'>
           <span className='text-sm text-muted-foreground'>
-            <ProfileCard email={resource.userEmail} name={resource.userName} />{' '}
+            <ProfileCard
+              email={resource.userEmail}
+              name={resource.userName}
+              image={resource.userImage}
+            />{' '}
             · {timeAgo(resource.createdAt)}
             {resource.edited !== null && ' · Edited'}
           </span>

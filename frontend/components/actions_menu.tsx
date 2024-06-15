@@ -389,7 +389,7 @@ export default function ActionsMenu({
                           <FormControl>
                             <input
                               {...field}
-                              className='font-semibold leading-none tracking-tight focus-visible:outline-none w-full'
+                              className='font-semibold leading-none tracking-tight focus-visible:outline-none w-full bg-background'
                               placeholder='Title...'
                             />
                           </FormControl>
@@ -407,7 +407,7 @@ export default function ActionsMenu({
                               <FormControl>
                                 <input
                                   {...field}
-                                  className='text-sm text-muted-foreground focus-visible:outline-none w-full'
+                                  className='text-sm text-muted-foreground focus-visible:outline-none w-full bg-background'
                                   placeholder='Description...'
                                 />
                               </FormControl>
@@ -425,7 +425,7 @@ export default function ActionsMenu({
                             <FormControl>
                               <input
                                 {...field}
-                                className='text-sm text-muted-foreground focus-visible:outline-none w-full'
+                                className='text-sm text-muted-foreground focus-visible:outline-none w-full bg-background'
                                 placeholder='Hashtags...'
                               />
                             </FormControl>

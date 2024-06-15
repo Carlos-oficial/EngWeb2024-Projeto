@@ -31,7 +31,7 @@ export default function NavHeader({
           {page_title === 'Resource' && (
             <Link
               className='flex items-center rounded-full p-2 hover:bg-accent transition-colors'
-              href={`/dashboard/${searchParams.get('from') === 'dashboard' ? '' : searchParams.get('from')}`}
+              href={searchParams.get('from') ?? '/dashboard'}
             >
               <i className='ph-bold ph-arrow-left text-xl'></i>
             </Link>
