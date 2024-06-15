@@ -381,53 +381,61 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
                 </div>
               </CardFooter>
             </div>
-            <div className='text-sm text-left'>
-              <span className='text-muted-foreground'>
-                Replying to{' '}
-                <span className='text-primary'>{resource.userEmail}</span>
-              </span>
-            </div>
+            {session.status === 'authenticated' && (
+              <div className='text-sm text-left'>
+                <span className='text-muted-foreground'>
+                  Replying to{' '}
+                  <span className='text-primary'>{resource.userEmail}</span>
+                </span>
+              </div>
+            )}
           </div>
         </div>
-        <form
-          className='flex flex-col space-y-2 pb-4 border-b border-border'
-          action={handleComment}
-        >
-          <div className='flex space-x-3 items-center'>
-            <Avatar>
-              <AvatarImage src={session.data?.user.image ?? '...'} />
-              <AvatarFallback>
-                {nameInitials(session.data?.user.name ?? '...')}
-              </AvatarFallback>
-            </Avatar>
-            <TextareaAutosize
-              name='comment'
-              placeholder={
-                commentsCounter > 0
-                  ? 'Write your comment here...'
-                  : 'Be the first to comment!'
-              }
-              rows={1}
-              className='placeholder:text-muted-foreground focus-visible:outline-none rounded w-full resize-none h-fit bg-background text-lg'
-              autoComplete='off'
-              maxLength={280}
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              required
-            ></TextareaAutosize>
-          </div>
-          <div className='flex w-full justify-end'>
-            <Button className='flex space-x-1 items-center' type='submit'>
-              <i className='ph ph-paper-plane-tilt'></i>
-              <span>Comment</span>
-            </Button>
-          </div>
-        </form>
+        {session.status === 'authenticated' && (
+          <form
+            className='flex flex-col space-y-2 pb-4 border-b border-border'
+            action={handleComment}
+          >
+            <div className='flex space-x-3 items-center'>
+              <Avatar>
+                <AvatarImage src={session.data?.user.image ?? '...'} />
+                <AvatarFallback>
+                  {nameInitials(session.data?.user.name ?? '...')}
+                </AvatarFallback>
+              </Avatar>
+              <TextareaAutosize
+                name='comment'
+                placeholder={
+                  commentsCounter > 0
+                    ? 'Write your comment here...'
+                    : 'Be the first to comment!'
+                }
+                rows={1}
+                className='placeholder:text-muted-foreground focus-visible:outline-none rounded w-full resize-none h-fit bg-background text-lg'
+                autoComplete='off'
+                maxLength={280}
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                required
+              ></TextareaAutosize>
+            </div>
+            <div className='flex w-full justify-end'>
+              <Button className='flex space-x-1 items-center' type='submit'>
+                <i className='ph ph-paper-plane-tilt'></i>
+                <span>Comment</span>
+              </Button>
+            </div>
+          </form>
+        )}
         {comments !== null ? (
           <div className='flex flex-col justify-center items-start'>
-            {comments.map((comment) => (
-              <Comment key={comment._id} comment={comment} />
-            ))}
+            {comments.length > 0 ? (
+              comments.map((comment) => (
+                <Comment key={comment._id} comment={comment} />
+              ))
+            ) : (
+              <p className='p-4 text-muted-foreground'>No comments yet.</p>
+            )}
           </div>
         ) : (
           <Spinner />

@@ -56,16 +56,20 @@ export default function Navbar({
                     </AvatarFallback>
                   </>
                 ) : (
-                  <AvatarFallback>G</AvatarFallback>
+                  <AvatarFallback>
+                    <i className='ph ph-user'></i>
+                  </AvatarFallback>
                 )}
               </Avatar>
               {session.status === 'authenticated' ? (
                 <span>{session.data.user?.name}</span>
               ) : (
-                <span>Guest</span>
+                <span>Sign in</span>
               )}
             </div>
-            <span>{'->'}</span>
+            {session.status === 'unauthenticated' && (
+              <i className='ph ph-arrow-square-out'></i>
+            )}
           </Button>
           <Button
             variant='outline'
