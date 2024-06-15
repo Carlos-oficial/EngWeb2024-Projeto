@@ -218,7 +218,7 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
 
   return resource !== null ? (
     <main className='flex h-full'>
-      <div className='flex flex-col p-4 h-full w-full sm:px-32 md:px-48 lg:px-40 2xl:px-96'>
+      <div className='flex flex-col p-4 h-full w-full px-16 2xl:px-48'>
         <div className='flex justify-start space-x-4 h-fit'>
           <div className='space-y-1.5 h-full'>
             <Avatar
@@ -419,6 +419,19 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
           <Spinner />
         )}
       </div>
+      {(resource.documentFormat === 'PNG' || resource.documentFormat === 'JPG') && (
+        <div className='pr-16 py-4 w-1/2 2xl:visible xl:visible border-border b-2'>
+          <img
+            src={`/uploads/${resource.userEmail}/${resource._id}.${resource.documentFormat.toLowerCase()}`}
+            alt={`${resource._id}`}
+            className='object-contain w-full rounded-lg'
+            onError={(e) => {
+              console.error('Image failed to load:', e);
+            }}
+          />
+        </div>
+      )}      
+
     </main>
   ) : (
     <div className='flex items-center justify-center h-[calc(100vh-10rem)]'>
