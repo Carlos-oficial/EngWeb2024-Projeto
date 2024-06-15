@@ -50,7 +50,10 @@ export async function PUT(
     const body = (await req.json()) as Partial<ResourceDB>;
 
     // verify user is owner of file
-    if (session && session.user.email === body.userEmail) {
+    if (
+      session &&
+      (session.user.email === body.userEmail || session.user.isAdmin)
+    ) {
       await connectMongo();
 
       await ResourceController.update(params.rid, body);
@@ -89,7 +92,10 @@ export async function DELETE(
     }
 
     // verify user is owner of file
-    if (session && session.user.email === resource.userEmail) {
+    if (
+      session &&
+      (session.user.email === resource.userEmail || session.user.isAdmin)
+    ) {
       await ResourceController.remove(params.rid);
 
       const fileName = `${params.rid}.${resource.documentFormat.toLowerCase()}`;
