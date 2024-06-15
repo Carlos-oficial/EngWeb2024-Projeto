@@ -21,6 +21,10 @@ export async function GET(req: NextRequest,
         return NextResponse.json(
             { message: error as Error },
             { status: HttpStatusCode.BadRequest })
-    }
+    }  finally {
+    return NextResponse.json(
+      {message: "OK"},
+      {status: HttpStatusCode.Ok}
+    )}
 
 } 

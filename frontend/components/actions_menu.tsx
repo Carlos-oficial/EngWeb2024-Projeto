@@ -37,6 +37,10 @@ import {
   addCourse,
   addDocumentType,
   deleteResource,
+  makeInvisible,
+  makeVisible,
+  lock,
+  unlock,
 } from '@/lib/data';
 import { Popover, PopoverTrigger, PopoverContent } from './ui/popover';
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
@@ -103,6 +107,27 @@ export default function ActionsMenu({
   resource: ResourceDTO;
   refreshResources: () => void;
 }) {
+
+  const [visible, setVisible] = useState<boolean>(resource.isVisible)
+  const [locked, setLocked] = useState<boolean>(resource.isLocked)
+
+  const hanldleUnlist = () => {
+    setVisible(false)
+    makeInvisible(resource._id)
+  }
+  const hanldleMakeVisible = () => {
+    setVisible(true)
+    makeVisible(resource._id)
+  }
+  const hanldleUnlock = () => {
+    setLocked(false)
+    unlock(resource._id)
+  }
+  const hanldleLock = () => {
+    setLocked(true)
+    lock(resource._id)
+  }
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -268,7 +293,6 @@ export default function ActionsMenu({
       });
     refreshResources();
   };
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <AlertDialog>
@@ -288,11 +312,31 @@ export default function ActionsMenu({
               </DialogTrigger>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <button className='flex justify-between w-full items-center'>
-                <span>Unlist</span>
-                <i className='ph ph-box-arrow-down'></i>
-              </button>
+              {visible ?
+
+                <button onClick={hanldleUnlist} className='flex justify-between w-full items-center'>
+                  <span>Unlist</span>
+                  <i className='ph ph-eye-slash'></i>
+                </button> :
+                <button onClick={hanldleMakeVisible} className='flex justify-between w-full items-center'>
+                  <span>Make visible</span>
+                  <i className='ph ph-eye'></i>
+                </button>}
             </DropdownMenuItem>
+            {session.data?.user.isAdmin &&
+              <DropdownMenuItem>
+                {locked ?
+                  <button onClick={hanldleUnlock} className='flex justify-between w-full items-center'>
+                    <span>Unlock</span>
+                    <i className='ph ph-lock-open'></i>
+                  </button> :
+                  <button onClick={hanldleLock} className='flex justify-between w-full items-center'>
+                    <span>Lock</span>
+                    <i className='ph ph-lock'></i>
+                  </button>
+                }
+              </DropdownMenuItem>
+            }
             <DropdownMenuItem>
               <AlertDialogTrigger asChild>
                 <button className='flex justify-between w-full items-center'>
@@ -460,10 +504,10 @@ export default function ActionsMenu({
                                         <span>
                                           {field.value !== ''
                                             ? shownSubjects.find(
-                                                (subject) =>
-                                                  subject._id === field.value,
-                                              )?.name ??
-                                              'Please select a subject...'
+                                              (subject) =>
+                                                subject._id === field.value,
+                                            )?.name ??
+                                            'Please select a subject...'
                                             : 'Please select a subject...'}
                                         </span>
                                         <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
@@ -553,9 +597,9 @@ export default function ActionsMenu({
                                         <span>
                                           {field.value !== ''
                                             ? courses.find(
-                                                (course) =>
-                                                  course._id === field.value,
-                                              )?.name
+                                              (course) =>
+                                                course._id === field.value,
+                                            )?.name
                                             : 'Please select a course...'}
                                         </span>
                                         <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
