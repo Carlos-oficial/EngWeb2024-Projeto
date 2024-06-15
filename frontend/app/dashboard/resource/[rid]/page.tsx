@@ -30,6 +30,7 @@ import { useSession } from 'next-auth/react';
 import { useToast } from '@/components/ui/use-toast';
 import ActionsMenu from '@/components/actions_menu';
 import Comment from '@/components/comment';
+import PdfViewer from '@/components/pdf_viewer';
 
 export default function ResourcePage({ params }: { params: { rid: string } }) {
   const session = useSession();
@@ -420,7 +421,7 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
         )}
       </div>
       {(resource.documentFormat === 'PNG' || resource.documentFormat === 'JPG') && (
-        <div className='pr-16 py-4 w-1/2 2xl:visible xl:visible border-border b-2'>
+        <div className='pr-16 py-4 w-1/2 collapse 2xl:visible xl:visible border-border b-2'>
           <img
             src={`/uploads/${resource.userEmail}/${resource._id}.${resource.documentFormat.toLowerCase()}`}
             alt={`${resource._id}`}
@@ -430,8 +431,12 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
             }}
           />
         </div>
-      )}      
-
+      )}   
+      {(resource.documentFormat === 'PDF') && (
+        <div className='pr-16 py-4 w-full h-full overflow-scroll collapse 2xl:visible border-border b-2'>
+          <PdfViewer path={`/uploads/${resource.userEmail}/${resource._id}.${resource.documentFormat.toLowerCase()}`} />
+        </div>
+      )}  
     </main>
   ) : (
     <div className='flex items-center justify-center h-[calc(100vh-10rem)]'>
