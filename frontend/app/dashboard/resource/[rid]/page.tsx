@@ -30,7 +30,7 @@ import { useSession } from 'next-auth/react';
 import { useToast } from '@/components/ui/use-toast';
 import ActionsMenu from '@/components/actions_menu';
 import Comment from '@/components/comment';
-import PdfViewer from '@/components/pdf_viewer';
+import Image from 'next/image';
 
 export default function ResourcePage({ params }: { params: { rid: string } }) {
   const session = useSession();
@@ -38,6 +38,7 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
   const { toast } = useToast();
 
   const [resource, setResource] = useState<ResourceDTO | null>(null);
+  const [previewOn, setPreviewOn] = useState<boolean>(false);
   const [favoriteCounter, setFavoriteCounter] = useState<number>(0);
   const [downloadCounter, setDownloadCounter] = useState<number>(0);
   const [upvoteCounter, setUpvoteCounter] = useState<number>(0);
@@ -60,6 +61,12 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
         setIsDownvoted(resource.isDownvoted);
         setCommentsCounter(resource.commentsNr);
         setResource(resource);
+        setPreviewOn(
+          resource.documentFormat === 'PNG' ||
+            resource.documentFormat === 'JPG' ||
+            resource.documentFormat === 'JPEG' ||
+            resource.documentFormat === 'PDF',
+        );
       })
       .catch(() => {
         router.push('/404');
@@ -218,8 +225,12 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
   }
 
   return resource !== null ? (
-    <main className='flex h-full'>
-      <div className='flex flex-col p-4 h-full w-full px-16 2xl:px-48'>
+    <main
+      className={`${previewOn ? 'lg:grid lg:grid-cols-2 lg:gap-4 lg:px-12' : 'lg:px-40 2xl:px-96'} flex sm:px-32 md:px-48 p-4 h-full`}
+    >
+      <div
+        className={`flex flex-col h-full w-full ${previewOn && 'lg:px-8 lg:overflow-y-scroll'}`}
+      >
         <div className='flex justify-start space-x-4 h-fit'>
           <div className='space-y-1.5 h-full'>
             <Avatar
@@ -420,23 +431,32 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
           <Spinner />
         )}
       </div>
-      {(resource.documentFormat === 'PNG' || resource.documentFormat === 'JPG') && (
-        <div className='pr-16 py-4 w-1/2 collapse 2xl:visible xl:visible border-border b-2'>
-          <img
-            src={`/uploads/${resource.userEmail}/${resource._id}.${resource.documentFormat.toLowerCase()}`}
-            alt={`${resource._id}`}
-            className='object-contain w-full rounded-lg'
-            onError={(e) => {
-              console.error('Image failed to load:', e);
-            }}
-          />
+      {previewOn && (
+        <div
+          className={`border-border border rounded-lg p-4 overflow-y-scroll ${resource.documentFormat === 'PDF' ? 'h-[calc(100vh-2rem-61px)]' : 'h-fit'} hidden lg:block`}
+        >
+          <Badge variant={'secondary'} className='mb-4'>
+            Preview
+          </Badge>
+          {resource.documentFormat === 'PDF' ? (
+            <iframe
+              src={`/uploads/${resource.userEmail}/${resource._id}.${resource.documentFormat.toLowerCase()}`}
+              className='w-full h-[calc(100vh-5rem-61px-22px)]'
+            />
+          ) : (
+            <Image
+              src={`/uploads/${resource.userEmail}/${resource._id}.${resource.documentFormat.toLowerCase()}`}
+              alt={`${resource._id}`}
+              className='object-contain w-full rounded-lg'
+              onError={(e) => {
+                console.error('Image failed to load:', e);
+              }}
+              width={0}
+              height={0}
+            />
+          )}
         </div>
-      )}   
-      {(resource.documentFormat === 'PDF') && (
-        <div className='pr-16 py-4 w-full h-full overflow-scroll collapse 2xl:visible border-border b-2'>
-          <PdfViewer path={`/uploads/${resource.userEmail}/${resource._id}.${resource.documentFormat.toLowerCase()}`} />
-        </div>
-      )}  
+      )}
     </main>
   ) : (
     <div className='flex items-center justify-center h-[calc(100vh-10rem)]'>
