@@ -7,6 +7,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { nameInitials } from '@/lib/utils';
+import { useEffect, useState } from 'react';
 
 export default function Navbar({
   isOpen,
@@ -26,10 +27,13 @@ export default function Navbar({
       session.data.user.email === searchParams.get('from')?.split('/').pop()) &&
     (pathname.startsWith('/dashboard/profile/') ||
       searchParams.get('from')?.startsWith('/dashboard/profile/'));
+  
+
+
 
   return (
     <div
-      className={`${isOpen ? 'translate-x-0' : '-translate-x-full'} absolute z-50 bg-background w-full lg:min-w-64 lg:w-auto h-screen border-r border-border lg:translate-x-0 lg:relative transition-all duration-300`}
+      className={`  ${isOpen ? 'translate-x-0' : '-translate-x-full' } absolute z-50 bg-background w-full lg:min-w-64 lg:w-auto h-screen border-r border-border lg:translate-x-0 lg:relative lg:transition-all duration-300`}
     >
       <div className='p-2 border-b border-border'>
         <div className='flex space-x-2 items-center'>
@@ -39,7 +43,7 @@ export default function Navbar({
             onClick={
               session.status === 'authenticated'
                 ? () =>
-                    router.push('/dashboard/profile/' + session.data.user.email)
+                  router.push('/dashboard/profile/' + session.data.user.email)
                 : () => router.push('/auth/signin')
             }
           >

@@ -79,9 +79,9 @@ export default function ResourceCard({
                 description: 'Download started.',
               });
             })
-            .catch(() => {});
+            .catch(() => { });
         })
-        .catch(() => {});
+        .catch(() => { });
     } catch (error) {
       toast({
         title: 'Uh oh! Something went wrong.',
@@ -96,13 +96,13 @@ export default function ResourceCard({
         if (isUpvoted) {
           setUpvoteCounter(upvoteCounter - 1);
           removeUpvote(session.data.user.email, resource._id)
-            .then(() => {})
+            .then(() => { })
             .catch(() => setUpvoteCounter(upvoteCounter + 1));
         } else {
           setUpvoteCounter(upvoteCounter + 1);
           isDownvoted && handleDownvote();
           addUpvote(session.data.user.email, resource._id)
-            .then(() => {})
+            .then(() => { })
             .catch(() => {
               setUpvoteCounter(upvoteCounter - 1);
               handleDownvote();
@@ -123,12 +123,12 @@ export default function ResourceCard({
       if (session.status === 'authenticated') {
         if (isDownvoted) {
           removeDownvote(session.data.user.email, resource._id)
-            .then(() => {})
-            .catch(() => {});
+            .then(() => { })
+            .catch(() => { });
         } else {
           isUpvoted && handleUpvote();
           addDownvote(session.data.user.email, resource._id)
-            .then(() => {})
+            .then(() => { })
             .catch(() => {
               handleUpvote();
             });
@@ -149,12 +149,12 @@ export default function ResourceCard({
         if (isFavorite) {
           setFavoriteCounter(favoriteCounter - 1);
           removeFavorite(session.data.user.email, resource._id)
-            .then(() => {})
+            .then(() => { })
             .catch(() => setFavoriteCounter(favoriteCounter + 1));
         } else {
           setFavoriteCounter(favoriteCounter + 1);
           addFavorite(session.data.user.email, resource._id)
-            .then(() => {})
+            .then(() => { })
             .catch(() => setFavoriteCounter(favoriteCounter - 1));
         }
         setIsFavorite(!isFavorite);
@@ -187,35 +187,33 @@ export default function ResourceCard({
             {resource.edited !== null && ' · Edited'}
           </span>
           <div className='flex space-x-2'>
+            <button
+              disabled={session.status !== 'authenticated'}
+              onClick={
+                session.status === 'authenticated'
+                  ? (e) => {
+                    e.stopPropagation();
+                    handleFavorite();
+                  }
+                  : () => { }
+              }
+              className={` flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
+              title='Favorite'
+            >
+              <i
+                className={`${isFavorite ? 'ph-fill' : 'ph'} ph-star text-lg`}
+              ></i>
+              <p className='text-sm'>{formatNumber(favoriteCounter)}</p>
+            </button>
             {session.status === 'authenticated' &&
-            (session.data.user.email === resource.userEmail ||
-              session.data.user.isAdmin) ? (
-              <div onClick={(e) => e.stopPropagation()}>
-                <ActionsMenu
-                  resource={resource}
-                  refreshResources={refreshResources}
-                />
-              </div>
-            ) : (
-              <button
-                disabled={session.status !== 'authenticated'}
-                onClick={
-                  session.status === 'authenticated'
-                    ? (e) => {
-                        e.stopPropagation();
-                        handleFavorite();
-                      }
-                    : () => {}
-                }
-                className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
-                title='Favorite'
-              >
-                <i
-                  className={`${isFavorite ? 'ph-fill' : 'ph'} ph-star text-lg`}
-                ></i>
-                <p className='text-sm'>{formatNumber(favoriteCounter)}</p>
-              </button>
-            )}
+              (session.data.user.email === resource.userEmail || session.data.user.isAdmin) && (
+                <div onClick={(e) => e.stopPropagation()}>
+                  <ActionsMenu
+                    resource={resource}
+                    refreshResources={refreshResources}
+                  />
+                </div>
+              )}
           </div>
         </div>
         <div className='flex justify-between pb-2'>
@@ -275,10 +273,10 @@ export default function ResourceCard({
               onClick={
                 session.status === 'authenticated'
                   ? (e) => {
-                      e.stopPropagation();
-                      handleUpvote();
-                    }
-                  : () => {}
+                    e.stopPropagation();
+                    handleUpvote();
+                  }
+                  : () => { }
               }
               className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-orange-500' : ''} transition-all ${isUpvoted ? 'text-orange-500' : 'text-muted-foreground'}`}
               title='Upvote'
@@ -293,10 +291,10 @@ export default function ResourceCard({
               onClick={
                 session.status === 'authenticated'
                   ? (e) => {
-                      e.stopPropagation();
-                      handleDownvote();
-                    }
-                  : () => {}
+                    e.stopPropagation();
+                    handleDownvote();
+                  }
+                  : () => { }
               }
               className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-purple-500' : ''} transition-all ${isDownvoted ? 'text-purple-500' : 'text-muted-foreground'}`}
               title='Downvote'

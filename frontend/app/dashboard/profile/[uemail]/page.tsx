@@ -98,7 +98,7 @@ export default function Profile({ params }: { params: { uemail: string } }) {
   }, [params.uemail, router]);
 
   return user !== null ? (
-    <div className='sm:px-28 md:px-48 lg:px-40 2xl:px-96'>
+    <div className=' sm:px-[56px] 2xl:px-64'>
       <div className='bg-accent w-full h-40'></div>
       <div className='-translate-y-14 space-y-4 px-4'>
         <div className='flex justify-between items-center'>
@@ -153,7 +153,7 @@ export default function Profile({ params }: { params: { uemail: string } }) {
           </TabsList>
           <TabsContent value='resources'>
             {resources !== null ? (
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+              <div className='grid grid-cols-1 xl:grid-cols-2 gap-4'>
                 {resources.length > 0 ? (
                   resources.map((resource) => (
                     <ResourceCard

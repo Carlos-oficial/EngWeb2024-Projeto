@@ -295,7 +295,7 @@ export default function Resources({ params }: { params: { view?: string[] } }) {
               <ResourceDialog refreshResources={refreshResources} />
             </div>
             {shownResources !== null ? (
-              <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
+              <div className='grid gap-4 md:grid-cols-2 2xl:grid-cols-3'>
                 {shownResources.map((resource) => (
                   <ResourceCard
                     resource={resource}
