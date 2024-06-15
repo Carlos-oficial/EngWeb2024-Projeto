@@ -4,6 +4,7 @@ import * as ResourceController from '@/controllers/Resource';
 import { ResourceDB } from '@/lib/types';
 import { NextResponse, NextRequest } from 'next/server';
 import { dbsToDtos } from '@/lib/api_utils';
+import { useSession } from 'next-auth/react';
 
 export async function GET(
   req: NextRequest,
@@ -11,12 +12,13 @@ export async function GET(
 ) {
   try {
     await connectMongo();
-
+    const session = useSession()
     const ids_sp = (req.nextUrl.searchParams.get('ids') as string) ?? '';
     const ids = ids_sp === '' ? [] : ids_sp.split(',');
 
     const resources =
       ((await ResourceController.listByIds(
+        session.data?.user ?? { email: "", isAdmin: false },
         ids,
         params.page,
       )) as ResourceDB[]) ?? [];

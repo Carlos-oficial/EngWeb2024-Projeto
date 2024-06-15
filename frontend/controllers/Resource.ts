@@ -2,6 +2,7 @@ import { ResourceDB } from '@/lib/types';
 import Resource from '@/models/Resource';
 import { getSkip } from '@/lib/utils';
 import { config } from '@/lib/config';
+import User from '@/models/User';
 
 export const listAll = (page: number) => {
   return Resource.find()
@@ -11,7 +12,23 @@ export const listAll = (page: number) => {
     .exec();
 };
 
-export const listPopular = (page: number) => {
+interface userData { email: string, isAdmin: boolean }
+
+function matchCriteria(user: userData) {
+  let matchCriteria;
+  if (!user.isAdmin) {
+    return {
+      $or: [
+        { userEmail: user.email },
+        { isVisible: true }
+      ]
+    };
+  } else {
+    return {};
+  }
+}
+
+export const listPopular = (user: userData, page: number) => {
   return Resource.aggregate([
     {
       $lookup: {
@@ -21,7 +38,9 @@ export const listPopular = (page: number) => {
         as: 'comments',
       },
     },
-
+    {
+      $match: matchCriteria(user),
+    },
     {
       $project: {
         _id: 1,
@@ -64,14 +83,13 @@ export const listPopular = (page: number) => {
       },
     },
     { $sort: { popularity: -1, createdAt: -1 } },
-  ])
-    .skip(getSkip(page))
+  ]).skip(getSkip(page))
     .limit(config.pages.PAGE_SIZE)
     .exec();
 };
 
-export const listNewest = (page: number) => {
-  return Resource.find()
+export const listNewest = (user: userData, page: number) => {
+  return Resource.find(matchCriteria(user))
     .sort({ createdAt: -1 })
     .skip(getSkip(page))
     .limit(config.pages.PAGE_SIZE)
@@ -82,8 +100,8 @@ export const countAll = () => {
   return Resource.find().countDocuments().exec();
 };
 
-export const listByIds = (ids: string[], page: number) => {
-  return Resource.find({ _id: { $in: ids } })
+export const listByIds = (user:userData,ids: string[], page: number) => {
+  return Resource.find({ _id: { $in: ids } ,... matchCriteria(user)})
     .sort({ createdAt: -1 })
     .skip(getSkip(page))
     .limit(config.pages.PAGE_SIZE)
@@ -96,8 +114,8 @@ export const countByIds = (ids: string[]) => {
     .exec();
 };
 
-export const listbyUser = (email: string, page: number) => {
-  return Resource.find({ userEmail: email })
+export const listbyUser = (user:userData,email: string, page: number) => {
+  return Resource.find({ userEmail: email , ... matchCriteria(user)} )
     .sort({ createdAt: -1 })
     .skip(getSkip(page))
     .limit(config.pages.PAGE_SIZE)
@@ -213,6 +231,14 @@ export const update = (id: string, resource: Partial<ResourceDB>) => {
 export const remove = (id: string) => {
   return Resource.findByIdAndDelete(id).exec();
 };
+
+export const setIsVisible = (id: string, value: boolean) => {
+  return Resource.findByIdAndUpdate(id, { $set: { isVisible: value } })
+}
+
+export const setIsLocked = (id: string, value: boolean) => {
+  return Resource.findByIdAndUpdate(id, { $set: { isLocked: value } })
+}
 
 export const addDownload = (id: string) => {
   return Resource.updateOne({ _id: id }, { $inc: { downloadsNr: 1 } }).exec();

@@ -75,6 +75,7 @@ export const listResourcesByUser = async (userEmail: string, page: number) => {
   }
 };
 
+
 export const searchResources = async (query: string, page: number) => {
   try {
     const response = await fetch(`/api/resources/search/${page}?q=${query}`);
@@ -90,6 +91,30 @@ export const searchResources = async (query: string, page: number) => {
     throw new Error((error as Error).message);
   }
 };
+
+export const makeVisible = async (resourceId:string) =>{
+  const response = await fetch(`/api/resources/${resourceId}/show`, {
+    method: 'GET',
+  });
+}
+export const makeInvisible = async (resourceId:string) =>{
+  const response = await fetch(`/api/resources/${resourceId}/hide`, {
+    method: 'GET',
+  });
+}
+
+export const lock = async (resourceId:string) =>{
+  const response = await fetch(`/api/resources/${resourceId}/lock`, {
+    method: 'GET',
+  });
+}
+
+export const unlock = async (resourceId:string) =>{
+  const response = await fetch(`/api/resources/${resourceId}/unlock`, {
+    method: 'GET',
+  });
+}
+
 
 export const getUser = async (userEmail: string) => {
   try {

@@ -126,6 +126,8 @@ export const dbsToDtos = async (resources: ResourceDB[]) => {
       isFavorite: isFavorite,
       isUpvoted: isUpvoted,
       isDownvoted: isDownvoted,
+      isVisible:resource.isVisible,
+      isLocked:resource.isLocked,
       edited: resource.edited ?? null,
     };
   }) as ResourceDTO[];
@@ -202,6 +204,8 @@ export const dbToDto = async (resource: ResourceDB) => {
     isFavorite: isFavorite,
     isUpvoted: isUpvoted,
     isDownvoted: isDownvoted,
+    isVisible:resource.isVisible,
+    isLocked:resource.isLocked,
     edited: resource.edited ?? null,
   } as ResourceDTO;
 };
