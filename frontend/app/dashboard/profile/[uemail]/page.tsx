@@ -101,7 +101,7 @@ export default function Profile({ params }: { params: { uemail: string } }) {
   }, [refreshUser]);
 
   return user !== null ? (
-    <div className='sm:px-28 md:px-48 lg:px-40 2xl:px-96 space-y-4'>
+    <div className='sm:px-[56px] 2xl:px-96 space-y-4'>
       <div className='grid grid-flow-row auto-rows-max'>
         <div className='bg-accent w-full h-40 col-start-1 row-start-1 row-end-3'></div>
         <div className='flex row-start-2 row-end-4 col-start-1 px-4 items-end'>
