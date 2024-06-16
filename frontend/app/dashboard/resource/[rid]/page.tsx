@@ -63,9 +63,9 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
         setResource(resource);
         setPreviewOn(
           resource.documentFormat === 'PNG' ||
-            resource.documentFormat === 'JPG' ||
-            resource.documentFormat === 'JPEG' ||
-            resource.documentFormat === 'PDF',
+          resource.documentFormat === 'JPG' ||
+          resource.documentFormat === 'JPEG' ||
+          resource.documentFormat === 'PDF',
         );
       })
       .catch(() => {
@@ -78,7 +78,7 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
       .then((comments) => {
         setComments(comments);
       })
-      .catch(() => {});
+      .catch(() => { });
   }, [params.rid]);
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
             description: 'Your comment has been sent.',
           });
         })
-        .catch(() => {});
+        .catch(() => { });
     }
   }
 
@@ -129,9 +129,9 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
                   description: 'Download started.',
                 });
               })
-              .catch(() => {});
+              .catch(() => { });
           })
-          .catch(() => {});
+          .catch(() => { });
       } catch (error) {
         toast({
           title: 'Uh oh! Something went wrong.',
@@ -148,13 +148,13 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
           if (isUpvoted) {
             setUpvoteCounter(upvoteCounter - 1);
             removeUpvote(session.data.user.email, resource._id)
-              .then(() => {})
+              .then(() => { })
               .catch(() => setUpvoteCounter(upvoteCounter + 1));
           } else {
             setUpvoteCounter(upvoteCounter + 1);
             isDownvoted && handleDownvote();
             addUpvote(session.data.user.email, resource._id)
-              .then(() => {})
+              .then(() => { })
               .catch(() => {
                 setUpvoteCounter(upvoteCounter - 1);
                 handleDownvote();
@@ -177,12 +177,12 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
         if (session.status === 'authenticated') {
           if (isDownvoted) {
             removeDownvote(session.data.user.email, resource._id)
-              .then(() => {})
-              .catch(() => {});
+              .then(() => { })
+              .catch(() => { });
           } else {
             isUpvoted && handleUpvote();
             addDownvote(session.data.user.email, resource._id)
-              .then(() => {})
+              .then(() => { })
               .catch(() => {
                 handleUpvote();
               });
@@ -205,12 +205,12 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
           if (isFavorite) {
             setFavoriteCounter(favoriteCounter - 1);
             removeFavorite(session.data.user.email, resource._id)
-              .then(() => {})
+              .then(() => { })
               .catch(() => setFavoriteCounter(favoriteCounter + 1));
           } else {
             setFavoriteCounter(favoriteCounter + 1);
             addFavorite(session.data.user.email, resource._id)
-              .then(() => {})
+              .then(() => { })
               .catch(() => setFavoriteCounter(favoriteCounter - 1));
           }
           setIsFavorite(!isFavorite);
@@ -266,36 +266,35 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
                       {resource.documentFormat}
                     </Badge>
                   </div>
-
-                  {session.status === 'authenticated' &&
-                  (session.data.user.email === resource.userEmail ||
-                    session.data.user.isAdmin) ? (
-                    <div onClick={(e) => e.stopPropagation()}>
-                      <ActionsMenu
-                        resource={resource}
-                        refreshResources={refreshResource}
-                      />
-                    </div>
-                  ) : (
+                  <div className='flex'>
                     <button
                       disabled={session.status !== 'authenticated'}
                       onClick={
                         session.status === 'authenticated'
                           ? (e) => {
-                              e.stopPropagation();
-                              handleFavorite();
-                            }
-                          : () => {}
+                            e.stopPropagation();
+                            handleFavorite();
+                          }
+                          : () => { }
                       }
-                      className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
+                      className={`mr-2 flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-yellow-500' : ''} transition-all ${isFavorite ? 'text-yellow-500' : 'text-muted-foreground'}`}
                       title='Favorite'
                     >
                       <i
                         className={`${isFavorite ? 'ph-fill' : 'ph'} ph-star text-lg`}
                       ></i>
                       <p className='text-sm'>{formatNumber(favoriteCounter)}</p>
+
                     </button>
-                  )}
+                    {session.status === 'authenticated' && (session.data.user.email === resource.userEmail || session.data.user.isAdmin) &&
+                      <div onClick={(e) => e.stopPropagation()}>
+                        <ActionsMenu
+                          resource={resource}
+                          refreshResources={refreshResource}
+                        />
+                      </div>
+                    }
+                  </div>
                 </div>
                 <CardTitle className='text-left'>{resource.title}</CardTitle>
                 {resource.description && resource.description.length > 0 && (
@@ -331,10 +330,10 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
                       onClick={
                         session.status === 'authenticated'
                           ? (e) => {
-                              e.stopPropagation();
-                              handleUpvote();
-                            }
-                          : () => {}
+                            e.stopPropagation();
+                            handleUpvote();
+                          }
+                          : () => { }
                       }
                       className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-orange-500' : ''} transition-all ${isUpvoted ? 'text-orange-500' : 'text-muted-foreground'}`}
                       title='Upvote'
@@ -349,10 +348,10 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
                       onClick={
                         session.status === 'authenticated'
                           ? (e) => {
-                              e.stopPropagation();
-                              handleDownvote();
-                            }
-                          : () => {}
+                            e.stopPropagation();
+                            handleDownvote();
+                          }
+                          : () => { }
                       }
                       className={`flex space-x-1 ${session.status === 'authenticated' ? 'hover:text-purple-500' : ''} transition-all ${isDownvoted ? 'text-purple-500' : 'text-muted-foreground'}`}
                       title='Downvote'

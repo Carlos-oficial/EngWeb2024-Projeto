@@ -157,7 +157,7 @@ export default function Profile({ params }: { params: { uemail: string } }) {
           </TabsList>
           <TabsContent value='resources'>
             {resources !== null ? (
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+              <div className='grid grid-cols-1 xl:grid-cols-2 gap-4'>
                 {resources.length > 0 ? (
                   resources.map((resource) => (
                     <ResourceCard

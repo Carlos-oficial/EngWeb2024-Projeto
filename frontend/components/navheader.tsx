@@ -25,7 +25,7 @@ export default function NavHeader({
             : 'Profile';
 
   return (
-    <header className='py-2 px-5 w-full border-b border-border h-fit'>
+    <header className='p-2 pl-5 w-full border-b border-border h-fit'>
       <div className='flex h-11 items-center justify-between'>
         <div className='flex space-x-4 items-center'>
           {page_title === 'Resource' && (
