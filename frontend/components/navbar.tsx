@@ -8,6 +8,19 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { nameInitials } from '@/lib/utils';
 import { useEffect, useState } from 'react';
+import { signOut } from 'next-auth/react';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
 
 export default function Navbar({
   isOpen,
@@ -21,35 +34,37 @@ export default function Navbar({
   const router = useRouter();
   const session = useSession();
 
+  function handleSignOut() {
+    signOut({ callbackUrl: '/dashboard' }).catch(() => { });
+  }
+
   const isProfile =
     session.status === 'authenticated' &&
     (session.data.user.email === pathname.split('/').pop() ||
       session.data.user.email === searchParams.get('from')?.split('/').pop()) &&
     (pathname.startsWith('/dashboard/profile/') ||
       searchParams.get('from')?.startsWith('/dashboard/profile/'));
-  
-
-
-
   return (
     <div
-      className={`  ${isOpen ? 'translate-x-0' : '-translate-x-full' } absolute z-50 bg-background w-full lg:min-w-64 lg:w-auto h-screen border-r border-border lg:translate-x-0 lg:relative lg:transition-all duration-300`}
+      className={`  ${isOpen ? 'translate-x-0' : '-translate-x-full'} absolute z-50 bg-background w-full lg:min-w-64 lg:w-auto h-screen border-r border-border lg:translate-x-0 lg:relative lg:transition-all duration-300`}
     >
       <div className='p-2 border-b border-border'>
         <div className='flex space-x-2 items-center'>
-          <Button
-            variant={'outline'}
-            className={`w-full h-11 justify-between ${isProfile && 'ring-1 ring-ring'}`}
-            onClick={
-              session.status === 'authenticated'
-                ? () =>
-                  router.push('/dashboard/profile/' + session.data.user.email)
-                : () => router.push('/auth/signin')
-            }
+          <div
+            className={`flex rounded p-3  items-center w-full h-11 justify-between ${isProfile ? ('ring-1 ring-ring') : 'border border-input bg-background shadow-sm'}`}
           >
-            <div className='flex space-x-3 items-center'>
-              <Avatar className='h-6 w-6'>
+            <button
+              title='Profile'
+              className='flex space-x-2 items-center'
+              disabled={session.status !== 'authenticated'}>
+              <Avatar className='h-6 w-6' onClick={
+                session.status === 'authenticated'
+                  ? () =>
+                    router.push('/dashboard/profile/' + session.data.user.email)
+                  : () => router.push('/auth/signin')
+              }>
                 {session.status === 'authenticated' ? (
+
                   <>
                     <AvatarImage
                       src={session.data.user?.image}
@@ -68,13 +83,35 @@ export default function Navbar({
               {session.status === 'authenticated' ? (
                 <span>{session.data.user?.name}</span>
               ) : (
-                <span>Sign in</span>
+                <span>Guest</span>
               )}
-            </div>
-            {session.status === 'unauthenticated' && (
-              <i className='ph ph-arrow-square-out'></i>
-            )}
-          </Button>
+            </button>
+
+            {session.status === 'unauthenticated' ? (
+              <button title="signin" className='hover:scale-105 flex items-center' onClick={() => router.push('/auth/signin')}>
+                <i className='ph ph-sign-in' ></i>
+              </button>
+            ) :
+              <AlertDialog>
+                <AlertDialogTrigger asChild >
+                  <button title="signout" className='hover:scale-105 flex items-center'>
+                    <i className='ph ph-sign-out' ></i>
+
+                  </button>
+                </AlertDialogTrigger>
+                <AlertDialogContent className="flex justify-between items-center">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel> Cancel</AlertDialogCancel>
+                    <AlertDialogAction  onClick={() => handleSignOut()} >Sign out</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+
+            }
+          </div>
           <Button
             variant='outline'
             className='lg:hidden h-11 w-11'
