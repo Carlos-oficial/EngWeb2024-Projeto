@@ -9,19 +9,18 @@ import {
 } from '@/lib/data';
 import { CommentWithResourceDTO, ResourceDTO, UserDTO } from '@/lib/types';
 import { useCallback, useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Spinner from '@/components/spinner';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { nameInitials } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ResourceCard from '@/components/resource_card';
 import PaginationNav from '@/components/pagination_nav';
 import ProfileComment from '@/components/profile_comment';
+import EditProfileDialog from '@/components/edit_profile_dialog';
+import SettingsDialog from '@/components/settings_dialog';
 
 export default function Profile({ params }: { params: { uemail: string } }) {
-  const session = useSession();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -91,31 +90,36 @@ export default function Profile({ params }: { params: { uemail: string } }) {
     refreshResources();
   }, [refreshResources]);
 
-  useEffect(() => {
+  const refreshUser = useCallback(() => {
     getUser(decodeURIComponent(params.uemail))
       .then((user) => setUser(user))
       .catch(() => router.push('/404'));
   }, [params.uemail, router]);
 
+  useEffect(() => {
+    refreshUser();
+  }, [refreshUser]);
+
   return user !== null ? (
-    <div className='sm:px-28 md:px-48 lg:px-40 2xl:px-96'>
-      <div className='bg-accent w-full h-40'></div>
-      <div className='-translate-y-14 space-y-4 px-4'>
-        <div className='flex justify-between items-center'>
-          <Avatar className='w-28 h-28 ring-4 ring-background'>
-            <AvatarImage src={user.image} />
-            <AvatarFallback className='text-5xl'>
-              {nameInitials(user.name)}
-            </AvatarFallback>
-          </Avatar>
-          {session.status === 'authenticated' &&
-            session.data.user.email === decodeURIComponent(params.uemail) && (
-              <Button className='translate-y-9 flex space-x-1 items-center'>
-                <i className='ph ph-pencil-simple'></i>
-                <span>Edit profile</span>
-              </Button>
-            )}
+    <div className='sm:px-28 md:px-48 lg:px-40 2xl:px-96 space-y-4'>
+      <div className='grid grid-flow-row auto-rows-max'>
+        <div className='bg-accent w-full h-40 col-start-1 row-start-1 row-end-3'></div>
+        <div className='flex row-start-2 row-end-4 col-start-1 px-4 items-end'>
+          <div className='flex justify-between items-center w-full'>
+            <Avatar className='w-28 h-28 ring-4 ring-background'>
+              <AvatarImage src={user.image} />
+              <AvatarFallback className='text-5xl'>
+                {nameInitials(user.name)}
+              </AvatarFallback>
+            </Avatar>
+            <div className='flex space-x-2 translate-y-9'>
+              <EditProfileDialog user={user} refreshUser={refreshUser} />
+              <SettingsDialog user={user} />
+            </div>
+          </div>
         </div>
+      </div>
+      <div className='space-y-4 px-4'>
         <div>
           <h1 className='text-xl font-bold'>{user.name}</h1>
           <p className='text-muted-foreground'>{user.email}</p>

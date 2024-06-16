@@ -36,7 +36,10 @@ export async function PUT(
     const session = await getServerSession(authOptions);
 
     if (!session)
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
 
     const resource = (await ResourceController.get(params.rid)) as ResourceDB;
 
@@ -60,7 +63,10 @@ export async function PUT(
 
       return NextResponse.json(body);
     } else {
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
     }
   } catch (error) {
     return NextResponse.json(
@@ -78,7 +84,10 @@ export async function DELETE(
     const session = await getServerSession(authOptions);
 
     if (!session)
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
 
     await connectMongo();
 
@@ -107,7 +116,10 @@ export async function DELETE(
         { status: HttpStatusCode.Ok },
       );
     } else {
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
     }
   } catch (error) {
     return NextResponse.json(

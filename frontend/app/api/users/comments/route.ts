@@ -11,7 +11,10 @@ export async function POST(req: NextRequest) {
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
     }
 
     await connectMongo();
@@ -34,7 +37,10 @@ export async function PUT(req: NextRequest) {
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
     }
 
     await connectMongo();
@@ -51,7 +57,10 @@ export async function PUT(req: NextRequest) {
 
     // verify user is owner of comment
     if (session.user.email !== comment.userEmail) {
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
     }
 
     await CommentController.update(body.commentId, {
@@ -72,7 +81,10 @@ export async function DELETE(req: NextRequest) {
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
     }
 
     await connectMongo();
@@ -89,7 +101,10 @@ export async function DELETE(req: NextRequest) {
 
     // verify user is owner of comment
     if (session.user.email !== comment.userEmail) {
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
     }
 
     await CommentController.remove(body.commentId);

@@ -7,6 +7,16 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { nameInitials } from '@/lib/utils';
+import { signOut } from 'next-auth/react';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 export default function Navbar({
   isOpen,
@@ -27,6 +37,10 @@ export default function Navbar({
     (pathname.startsWith('/dashboard/profile/') ||
       searchParams.get('from')?.startsWith('/dashboard/profile/'));
 
+  function handleSignOut() {
+    signOut({ callbackUrl: '/dashboard' }).catch(() => {});
+  }
+
   return (
     <div
       className={`${isOpen ? 'translate-x-0' : '-translate-x-full'} absolute z-50 bg-background w-full lg:min-w-64 lg:w-auto h-screen border-r border-border lg:translate-x-0 lg:relative transition-all duration-300`}
@@ -35,7 +49,7 @@ export default function Navbar({
         <div className='flex space-x-2 items-center'>
           <Button
             variant={'outline'}
-            className={`w-full h-11 justify-between ${isProfile && 'ring-1 ring-ring'}`}
+            className={`w-full h-11 p-3 justify-between cursor-default ${isProfile && 'ring-1 ring-ring'}`}
             onClick={
               session.status === 'authenticated'
                 ? () =>
@@ -67,8 +81,30 @@ export default function Navbar({
                 <span>Sign in</span>
               )}
             </div>
-            {session.status === 'unauthenticated' && (
-              <i className='ph ph-arrow-square-out'></i>
+            {session.status === 'unauthenticated' ? (
+              <i className='ph ph-sign-in'></i>
+            ) : (
+              <div onClick={(e) => e.stopPropagation()}>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <i
+                      title='Sign out'
+                      className='ph ph-sign-out cursor-pointer hover:text-primary transition-colors'
+                    ></i>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader className='flex flex-row justify-between items-center'>
+                      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                      <div className='space-x-2'>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction onClick={handleSignOut}>
+                          Sign out
+                        </AlertDialogAction>
+                      </div>
+                    </AlertDialogHeader>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
             )}
           </Button>
           <Button

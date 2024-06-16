@@ -89,7 +89,9 @@ export type UserSignUp = {
   password: string;
 };
 
-export type UserDTO = UserDB;
+export type UserDTO = UserDB & {
+  hasPassword: boolean;
+};
 
 export type FavoritePerResourceDB = {
   _id: string;

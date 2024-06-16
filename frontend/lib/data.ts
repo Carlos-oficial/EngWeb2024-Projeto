@@ -2,14 +2,14 @@ import { HttpStatusCode } from 'axios';
 import {
   ResourceDTO,
   SubjectDB,
-  UserDTO,
+  UserDB,
   CourseDB,
   DocumentTypeDB,
-  UserDB,
   UserSignUp,
   ResourceDB,
   CommentDTO,
   CommentWithResourceDTO,
+  UserDTO,
 } from './types';
 import { config } from '@/lib/config';
 
@@ -139,6 +139,68 @@ const getUserFavorites = async (userEmail: string) => {
     const response = await fetch('/api/users/' + userEmail + '/favorites');
     const data = (await response.json()) as string[];
     return data;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const editUser = async (
+  userEmail: string,
+  userInfo: Partial<UserDB>,
+) => {
+  try {
+    const response = await fetch(`/api/users/${userEmail}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
+    });
+
+    if (response.status === (HttpStatusCode.Unauthorized as number))
+      throw new Error('You are not authorized to perform this action.');
+
+    if (response.status === (HttpStatusCode.NotFound as number))
+      throw new Error('User not found.');
+
+    if (response.status === (HttpStatusCode.Conflict as number))
+      throw new Error('Email already in use.');
+
+    if (!response.ok) throw new Error('Failed to edit user.');
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const updateUserPassword = async (
+  userEmail: string,
+  currentPassword: string,
+  newPassword: string,
+) => {
+  try {
+    const response = await fetch(`/api/users/${userEmail}/password`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+      }),
+    });
+
+    console.log(response.status);
+
+    if (response.status === (HttpStatusCode.Unauthorized as number))
+      throw new Error('You are not authorized to perform this action.');
+
+    if (response.status === (HttpStatusCode.NotFound as number))
+      throw new Error('User not found.');
+
+    if (response.status === (HttpStatusCode.BadRequest as number))
+      throw new Error('Failed to change password.');
+
+    if (!response.ok) throw new Error('Failed to change password.');
   } catch (error) {
     throw new Error((error as Error).message);
   }

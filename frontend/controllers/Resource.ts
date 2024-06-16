@@ -230,6 +230,10 @@ export const search = (query: string, page: number) => {
     .exec();
 };
 
+export const updateUserEmail = (oldEmail: string, newEmail: string) => {
+  return Resource.updateMany({ userEmail: oldEmail }, { userEmail: newEmail });
+};
+
 export const countSearch = (query: string) => {
   return Resource.aggregate(searchPipeline(query)).then((res) => res.length);
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 
 import { Button } from '@/components/ui/button';
@@ -13,6 +13,11 @@ import {
 
 export default function ModeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
+  const [finalTheme, setFinalTheme] = useState<string>('light');
+
+  useEffect(() => {
+    if (resolvedTheme) setFinalTheme(resolvedTheme);
+  }, [setFinalTheme, resolvedTheme]);
 
   return (
     <DropdownMenu>
@@ -23,7 +28,7 @@ export default function ModeToggle() {
           className='w-11 h-11'
           title='Appearance'
         >
-          {resolvedTheme === 'light' ? (
+          {finalTheme === 'light' ? (
             <i className='ph ph-sun text-lg'></i>
           ) : (
             <i className='ph ph-moon text-lg'></i>

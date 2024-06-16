@@ -19,7 +19,7 @@ export const create = (subject: Partial<UserDB>) => {
 };
 
 export const update = (email: string, subject: Partial<UserDB>) => {
-  return User.findOneAndUpdate({ userEmail: email }, subject).exec();
+  return User.findOneAndUpdate({ email: email }, subject).exec();
 };
 
 export const getInteractions = (email: string) => {

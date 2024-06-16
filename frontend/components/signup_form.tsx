@@ -29,17 +29,20 @@ type FormValues = z.infer<typeof formSchema>;
 const formSchema = z.object({
   firstName: z
     .string({ required_error: 'Please provide your first name' })
-    .min(1, { message: 'Please provide your first name' }),
+    .min(1, { message: 'Please provide your first name' })
+    .max(50, { message: 'First name must be at most 50 characters' }),
   lastName: z
     .string({ required_error: 'Please provide your last name' })
-    .min(1, { message: 'Please provide your last name' }),
+    .min(1, { message: 'Please provide your last name' })
+    .max(50, { message: 'Last name must be at most 50 characters' }),
   email: z
     .string({ required_error: 'Please provide a valid email' })
     .email()
     .min(1, { message: 'Please provide a valid email' }),
   password: z
     .string({ required_error: 'Please provide a valid password' })
-    .min(16, { message: 'Password must be at least 16 characters long' }),
+    .min(16, { message: 'Password must be at least 16 characters long' })
+    .max(100, { message: 'Password must be at most 100 characters long' }),
 });
 
 export default function SignUpForm({

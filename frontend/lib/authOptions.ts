@@ -31,6 +31,8 @@ export const authOptions: AuthOptions = {
         password: {},
       },
       async authorize(credentials, req) {
+        await connectMongo();
+
         const user = (await UserController.get(credentials?.email ?? '')) as
           | UserDB
           | null

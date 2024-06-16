@@ -14,7 +14,10 @@ export async function POST(
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
     }
 
     if (!params.uemail) {
@@ -25,7 +28,10 @@ export async function POST(
     }
 
     if (session.user.email !== params.uemail) {
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
     }
 
     await connectMongo();
@@ -62,7 +68,10 @@ export async function DELETE(
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
     }
 
     if (!params.uemail) {
@@ -73,7 +82,10 @@ export async function DELETE(
     }
 
     if (session.user.email !== params.uemail) {
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
     }
 
     await connectMongo();

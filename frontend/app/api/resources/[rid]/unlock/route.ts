@@ -12,7 +12,10 @@ export async function GET(
     const session = await getServerSession(authOptions);
 
     if (!session)
-      return NextResponse.json({ status: HttpStatusCode.Unauthorized });
+      return NextResponse.json(
+        { message: '' },
+        { status: HttpStatusCode.Unauthorized },
+      );
 
     if (session?.user.isAdmin) {
       await setIsLocked(params.rid, false);
