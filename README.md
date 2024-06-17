@@ -187,7 +187,7 @@ Executar o projeto num ambiente conteinerizado.
 docker compose up
 ```
 
-> ![NOTE]  
+> [!NOTE]  
 > Utilizar a _flag_ `--build` numa primeira execução.
 
 Formatar o código.
