@@ -78,6 +78,14 @@ const config = {
       },
     },
   },
+  safelist: [
+    {
+      pattern: /text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl)/,
+    },
+    {
+      pattern: /bg-background/,
+    },
+  ],
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
 

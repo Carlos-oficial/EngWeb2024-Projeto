@@ -17,7 +17,7 @@ export default async function SignIn() {
           <SignInForm providers={providers} />
         </div>
         <div className='hidden bg-primary lg:flex justify-center items-center space-x-4'>
-          <Logo size='7xl' color='background' />
+          <Logo size='7xl' />
         </div>
       </div>
     );

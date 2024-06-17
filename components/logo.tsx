@@ -17,7 +17,7 @@ export default function Logo({
 
   return (
     <div
-      className={`flex ${stateSize === 'xl' ? 'flex-row space-x-2' : 'flex-col'} items-center justify-center select-none ${color && `text-${color}`}`}
+      className={`flex ${stateSize === 'xl' ? 'flex-row space-x-2' : 'flex-col'} items-center justify-center select-none ${color ? `text-${color}` : 'text-background'}`}
     >
       <i className={`ph-duotone ph-graduation-cap text-${stateSize}`}></i>
       <p className={`text-${stateSize} font-bold font-[ClashDisplay-Bold]`}>
