@@ -1,20 +1,15 @@
-# Use the official Node.js image from the Docker Hub.
-FROM node:18-alpine
+FROM node:18
 
-# Set the working directory in the container.
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copy the package.json and package-lock.json files to the container.
 COPY package*.json ./
 
-# Install dependencies.
+ENV MONGO_URI "mongodb://mongodb:27017/app?directConnection=true&serverSelectionTimeoutMS=30000&appName=mongosh+2.2.6"
+
 RUN npm install
 
-# Copy the rest of the application code to the container.
 COPY . .
 
-# Expose port 3000 for the application.
 EXPOSE 3000
 
-# Start the Next.js application.
 CMD ["npm", "run", "dev"]
