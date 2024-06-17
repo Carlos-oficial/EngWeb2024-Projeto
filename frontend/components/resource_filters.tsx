@@ -62,7 +62,7 @@ export default function ResourceFilters({
   }, [subjects, courseId]);
 
   function minutesAgo(a: Date, b: Date, minutes: number) {
-    return a.getTime() - b.getTime() < minutes * 60 * 1000;
+    return a.getTime() - b.getTime() > minutes * 60 * 1000;
   }
 
   useEffect(() => {
@@ -78,7 +78,10 @@ export default function ResourceFilters({
         .then((data) => {
           setDocumentTypes(data.sort((a, b) => (a.name < b.name ? -1 : 1)));
           localStorage.setItem('documentTypes', JSON.stringify(data));
-          localStorage.setItem('documentTypesUpdatedAt', Date.now().toString());
+          localStorage.setItem(
+            'documentTypesUpdatedAt',
+            new Date().toISOString(),
+          );
         })
         .catch((error: Error) => console.error(error.message));
     else
@@ -92,7 +95,7 @@ export default function ResourceFilters({
         .then((data) => {
           setCourses(data.sort((a, b) => (a.name < b.name ? -1 : 1)));
           localStorage.setItem('courses', JSON.stringify(data));
-          localStorage.setItem('coursesUpdatedAt', Date.now().toString());
+          localStorage.setItem('coursesUpdatedAt', new Date().toISOString());
         })
         .catch((error: Error) => console.error(error.message));
     else
@@ -106,7 +109,7 @@ export default function ResourceFilters({
         .then((data) => {
           setSubjects(data.sort((a, b) => (a.name < b.name ? -1 : 1)));
           localStorage.setItem('subjects', JSON.stringify(data));
-          localStorage.setItem('subjectsUpdatedAt', Date.now().toString());
+          localStorage.setItem('subjectsUpdatedAt', new Date().toISOString());
         })
         .catch((error: Error) => console.error(error.message));
     else
