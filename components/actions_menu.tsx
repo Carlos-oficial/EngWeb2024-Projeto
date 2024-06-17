@@ -83,12 +83,14 @@ const formSchema = z.object({
     .min(10, { message: 'Title must be at least 10 characters' })
     .max(50, { message: 'Title must be at most 50 characters' }),
   description: z
-    .string({ required_error: 'Description is required' })
-    .min(20, { message: 'Description must be at least 20 characters' })
+    .string()
     .max(100, { message: 'Description must be at most 100 characters' }),
-  hashtags: z.string().regex(new RegExp('^(#\\w+)?( #\\w+)*$'), {
-    message: 'Hashtags must be separated by spaces and start with #',
-  }),
+  hashtags: z
+    .string()
+    .regex(new RegExp('^(#\\w+)?( #\\w+)*$'), {
+      message: 'Hashtags must be separated by spaces and start with #',
+    })
+    .max(100, { message: 'Hashtags must be at most 100 characters' }),
   documentTypeId: z
     .string({ required_error: 'Resource type is required' })
     .min(1, { message: 'Resource type is required' }),

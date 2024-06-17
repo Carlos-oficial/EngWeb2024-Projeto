@@ -21,7 +21,7 @@ interface IResource {
 
 const ResourceSchema = new Schema<IResource>({
   title: { type: String, required: true },
-  description: { type: String, required: true },
+  description: { type: String },
   documentTypeId: { type: String, ref: 'DocumentType', required: true },
   documentFormat: { type: String, required: true },
   hashtags: { type: String },
