@@ -1,6 +1,16 @@
 version: '3.8'
 
 services:
+  app:
+    build: .
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+    depends_on:
+      - mongodb
+
   mongodb:
     image: mongo:latest
     restart: always

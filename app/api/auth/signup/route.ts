@@ -3,7 +3,7 @@ import { UserDB, UserSignUp } from '@/lib/types';
 import { NextRequest, NextResponse } from 'next/server';
 import * as UserController from '@/controllers/User';
 import { HttpStatusCode } from 'axios';
-import { hash } from 'bcrypt';
+import { hashSync } from 'bcrypt';
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,8 +21,9 @@ export async function POST(req: NextRequest) {
         { message: 'User already exists' },
         { status: HttpStatusCode.BadRequest },
       );
-
-    const hashedPassword = await hash(userInfo.password, 10);
+      console.error("\n\n\nBEFORE BCRYPT\n\n\n\n")
+    const hashedPassword = hashSync(userInfo.password, 10);
+    console.error("\n\n\nAFTER BCRYPT\n\n\n\n")
 
     await UserController.create({
       name: userInfo.firstName + ' ' + userInfo.lastName,

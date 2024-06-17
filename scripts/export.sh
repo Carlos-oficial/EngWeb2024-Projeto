@@ -19,5 +19,5 @@ for collection in $collection_list; do
 
 done 
 echo $db_name > $folder/db_name
-cd app/public/uploads
+cd  public/uploads
 zip -r $folder/uploads.zip  ./*

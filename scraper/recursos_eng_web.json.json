@@ -1,0 +1,308 @@
+[
+  {
+    "title": "Aula Prática 1 (Qua e Sex): 2023-02-15/17",
+    "desc": "Aula Prática 1 (Qua e Sex): 2023-02-15/17\n          Apresentação da UC e do seu método de funcionamento.\n          Introdução ao HTML: crash course sobre os conceitos fundamentais na construção duma página web.\n          Pequena tutorial sobre formatos textuais que iremos usar para assegurar a persistência de dados: CSV, JSON e XML.\n          Exercício: criação duma template HTML para consulta dum mapa virtual.\n          Exercício: criação duma script em Python que lê o dataset e povoa a template com a informação criando uma página estática com um índice de navegação.\n          Dataset do Mapa Virtual para os exercícios.\n          Desenvolvimentos da aula: template.html,\n            Script python geradora da página web,\n            Página final gerada.\n          \n          Slides apresentados na aula: EngWeb2023 e HTML.\n          Ferramentas usadas: VS Code, e um browser.",
+    "files": [
+      {
+        "title": "Dataset do Mapa Virtual",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/datasets/mapa.json",
+        "fileName": "mapa.json"
+      },
+      {
+        "title": "template.html",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aula1/template.html",
+        "fileName": "template.html"
+      },
+      {
+        "title": "Script python geradora da página web",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aula1/geraHTML.py",
+        "fileName": "geraHTML.py"
+      },
+      {
+        "title": "Página final gerada.",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aula1/mapa.html",
+        "fileName": "mapa.html"
+      },
+      {
+        "title": "EngWeb2023",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aula1/EngWeb2023.pdf",
+        "fileName": "EngWeb2023.pdf"
+      },
+      {
+        "title": "HTML",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aula1/HTML.pdf",
+        "fileName": "HTML.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 2: 2023-02-22/24",
+    "desc": "Aula Prática 2: 2023-02-22/24\n          Exercícios de criação de servidores HTTP simples com nodejs:\n            Servidor simples;\n            Servidor simples numa sintaxe alternativa;\n            Módulo simples;\n            Servidor simples com utilização de funcionalidades de um módulo externo;\n            Servidor com utilização de funcionalidades de um módulo externo e logger (mais completo>);\n            Servidor simples com observação do URL;\n            Servidor com dois serviços: soma e subtração;\n            Servidor simples a servir uma página Web;\n            Servidor de páginas web / ficheiros;\n            Página web modelo usada no exercício.\n          \n          Ferramentas usadas: VS Code, nodejs, curl e um browser.\n          \n          TPC2: O TPC consiste na criação dum servidor das páginas web de cada uma das cidades do dataset do mapa. \n            Sugere-se a sua divisão nas tarefas seguintes: \n            Processamento do dataset com uma script em Python, para desmembrar o dataset \n              criando uma página web para cada cidade: c1.html, c2.html, ..., cn.html, e uma página principal, de nome \n              \"index.html\", com um índice de cidades (poderá ser um índice a dois níveis: lista de distritos ordenada\n              alfabeticamente e para cada distrito uma sublista de cidades ordenadas alfabeticamente);\n            \n            A página de cada cidade deverá conter a informação da cidade e um bloco com as ligações a outras cidades, \n              cada ligação materializada num link que corresponde a nova chamada ao servidor como se descreve abaixo.\n            \n            Criar um servidor node que sirva os registos:\n              \n                localhost:porta/ (envia a página index.html a quem fez o pedido)\n                localhost:porta/c1 (envia a página c1.html a quem fez o pedido)\n                localhost:porta/c2 (envia a página c2.html a quem fez o pedido)\n                localhost:porta/...\n              \n            \n            Todos os links inseridos nas páginas HTML devem ser chamadas ao servidor, na forma \"localhost:porta/...\".",
+    "files": [
+      {
+        "title": "Servidor simples",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A2/servidor.js",
+        "fileName": "servidor.js"
+      },
+      {
+        "title": "Servidor simples numa sintaxe alternativa",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A2/servidor2.js",
+        "fileName": "servidor2.js"
+      },
+      {
+        "title": "Módulo simples",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A2/aux.js",
+        "fileName": "aux.js"
+      },
+      {
+        "title": "Servidor simples com utilização de funcionalidades de um módulo externo",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A2/servidor3.js",
+        "fileName": "servidor3.js"
+      },
+      {
+        "title": "Servidor com utilização de funcionalidades de um módulo externo e logger (mais completo>)",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A2/servidor4.js",
+        "fileName": "servidor4.js"
+      },
+      {
+        "title": "Servidor simples com observação do URL",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A2/servidor5.js",
+        "fileName": "servidor5.js"
+      },
+      {
+        "title": "Servidor com dois serviços: soma e subtração",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A2/servidor6.js",
+        "fileName": "servidor6.js"
+      },
+      {
+        "title": "Servidor simples a servir uma página Web",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A2/servidor7.js",
+        "fileName": "servidor7.js"
+      },
+      {
+        "title": "Servidor de páginas web / ficheiros",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A2/servidor8.js",
+        "fileName": "servidor8.js"
+      },
+      {
+        "title": "Página web modelo usada no exercício.",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A2/pag1.html",
+        "fileName": "pag1.html"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 3 (Qua:TP2): 2023-03-01",
+    "desc": "Aula Prática 3 (Qua:TP2): 2023-03-01\n          Construção de um serviço que recebe pedidos e responde com páginas HTML preenchidas \n            com dados recuperados do serviço desenvolvido na aula teórica.\n          \n          \n          Desenvolvimentos da aula: \n            \n              W3.CSS: Folha de estilo usada nas páginas HTML,\n              Serviço implementado em nodejs,\n              Módulo JS com as funções que implementam as templates de HTML.\n            \n          \n\n          TPC3: Completar o serviço iniciado na aula com o seguinte:\n            \n              Criar uma resposta ao pedido: localhost:porta/ que responde \n              com uma página contendo uma lista de links para várias coisas: \n                Lista de pessoas\n                Lista de pessoas ordenada\n                Distribuição por sexo: faz um pedido ao servidor que responde com uma \n                  página onde se pode consultar numa tabela quantas pessoas de cada sexo estão \n                  registadas, ao clicar no número de pessoas deverá fazer novo pedido ao\n                  servidor que responderá com uma lista dessas pessoas;\n                \n                Distribuição por desporto: faz um pedido ao servidor que responde com uma \n                  página onde se pode consultar numa tabela quantas pessoas que praticam cada desporto estão \n                  registadas, ao clicar no número de pessoas deverá fazer novo pedido ao\n                  servidor que responderá com uma lista dessas pessoas;\n                \n                \n                  Top10 de profissões: faz um pedido ao servidor que responde com uma \n                  página onde se pode consultar numa tabela as 10 profissões mais exercidas, \n                  ao clicar no número de pessoas deverá fazer novo pedido ao\n                  servidor que responderá com uma lista dessas pessoas.\n                \n              \n              \n                Na página da lista de pessoas, ao clicar no nome duma pessoa deverá fazer um\n                pedido ao serviço que deverá responder com a página individual da pessoa com \n                a sua informação.\n              \n              Extra: Utilizem o dataset grande, ou juntem-nos todos obtendo um dataset com \n                16000 pessoas. Os resultados serão mais interessantes.",
+    "files": [
+      {
+        "title": "W3.CSS: Folha de estilo usada nas páginas HTML",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP2A3/w3.css",
+        "fileName": "w3.css"
+      },
+      {
+        "title": "Serviço implementado em nodejs",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP2A3/pessoas-server.js",
+        "fileName": "pessoas-server.js"
+      },
+      {
+        "title": "Módulo JS com as funções que implementam as templates de HTML",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP2A3/mypages.js",
+        "fileName": "mypages.js"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 3 (Sex:TP2): 2023-03-03",
+    "desc": "Aula Prática 3 (Sex:TP2): 2023-03-03\n          Construção de um serviço que recebe pedidos e responde com páginas HTML preenchidas \n            com dados recuperados do serviço desenvolvido na aula teórica.\n          \n          \n          Desenvolvimentos da aula: \n            \n              W3.CSS: Folha de estilo usada nas páginas HTML,\n              Serviço implementado em nodejs,\n              Módulo JS com as funções que implementam as templates de HTML.\n            \n          \n\n          TPC3: Completar o serviço iniciado na aula com o seguinte:\n            \n              Criar uma resposta ao pedido: localhost:porta/ que responde \n              com uma página contendo uma lista de links para várias coisas: \n                Lista de pessoas\n                Lista de pessoas ordenada\n                Distribuição por sexo: faz um pedido ao servidor que responde com uma \n                  página onde se pode consultar numa tabela quantas pessoas de cada sexo estão \n                  registadas, ao clicar no número de pessoas deverá fazer novo pedido ao\n                  servidor que responderá com uma lista dessas pessoas;\n                \n                Distribuição por desporto: faz um pedido ao servidor que responde com uma \n                  página onde se pode consultar numa tabela quantas pessoas que praticam cada desporto estão \n                  registadas, ao clicar no número de pessoas deverá fazer novo pedido ao\n                  servidor que responderá com uma lista dessas pessoas;\n                \n                \n                  Top10 de profissões: faz um pedido ao servidor que responde com uma \n                  página onde se pode consultar numa tabela as 10 profissões mais exercidas, \n                  ao clicar no número de pessoas deverá fazer novo pedido ao\n                  servidor que responderá com uma lista dessas pessoas.\n                \n              \n              \n                Na página da lista de pessoas, ao clicar no nome duma pessoa deverá fazer um\n                pedido ao serviço que deverá responder com a página individual da pessoa com \n                a sua informação.\n              \n              Extra: Utilizem o dataset grande, ou juntem-nos todos obtendo um dataset com \n                16000 pessoas. Os resultados serão mais interessantes.",
+    "files": [
+      {
+        "title": "W3.CSS: Folha de estilo usada nas páginas HTML",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A3/w3.css",
+        "fileName": "w3.css"
+      },
+      {
+        "title": "Serviço implementado em nodejs",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A3/pessoas-server.js",
+        "fileName": "pessoas-server.js"
+      },
+      {
+        "title": "Módulo JS com as funções que implementam as templates de HTML",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A3/mypages.js",
+        "fileName": "mypages.js"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 4 (Qua:TP2): 2023-03-08",
+    "desc": "Aula Prática 4 (Qua:TP2): 2023-03-08\n          Construção de uma aplicação web para gestão dos alunos da UC.          \n          Desenvolvimentos da aula: \n            \n              Ficheiro ZIP com a App desenvolvida.\n            \n          \n          TPC4: This week's Work Assignement has the following tasks: \n            \n            Create a Single Page Application (SPA) for toDo lists;\n            Main page should have 3 areas: insert form, toDo task list and resolved task list;\n            Task model is composed by: dateDued (deadline); who (who is supposed to do it) and what (task description);\n            Add edit and delete operations to both lists;\n            To implement edit and delete study howto make PUT and DELETE requests to json-server;\n            When a task is submitted through the form, it will appear in toDO list;\n            Add a button to each task in toDo list to change the status to solved (task should move form one list to\n              the other);\n            \n            Possible extras: maintain lists of task types, task descriptions, ..., that are preloaded into select components... make a nice interface, even responsive.",
+    "files": [
+      {
+        "title": "Ficheiro ZIP com a App desenvolvida",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP2A4/App-alunos.zip",
+        "fileName": "App-alunos.zip"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 4 (Sex:TP1): 2023-03-10",
+    "desc": "Aula Prática 4 (Sex:TP1): 2023-03-10\n          Construção de uma aplicação web para gestão dos alunos da UC.          \n          Desenvolvimentos da aula: \n            \n              Ficheiro ZIP com a App desenvolvida.\n            \n          \n          TPC4: This week's Work Assignement has the following tasks: \n            \n            Create a Single Page Application (SPA) for toDo lists;\n            Main page should have 3 areas: insert form, toDo task list and resolved task list;\n            Task model is composed by: dateDued (deadline); who (who is supposed to do it) and what (task description);\n            Add edit and delete operations to both lists;\n            To implement edit and delete study howto make PUT and DELETE requests to json-server;\n            When a task is submitted through the form, it will appear in toDO list;\n            Add a button to each task in toDo list to change the status to solved (task should move form one list to\n              the other);\n            \n            Possible extras: maintain lists of task types, task descriptions, ..., that are preloaded into select components... make a nice interface, even responsive.",
+    "files": [
+      {
+        "title": "Ficheiro ZIP com a App desenvolvida",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A4/App-alunos.zip",
+        "fileName": "App-alunos.zip"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 5 (Qua:TP2): 2023-03-15",
+    "desc": "Aula Prática 5 (Qua:TP2): 2023-03-15\n          Construção de uma aplicação web para gestão dos alunos da UC com a framework Express.          \n          Desenvolvimentos da aula: \n            \n              Ficheiro ZIP com a App desenvolvida.\n            \n          \n          TPC5: This week's Work Assignement is the recreation of TPC4 \n            with Express framework as practiced in classroom.",
+    "files": [
+      {
+        "title": "Ficheiro ZIP com a App desenvolvida",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP2A5/AppAlunos.zip",
+        "fileName": "AppAlunos.zip"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 5 (Sex:TP1): 2023-03-17",
+    "desc": "Aula Prática 5 (Sex:TP1): 2023-03-17\n          Construção de uma aplicação web para gestão dos alunos da UC com a framework Express.          \n          Desenvolvimentos da aula: \n            \n              Ficheiro ZIP com a App desenvolvida.\n            \n          \n          TPC5: This week's Work Assignement is the recreation of TPC4 \n            with Express framework as practiced in classroom.",
+    "files": [
+      {
+        "title": "Ficheiro ZIP com a App desenvolvida",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A5/AppAlunos.zip",
+        "fileName": "AppAlunos.zip"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 6 (Qua:TP2): 2023-03-22",
+    "desc": "Aula Prática 6 (Qua:TP2): 2023-03-22\n          Substituição do json-server pelo MongoDB na Aplicação de Gestão de alunos.       \n          Construção de uma API de dados para um modelo simples: registo de treinos desportivos.   \n          Desenvolvimentos da aula: \n            \n              Ficheiro ZIP com a App desenvolvida;\n              Ficheiro ZIP com a API desenvolvida.\n            \n          \n          TPC6: This week's Work Assignement has the following tasks:\n            \n              Get back to the persons dataset and analyse it;\n              Create a REST API able to perform CRUD operations on it, and consider that the information \n                will be stored in MongoDB;\n              Create a program in a language of your choice that reads tha dataset file and makes requests to \n                your API to load all records on MongoDB;\n              As an extra, add the following operations to your classroom API (Treinos):\n                GET /treinos/modalidades\n                It should return a JSON string with a list of all modalidades, without duplicates \n                  and in alphabetical order;\n                \n                GET /treinos/duracao\n                It should return a number matching the total added duration of all records;\n                \n                GET /treinos/atletas\n                It should return a JSON string with a list of all athlete names, without duplicates \n                  and in alphabetical order.",
+    "files": [
+      {
+        "title": "Ficheiro ZIP com a App desenvolvida",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP2A6/AppAlunos.zip",
+        "fileName": "AppAlunos.zip"
+      },
+      {
+        "title": "Ficheiro ZIP com a API desenvolvida",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP2A6/Treinos.zip",
+        "fileName": "Treinos.zip"
+      },
+      {
+        "title": "persons dataset",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaT1/dataset-extra1.json",
+        "fileName": "dataset-extra1.json"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 6 (Sex:TP1): 2023-03-24",
+    "desc": "Aula Prática 6 (Sex:TP1): 2023-03-24\n          Substituição do json-server pelo MongoDB na Aplicação de Gestão de alunos.       \n          Construção de uma API de dados para um modelo simples: registo de treinos desportivos.   \n          Desenvolvimentos da aula: \n            \n              Ficheiro ZIP com a App desenvolvida;\n              Ficheiro ZIP com a API desenvolvida.\n            \n          \n          TPC6: This week's Work Assignement has the following tasks:\n            \n              Get back to the persons dataset and analyse it;\n              Create a REST API able to perform CRUD operations on it, and consider that the information \n                will be stored in MongoDB;\n              Create a program in a language of your choice that reads tha dataset file and makes requests to \n                your API to load all records on MongoDB;\n              As an extra, add the following operations to your classroom API (Treinos):\n                GET /emds/modalidades\n                It should return a JSON string with a list of all modalidades, without duplicates \n                  and in alphabetical order;\n                \n                GET /emds/aptos ou GET /emds?status=apto\n                It should return the number of records with resultado:true;\n                \n                GET /emds/atletas\n                It should return a JSON string with a list of all athlete names, without duplicates \n                  and in alphabetical order.",
+    "files": [
+      {
+        "title": "Ficheiro ZIP com a App desenvolvida",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A6/AppAlunos.zip",
+        "fileName": "AppAlunos.zip"
+      },
+      {
+        "title": "Ficheiro ZIP com a API desenvolvida",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A6/EMD.zip",
+        "fileName": "EMD.zip"
+      },
+      {
+        "title": "persons dataset",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaT1/dataset-extra1.json",
+        "fileName": "dataset-extra1.json"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 7 (Qua:TP2): 2023-03-29",
+    "desc": "Aula Prática 7 (Qua:TP2): 2023-03-29\n          Construção de uma aplicação para gestão de ficheiros: upload, download, modais.",
+    "files": [
+      {
+        "title": "gestão de ficheiros",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/las/aulaTP2A7.zip",
+        "fileName": "aulaTP2A7.zip"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 7 (Sex:TP1): 2023-03-31",
+    "desc": "Aula Prática 7 (Sex:TP1): 2023-03-31\n          Construção de uma aplicação para gestão de ficheiros: upload, download, modais.",
+    "files": [
+      {
+        "title": "gestão de ficheiros",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/las/aulaTP1A7.zip",
+        "fileName": "aulaTP1A7.zip"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 8 (Qua:TP2): 2023-04-12",
+    "desc": "Aula Prática 8 (Qua:TP2): 2023-04-12\n          Construção duma aplicação web constituída por 3 serviços, a api de dados, a interface e o serviço de \n            autenticação.",
+    "files": []
+  },
+  {
+    "title": "Aula Prática 8 (Sex:TP1): 2023-04-14",
+    "desc": "Aula Prática 8 (Sex:TP1): 2023-04-14\n          Construção duma aplicação web constituída por 3 serviços, a api de dados, a interface e o serviço de \n            autenticação.",
+    "files": []
+  },
+  {
+    "title": "Aula Prática 9 (Qua:TP2): 2023-04-19",
+    "desc": "Aula Prática 9 (Qua:TP2): 2023-04-19\n          Alterar a autenticação apresentada na aula teórica para preservar os utilizadores em MongoDB. \n          Construção de um serviço de autenticação baseado em JSON Web Tokens (JWT).",
+    "files": [
+      {
+        "title": "Alterar a autenticação apresentada",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A9/autenticacao-mongo.zip",
+        "fileName": "autenticacao-mongo.zip"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 9 (Sex:TP1): 2023-04-21",
+    "desc": "Aula Prática 9 (Sex:TP1): 2023-04-21\n          Alterar a autenticação apresentada na aula teórica para preservar os utilizadores em MongoDB. \n          Construção de um serviço de autenticação baseado em JSON Web Tokens (JWT).",
+    "files": [
+      {
+        "title": "Alterar a autenticação apresentada",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTP1A9/autenticacao-mongo.zip",
+        "fileName": "autenticacao-mongo.zip"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 10 (Qua:TP2): 2023-04-26",
+    "desc": "Aula Prática 10 (Qua:TP2): 2023-04-26\n          Construção de uma aplicação para gestão de listas de compras baseada em 3 serviços: api de dados, interface e autenticação.",
+    "files": [
+      {
+        "title": "aplicação para gestão de listas de compras",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTPA10/ComprasApp.zip",
+        "fileName": "ComprasApp.zip"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 10 (Sex:TP1): 2023-04-28",
+    "desc": "Aula Prática 10 (Sex:TP1): 2023-04-28\n          Construção de uma aplicação para gestão de listas de compras baseada em 3 serviços: api de dados, interface e autenticação.",
+    "files": [
+      {
+        "title": "aplicação para gestão de listas de compras",
+        "url": "https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2023/aulas/aulaTPA10/ComprasApp.zip",
+        "fileName": "ComprasApp.zip"
+      }
+    ]
+  },
+  {
+    "title": "Aula Prática 11 (Qua:TP2): 2023-05-10",
+    "desc": "Aula Prática 11 (Qua:TP2): 2023-05-10\n          Resolução de uma ficha de trabalho: o mapa virtual.",
+    "files": []
+  },
+  {
+    "title": "Aula Prática 11 (Sex:TP1): 2023-05-12",
+    "desc": "Aula Prática 11 (Sex:TP1): 2023-05-12\n          Resolução de uma ficha de trabalho: o mapa virtual.",
+    "files": []
+  }
+]

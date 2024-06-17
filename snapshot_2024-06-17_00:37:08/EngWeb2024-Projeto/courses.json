@@ -1,0 +1,363 @@
+{"_id":{"$oid":"666f62bc1bba29914ea4a6f6"},"name":"Biologia Aplicada (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f62b11bba29914ea4a5d6"},"name":"Biologia (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f62d91bba29914ea4aa2c"},"name":"Biologia Molecular, Biotecnologia e Bioempreendedorismo em Plantas (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62de1bba29914ea4aab0"},"name":"Ciências e Tecnologias do Ambiente (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62db1bba29914ea4aa5e"},"name":"Bioquímica Aplicada (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62df1bba29914ea4aacc"},"name":"Física (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62cc1bba29914ea4a8a0"},"name":"Matemática (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f62e51bba29914ea4ab78"},"name":"Matemática e Computação (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62eb1bba29914ea4ac20"},"name":"Optometria Avançada (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62e21bba29914ea4ab24"},"name":"Genética Molecular (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62ee1bba29914ea4ac74"},"name":"Química Medicinal (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62c91bba29914ea4a860"},"name":"Estatística Aplicada (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f62ef1bba29914ea4ac90"},"name":"Técnicas de Caracterização e Análise Química (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62f01bba29914ea4acb2"},"name":"Física (MAP-Fis) (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f62f11bba29914ea4acbe"},"name":"Química (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f62f11bba29914ea4acc8"},"name":"Ciências da Saúde (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62f01bba29914ea4aca8"},"name":"Biologia Molecular e Ambiental (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f62f11bba29914ea4acce"},"name":"Direito (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f62f11bba29914ea4accc"},"name":"Medicina (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f62f41bba29914ea4ad18"},"name":"Direito (Pós-Laboral) (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f62d31bba29914ea4a972"},"name":"Química (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f62b01bba29914ea4a5c0"},"name":"Arquitetura (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f62c51bba29914ea4a7f6"},"name":"Ciências da Computação (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f62d61bba29914ea4a9d6"},"name":"Biofísica e Bionanossistemas (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62b11bba29914ea4a5e6"},"name":"Design de Produto (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f62ae1bba29914ea4a5a0"},"name":"Design de Produto e Serviços (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62b11bba29914ea4a5da"},"name":"Geologia - Geoconservação, Geologia Ambiental e Recursos Geológicos (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f62b11bba29914ea4a5e2"},"name":"Química Aplicada (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f62b11bba29914ea4a5de"},"name":"Matemática (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f62f11bba29914ea4acca"},"name":"Ciências da Saúde (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f62f61bba29914ea4ad60"},"name":"Direito Administrativo (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62f71bba29914ea4ad7e"},"name":"Direito da União Europeia (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62b41bba29914ea4a632"},"name":"Arquitetura (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f62f81bba29914ea4ad92"},"name":"Direito dos Contratos e da Empresa (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62f91bba29914ea4adb4"},"name":"Direito dos Negócios, Europeu e Transnacional (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62fb1bba29914ea4adee"},"name":"Direito Judiciário (Direitos Processuais e Organização Judiciária) (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62fc1bba29914ea4ae12"},"name":"Direitos Humanos (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62fa1bba29914ea4adda"},"name":"Direito e Informática (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62ff1bba29914ea4ae56"},"name":"Ciências Jurídicas (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f62ff1bba29914ea4ae5a"},"name":"Administração Pública (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63111bba29914ea4b06e"},"name":"Gestão (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f62c01bba29914ea4a774"},"name":"Bioquímica (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f631b1bba29914ea4b186"},"name":"Negócios Internacionais (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63031bba29914ea4aedc"},"name":"Contabilidade (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f632b1bba29914ea4b34e"},"name":"Economia (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63201bba29914ea4b210"},"name":"Relações Internacionais (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63311bba29914ea4b3f4"},"name":"Gestão de Recursos Humanos  (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63421bba29914ea4b5e4"},"name":"Engenharia Civil (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f63461bba29914ea4b652"},"name":"Engenharia de Materiais (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f633e1bba29914ea4b57a"},"name":"Engenharia Biomédica (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f63371bba29914ea4b4a2"},"name":"Design e Marketing de Moda (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63341bba29914ea4b454"},"name":"Marketing e Estratégia (Mestrado)","__v":0}
+{"_id":{"$oid":"666f634a1bba29914ea4b6c6"},"name":"Engenharia de Polímeros (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f633a1bba29914ea4b4f2"},"name":"Engenharia Biológica (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f63071bba29914ea4af4e"},"name":"Economia (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f634e1bba29914ea4b72a"},"name":"Engenharia e Gestão de Sistemas de Informação (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f63571bba29914ea4b820"},"name":"Engenharia e Gestão Industrial (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f63531bba29914ea4b7ae"},"name":"Engenharia e Gestão de Sistemas de Informação (Pós-Laboral) (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f635b1bba29914ea4b890"},"name":"Engenharia Eletrónica Industrial e Computadores (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f63281bba29914ea4b2fa"},"name":"Contabilidade  (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63601bba29914ea4b92a"},"name":"Engenharia Mecânica (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f63691bba29914ea4ba26"},"name":"Bioinformática (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63661bba29914ea4b9de"},"name":"Construção e Reabilitação Sustentáveis (Mestrado)","__v":0}
+{"_id":{"$oid":"666f636b1bba29914ea4ba56"},"name":"Engenharia de Sistemas  (Mestrado)","__v":0}
+{"_id":{"$oid":"666f636d1bba29914ea4ba96"},"name":"Engenharia Humana (Mestrado)","__v":0}
+{"_id":{"$oid":"666f636e1bba29914ea4bab4"},"name":"Engenharia Mecatrónica (Mestrado)","__v":0}
+{"_id":{"$oid":"666f636f1bba29914ea4bad8"},"name":"Engenharia Urbana (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63721bba29914ea4bb1a"},"name":"Micro e Nano Tecnologias (Mestrado)","__v":0}
+{"_id":{"$oid":"666f62d01bba29914ea4a916"},"name":"Optometria e Ciências da Visão (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63801bba29914ea4bcac"},"name":"Tecnologias Interativas (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63821bba29914ea4bce4"},"name":"Análise Estrutural de Monumentos e Construções Históricas (Mestrado Europeu) (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63831bba29914ea4bcf7"},"name":"Ciência e Engenharia de Polímeros e Compósitos (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f63831bba29914ea4bcfd"},"name":"Engenharia Civil (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f63831bba29914ea4bd01"},"name":"Engenharia de Materiais (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f63831bba29914ea4bd0b"},"name":"Engenharia Eletrónica e de Computadores (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f63831bba29914ea4bd0f"},"name":"Engenharia Industrial e de Sistemas (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63841bba29914ea4bd17"},"name":"Engenharia Mecânica (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f63831bba29914ea4bd07"},"name":"Engenharia de Tecidos, Medicina Regenerativa e Células Estaminais (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f63841bba29914ea4bd1d"},"name":"Engenharia Química e Biológica (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f63841bba29914ea4bd21"},"name":"Engenharia Têxtil (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f63841bba29914ea4bd27"},"name":"Informática (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f63741bba29914ea4bb60"},"name":"Sistemas de Informação (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63731bba29914ea4bb44"},"name":"Engenharia de Redes e Serviços Telemáticos (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63a21bba29914ea4c05f"},"name":"História (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63bb1bba29914ea4c311"},"name":"Estudos Portugueses (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63c01bba29914ea4c399"},"name":"Filosofia (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63901bba29914ea4be73"},"name":"Enfermagem (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63c41bba29914ea4c41d"},"name":"Línguas Aplicadas (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63b81bba29914ea4c2c1"},"name":"Educação Básica (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63cd1bba29914ea4c517"},"name":"Línguas e Literaturas Europeias (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63d31bba29914ea4c5b1"},"name":"Música (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63d91bba29914ea4c663"},"name":"Arqueologia (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63d71bba29914ea4c623"},"name":"Teatro (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63da1bba29914ea4c681"},"name":"Ciências da Comunicação (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63ae1bba29914ea4c1a5"},"name":"Educação (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63db1bba29914ea4c699"},"name":"Comunicação, Arte e Cultura (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63b31bba29914ea4c233"},"name":"Educação (Pós-Laboral) (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63de1bba29914ea4c6f1"},"name":"Ciências da Educação (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63dc1bba29914ea4c6ab"},"name":"Crime, Diferença e Desigualdade (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63df1bba29914ea4c705"},"name":"Educação (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63e01bba29914ea4c721"},"name":"Educação Especial  (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63a91bba29914ea4c11f"},"name":"Sociologia (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63e21bba29914ea4c751"},"name":"Educação Pré-Escolar e Ensino do 1º Ciclo do Ensino Básico (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63871bba29914ea4bd65"},"name":"Informática (MAP-i) (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f638a1bba29914ea4bdbd"},"name":"Psicologia (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f63851bba29914ea4bd2b"},"name":"Tecnologia e Sistemas de Informação (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f638f1bba29914ea4be43"},"name":"Psicologia Aplicada (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63e11bba29914ea4c739"},"name":"Educação Pré-Escolar (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63981bba29914ea4bf3d"},"name":"Ciências da Comunicação (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63901bba29914ea4be65"},"name":"Psicologia Básica (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63dc1bba29914ea4c6bf"},"name":"História (Mestrado)","__v":0}
+{"_id":{"$oid":"666f639e1bba29914ea4bff5"},"name":"Geografia e Planeamento (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63881bba29914ea4bd85"},"name":"Líderes para Indústrias Tecnológicas (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63931bba29914ea4bebd"},"name":"Arqueologia (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f63e81bba29914ea4c7fd"},"name":"Ensino de Matemática no 3º Ciclo do Ensino Básico e no Secundário (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63e91bba29914ea4c81f"},"name":"Estudos da Criança (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63ea1bba29914ea4c841"},"name":"Ensino de Filosofia no Ensino Secundário (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63eb1bba29914ea4c863"},"name":"Ciências da Educação (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63e61bba29914ea4c7db"},"name":"Ensino de Física e de Química no 3º Ciclo do Ensino Básico e no Ensino Secundário (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63eb1bba29914ea4c867"},"name":"Estudos da Criança (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63dd1bba29914ea4c6d9"},"name":"Sociologia (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63ec1bba29914ea4c873"},"name":"Arqueologia (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63ec1bba29914ea4c877"},"name":"Ciências da Comunicação (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63ec1bba29914ea4c883"},"name":"Geografia (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63ed1bba29914ea4c893"},"name":"Ciências da Linguagem (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63ef1bba29914ea4c8c1"},"name":"Língua, Literatura e Cultura Inglesas (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63f11bba29914ea4c907"},"name":"Literaturas de Língua Portuguesa (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63f21bba29914ea4c931"},"name":"Tradução e Comunicação Multilingue (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63f41bba29914ea4c961"},"name":"Filosofia Política (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63f51bba29914ea4c971"},"name":"Lexicografia (Mestrado Europeu) (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63ed1bba29914ea4c88f"},"name":"Sociologia (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63fc1bba29914ea4ca4f"},"name":"Espanhol Língua Segunda e Língua Estrangeira (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63fd1bba29914ea4ca69"},"name":"Ciências da Cultura (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f63e31bba29914ea4c773"},"name":"Ensino de Biologia e Geologia no 3º Ciclo no Ensino Básico e no Ensino Secundário (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63fe1bba29914ea4ca6d"},"name":"Ciências da Linguagem (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f63e41bba29914ea4c795"},"name":"Ensino de Informática (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63e51bba29914ea4c7b7"},"name":"Ensino de Música (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63ff1bba29914ea4ca97"},"name":"Optometria e Ciências da Visão (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63fe1bba29914ea4ca79"},"name":"Geociências (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64001bba29914ea4caa9"},"name":"Direito das Crianças, Família e Sucessões (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63fe1bba29914ea4ca75"},"name":"Filosofia (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f64031bba29914ea4cb0d"},"name":"Economia (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f63fe1bba29914ea4ca71"},"name":"Ciências da Literatura (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f64021bba29914ea4caed"},"name":"Ciência Política e Relações Internacionais (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64011bba29914ea4cac7"},"name":"Psicologia Aplicada (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64001bba29914ea4cac1"},"name":"Gestão e Tratamento de Resíduos (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f64061bba29914ea4cb49"},"name":"Marketing e Estratégia (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64031bba29914ea4cafd"},"name":"Ciências da Administração (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f640c1bba29914ea4cbef"},"name":"Engenharia Física (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f640f1bba29914ea4cc57"},"name":"Engenharia Têxtil  (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f64131bba29914ea4ccc9"},"name":"Sustentabilidade do Ambiente Construído (Mestrado)","__v":0}
+{"_id":{"$oid":"666f640a1bba29914ea4cbbf"},"name":"Engenharia do Produto (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64141bba29914ea4cce5"},"name":"Sustentabilidade do Ambiente Construído (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f64081bba29914ea4cb97"},"name":"Engenharia e Gestão da Qualidade (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64441bba29914ea4d1fd"},"name":"Ensino de Português no 3º Ciclo do Ensino Básico e no Ensino Secundário (Mestrado)","__v":0}
+{"_id":{"$oid":"666f642e1bba29914ea4cfa1"},"name":"Sistemas Avançados de Engenharia para a Indústria (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f644d1bba29914ea4d2e9"},"name":"Física (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64501bba29914ea4d33f"},"name":"Ensino de História no 3º Ciclo do Ensino Básico e no Ensino Secundário (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64451bba29914ea4d21f"},"name":"Engenharia Informática (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f643f1bba29914ea4d171"},"name":"Design de Moda (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64511bba29914ea4d361"},"name":"Ensino de Inglês no 1º Ciclo do Ensino Básico (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64521bba29914ea4d377"},"name":"Engenharia de Estruturas (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64541bba29914ea4d3ad"},"name":"Estudos Luso-Alemães (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64551bba29914ea4d3d5"},"name":"Biotecnologia (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64581bba29914ea4d427"},"name":"Matemática Aplicada (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64571bba29914ea4d409"},"name":"Cadeias de Produção Agrícola - da mesa ao campo (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64621bba29914ea4d521"},"name":"Património Cultural (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64681bba29914ea4d5c7"},"name":"Temas de Psicologia da Educação (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64641bba29914ea4d567"},"name":"Biotecnologia Marinha e Aquacultura (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64681bba29914ea4d5db"},"name":"Direito Tributário (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64691bba29914ea4d5f9"},"name":"Biologia e Geologia (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f646e1bba29914ea4d671"},"name":"Engenharia Biomédica (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f646d1bba29914ea4d665"},"name":"Estudos Culturais (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64141bba29914ea4cce9"},"name":"Ciência e Tecnologia Alimentar e Nutrição (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f646e1bba29914ea4d677"},"name":"Modelação de Informação na Construção de Edifícios - BIM A+ (Mestrado Europeu) (Mestrado)","__v":0}
+{"_id":{"$oid":"666f642f1bba29914ea4cfbd"},"name":"Estudos Culturais  (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64151bba29914ea4cd01"},"name":"Tecnologia e Ciência Alimentar (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64371bba29914ea4d095"},"name":"Geologia  (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f643f1bba29914ea4d179"},"name":"Materiais e Processamento Avançados (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64171bba29914ea4cd3b"},"name":"Criminologia e Justiça Criminal (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64411bba29914ea4d1b7"},"name":"Ensino do 1º Ciclo do Ensino Básico e de Matemática e Ciências Naturais no 2º Ciclo do Ensino Básico (Mestrado)","__v":0}
+{"_id":{"$oid":"666f643a1bba29914ea4d0fd"},"name":"Engenharia de Telecomunicações e Informática (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f64431bba29914ea4d1db"},"name":"Ensino do 1º Ciclo do Ensino Básico e de Português e História e Geografia de Portugal no 2º Ciclo do Ensino Básico  (Mestrado)","__v":0}
+{"_id":{"$oid":"666f641c1bba29914ea4cdc5"},"name":"Ciência Política (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64241bba29914ea4ce9f"},"name":"Ciências do Ambiente  (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f642a1bba29914ea4cf37"},"name":"Gestão de Projetos de Engenharia (Mestrado)","__v":0}
+{"_id":{"$oid":"666f646f1bba29914ea4d687"},"name":"Artes Visuais (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64721bba29914ea4d6d9"},"name":"Humanidades Digitais (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64771bba29914ea4d76d"},"name":"Proteção Civil e Gestão do Território (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f647b1bba29914ea4d7d7"},"name":"Neuropsicologia Clínica e Experimental (Mestrado)","__v":0}
+{"_id":{"$oid":"666f647c1bba29914ea4d7ef"},"name":"Comunicação de Ciência (Mestrado)","__v":0}
+{"_id":{"$oid":"666f647c1bba29914ea4d807"},"name":"Ciência, Tecnologia e Gestão do Mar (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f647e1bba29914ea4d82f"},"name":"Geografia (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64801bba29914ea4d86b"},"name":"Ciências Criminais (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64871bba29914ea4d92f"},"name":"Medicina (Mestrado Integrado)","__v":0}
+{"_id":{"$oid":"666f64811bba29914ea4d893"},"name":"Gestão e Negócios (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64891bba29914ea4d963"},"name":"Marketing (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f648d1bba29914ea4d9dd"},"name":"Análise Estrutural Avançada e Projeto com Materiais Compósitos - FRP++ (Mestrado)","__v":0}
+{"_id":{"$oid":"666f648f1bba29914ea4da15"},"name":"Avaliação Aplicada à Formação nas Profissões da Saúde (Mestrado)","__v":0}
+{"_id":{"$oid":"666f648e1bba29914ea4d9fd"},"name":"Sociologia do Género e da Sexualidade (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64901bba29914ea4da25"},"name":"Gestão (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64911bba29914ea4da4b"},"name":"Biodiversidade, Ecologia e Alterações Globais (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64931bba29914ea4da71"},"name":"Estatística para Ciência de Dados (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64941bba29914ea4daa5"},"name":"Engenharia e Gestão Industrial (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f648e1bba29914ea4d9ed"},"name":"Fabrico Digital Direto para as Indústrias dos Polímeros e Moldes (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64981bba29914ea4db09"},"name":"Engenharia e Gestão de Sistemas de Informação (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f649b1bba29914ea4db55"},"name":"Engenharia Informática (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64a61bba29914ea4dc89"},"name":"Engenharia Eletrónica Industrial e Computadores (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f649f1bba29914ea4dbbd"},"name":"Engenharia Mecânica (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64ae1bba29914ea4dd73"},"name":"Engenharia Biomédica (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64a21bba29914ea4dc23"},"name":"Engenharia Civil (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64aa1bba29914ea4dcfb"},"name":"Engenharia Química e Biológica (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64c91bba29914ea4e051"},"name":"Engenharia e Gestão de Sistemas de Informação (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64b21bba29914ea4ddd7"},"name":"Psicologia (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64cd1bba29914ea4e0c7"},"name":"Psicologia Clínica e Psicoterapia de Adultos (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64cc1bba29914ea4e09f"},"name":"Engenharia Mecânica (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64d01bba29914ea4e11b"},"name":"Engenharia Eletrónica Industrial e Computadores (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64d41bba29914ea4e17b"},"name":"Engenharia Civil (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64d61bba29914ea4e1bb"},"name":"Engenharia Química e Biológica (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64ce1bba29914ea4e0e1"},"name":"Psicologia da Justiça (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64d81bba29914ea4e1fd"},"name":"Engenharia Biomédica (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64c21bba29914ea4df9f"},"name":"Engenharia Informática (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64da1bba29914ea4e21f"},"name":"Psicologia Clínica na Infância e Adolescência (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64de1bba29914ea4e289"},"name":"Engenharia Física (Mestrado)","__v":0}
+{"_id":{"$oid":"666f63891bba29914ea4bd9f"},"name":"Telecomunicações (MAP-tel) (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64df1bba29914ea4e2a9"},"name":"Engenharia de Materiais (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64e21bba29914ea4e305"},"name":"Engenharia Física (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64e91bba29914ea4e3cb"},"name":"Engenharia Têxtil (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64db1bba29914ea4e247"},"name":"Engenharia de Telecomunicações e Informática (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64ed1bba29914ea4e427"},"name":"Engenharia Têxtil (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64ef1bba29914ea4e459"},"name":"Engenharia de Polímeros (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64e71bba29914ea4e37d"},"name":"Engenharia de Polímeros (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64f01bba29914ea4e485"},"name":"Engenharia de Materiais (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64b91bba29914ea4de85"},"name":"Engenharia de Telecomunicações e Informática (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f64f51bba29914ea4e517"},"name":"Economia Monetária, Bancária e Financeira (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64f81bba29914ea4e567"},"name":"Economia Social  (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64bc1bba29914ea4dee5"},"name":"Psicologia da Educação (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64fc1bba29914ea4e5d1"},"name":"Media Arts (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64fb1bba29914ea4e5ad"},"name":"Gestão de Unidades de Saúde (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64bf1bba29914ea4df31"},"name":"Psicologia do Trabalho e das Organizações (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64bd1bba29914ea4df01"},"name":"Cognição Humana (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64fe1bba29914ea4e5f7"},"name":"Matemática e Aplicações (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64f21bba29914ea4e4b9"},"name":"Economia Industrial e da Empresa (Mestrado)","__v":0}
+{"_id":{"$oid":"666f64c01bba29914ea4df61"},"name":"Engenharia e Gestão Industrial (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65001bba29914ea4e635"},"name":"Administração Pública  (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65021bba29914ea4e67f"},"name":"Finanças (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65061bba29914ea4e6e3"},"name":"Relações Internacionais (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65081bba29914ea4e729"},"name":"Ciência Política (Mestrado)","__v":0}
+{"_id":{"$oid":"666f650b1bba29914ea4e779"},"name":"Gestão (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f64fe1bba29914ea4e5ff"},"name":"Engenharia e Gestão de Operações (Mestrado)","__v":0}
+{"_id":{"$oid":"666f650d1bba29914ea4e7af"},"name":"Fundamentos para a Investigação Científica (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f650e1bba29914ea4e7c3"},"name":"Direito Transnacional da Empresa e das Tecnologias Digitais (Mestrado)","__v":0}
+{"_id":{"$oid":"666f650f1bba29914ea4e7e7"},"name":"Modernidades Comparadas: Literaturas, Artes e Culturas (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f65131bba29914ea4e853"},"name":"Desafios das Cidades (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65181bba29914ea4e8c7"},"name":"Educação a Distância e e-Learning (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f65181bba29914ea4e8d5"},"name":"Engenharia Aeroespacial (Mestrado)","__v":0}
+{"_id":{"$oid":"666f651a1bba29914ea4e903"},"name":"Engenharia Aeroespacial (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f651e1bba29914ea4e96b"},"name":"Ciência de Dados (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f65211bba29914ea4e9cd"},"name":"Psicologia (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f65221bba29914ea4e9d9"},"name":"Criação de Conteúdos em Ambientes Digitais (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65221bba29914ea4e9df"},"name":"Psicoterapia: Contributos da Investigação para a Melhoria dos Serviços (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65231bba29914ea4e9fb"},"name":"School of CEOs – sharp training for first-time CEOs (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65231bba29914ea4e9ff"},"name":"Números e Regularidades para o Ensino Básico (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65231bba29914ea4ea07"},"name":"Liderar  para o Alto Rendimento (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65241bba29914ea4ea13"},"name":"Gestão de Stress para o Alto Rendimento (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65231bba29914ea4ea0b"},"name":"Comunicação, Conflitos e Negociação para o Alto Rendimento (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65231bba29914ea4e9f5"},"name":"Bullying e Comportamentos Desafiantes em Contextos Socioeducativos (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65241bba29914ea4ea17"},"name":"Tecnologia de Fachadas e Envolventes de Edifícios (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65241bba29914ea4ea1d"},"name":"Práticas Artísticas em Contextos Profissionais nas Artes Performativas (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65241bba29914ea4ea27"},"name":"Cultura e Comunicação Empresarial entre Portugal e a Ásia (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65251bba29914ea4ea2d"},"name":"Supervisão Pedagógica e Desenvolvimento Profissional de Educadores e Professores: Princípios e Práticas (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65241bba29914ea4ea19"},"name":"Acessibilidade e Design Inclusivo (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65241bba29914ea4ea0f"},"name":"Programa de Formação em Gestão Pública – FORGEP (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65251bba29914ea4ea39"},"name":"Metodologias e Práticas de Tradução e Comunicação (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65251bba29914ea4ea31"},"name":"Formação e Desenvolvimento de Competências de Profissionais da Área da Educação (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65251bba29914ea4ea3f"},"name":"Promoção da Saúde e de Estilos de Vida Saudáveis (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65261bba29914ea4ea51"},"name":"Proteção e Segurança Radiológica (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65261bba29914ea4ea49"},"name":"Abordagem Integrada nos Cuidados de Saúde para Profissionais de Saúde (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65261bba29914ea4ea5b"},"name":"Programa Executivo em Marketing Digital e e-Commerce (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65271bba29914ea4ea63"},"name":"Programa Executivo em \"e-Commerce Internacional\" (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65271bba29914ea4ea67"},"name":"Governação Pública e Direitos Fundamentais na Era Digital (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65261bba29914ea4ea5f"},"name":"Programa Executivo Marketing Digital e e-Business (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65271bba29914ea4ea6f"},"name":"Curso de Alta Direção em Administração Pública (CADAP) (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65271bba29914ea4ea73"},"name":"Estudos Interculturais Português/Chinês (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65281bba29914ea4ea89"},"name":"Mediação Comunitária e Intercultural (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65281bba29914ea4ea93"},"name":"Desigualdades Sociais e Educativas e Dispositivos Pedagógicos numa Educação Intercultural (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65281bba29914ea4ea9d"},"name":"Geometria e Medida para o Ensino Secundário (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65291bba29914ea4eaa1"},"name":"Álgebra para o Ensino Secundário (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65291bba29914ea4eaa9"},"name":"Aprendizagem da Leitura e da Escrita no 1ª CEB: do Rastreio às Estratégias de Intervenção Diferenciada (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f652a1bba29914ea4eab5"},"name":"Tecnologia e Comunicação Educacional (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f652a1bba29914ea4eac1"},"name":"Autonomia e Flexibilidade para a Inovação Curricular (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65221bba29914ea4e9eb"},"name":"Lideranças Escolares (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f652a1bba29914ea4eacf"},"name":"Avaliação das Aprendizagens à Luz do Conhecimento do(s) Domínio(s) da(s) Didática(s) Específica(s) (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f652b1bba29914ea4eadb"},"name":"Paleografia e Diplomática (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f652b1bba29914ea4eae1"},"name":"História e Património do Minho (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f652b1bba29914ea4eae9"},"name":"Competências Transversais em Comunicação (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f652c1bba29914ea4eaef"},"name":"Negócios Internacionais  (Mestrado)","__v":0}
+{"_id":{"$oid":"666f652f1bba29914ea4eb4b"},"name":"Segurança e Boas Práticas em Contexto Laboratorial no âmbito das Biociências (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f652f1bba29914ea4eb53"},"name":"Prevalência, Progressão e Controlo da Miopia (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65301bba29914ea4eb67"},"name":"Motivação e Autorregulação da Aprendizagem (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65301bba29914ea4eb5f"},"name":"Sustentabilidade Ambiental e Gestão de Riscos (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65301bba29914ea4eb6b"},"name":"Introdução à Gestão de Projetos de Engenharia (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65311bba29914ea4eb73"},"name":"Gestão da Produção na Indústria 4.0 (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65311bba29914ea4eb81"},"name":"Desenvolvimento de Projetos de Intervenção em Gerontologia Educativa (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65311bba29914ea4eb87"},"name":"Geometria e Medida para o Ensino Básico (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65331bba29914ea4eba9"},"name":"Análise Química e Caracterização (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65331bba29914ea4ebb5"},"name":"Executive IPSS (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65341bba29914ea4ebc1"},"name":"Técnico Especial de Planeamento de Construção (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65331bba29914ea4ebb9"},"name":"Fabricação Robótica em Design, Arquitetura e Construção (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65311bba29914ea4eb8b"},"name":"Português Língua Não Materna (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65341bba29914ea4ebcd"},"name":"Técnico Especial de Construção  (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f653a1bba29914ea4ec6b"},"name":"Soluções Empresariais Digitais (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f653a1bba29914ea4ec6f"},"name":"Intercâmbios Interculturais no Coro de Clarinetes (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65361bba29914ea4ebfd"},"name":"Formação Complementar em Física – Curso V (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f653a1bba29914ea4ec73"},"name":"Sistemas Mecatrónicos I4.0 (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f653b1bba29914ea4ec85"},"name":"Design Thinking e Inovação Digital (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f653b1bba29914ea4ec8d"},"name":"Design de Produto e Processos Têxteis (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f653b1bba29914ea4ec89"},"name":"Robótica Colaborativa e Flexível para a Fábrica do Futuro (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f653b1bba29914ea4ec91"},"name":"Planeamento Familiar e Contraceção (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f653c1bba29914ea4ec9f"},"name":"Amamentação e Sustentabilidade Social (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f653c1bba29914ea4eca5"},"name":"Reestruturação Empresarial  (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f653b1bba29914ea4ec97"},"name":"Intervenção Comunitária e Gestão de Infodemia (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f653c1bba29914ea4eca9"},"name":"Estudos Orientais: Estudos Chineses e Japoneses (Licenciatura)","__v":0}
+{"_id":{"$oid":"666f65391bba29914ea4ec55"},"name":"Criação de Ambientes Inteligentes (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f653f1bba29914ea4ecf7"},"name":"Metodologias de Registo e Tratamento Digital Aplicadas à Arqueologia, História e Património (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f653e1bba29914ea4ecf3"},"name":"Gestão e Governação de Empresas Familiares (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f653f1bba29914ea4ecfb"},"name":"Gestão Curricular na Educação Pré-escolar (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f653f1bba29914ea4ecff"},"name":"Educação Especial, Domínio Cognitivo e Motor (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65421bba29914ea4ed45"},"name":"Inovação e Transição Digital nas Empresas (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65401bba29914ea4ed13"},"name":"Enfermagem Médico-cirúrgica, na Área de Enfermagem à Pessoa em Situação Crítica (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65411bba29914ea4ed2b"},"name":"Enfermagem de Reabilitação (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65361bba29914ea4ec03"},"name":"Formação Complementar em Física – Curso VI (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65351bba29914ea4ebe5"},"name":"Ciência e Tecnologia Cervejeira (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65361bba29914ea4ec09"},"name":"História (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f65391bba29914ea4ec5b"},"name":"Chefias da Autoridade Tributária (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65351bba29914ea4ebef"},"name":"Engenharia e Gestão de Operações Hospitalares - Lean Healthcare (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65351bba29914ea4ebdf"},"name":"Ferramentas para a Integração de Recursos Naturais no Território (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65371bba29914ea4ec15"},"name":"Design e Inovação de Produtos Têxteis e Acessórios (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65391bba29914ea4ec5f"},"name":"Conhecimentos e Competências para Intervenção Psicológica no Trauma (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65351bba29914ea4ebf7"},"name":"Formação Complementar em Física – Curso IV (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65381bba29914ea4ec37"},"name":"Design para a Comunicação de Moda (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65351bba29914ea4ebf3"},"name":"Projeto de Sistemas Ciberfísicos no Contexto da Indústria 4.0 (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65391bba29914ea4ec65"},"name":"Inovação e Empreendedorismo (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65341bba29914ea4ebd9"},"name":"Gestão Integrada de Áreas de Exploração de Recursos Minerais (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65421bba29914ea4ed49"},"name":"Cibersegurança (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65421bba29914ea4ed4f"},"name":"Transformar Ideias em Negócios (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65421bba29914ea4ed53"},"name":"Desenho de Ruas (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65421bba29914ea4ed57"},"name":"Inteligência Artificial para Apoio à Tomada de Decisão (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65421bba29914ea4ed59"},"name":"Curso Prático em Fundamentos da Cirurgia Minimamente Invasiva (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65431bba29914ea4ed5d"},"name":"Cenografia  (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65431bba29914ea4ed61"},"name":"FA&gt;AP: Dirigentes Intermédios (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65431bba29914ea4ed6f"},"name":"Gestão de Pessoas na Administração Pública (Formação Especializada)","__v":0}
+{"_id":{"$oid":"666f65441bba29914ea4ed87"},"name":"Abordagem de Uma Só Saúde na Interação Fungo-Hospedeiro e Virulência (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65441bba29914ea4ed85"},"name":"Adaptação das Plantas às Alterações Climáticas (Curso Breve Creditado)","__v":0}
+{"_id":{"$oid":"666f65441bba29914ea4ed8b"},"name":"Análise do Risco e Gestão de Infraestruturas Civis (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65451bba29914ea4ed9b"},"name":"Arquitetura e Construção de Terra (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65461bba29914ea4edab"},"name":"Ensino de Artes Visuais no 3.º Ciclo do Ensino Básico e no Ensino Secundário (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65481bba29914ea4eddd"},"name":"Biomedicina (Mestrado)","__v":0}
+{"_id":{"$oid":"666f654c1bba29914ea4ee45"},"name":"Biomedicina e Ciências da Saúde (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f65471bba29914ea4edcd"},"name":"Recursos em Plantas Medicinais e Alimentares (Programa Doutoral)","__v":0}
+{"_id":{"$oid":"666f654e1bba29914ea4ee81"},"name":"Medicina (Doutoramento)","__v":0}
+{"_id":{"$oid":"666f654f1bba29914ea4ee87"},"name":"Enfermagem Comunitária na Área da Enfermagem de Saúde Familiar (Mestrado)","__v":0}
+{"_id":{"$oid":"666f65501bba29914ea4eea1"},"name":"Enfermagem de Saúde Infantil e Pediátrica (Mestrado)","__v":0}
