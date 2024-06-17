@@ -4,8 +4,7 @@ if [ -z "$1" ] || [ $1 = "--help" ] || [ $1 = "-h" ]; then
 fi
 
 rand_id=`openssl rand -base64 8`
-folder=`pwd`/snapshot_$(date +"%Y-%m-%d_%H:%M:%S")
-
+folder=`pwd`/snapshots/snapshot_$(date +"%Y-%m-%d_%H:%M:%S")
 
 mkdir -p $folder
 db_name="$1"
@@ -19,5 +18,5 @@ for collection in $collection_list; do
 
 done 
 echo $db_name > $folder/db_name
-cd app/public/uploads
-zip -r $folder/uploads.zip  ./*
+cd  public/uploads
+zip -r $folder/uploads.zip ./*

@@ -1,0 +1,1 @@
+{"_id":{"$oid":"66705136d9f5074ac419894d"},"provider":"github","type":"oauth","providerAccountId":"80540164","access_token":"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","token_type":"bearer","scope":"read:user,user:email","userId":{"$oid":"66705136d9f5074ac419894c"}}

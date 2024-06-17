@@ -16,4 +16,4 @@ for file in $db_folder/*.json; do
     mongoimport --uri "mongodb://localhost:27017/$db_name" --collection $collection_name --file $file
 done
 
-unzip -d app/public/uploads $1/uploads.zip 
+unzip -d  public/uploads $1/uploads.zip 
