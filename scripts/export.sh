@@ -18,5 +18,8 @@ for collection in $collection_list; do
 
 done 
 echo $db_name > $folder/db_name
-cd  public/uploads
-zip -r $folder/uploads.zip ./*
+docker cp web:/usr/src/app/public/uploads tmp_folder
+cd tmp_folder
+zip -r $folder/uploads.zip  ./*
+cd ..
+rm -rf tmp_folder
