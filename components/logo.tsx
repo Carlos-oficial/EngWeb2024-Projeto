@@ -6,33 +6,10 @@ export default function Logo({
   size,
   color,
 }: {
-  size:
-    | 'xs'
-    | 'sm'
-    | 'base'
-    | 'lg'
-    | 'xl'
-    | '2xl'
-    | '3xl'
-    | '4xl'
-    | '5xl'
-    | '6xl'
-    | '7xl';
+  size: string;
   color?: string;
 }) {
-  const [stateSize, setStateSize] = useState<
-    | 'xs'
-    | 'sm'
-    | 'base'
-    | 'lg'
-    | 'xl'
-    | '2xl'
-    | '3xl'
-    | '4xl'
-    | '5xl'
-    | '6xl'
-    | '7xl'
-  >(size);
+  const [stateSize, setStateSize] = useState<string>(size);
 
   useEffect(() => {
     setStateSize(size);
