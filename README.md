@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SharePoint
 
-## Getting Started
+### Grupo
+- Carlos Ribeiro A100761
+- Diogo Matos A100741
+- Júlio Pinto A100742
 
-First, run the development server:
+### Sobre o SharePoint
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+No intuito da cadeira de Engenharia Web, desenvolvemos o **SharePoint**. O intuito principal desta plataforma é servir a comunidade académica com diferentes materiais de estudo e apoio para qualquer tipo de unidade curricular que tenham.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ao longo do projeto utilizamos diferentes tecnologias. Inicialmente, planeamos o desenvolvimento desta aplicação ser feito em Python (Flask) + JavaScript (NextJS), porém acabamos por decidir avançar com Typescript (NextJS), tanto para o *backend* como para o *frontend*. Para além disso também utilizamos TailwindCSS e a biblitoeca shadcn de maneira a tornar o desenvolvimento do *frontend* mais rápido.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para bases de dados, utilizámos MongoDB para guardar todos os dados de utilizadores e todos os metadados dos ficheiros. Os ficheiros em si foram guardamos localmente.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Esta aplicação implementa diversos dos requesitos pedidos, sendo a criação e interação com posts um dos mais pertinente. Os utilizadores conseguem interagir de diversas maneiras com os conteúdos, podendo dar _upvote_ (like) ou _downvote_ ao mesmo, comentar sobre o recurso ou até mesmo guardá-lo como favorito. De maneira a tornar a pesquisa destes mais fácil, os utilizadores têm também a seu dispor diversos filtros e um motor de pesquisa. Mais à entramos em mais detalhes quanto a todos os requisitos.
 
-## Learn More
+Neste relatório vamos explicar as ferramentas e tecnologias usadas, a arquitetura que implementamos, tal como a maneira como lidamos com os nossos dados.
 
-To learn more about Next.js, take a look at the following resources:
+## Pré-Requisitos e Utilização
+Para correr este projeto é necessário ter:
+- Docker
+- Docker Compose
+- Node
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Requisitos Implementados
 
-## Deploy on Vercel
+## Arquitetura da Aplicação
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tratamento de Dados
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Considerações Finais
