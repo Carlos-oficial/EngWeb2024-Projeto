@@ -1,17 +1,17 @@
-const axios = require("axios");
-const fs = require("fs").promises;
+const axios = require('axios');
+const fs = require('fs').promises;
 
 // Function to upload a course
 async function uploadCourse(courseName) {
   try {
-    const response = await axios.post("http://localhost:3000/api/courses", {
+    const response = await axios.post('http://localhost:3000/api/courses', {
       name: courseName,
     });
     return response.data._id;
   } catch (error) {
     console.error(
       `Error uploading course ${courseName}:`,
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
     throw error;
   }
@@ -20,14 +20,14 @@ async function uploadCourse(courseName) {
 // Function to upload a subject
 async function uploadSubject(courseId, subjectName) {
   try {
-    await axios.post("http://localhost:3000/api/subjects", {
+    await axios.post('http://localhost:3000/api/subjects', {
       courseId: courseId,
       name: subjectName,
     });
   } catch (error) {
     console.error(
       `Error uploading subject ${subjectName}:`,
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
     throw error;
   }
@@ -37,7 +37,7 @@ async function uploadSubject(courseId, subjectName) {
 async function main() {
   try {
     // Read the JSON file
-    const data = await fs.readFile("output.json", "utf8");
+    const data = await fs.readFile('output.json', 'utf8');
     const courses = JSON.parse(data);
 
     // Iterate over each course
@@ -58,16 +58,14 @@ async function main() {
           await uploadSubject(courseId, subjectName);
           console.log(`> Subject ${subjectName} uploaded successfully.`);
         } catch (error) {
-          console.log(
-            `> Error uploading subject ${subjectName}: ${error}`
-          );
+          console.log(`> Error uploading subject ${subjectName}: ${error}`);
           continue;
         }
       }
     }
-    console.log("All courses and subjects uploaded successfully.");
+    console.log('All courses and subjects uploaded successfully.');
   } catch (error) {
-    console.error("An error occurred:", error.message);
+    console.error('An error occurred:', error.message);
   }
 }
 

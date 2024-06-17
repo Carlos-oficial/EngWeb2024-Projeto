@@ -1,11 +1,10 @@
-import Image from 'next/image';
-
 import SignUpForm from '@/components/signup_form';
 
 import { getProviders } from 'next-auth/react';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/authOptions';
 import { RedirectType, redirect } from 'next/navigation';
+import Logo from '@/components/logo';
 
 export default async function SignUp() {
   const session = await getServerSession(authOptions);
@@ -17,14 +16,8 @@ export default async function SignUp() {
         <div className='flex items-center justify-center py-12'>
           <SignUpForm providers={providers} />
         </div>
-        <div className='hidden bg-muted lg:block'>
-          <Image
-            src=''
-            alt='Image'
-            width='1920'
-            height='1080'
-            className='h-full w-full object-cover dark:brightness-[0.2] dark:grayscale'
-          />
+        <div className='hidden bg-primary lg:flex justify-center items-center space-x-4'>
+          <Logo size='7xl' color='background' />
         </div>
       </div>
     );

@@ -12,7 +12,7 @@ async function getCourse(courseId, print) {
     const dom = new jsdom.JSDOM(r.data);
     const document = dom.window.document;
     const curso = document.getElementById('ctl00_PlaceHolderMain_lblCurso');
-    
+
     let i = 1;
     let list = [];
     while (1) {

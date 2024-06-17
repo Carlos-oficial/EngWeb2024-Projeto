@@ -17,6 +17,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import Logo from './logo';
 
 export default function Navbar({
   isOpen,
@@ -116,38 +117,43 @@ export default function Navbar({
           </Button>
         </div>
       </div>
-      <nav className='grid gap-1 p-2'>
-        <NavLink
-          active={
-            pathname === '/dashboard' ||
-            searchParams.get('from') === '/dashboard'
-          }
-          href='/dashboard'
-        >
-          <i className='ph ph-fire text-xl'></i>
-          <span>Popular</span>
-        </NavLink>
-        <NavLink
-          active={
-            pathname === '/dashboard/newest' ||
-            searchParams.get('from') === '/dashboard/newest'
-          }
-          href='/dashboard/newest'
-        >
-          <i className='ph ph-seal text-xl'></i>
-          <span>Newest</span>
-        </NavLink>
-        <NavLink
-          active={
-            pathname === '/dashboard/favorites' ||
-            searchParams.get('from') === '/dashboard/favorites'
-          }
-          href='/dashboard/favorites'
-        >
-          <i className='ph ph-star text-xl'></i>
-          <span>Favorites</span>
-        </NavLink>
-      </nav>
+      <div className='h-[calc(100vh-61px)] flex flex-col justify-between p-2'>
+        <nav className='grid gap-1'>
+          <NavLink
+            active={
+              pathname === '/dashboard' ||
+              searchParams.get('from') === '/dashboard'
+            }
+            href='/dashboard'
+          >
+            <i className='ph ph-fire text-xl'></i>
+            <span>Popular</span>
+          </NavLink>
+          <NavLink
+            active={
+              pathname === '/dashboard/newest' ||
+              searchParams.get('from') === '/dashboard/newest'
+            }
+            href='/dashboard/newest'
+          >
+            <i className='ph ph-seal text-xl'></i>
+            <span>Newest</span>
+          </NavLink>
+          <NavLink
+            active={
+              pathname === '/dashboard/favorites' ||
+              searchParams.get('from') === '/dashboard/favorites'
+            }
+            href='/dashboard/favorites'
+          >
+            <i className='ph ph-star text-xl'></i>
+            <span>Favorites</span>
+          </NavLink>
+        </nav>
+        <div className='pb-2'>
+          <Logo size='xl' color='primary' />
+        </div>
+      </div>
     </div>
   );
 }
