@@ -125,6 +125,8 @@ Se o utilizador estiver a visualizar o seu próprio perfil, tem ainda a opção 
 
 O utilizador tem a opção de se registar na conta utilizando um email + password ou então utilizando um serviço externo como o _GitHub_.
 
+As passwords são armazenadas de forma segura através da utilização de _hashing_ com a ajuda do pacote _bycript_ do npm.
+
 ### Aparência
 
 | Light Mode                          | Dark Mode                         |
@@ -139,35 +141,67 @@ O projeto foi desenvolvido de forma monolítica utilizando a _framework_ **Next.
 
 Foi utilizado **MongoDB** como base de dados para armazenar toda a informação relativa a recursos, utilizadores, interações, sessão, cursos, unidades curriculares e tipos de documentos. Já os ficheiros submetidos pelos utilizadores são armazenados localmente do lado do servidor, ficando públicos. Num contexto real, esta opção seria subsituída por o armazenamento dos ficheiros num serviço dedicado na nuvem como AWS ou outro, e seria fácil a transição para esse modelo a partir da implementação atual.
 
-## 🪚 Arquitetura Da Aplicação
+## 📦 Export / Import
 
-<!-- ### Sobre o SharePoint
+Foram desenvolvidos dois _bash scripts_ responsáveis por a qualquer momento exportar ou importar o estado atual de todo o sistema, desde o conteúdo da base de dados até aos ficheiros armazenados localmente no servidor. O conteúdo exportado é guardado numa pasta _snapshot_ que inclui a data da exportação no seu nome. Para importar um estado, basta fornecer como argumento o caminho para a pasta que contém a _snapshot_ pretendida.
 
-No intuito da cadeira de Engenharia Web, desenvolvemos o **SharePoint**. O intuito principal desta plataforma é servir a comunidade académica com diferentes materiais de estudo e apoio para qualquer tipo de unidade curricular que tenham.
+Os _scripts_ devem ser executados a partir da raíz do projeto da seguinte forma:
 
-Ao longo do projeto utilizamos diferentes tecnologias. Inicialmente, planeamos o desenvolvimento desta aplicação ser feito em Python (Flask) + JavaScript (NextJS), porém acabamos por decidir avançar com Typescript (NextJS), tanto para o _backend_ como para o _frontend_. Para além disso também utilizamos TailwindCSS e a biblitoeca shadcn de maneira a tornar o desenvolvimento do _frontend_ mais rápido.
+**Export**
 
-Para bases de dados, utilizámos MongoDB para guardar todos os dados de utilizadores e todos os metadados dos ficheiros. Os ficheiros em si foram guardamos localmente.
+```bash
+./scripts/export.sh app
+```
 
-Esta aplicação implementa diversos dos requesitos pedidos, sendo a criação e interação com posts um dos mais pertinente. Os utilizadores conseguem interagir de diversas maneiras com os conteúdos, podendo dar _upvote_ (like) ou _downvote_ ao mesmo, comentar sobre o recurso ou até mesmo guardá-lo como favorito. De maneira a tornar a pesquisa destes mais fácil, os utilizadores têm também a seu dispor diversos filtros e um motor de pesquisa. Mais à entramos em mais detalhes quanto a todos os requisitos.
+**Import**
 
-Neste relatório vamos explicar as ferramentas e tecnologias usadas, a arquitetura que implementamos, tal como a maneira como lidamos com os nossos dados. -->
+```bash
+./scripts/import.sh <caminho-para-snapshot>
+```
 
-## Pré-Requisitos e Utilização
+Esta funcionalidade é essencial para, por exemplo, efetuar _backups_ regulares de informações críticas, algo que é fundamental num contexto real.
 
-Para correr este projeto é necessário ter:
+## 📥 Pré-Requisitos
 
-- Docker
-- Docker Compose
-- Node
+A execução da aplicação requer o seguinte _software_:
 
-## Requisitos Implementados
+- [Node.js 20.11.1+](https://nodejs.org/en/download/)
+- mongosh
+- mongodb-tools
+- docker
+- docker-compose
 
-## Arquitetura da Aplicação
+## 🔧 Setup
 
-## Tratamento de Dados
+É necessário instalar todas as dependências.
 
-## Considerações Finais
+```bash
+npm install
+```
+
+## 🔨 Development
+
+Executar o projeto num ambiente conteinerizado.
+
+```
+docker compose up
+```
+
+> ![NOTE]  
+> Utilizar a _flag_ `--build` numa primeira execução.
+
+Formatar o código.
+
+```bash
+npm run format
+```
+
+## 🔗 Referências
+
+- [Getting Started with React](https://reactjs.org/docs/getting-started.html)
+- [Learn Next.js](https://nextjs.org/learn)
+- [Get Started with Docker](https://www.docker.com/get-started/)
+- [shadcn/ui](https://ui.shadcn.com/docs)
 
 ## 👥 Equipa
 
