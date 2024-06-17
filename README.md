@@ -28,7 +28,7 @@ Para além disso, a _navbar_ permite ao utilizador aceder à sua página de perf
 
 ![Favorites](/assets/favorites.png)
 
-A página de favoritos permite a um utilizador **autenticado** visualizar os recursos que 'favoritou' aoo longo do tempo.
+A página de favoritos permite a um utilizador **autenticado** visualizar os recursos que 'favoritou' ao longo do tempo.
 
 ### Search Bar
 
