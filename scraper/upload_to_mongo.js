@@ -48,7 +48,7 @@ async function main() {
         courseId = await uploadCourse(courseName);
         console.log(`Course ${courseName} uploaded successfully.`);
       } catch (error) {
-        console.log(`Error uploading course ${courseName}: ${error.message}`);
+        console.log(`Error uploading course ${courseName}: ${error}`);
         continue;
       }
 
@@ -59,7 +59,7 @@ async function main() {
           console.log(`> Subject ${subjectName} uploaded successfully.`);
         } catch (error) {
           console.log(
-            `> Error uploading subject ${subjectName}: ${error.message}`
+            `> Error uploading subject ${subjectName}: ${error}`
           );
           continue;
         }
