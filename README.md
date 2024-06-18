@@ -69,8 +69,8 @@ Um recurso contém um conjunto de atributos essenciais:
 
 Existe uma variedade de interações possíveis com um recurso:
 
-- Upvote ('Votar para cima')
-- Downvote ('Votar para baixo')
+- _Upvote_ ('Votar para cima')
+- _Downvote_ ('Votar para baixo')
 - Comentar
 - Transferir
 - 'Favoritar'
@@ -117,6 +117,14 @@ Se o utilizador estiver a visualizar o seu próprio perfil, tem ainda a opção 
 | ---------------------------------------- | ------------------------------------------------ |
 | ![EditProfile](/assets/edit_profile.png) | ![AccountSettings](/assets/account_settings.png) |
 
+### Paginação
+
+De modo a conseguir lidar com um possível elevado número de recursos, todas as páginas que listam recursos implementam paginação, ao nível da API, onde apenas os recursos da página atual são apresentados. Esta solução permite manter a eficiência da plataforma em contextos com grandes números de entradas na base de dados.
+
+![Pagination](/assets/pagination.png)
+
+O tamanho de uma página é definido por um número de recursos e pode ser configurado pelo utilizador em [lib/config.ts](/lib/config.ts).
+
 ### Entrar / Registar
 
 | Sign in                       | Sign up                       |
@@ -135,11 +143,119 @@ As passwords são armazenadas de forma segura através da utilização de _hashi
 
 A plataforma conta ainda com a escolha entre um modo de aparência clara ou escura que se estende ao longo de todo o sistema.
 
-## 🛠️ Tecnologias & Ferramentas Utilizadas
+## 🔒 Níveis de Acesso
 
-O projeto foi desenvolvido de forma monolítica utilizando a _framework_ **Next.js** com TypeScript e TailwindCSS, que contém tanto a implementação da página web tanto a implementação de uma REST API, responsável por comunicar com a base de dados e realizar diversas operações. Para além disso, utilizamos a biblioteca de componentes **shadcn/ui** para auxiliar um desenvolvimento mais rápido e perfecionista dos diversos componentes da plataforma.
+A aplicação conta com 3 diferentes níveis de acesso, **Administrador**, **Produtor** e **Consumidor**, sendo os dois últimos dependentes de cada recurso individualmente, podendo um utilizador/administrador ser consumidor de um recurso e produtor de um outro.
 
-Foi utilizado **MongoDB** como base de dados para armazenar toda a informação relativa a recursos, utilizadores, interações, sessão, cursos, unidades curriculares e tipos de documentos. Já os ficheiros submetidos pelos utilizadores são armazenados localmente do lado do servidor, ficando públicos. Num contexto real, esta opção seria subsituída por o armazenamento dos ficheiros num serviço dedicado na nuvem como AWS ou outro, e seria fácil a transição para esse modelo a partir da implementação atual.
+Um utilizador administrador tem as seguintes permissões acrescidas:
+
+- Editar recurso
+- Eliminar recurso
+- Arquivar/Desarquivar recurso (alterar visibilidade do recurso)
+- Bloquear/Desbloquear recurso (bloquear a alteração da visibilidade por parte do utilizador produtor)
+- Adicionar tipo de recurso
+- Adicionar curso
+- Adicionar unidade curricular
+
+É responsabilidade do gestor da base de dados fornecer ou remover a permissão de administrador a um utilizador já existente.
+
+Um utilizador produtor tem acesso às seguintes operações sobre os seus recursos:
+
+- Editar
+- Arquivar/Desarquivar
+- Eliminar
+
+Adicionalmente, a nossa aplicação permite a exitência de um utilizador **convidado**. Isto é, utilizadores não autenticados têm acesso à plataforma com acesso limitado às suas funcionalidades.
+
+Um utilizador convidado é apenas consumidor de todos os recursos, podendo transferir os mesmos e visualizar todos os seus detalhes. Pode também visualizar os perfis de outros utilizadores e as suas interações. No entanto, um utilizador convidado **não** tem acesso às seguintes funcionalidades:
+
+- Interagir com um recurso:
+  - _Upvote_
+  - _Downvote_
+  - Comentar
+  - 'Favoritar'
+- Aceder à página de favoritos
+- Submeter novos recursos
+
+O utilizador é incentivado a autenticar-se no sistema quanto tenta aceder a funcionalidades exclusivas.
+
+![NoPermission](/assets/nopermission.png)
+
+Todos estes níveis de acesso estendem-se à API desenvolvida, que conta com verificações de sessão para assegurar a autenticação do utilizador que realiza o pedido e a proteção de _endpoints_ sensíveis.
+
+## 🔗 REST API
+
+A API desenvolvida conta com os seguintes _endpoints_, devidamente protegidos com autenticação através de _tokens_ de sessão, quando aplicável.
+
+**Recursos**
+
+- **POST /api/resources** - Submeter recurso
+- **GET /api/resources/all/[page]** - Listar todos os recursos
+- **GET /api/resources/popular/[page]** - Listar recursos visíveis (por popularidade)
+- **GET /api/resources/newewst/[page]** - Listar recursos visíveis (por mais recentes)
+- **GET /api/resources/count** - Obter número total de recursos
+- **GET /api/resources/[rid]** - Obter recurso
+- **PUT /api/resources/[rid]** - Editar recurso
+- **DELETE /api/resources/[rid]** - Eliminar recurso
+- **GET /api/resources/[rid]/comments** - Listar comentários do recurso
+- **GET /api/resources/[rid]/download** - Transferir conteúdo do recurso
+- **POST /api/resources/[rid]/hide** - Arquivar recurso
+- **POST /api/resources/[rid]/show** - Desarquivar recurso
+- **POST /api/resources/[rid]/lock** - Bloquear recurso
+- **POST /api/resources/[rid]/unlock** - Desbloquear recurso
+- **GET /api/resources/from/[uemail]/[page]** - Listar recursos do utilizador
+- **GET /api/resources/from/[uemail]/count** - Obter número total de recursos do utilizador
+- **GET /api/resources/ids/[page]** - Listar recursos pedidos
+- **GET /api/resources/ids/[page]/count** - Obter número total de recursos pedidos
+
+`page`: Página a ser obtida
+`rid`: ID do recurso
+`uemail`: Email do utilizador
+
+---
+
+**Utilizadores**
+
+- **GET /api/users/[uemail]** - Obter dados do utilizador
+- **PUT /api/users/[uemail]** - Editar dados do utilizador
+- **POST /api/users/[uemail]/upvote** - _Upvote_ de um recurso
+- **DELETE /api/users/[uemail]/upvote** - Remover _upvote_ de um recurso
+- **POST /api/users/[uemail]/downvote** - _Downvote_ de um recurso
+- **DELETE /api/users/[uemail]/downvote** - Remover _downvote_ de um recurso
+- **GET /api/users/[uemail]/favorites** - Obter recursos favoritos do utilizador (IDs)
+- **POST /api/users/[uemail]/favorites** - Adicionar recurso favorito
+- **DELETE /api/users/[uemail]/favorites** - Remover recurso favorito
+
+`uemail`: Email do utilizador
+
+---
+
+**Cursos**
+
+- **GET /api/courses** - Listar cursos
+- **POST /api/courses** - Adicionar curso
+
+---
+
+**Unidades Curriculares**
+
+- **GET /api/subjects** - Listar unidades curriculares
+- **POST /api/subjects** - Adicionar unidade curricular
+
+---
+
+**Tipos de Recurso**
+
+- **GET /api/documentType** - Listar tipos de recurso
+- **POST /api/documentType** - Adicionar tipo de recurso
+
+---
+
+**Autenticação**
+
+- **/api/auth/...**
+
+Gerido pela biblioteca **NextAuth.js**.
 
 ## 📦 Export / Import
 
@@ -161,6 +277,14 @@ Os _scripts_ devem ser executados a partir da raíz do projeto da seguinte forma
 
 Esta funcionalidade é essencial para, por exemplo, efetuar _backups_ regulares de informações críticas, algo que é fundamental num contexto real.
 
+## 🛠️ Tecnologias & Ferramentas Utilizadas
+
+O projeto foi desenvolvido de forma monolítica utilizando a _framework_ **Next.js** com TypeScript e TailwindCSS, que contém tanto a implementação da página web tanto a implementação de uma REST API, responsável por comunicar com a base de dados e realizar diversas operações. Para além disso, utilizamos a biblioteca de componentes **shadcn/ui** para auxiliar um desenvolvimento mais rápido e perfecionista dos diversos componentes da plataforma.
+
+Foi utilizado **MongoDB** como base de dados para armazenar toda a informação relativa a recursos, utilizadores, interações, sessão, cursos, unidades curriculares e tipos de documentos. Já os ficheiros submetidos pelos utilizadores são armazenados localmente do lado do servidor, ficando públicos. Num contexto real, esta opção seria subsituída por o armazenamento dos ficheiros num serviço dedicado na nuvem como AWS ou outro, e seria fácil a transição para esse modelo a partir da implementação atual.
+
+Para gestão de toda a autenticação do sistema foi utilizada a biblioteca **NextAuth.js**.
+
 ## 📥 Pré-Requisitos
 
 A execução da aplicação requer o seguinte _software_:
@@ -177,6 +301,16 @@ A execução da aplicação requer o seguinte _software_:
 
 ```bash
 npm install
+```
+
+É necessário configurar um ficheiro `.env.local` com variáveis de ambiente necessárias ao funcionamento da aplicação, incluindo segredos. Na raíz do projeto, o ficheiro `.env.local.sample` apresenta uma template com as variáveis necessárias:
+
+```
+NEXTAUTH_SECRET = <your-generated-secret>
+GITHUB_APP_CLIENT_ID = <your-github-app-client-id>
+GITHUB_APP_CLIENT_SECRET = <your-github-app-client-secret>
+MONGO_URI = <your-mongodb-connection-uri>
+NEXTAUTH_URL = <your-website-url>
 ```
 
 ## 🔨 Development
@@ -200,6 +334,7 @@ npm run format
 
 - [Getting Started with React](https://reactjs.org/docs/getting-started.html)
 - [Learn Next.js](https://nextjs.org/learn)
+- [Getting Started with NextAuth.js](https://next-auth.js.org/getting-started/example)
 - [Get Started with Docker](https://www.docker.com/get-started/)
 - [shadcn/ui](https://ui.shadcn.com/docs)
 
