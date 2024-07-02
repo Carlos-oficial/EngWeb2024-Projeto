@@ -7,6 +7,6 @@ export const config = {
     DOWNVOTE_FACTOR: -1,
   },
   pages: {
-    PAGE_SIZE: 30,
+    PAGE_SIZE: 15,
   },
 };

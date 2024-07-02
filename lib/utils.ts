@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { config } from './config';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -58,9 +59,7 @@ export function nameInitials(name: string) {
     .toUpperCase();
 }
 
-export const PAGE_SIZE = 30;
-
-export const getSkip = (page: number) => (page - 1) * PAGE_SIZE;
+export const getSkip = (page: number) => (page - 1) * config.pages.PAGE_SIZE;
 
 export function range(start: number, end: number): number[] {
   return Array.from({ length: end - start }, (_, index) => index + start);

@@ -454,15 +454,13 @@ export default function ResourcePage({ params }: { params: { rid: string } }) {
               className='w-full h-[calc(100vh-5rem-61px-22px)]'
             />
           ) : (
-            <Image
+            <img
               src={`/uploads/${resource.userEmail}/${resource._id}.${resource.documentFormat.toLowerCase()}`}
               alt={`${resource._id}`}
               className='object-contain w-full rounded-lg'
               onError={(e) => {
                 console.error('Image failed to load:', e);
               }}
-              width={0}
-              height={0}
             />
           )}
         </div>
